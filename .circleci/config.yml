@@ -6,8 +6,11 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Greeting
-          command: echo Hello, world.
+          name: pull
+          command: git clone https://github.com/brooksambrose/portfolio && cd portfolio
       - run:
-          name: Print the Current Time
-          command: date
+          name: build
+          command: bash _build.sh
+      - run:
+          name: deploy
+          command: bash _deploy.sh
