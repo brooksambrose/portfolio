@@ -17,5 +17,5 @@ Disallow: /" > docs/robots.txt
 
 # push
 git add . \
-&& git commit -m "deploy" || true \
+&& git commit --user.email "brooksambrose@gmail.com" -m "deploy" || true \
 && echo 'Ready to push.'
