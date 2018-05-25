@@ -17,5 +17,5 @@ Disallow: /" > docs/robots.txt
 
 # push
 git add . \
-&& git -c user.email="brooksambrose@gmail.com" commit -m "deploy" || true \
+&& git -c user.email="brooksambrose@gmail.com" commit --allow-empty -m "deploy" || true \
 && echo 'Ready to push.'
