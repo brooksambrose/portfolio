@@ -2,15 +2,18 @@ version: 2
 jobs:
   build:
     docker:
-      - image: brooksambrose/portfolio:prod
+      - image: brooksambrose/studio:bench
     steps:
       - checkout
       - run:
           name: pull
-          command: git clone https://github.com/brooksambrose/portfolio && cd portfolio
+          command: git clone ${PORTFOLIO} && cd $(echo ${PORTFOLIO} | sed -r 's:.+/::')
       - run:
           name: build
           command: bash _build.sh
       - run:
           name: deploy
           command: bash _deploy.sh
+      - run:
+          name: push
+          command: git push origin master
