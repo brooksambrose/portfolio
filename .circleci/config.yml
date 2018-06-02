@@ -3,11 +3,11 @@ jobs:
   build:
     docker:
       - image: brooksambrose/studio:bench
+    branches:
+      only:
+        - master
     steps:
       - checkout
-      - run:
-          name: pull
-          command: git clone ${PORTFOLIO} && cd $(echo ${PORTFOLIO} | sed -r 's:.+/::')
       - run:
           name: build
           command: bash _build.sh
