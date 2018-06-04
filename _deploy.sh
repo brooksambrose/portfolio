@@ -1,21 +1,16 @@
 #!/bin/sh
 
-# put your info here and uncomment so git (and GitHub) knows who your commits belong to!
-# git config user.email "calnet@berkeley.edu"
-# git config user.name "Oski Bear"
-
-# make sure you're on the master branch
-git checkout master
-
-# assuming you've already built it, replace old docs with new _books build
-rm -rf docs/ \
-&& mv -u -T _book/ docs/
-
+# make sure you're on the gh-pages branch
+git checkout gh-pages \
+# delete everything (replace old site) and copy _book from master
+&& rm -rf * \
+# copy book directory to gh-pages
+&& git checkout master -- _book \
+# empty _book into parent, delete _book
+&& mv _book/* . && rm -rf _book \
 # site will be public so dissuade robots and search engines from crawling your page
-echo "User-agent: *
-Disallow: /" > docs/robots.txt
-
-# push
-git add . \
-&& git -c user.email="brooksambrose@gmail.com" commit --allow-empty -m "deploy" || true \
+&& echo -e "User-agent: *\nDisallow: /" > robots.txt \
+# commit
+&& git add . \
+&& git -c user.email="brooksambrose-machine@gmail.com" commit --allow-empty -m "deploy $(date +'%Y-%m-%d %H:%M:%S')" || true \
 && echo 'Ready to push.'

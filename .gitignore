@@ -26,3 +26,5 @@
 !docs/*/*/*/*
 !docs/*/*/*/*/*
 !docs/*/*/*/*/*/*
+!.circleci/
+!.circleci/*
