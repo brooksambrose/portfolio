@@ -16,4 +16,4 @@ jobs:
           command: bash _deploy.sh
       - run:
           name: push
-          command: git push origin master
+          command: git push origin gh-pages
