@@ -28,3 +28,4 @@
 !_book/*/*/*/*/*/*
 !.circleci/
 !.circleci/*
+!*.Rproj
