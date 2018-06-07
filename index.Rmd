@@ -1,49 +1,47 @@
 ---
-title: "W201 Portfolio"
-author: "Oski Bear"
-date: "MIDS Fall 2017"
+title: "Knowledge Mapping of the U.S. Social Sciences: 1900--1925"
+author: "Brooks Ambrose"
+date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: references.bib
 link-citations: yes
 biblio-style: apalike
+csl: asa.csl
 ---
 
 <!-- This won't be displayed but it will initialize your R session. Add any R libraries you need here. -->
 ```{r init,include=FALSE,echo=FALSE}
-library(magrittr)
+source('_init.R')
 ```
 
 
-# Welcome! {-}
+# Introduction {-}
 
-<!-- You can include images saved within your repo... -->
-```{r hello-world,echo=FALSE,fig.cap='Hello World!',fig.align='center',out.width='50%'}
-knitr::include_graphics('img/hello-world.png')
-```
+There are two reasons to map knowledge spaces. First, we may want to know how knowledge develops as a resource unto itself. Second, we may want to exploit such a map for a productive purpose. Here we will attempt the second as prologue to the first. We will tackle the technical problems of constructing a map. We will show how a map can be put to use. Finally, we will investigate how the particular map we make may tend to predictably get us lost. 
 
-Pariatur sapiente anim  waistcoat bicycle rights.  Cupidatat  chambray portland direct trade, XOXO odio gochujang banjo deep v sustainable.  Sint  jianbing DIY humblebrag heirloom exercitation ennui fanny pack.  Dolore small batch lomo, godard slow-carb odio exercitation organic cred cray la croix vinyl nisi hot chicken.  Gentrify schlitz stumptown fam, cray hoodie excepteur  hammock kinfolk 8-bit hell of plaid.  Helvetica hashtag pinterest typewriter, tbh vape vero farm-to-table.  Laboris  bitters aliqua small batch.
+### Abstracts {-}
 
-<!-- Below this line is just examples of how you can embed video from Google Drive. First you have to enable sharing, then just get the object ID which is that long string between d/ and /preview and will also be appended to any sharing link you generate for your video. -->
-<p>
-```{r hello-benji,echo=FALSE,fig.cap='Hello Benjamin Franklin!',fig.align='center'}
-knitr::include_url('https://drive.google.com/file/d/0B6bobRDQR96iVEV3SXJJal9CczQ/preview')
-```
+#### Chapter 1 {-}
 
-### Abstract of my first cool idea {-}
-
-(ref:abs1) Hi I'm an abstract for your first big idea! I'm also a [text reference](https://bookdown.org/yihui/bookdown/markdown-extensions-by-bookdown.html#text-references), which is a line of text you can reuse in several places. Use me to write a one paragraph abstract and place it in `index.Rmd` as well as under the title of `01.Rmd`. Once defined, you can reuse me simply by writing `(ref:abs1)` where you want this text to go.
+(ref:abs1) Knowledge mapping of acadamic journals promotes the conservation of intellectual history and stimulates discovery of underexplored intellectual opportunities. Treated as a large network community detection problem, I demonstrate how to apply the clique percolation method to map two kinds of recorded knowledge: citations and full text. The features of generated maps are explained, and interpretive methods including visualization are presented. We use American social science scholarship in the first third of the 20th century prior to U.S. entry into World War II as a case, and describe how the intellectual landscape of four separate social science disciplines developed.
 
 (ref:abs1)
 
-### Abstract of my second cool idea {-}
+#### Chapter 2 {-}
 
-(ref:abs2) I'm also an abstract! And a text reference! An abstract is all three acts of your story in a tight little package. You may or may not want to give the ending away, but if you think there's a chance an audience will read this and nothing else, you'd better convey your argument here in miniature. People are busy after all, and there's just so much good tv on the Internet these days.
+(ref:abs2) Chapter 2 abstract
 
-(ref:abs2)
+(ref:abs2) 
+
+#### Chapter 3 {-}
+
+(ref:abs3) Chapter 3 abstract
+
+(ref:abs3) 
+
 
 ## About the author {-}
 
 Sustainable aute  gochujang, messenger bag vero dolor  blog pork belly knausgaard.  Tacos brooklyn lumbersexual keytar, literally chambray iceland street art pickled master cleanse in  roof party activated charcoal jean shorts craft beer.  Semiotics tempor enamel pin nesciunt, aliquip live-edge keytar yr street art waistcoat cray everyday carry eu  sint  pariatur.  Aliquip anim  godard leggings, flexitarian direct trade  humblebrag.  Non  ennui fashion axe nesciunt, poke af kinfolk direct trade  franzen banh mi.  Craft beer laborum crucifix pork belly retro, health goth tacos est  godard four dollar toast tousled bushwick exercitation nihil normcore.  Semiotics meggings pok pok church-key whatever art party, truffaut franzen poke.
 
-*Updated: `r Sys.Date()`*

@@ -1,3 +1,8 @@
+# CHECK
+# resources currently being ignored
+
+system("git check-ignore -v *")
+
 # BUILD
 # Run the build line to render .Rmd to .html
 
@@ -7,7 +12,10 @@ system("bash _build.sh",wait=T)
 # Replace 'index.html' with whichever page you're working on. After opening it
 # the first time you can just reload the browser.
 
-getOption("viewer")('/home/rstudio/_book/index.html') 
+# html
+getOption("viewer")(list.files(pattern='index.html',path='~',r=T,f=T)) 
+# pdf
+getOption("viewer")(list.files(pattern='ambrose_dissertation.pdf',path='~',r=T,f=T)) 
 
 # DEPLOY
 # Always after building, run the deploy line to copy .html from the preview

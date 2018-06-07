@@ -22,3 +22,5 @@
 !.circleci/
 !.circleci/*
 !*.Rproj
+!_init.R
+!asa.csl
