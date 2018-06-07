@@ -16,4 +16,4 @@ jobs:
           command: bash _deploy.sh
       - run:
           name: push
-          command: git push origin gh-pages
+          command: git subtree push --prefix _book origin gh-pages
