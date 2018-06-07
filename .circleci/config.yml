@@ -4,8 +4,8 @@ jobs:
     docker:
       - image: brooksambrose/studio:bench
     branches:
-      only:
-        - master
+      ignore:
+        - gh-pages
     steps:
       - checkout
       - run:
