@@ -19,13 +19,6 @@
 !_rundock.sh
 !img/
 !img/*
-!_book/
-!_book/*
-!_book/*/*
-!_book/*/*/*
-!_book/*/*/*/*
-!_book/*/*/*/*/*
-!_book/*/*/*/*/*/*
 !.circleci/
 !.circleci/*
 !*.Rproj
