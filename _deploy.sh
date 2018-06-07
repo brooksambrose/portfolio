@@ -7,7 +7,6 @@
 # site will be public so dissuade robots and search engines from crawling your page
 # commit
 git checkout master \
-&& git add _book \
 && git stash save \
 && git checkout gh-pages \
 && git rm -rf . \
