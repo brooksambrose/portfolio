@@ -1,8 +1,3 @@
-# CHECK
-# resources currently being ignored
-
-system("git check-ignore -v *")
-
 # BUILD
 # Run the build line to render .Rmd to .html
 

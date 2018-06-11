@@ -5,18 +5,11 @@
 !.gitattributes
 !Dockerfile
 !README.md
-!index.Rmd
-!01.Rmd
-!02.Rmd
-!03.Rmd
-!99references.Rmd
+!*Rmd
 !references.bib
 !_output.yml
-!_build.sh
-!_deploy.sh
+!*.sh
 !_build+deploy.R
-!_feedback.sh
-!_rundock.sh
 !img/
 !img/*
 !.circleci/
@@ -24,3 +17,4 @@
 !*.Rproj
 !_init.R
 !asa.csl
+.Rproj.user
