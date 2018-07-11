@@ -24,15 +24,15 @@ There are two reasons to map knowledge spaces. First, we may want to know how kn
 
 #### Chapter 1 {-}
 
-(ref:abs1) Knowledge mapping of acadamic journals promotes the conservation of intellectual history and stimulates discovery of underexplored intellectual opportunities. Treated as a large network community detection problem, I demonstrate how to apply the clique percolation method to map two kinds of recorded knowledge: citations and full text. The features of generated maps are explained, and interpretive methods including visualization are presented. We use American social science scholarship in the first third of the 20th century prior to U.S. entry into World War II as a case, and describe how the intellectual landscape of four separate social science disciplines developed.
+(ref:abs1) 
 
 (ref:abs1)
 
 #### Chapter 2 {-}
 
-(ref:abs2) Chapter 2 abstract
+(ref:abs-km) Knowledge mapping of acadamic journals promotes the conservation of intellectual history and stimulates discovery of underexplored intellectual opportunities. Treated as a large network community detection problem, I demonstrate how to apply the clique percolation method to map two kinds of recorded knowledge: citations and full text. The features of generated maps are explained, and interpretive methods including visualization are presented. We use American social science scholarship in the first third of the 20th century prior to U.S. entry into World War II as a case, and describe how the intellectual landscape of four separate social science disciplines developed.
 
-(ref:abs2) 
+(ref:abs-km) 
 
 #### Chapter 3 {-}
 

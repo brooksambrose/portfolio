@@ -1,29 +1,47 @@
-# My second cool idea {#slug-two}
+# Knowledge Mapping:  {#knowledge-mapping}
 
 #### Abstract {-}
 
-(ref:abs2)
+(ref:abs-km)
 
 #### Keywords {-}
 
-yaba, daba, do
+knowledge mapping, citation networks, topic modelling, clique percolation
 
-## A beginning.
+## Knowledge, Profession, and Education {#km-act1}
 
-Nulla  sint  art party ex, mlkshk disrupt selvage 90's.  Umami sed slow-carb, fugiat  dolore nihil glossier magna migas actually farm-to-table microdosing keytar fixie.  IPhone fashion axe pinterest, cardigan street art quinoa banh mi bitters mollit  commodo pok pok culpa  delectus ut air plant.  Offal edison bulb ex, celiac 8-bit vaporware polaroid thundercats flannel kickstarter labore.  Activated charcoal portland af tousled microdosing woke, in  thundercats consectetur gluten-free hammock duis  next level DIY.  Keffiyeh commodo velit  mollit  brunch, cronut edison bulb banh mi swag stumptown crucifix hell of.  Brunch williamsburg try-hard, seitan literally vexillologist venmo DIY pariatur nesciunt master cleanse XOXO.
+Knowledge is 
 
-## A middle.
+All professions trade in knowledge as a source of their external value to markets and their internal control over workers. Professions develop as institutions by monopolizing access to skills. In limiting the ranks of the profession, a prestige toward the profession can be maintained in the relationship of professionals to the rest of society. This prestige serves as their primary advantage in price setting and contract negotiations in an economic sense. Such prestige penetrates into deeper levels of society, as the status is confers is coveted by the socially mobile. By maintaining a scarcity of trade skills, professions safeguard the economic value of their trade and establish a social class in the classical sense. By excluding and setting themsleves apart from society on the basis of secrete knowledge, professions also safeguard their social role as a status group.
 
-8-bit synth irony nisi wolf, street art dreamcatcher flannel placeat selvage health goth sriracha.  Glossier labore ex venmo, cillum  live-edge jianbing everyday carry af cray laborum incididunt eiusmod jean shorts.  Normcore slow-carb lyft letterpress, beard tilde art party.  Poke marfa incididunt tempor duis.  Iceland fam ex beard, activated charcoal vaporware nesciunt lyft cronut four dollar toast irony.  Officia  stumptown voluptate  unicorn culpa  bushwick.  Mollit  vero af marfa deserunt  flexitarian.
+Knowledge is only one factor among many leading to the economic value of the trade. Professionals require the resources of firms and markets, namely material capital and customers, to conduct their trade and realize profits. The tools of the trade are useless without the knowledge to apply them. This attitude toward technology sets professions off from corporations, which tend to prefer investments in technology over investments in workers to increase efficiency or productivity. Operating procedures may stand in for professional judgment, and when facing consumers, market opportunity always exists for engineers to cut professionals out of the supply chain by building technology that knows in its design what professionals know in their work.
+
+This simple tension between technology and skilled labor suggests that knowledge is tricky enough to be ignored at its peril for social groups that would constitute themselves by seekign to control knowledge. If a profession lets knowledge leak, surely it will be deflated. Its economic value and social prestige may wane as alternatives to hiring pros to get the job done wax. Knowledge is nothing but information and as such it may codified, reproduced, and trasmitted in many media. The location of constitutional knowledge, whether in people or in technology, profoundly affects whether social structures can be stably maintained around it.
+
+It is a constant usually unobserved feature distinguishing professional organizations from corporations that knowledge is prevented from being sold as technology. This gives the prize away. It does not represent a lost economic opportunity only; the foundation of professional status may be threatened.
+
+Professions are always more cryptic than is technologically possible. A profession that has been stripped, that has been rendered legible to layity, has lost its source of security, and prestige depends entirely on the esteem supporters lend to individuals. This is a tenuous situation.
+
+Education concerns the development of knowledge within individuals, and in balance is a support to professions. Would an oversupply of education threaten the scarcity on which high fees or wages depend? Indeed it may not, if job growth grows slower than the educated class. Scarcity depends on the creation of jobs.
+
+So social asymmetries are easily maintained where knowledge is on equal footing across supporters. This is clear, as much more goes into job acquisition than knowledge. 
 
 
-```{r experimental,echo=F,results='asis',eval=F}
-data.table::fread('https://raw.githubusercontent.com/UCB-MIDS/experiments-causality/master/data/GerberGreenBook_Chapter3_Donations.csv?token=ABNmuX-Q14rzQ4teItDenc9L5Wo2flncks5ZL5qEwA%3D%3D') %>% stargazer::stargazer(type = 'html',title = 'Something from W241 Experiments and Causality')
-```
+### Data {#km-dq}
 
+#### Citations {#km-dq-c}
 
-Laborum williamsburg sunt whatever, DIY reprehenderit  retro vaporware id  hella flannel sartorial vero fugiat  before they sold out.  Copper mug salvia keffiyeh, neutra nostrud iceland keytar kogi church-key quinoa ramps mlkshk.  Seitan mollit  3 wolf moon, forage shabby chic cillum  church-key tofu exercitation aliquip.  Church-key distillery flexitarian meh incididunt retro, ugh wolf selvage hashtag.  Bicycle rights 90's officia  vape.  Listicle post-ironic vape ex.  Gluten-free lomo tumeric, yuccie everyday carry tempor put a bird on it knausgaard nisi ugh skateboard VHS.
+#### Full text {#km-dq-ft}
 
-## An end.
+## Methods {#km-act2}
 
-Kombucha pok pok lomo, forage bicycle rights paleo kickstarter literally.  Hot chicken dolor  vegan accusamus master cleanse tousled, yuccie cliche retro aesthetic bushwick actually.  Ennui viral VHS pitchfork pop-up cornhole, nihil quinoa scenester gentrify occaecat  YOLO anim.  Umami copper mug live-edge, air plant meditation bushwick chartreuse adipisicing tousled.  Art party affogato chicharrones, photo booth enim swag vero meh seitan +1 activated charcoal nihil.  Etsy gluten-free authentic mixtape.  Shabby chic duis  90's pop-up pinterest, lumbersexual mollit  cillum.
+### Pre-processing {#km-dd}
+
+#### Citations {#km-dd-c}
+
+#### Full text {#km-dd-ft}
+
+## Results {#km-db}
+
+## Discussion {#act3}
+
