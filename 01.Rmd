@@ -1,28 +1,139 @@
-# My second cool idea {#slug-two}
+# Knowledge Development {#kd}
 
 #### Abstract {-}
 
-(ref:abs2)
+(ref:abs-kd)
 
 #### Keywords {-}
 
-yaba, daba, do
+topic modeling, history of social science
 
 ## A beginning.
 
 Nulla  sint  art party ex, mlkshk disrupt selvage 90's.  Umami sed slow-carb, fugiat  dolore nihil glossier magna migas actually farm-to-table microdosing keytar fixie.  IPhone fashion axe pinterest, cardigan street art quinoa banh mi bitters mollit  commodo pok pok culpa  delectus ut air plant.  Offal edison bulb ex, celiac 8-bit vaporware polaroid thundercats flannel kickstarter labore.  Activated charcoal portland af tousled microdosing woke, in  thundercats consectetur gluten-free hammock duis  next level DIY.  Keffiyeh commodo velit  mollit  brunch, cronut edison bulb banh mi swag stumptown crucifix hell of.  Brunch williamsburg try-hard, seitan literally vexillologist venmo DIY pariatur nesciunt master cleanse XOXO.
 
-## A middle.
+### JSTOR Journals
 
-8-bit synth irony nisi wolf, street art dreamcatcher flannel placeat selvage health goth sriracha.  Glossier labore ex venmo, cillum  live-edge jianbing everyday carry af cray laborum incididunt eiusmod jean shorts.  Normcore slow-carb lyft letterpress, beard tilde art party.  Poke marfa incididunt tempor duis.  Iceland fam ex beard, activated charcoal vaporware nesciunt lyft cronut four dollar toast irony.  Officia  stumptown voluptate  unicorn culpa  bushwick.  Mollit  vero af marfa deserunt  flexitarian.
+```{r master2jstorm}
+f<-'d/q/jstorm.RData'
+# jstor throttles if too many calls
+if(file.exists(f)){
+  load(f)
+} else {
+  u<-paste0('https://www.jstor.org/action/showJournals?contentType=journals&letter=',c('0-9',LETTERS))
+  jstorm<-list()
+  for(i in u[which(u%in%i):length(u)]){
+    jstorm[[i]]<-try(master2jstorm.f(i))
+    Sys.sleep(rnorm(1) %>% abs %>% `+`(.5))
+  }
+  jstorm<-jstorm[!sapply(jstorm,inherits,'try-error')] %>% rbindlist
+  save(jstorm,file=f)
+}
 
-
-```{r experimental,echo=F,results='asis',eval=F}
-data.table::fread('https://raw.githubusercontent.com/UCB-MIDS/experiments-causality/master/data/GerberGreenBook_Chapter3_Donations.csv?token=ABNmuX-Q14rzQ4teItDenc9L5Wo2flncks5ZL5qEwA%3D%3D') %>% stargazer::stargazer(type = 'html',title = 'Something from W241 Experiments and Causality')
+tab<-jstorm2tab.f(jstorm,end.aft=-Inf)
+tab
 ```
 
+```{r zot2bib}
+f<-'d/q/zot2bib.RData'
+if(file.exists(f)){
+  load(f)
+} else{
+  zot2bib<-zot2bib.f(
+    users='2730456'
+    ,collections = fread('d/q/zotcollections.txt')$URL
+    ,key = 'qMxyytAhp07W9jNOGssIQasg'
+  )
+  save(zot2bib,file=f)
+}
+d<-lapply(zot2bib,function(x) x[,.(publicationTitle,date,volume,issue,pages,bp,ep,title,creators,dateModified,url)]) %>% rbindlist %>% `[`(!duplicated(.[,!9]))
+setorder(d,publicationTitle,dateModified)
+# find corrupt
+d[is.na(publicationTitle),]
+d<-d[!is.na(publicationTitle),]
+```
 
-Laborum williamsburg sunt whatever, DIY reprehenderit  retro vaporware id  hella flannel sartorial vero fugiat  before they sold out.  Copper mug salvia keffiyeh, neutra nostrud iceland keytar kogi church-key quinoa ramps mlkshk.  Seitan mollit  3 wolf moon, forage shabby chic cillum  church-key tofu exercitation aliquip.  Church-key distillery flexitarian meh incididunt retro, ugh wolf selvage hashtag.  Bicycle rights 90's officia  vape.  Listicle post-ironic vape ex.  Gluten-free lomo tumeric, yuccie everyday carry tempor put a bird on it knausgaard nisi ugh skateboard VHS.
+```{r z2b-dups}
+# find duplicates
+d[duplicated(d[,!9:10]),.(dateModified,pub=publicationTitle,tit=substr(title,1,50),date,volume,issue,pages)][,cat(date,' ',volume,' ',issue,' ',tit,' ',pages,'\n',sep=''),by=dateModified]
+```
+
+```{r z2p-pgap}
+# find page gaps
+p<-d[!(duplicated(d[,!9:10])|is.na(bp)),.(
+  t=publicationTitle
+  ,d=date
+  ,v=volume
+  ,i=issue
+  ,p=mapply(function(b,e) b:e,b=bp,e=ep)
+),by=.I]
+p[,.(gap=setdiff(
+  p %>% unlist %>% range %>% as.list %>% do.call(seq,.)
+  ,p %>% unlist %>% unique %>% sort
+)),by=.(t,d,v,i)][,.(gap=list(gap)),by=.(t,d,v,i)] %>% View
+
+```
+
+```{r z2b-vgap}
+# find volume gaps
+p[,table(t,i)]
+cat('',sep='\n')
+vg<-p[,table(d,factor(i,levels=1:6),t)]
+vg[vg==0]<-NA
+h<-hist(vg)
+h<-which(vg<=h$breaks[2],arr.ind = T)
+check<-cbind(h[,-1],vg[h])[order(h[,3],h[,1]),]
+colnames(check)<-c('i','j','n')
+cat('\nDouble check these volumes:\n\n')
+check
+```
+
+```{r z2b-short}
+# find short runs
+setorder(d,publicationTitle,date,volume,issue,bp)
+lt<-d[!is.na(bp+ep),.(title=title[.N],pages=pages[.N],dateModified=dateModified[.N],url=url[.N]),by=.(publicationTitle,date,volume,issue)]
+ltn<-lt[,.N,by=title][N<3,title]
+setkey(lt,title)
+# will cause autoban, but this will test automatically
+if(F) w<-lt[ltn,list({
+  Sys.sleep(rnorm(1) %>% abs %>% `+`(1.5))
+  cat('.')
+  try(url %>% read_html %>% html_text %>% grepl('Next Item',.))
+}),by=url]
+lt[ltn][,cat(publicationTitle,' ',date,' ',volume,' ',issue,' ',title,' ',pages,'\n',url,'\n\n',sep=''),by=dateModified] %>% invisible
+```
+
+## Topics in Time
+
+The history
+
+```{r jpdf2imp, eval=F}
+f<-'d/d/jpdf.RData'
+if(file.exists(f)){
+  load(f)
+} else{
+  seed<-.Random.seed %>% sample(1)
+  cat('Seed: ',seed,'\n',sep='')
+  set.seed(seed)
+  jpdf<-jpdf2imp.f(
+    dir('d/d',full.names = T,recursive = T,pattern = '\\.pdf$') #%>% sample(100)
+    ,ocr = T) # write feedback for long imports
+  save(jpdf,file=f)
+}
+```
+
+```{r imp2ftx.f,eval=F}
+f<-'d/p/ftx.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  ftx<-imp2ftx.f(jpdf)
+  save(ftx,file = f)
+}
+#    getOption('viewer')(jpdf %>% paste0('#page=3'))
+#ftx[10] %>% ftxbro
+```
+
 
 ## An end.
 

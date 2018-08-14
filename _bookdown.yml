@@ -1,2 +1,3 @@
 book_filename: ambrose_dissertation
+delete_merged_file: true
 rmd_files: ["index.Rmd","01.Rmd","02.Rmd","99references.Rmd"]

@@ -1,5 +1,12 @@
-# load packages -----------------------------------------------------------
-library(magrittr)
+rm(list=ls())
+
+# options ----------------------------------------------------------------
+knitr::opts_chunk$set(
+  echo=F
+  ,include=F
+  ,fig.align='center'
+  ,comment=NA
+)
 
 # asa.csl -----------------------------------------------------------------------
 # download asa citation style sheet

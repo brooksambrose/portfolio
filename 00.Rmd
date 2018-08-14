@@ -1,4 +1,4 @@
-# My second cool idea {#slug-two}
+# Profession against Education: Knowledge as Influence {#slug-two}
 
 #### Abstract {-}
 
@@ -8,22 +8,157 @@
 
 yaba, daba, do
 
-## A beginning.
+##0 Pitch
 
-Nulla  sint  art party ex, mlkshk disrupt selvage 90's.  Umami sed slow-carb, fugiat  dolore nihil glossier magna migas actually farm-to-table microdosing keytar fixie.  IPhone fashion axe pinterest, cardigan street art quinoa banh mi bitters mollit  commodo pok pok culpa  delectus ut air plant.  Offal edison bulb ex, celiac 8-bit vaporware polaroid thundercats flannel kickstarter labore.  Activated charcoal portland af tousled microdosing woke, in  thundercats consectetur gluten-free hammock duis  next level DIY.  Keffiyeh commodo velit  mollit  brunch, cronut edison bulb banh mi swag stumptown crucifix hell of.  Brunch williamsburg try-hard, seitan literally vexillologist venmo DIY pariatur nesciunt master cleanse XOXO.
+## Etymology
 
-## A middle.
+Education is from the Latin "to lead out", while profession is "to declare publicly". Knowledge establishes the parameters by which a teacher educes a student; the only way a student may be intentionally developed is to understand one's own knowledge as a standard against which a student's may be evaluated. There is a delta between the two and one may be brought nearer the other by a series of transformations.
 
-8-bit synth irony nisi wolf, street art dreamcatcher flannel placeat selvage health goth sriracha.  Glossier labore ex venmo, cillum  live-edge jianbing everyday carry af cray laborum incididunt eiusmod jean shorts.  Normcore slow-carb lyft letterpress, beard tilde art party.  Poke marfa incididunt tempor duis.  Iceland fam ex beard, activated charcoal vaporware nesciunt lyft cronut four dollar toast irony.  Officia  stumptown voluptate  unicorn culpa  bushwick.  Mollit  vero af marfa deserunt  flexitarian.
+Knowledge transforms in three simple ways: addition, deletion, and replacement.  The teacher's knowledge acts as a template or paradigm by which the student's may be compared. Under unregulated relations teachers may adapt their own knowledge in interactions with students such that the two knowledges converge at a new level albeit closer to the teacher's starting point. In schools however the institutional force resists adaptation, so knowledge transformations tend to be anchored forcefully to the formal program. Rather than representing the teacher's pole, the program is a third pole effecting both teacher and student. This regulation both conserves and ossifies the knowledge, which promotes consistency across time and personnel but which risks alienating supporters with current projects.
 
+### Antecedents
 
-```{r experimental,echo=F,results='asis',eval=F}
-data.table::fread('https://raw.githubusercontent.com/UCB-MIDS/experiments-causality/master/data/GerberGreenBook_Chapter3_Donations.csv?token=ABNmuX-Q14rzQ4teItDenc9L5Wo2flncks5ZL5qEwA%3D%3D') %>% stargazer::stargazer(type = 'html',title = 'Something from W241 Experiments and Causality')
-```
+Learning theory, cognitivism, behaviorism, constructivism. We would be communicationist.
 
+##1 Theory
 
-Laborum williamsburg sunt whatever, DIY reprehenderit  retro vaporware id  hella flannel sartorial vero fugiat  before they sold out.  Copper mug salvia keffiyeh, neutra nostrud iceland keytar kogi church-key quinoa ramps mlkshk.  Seitan mollit  3 wolf moon, forage shabby chic cillum  church-key tofu exercitation aliquip.  Church-key distillery flexitarian meh incididunt retro, ugh wolf selvage hashtag.  Bicycle rights 90's officia  vape.  Listicle post-ironic vape ex.  Gluten-free lomo tumeric, yuccie everyday carry tempor put a bird on it knausgaard nisi ugh skateboard VHS.
+### How Knowledge Works
 
-## An end.
+Knowledge in general is both a content and a capacity. As particular content it is the result of human learning and forgetting that varies historically.  As a general capacity it is the mechanisms of learning and forgetting themselves that through constant operation yield the content of human experience. Knowledge is  a capacity with which all people are endowed and which operates naturally as a mechanism of human accomplishment.
 
-Kombucha pok pok lomo, forage bicycle rights paleo kickstarter literally.  Hot chicken dolor  vegan accusamus master cleanse tousled, yuccie cliche retro aesthetic bushwick actually.  Ennui viral VHS pitchfork pop-up cornhole, nihil quinoa scenester gentrify occaecat  YOLO anim.  Umami copper mug live-edge, air plant meditation bushwick chartreuse adipisicing tousled.  Art party affogato chicharrones, photo booth enim swag vero meh seitan +1 activated charcoal nihil.  Etsy gluten-free authentic mixtape.  Shabby chic duis  90's pop-up pinterest, lumbersexual mollit  cillum.
+Human knowledge is sometimes nothing but the cognition of other animals who encounter and adapt to the world according to their own capacities for learning. It is usually, however, something more. Human knowledge can be codified outside of the mind, and such codifications allow transfers between people and across time.  Codifications presuppose a code, the most primitive of which are human languages. Knowledge is complex in that smaller components hang together in larger groups. Meaning relates components and regulates what may and may not belong to a larger group. Meaning renders knowledge useful by linking problems to solutions. Culture is the social aspect of meaning; culture happens when people regulate each other's expression as meaningful or not.
+
+#### Ideas
+
+Call an idea a component of a knowledge. Call a knowledge a particular configuration of ideas. Both are psychological units that cannot exist outside of a mind. Knowledge is composable in that its smaller ideas may be inspected, added or deleted from configurations, or reconfigured in their psychological relations. Learning is the time and effort required to understand an idea or to reconfigure a knowledge.
+
+Call meaning the morphology of ideas of a particular knowledge. Ideas relate in a pattern of dependencies, where the rank of an idea is the sum of recursive dependencies in its longest chain of ancestors. Depth is the number of ideas constituting a knowledge, weighted by the degree of their dependencies.
+
+#### Language, Codification, and Encryption
+
+Call a text a symbolic expression of a knowledge, and a token a symbolic expression of an idea. A code is a transformation program allowing for the reliable inscription of an idea into a token or description of a token into an idea. A language is a configuration of codes.
+
+knowledge:language::idea:code
+
+A cipher is a token that has been recoded at least once, usually to segregate cultures within the same language. A token and a cipher express the same idea in different symbols.
+
+Encryption is illegible codification, usually done to render a token inert in transmission. It differs from ciphering in that it cannot be understood directly without decryption. Encryptions are inert in that they do not express the idea, whereas ciphers do.
+
+#### Communication and Culture
+
+Call a communication the simultaneous expression of an idea in the mind and a token in language. A communication is the couplet of the two. Communication allows tokens to act as hinges between minds, if a token evokes the same idea in each.
+
+Call a population of knowers a culture. Cultures embed knowledge with the arbitrary and conservative mechanisms that guarantee consistency across people and time. A quorum is a collection of the smallest number of knowers necessary to compel a marginal deviant to comply with the meaning of a knowledge. A paradigm a textual standard used by a quorum as a template against which a test text may be compared.
+
+#### Corollaries
+
+This can be summed up in a simple theorem: the speed of the growth of knowledge is inverse to the size of the culture that knows it. Ceteris paribus, knowledge that grows in content shrinks in understanding.
+
+It does not necessarily follow that the shallowest cultures are also the largest. Here it is important to distinguish between being useful and being interesting. Knowledge is functional to human goals, so useless knowledge is easily ignored, and ignorance is the death knell of a culture. Shallow and pointless trivia will not support a culture. Knowledge that is useless may however still be interesting. In this sense the knowledge is directly consumed, it is the goal rather than a means to it.
+
+Whether a component of knowledge is factor or a product depends on its meaning with reference to a person's project. As a project changes, so may the meaning of an idea. And interpretations change across individuals and within the same individual over time.
+
+#### Knowledge Transactions
+
+A culture is like a genotype in that it is a pattern that is repeated within a bimodal population. As Luhmann reminds us, minds cannot connect directly to each other, but must do so through a medium of communication. Hence knowledge exists always as a couplet between a mind and some sort of text. A mind without text is a culture of one, inscrutable to anyone including perhaps the knower herself. Thoughts not written down may be forgotten, or perhaps more to the point, durable and persistent thoughts will eventually be "written down". Inscription need not be formal; indeed it can be any empirical pattern outside of the mind that serves to replicate a pattern within the mind.
+
+#### Structural Model
+
+The functions of education and profession vary in ratios across organizations that may themselves be wholesale categorized as one or the other.
+
+A professional practice is, in its client relations, almost entirely professional without education. Indeed a desire to learn on the client's part may be treated perfunctorily, as a marketing problem rather than a teaching problem. Convenient simplifications or misdirections will be offered to secure fees for services, as it would be a mockery to suggest that what the professional knows could be transferred transactionally.
+
+#### Typology
+
+Realistic locations on the ratio between educing and professing can be simplified into three types. A dominance of p is nothing but orthodoxy, while that of e is orthopraxy. A balance between them is rare and it is our task to understand it. The fourth option is the institutional neutralization of the knowledge dynamic altogether.
+
+A professor uses knowledge asymmetries to reinforce status, and she will be careful to deliver a sterile version of messages that are useful only within the scope of a client transaction. Learning beyond the scope amounts to giving away the goods, but more threatening still would be the demystification of the professors status in the mind of the clients. There is thus a constitutional incentive to maintain the ignorance of the laity. This may but need not be done perniciously; indeed only a special type of client, a student, expects to receive knowledge of the quality emic to professional practice. Laity are busy pursuing the goals that led them to contract the professional services to begin with.
+
+Codification of knowledge into different qualities is important here. The first split is between productive and unproductive knowledge, or consumed rather than invested knowledge. Learning as entertainment means messages are not intended to be used as means to an end, even if memory allows it to be repurposed later. The double contingency of intention means that sender and receiver may have different expectations about the economic meaning of messages.
+
+Schools use institutions to resolve the uncertainty of cultural knowledge relationships. They replace double contingency with heteronomous expectations for both students and professors. Even if the intention around a message is shifting across or within supporters, schools create formal expectations that messages be treated as sanctioned work. This enables the institution to function predictably across personalities and across time. The arrangement works best for supporters vacillating between leisure and work modes, or who have no autonomous goals to contradict the institution, as may be the case where opportunities are scarce.
+
+Contrary to appearance, schools cannot hitch their stability to knowledge itself, because interactions with it are very personal and unpredictable. Knowledge is sealed behind procedures, where assessment defines the messages that are relevant for rewards or punishments, which are only ever the tip of the iceberg, though savvy assessors may hope such facets are good indicators of what lies beneath. Hi
+
+### Class System
+
+It is a constant usually unobserved feature distinguishing professional organizations from corporations that knowledge is prevented from being sold as technology. This gives the prize away. It does not represent a lost economic opportunity only; the foundation of professional status may be threatened.
+
+Professions are always more cryptic than is technologically possible. A profession that has been stripped, that has been rendered legible to laity, has lost its source of security, and prestige depends entirely on the esteem supporters lend to individuals. This is a tenuous situation.
+
+Education concerns the development of knowledge within individuals, and in balance is a support to professions. Would an oversupply of education threaten the scarcity on which high fees or wages depend? Indeed it may not, if job growth grows slower than the educated class. Scarcity depends on the creation of jobs.
+
+So social asymmetries are easily maintained where knowledge is on equal footing across supporters. This is clear, as much more goes into job acquisition than knowledge.
+
+#### Class Terms
+
+Let a discourse be a symbolically mediated conversation among more or less knowledgeable participants.
+
+Call a knowledgeable participant in a discourse a supporter.
+
+Call profession the maintenance of resource asymmetry among supporters into professors and laity.
+
+Call education the maintenance of resource symmetry among supporters.
+
+Call a student a supporter seeking to transition from laity to professor.
+
+#### Authority
+
+A measure of the quality of knowledge is available in the so called periodic table of knowledge.  First is "beer mat" knowledge, which is the lowest level. Here laity have no hope of contending with teachers or professors.  The knowledge relationship may be described as an asymmetry. With respect to a given item of knowledge, and this itself is problematic, the two parties to the relation stand in an authority conditioned by the distance or difference in the level of knowledge each commands.
+
+#### Relationship of Professions to Knowledge
+
+Professions are aided in their control over knowledge by natural excludability. Knowing is built on itself as a chain of dependencies which are inscrutable to laity. Professions excluded laity not normally by encrypting knowledge, though this is done, but by failing to make its dependencies transparent.
+
+Education then is the structural inverse of profession. The task of education is to make knowledge scrutable. Education and profession can only be symbiotic in a careful balance, because an extreme of one will entail an erosion of the supports of the other. A great expansion of knowledge on the part of education may outpace job growth and turn a scarcity of skills into a glut, increasing competition and depressing wages in the profession. An encryption of knowledge or again the professional choice to not assist in the dissemination of know-how can choke off access to instructional resources, slowing the rate of knowledge transfer by educators.
+
+Yet in a productive balance both education and profession can be mutually beneficial, each benefiting from a surplus of laity to support them in a mobility pattern. Education can install itself as the means of access to profession, reducing the costs of apprenticeship for professions. Resources for reproduction can be safely allocated to production.
+
+#### self replication
+
+While knowledge is the mechanism of professional exclusion, it may also be useful to think of the difference between e and p as an attitude toward self-replication. Professionals "subject" (cast down) clients on the dimension of knowledge while clients subject professionals on the dimension
+
+#### Research against Teaching
+
+Colleges and universities are organizations that exhibit a "basket weave" of both structures above. They use procedures to integrate the tendencies of each, such that a division of labor between profession and education may be stably maintained. By financing and facilitating both teachers and researchers, universities promote a productive balance between their competing tendencies. In creating forums where either profession or education happens, they also create stable opportunities for discursive antagonisms.
+
+#### Discursive antagonism
+
+Simply, professions and education experience each other as stressful because of inverse kinds of knowledge transactions.
+
+Education is stressed by profession wherever professionals may render services in a way that black boxes the knowledge securing the service. Profession gives a person a fish, so she may live today and starve tomorrow. Education teaches a person to fish, so she may starve today and live tomorrow. As easily as they complement each other they replace each other. When both are present to laity, it becomes the consumers choice which path to invest in.
+
+As the mobility pattern is the only way out of their conflict, the stage sequencing of education before profession is the tendency toward which universities develop.
+
+### Functional Limits
+
+A natural orientation toward knowledge is real driver of the existence of a profession/education structural dichotomy. There is a solution to the knowledge problem that would render the extant division of labor between education and profession obsolete. Natural excludability must be neutralized and replaced by a natural includability.
+
+Cutting the knot means reducing the cost of bridging the gap between the presentation of a problem and the application of a solution. This could be done in two ways.
+
+First, knowledge can be codified into technology such that human capital development is no longer necessary, i.e. the fool-proofing of all technology. Laity, and we would all be laity, would never need to learn in order to solve a task. This is the tack of all consumer-oriented product development.
+
+This corporate nirvana engineers and distributors usurp the role of both professor and teacher. The technology replaces each, and no durable social relationship is required for the laity to solve their problem. A spot transaction to acquire the tech is all that is required.
+
+Second, and on the opposite extreme, when confronting a problem laity could acquire the knowledge necessary to solve it immediately and costlessly. There would be natural includability. This is the tack of the internet search engine; one may express a problem in natural language and receive the program for mastering it immediately. There would be no social value to knowledge, professorial asymmetries among laity would be easily balanced, and thus no seeds for professions could be planted. Knowledge would be economically but not socially valuable. No professorial relationships could develop because all people would have equal status with regard to needed knowledge.
+
+This is the communist nirvana envisioned by Karl Marx and the superhero scenario of NBC's The Pretender.
+
+To argue that neither extreme is possible is to make a different assumption about the limits of human capacity for knowing. In scenario one, nobody could learn in interaction with technology, so we assume that consumers are hopelessly dim. In scenario two, consumers are unrealistically brilliant.
+
+So the extremes are not real, but are historically unrealized ratios indeed unreal?
+
+##2 Map
+
+### Maps
+
+There are two reasons to map knowledge spaces. First, we may want to know how knowledge develops as a resource unto itself. Second, we may want to exploit such a map for a productive purpose. Here we will attempt the second as prologue to the first. We will tackle the technical problems of constructing a map. We will show how a map can be put to use. Finally, we will investigate how the particular map we make may tend to predictably get us lost.
+
+### Mechanism
+
+What has been missing is a  mapping of exclusion mechanisms to the cultural content of knowledge. How do incumbent or pretenders use their mastery of knowledge to do boundary work?
+
+##3 Story
+
+##4
+
