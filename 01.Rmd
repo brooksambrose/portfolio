@@ -29,9 +29,11 @@ if(file.exists(f)){
   jstorm<-jstorm[!sapply(jstorm,inherits,'try-error')] %>% rbindlist
   save(jstorm,file=f)
 }
+rm(f)
+```
 
-tab<-jstorm2tab.f(jstorm,end.aft=-Inf)
-tab
+```{r jstorm2tab,include=T}
+jstorm2tab.f(jstorm,beg.bef = 1900,end.aft = 2000,caption='20th Century Social Science Journals in JSTOR')
 ```
 
 ```{r zot2bib}
@@ -46,6 +48,7 @@ if(file.exists(f)){
   )
   save(zot2bib,file=f)
 }
+rm(f)
 d<-lapply(zot2bib,function(x) x[,.(publicationTitle,date,volume,issue,pages,bp,ep,title,creators,dateModified,url)]) %>% rbindlist %>% `[`(!duplicated(.[,!9]))
 setorder(d,publicationTitle,dateModified)
 # find corrupt
@@ -70,8 +73,7 @@ p<-d[!(duplicated(d[,!9:10])|is.na(bp)),.(
 p[,.(gap=setdiff(
   p %>% unlist %>% range %>% as.list %>% do.call(seq,.)
   ,p %>% unlist %>% unique %>% sort
-)),by=.(t,d,v,i)][,.(gap=list(gap)),by=.(t,d,v,i)] %>% View
-
+)),by=.(t,d,v,i)][,.(gap=list(gap)),by=.(t,d,v,i)]
 ```
 
 ```{r z2b-vgap}
@@ -103,11 +105,7 @@ if(F) w<-lt[ltn,list({
 lt[ltn][,cat(publicationTitle,' ',date,' ',volume,' ',issue,' ',title,' ',pages,'\n',url,'\n\n',sep=''),by=dateModified] %>% invisible
 ```
 
-## Topics in Time
-
-The history
-
-```{r jpdf2imp, eval=F}
+```{r jpdf2imp}
 f<-'d/d/jpdf.RData'
 if(file.exists(f)){
   load(f)
@@ -116,24 +114,150 @@ if(file.exists(f)){
   cat('Seed: ',seed,'\n',sep='')
   set.seed(seed)
   jpdf<-jpdf2imp.f(
-    dir('d/d',full.names = T,recursive = T,pattern = '\\.pdf$') #%>% sample(100)
+    dir('d/d',full.names = T,recursive = T,pattern = '\\.pdf$') # %>% sample(100) # readLines('test.txt')
     ,ocr = T) # write feedback for long imports
   save(jpdf,file=f)
 }
+rm(f)
 ```
 
-```{r imp2ftx.f,eval=F}
+```{r imp2ftx}
 f<-'d/p/ftx.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  ftx<-imp2ftx.f(jpdf)
+  seed<-.Random.seed %>% sample(1)
+  cat('Seed: ',seed,'\n',sep='')
+  set.seed(seed)
+  s<-sample(jpdf$met[,doc],10)
+  ftx<-imp2ftx.f(jpdf$imp[s])
   save(ftx,file = f)
+  rm(jpdf)
 }
-#    getOption('viewer')(jpdf %>% paste0('#page=3'))
-#ftx[10] %>% ftxbro
+rm(f)
 ```
 
+```{r ftx2pre}
+f<-'d/p/pre.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  pre<-ftx2pre.f(ftx,frq = 2,nch=2)
+  save(pre,file = f)
+}
+rm(f)
+```
+
+```{r pre2mlc}
+f<-'d/p/mlc.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  mlc<-pre2mlc.f(pre)
+  save(mlc,file = f)
+}
+rm(f)
+```
+
+```{r pre2tel}
+f<-'d/p/tel.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  tel<-pre2tel.f(pre[!is.na(stm)],stop = 3)
+  save(tel,file = f)
+}
+rm(f)
+```
+
+```{r ftx2des,include=T}
+des.com<-ftx2des.f(pre)
+des.stm<-ftx2des.f(pre[!is.na(stm)])
+knitr::kable(list(des.com,des.stm,data.table(tot=round(des.stm$cnt/des.com$cnt*100,2))),caption = 'Full Text Descriptives')
+```
+
+### Topics in Time
+
+```{r tamK}
+f<-'d/p/clu.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  clu<-fam2clu.f(tel)
+  save(clu,file=f)  
+}
+rm(f)
+str(clu)
+```
+
+```{r mlc2mlk}
+f<-'d/p/mlk.txt'
+if(file.exists(f)) {mlk<-fread(f)} else {
+  mlc2mlk.f(mlc) %>% fwrite(f)
+  pbapply::pbreplicate(999,mlc2mlk.f(mlc) %>% fwrite('d/p/mlk.txt',append = T),cl = 6)
+}
+rm(f)
+mlk<-melt(mlk,measure.vars = names(mlk),variable.name = 'level',value.name = 'K') %>% setkey(level)
+```
+
+```{r mlk-fig}
+library(ggplot2)
+fit<-mlk[,.(lam=vcd::goodfit(K,'poisson')$par$lambda),by=level] %>% setkey(level)
+dp<-mlk[,.(x=list(do.call(seq,range(K) %>% as.list))),by=level][fit]
+dp<-data.table(dp[,.(dp=dpois(x %>% unlist,lam)),by=level],x=dp$x %>% unlist)
+
+psim<-function(x) replicate(1000,rpois(mlk[x,.N],fit[x,lam]) %>% table %>% prop.table %>% data.table,simplify = F) %>% rbindlist %>% setnames(c('c','d')) %>% data.table(level=x,.)
+sim<-pbapply::pblapply(fit$level %>% levels,psim) %>% rbindlist
+sim[,c:=as.numeric(c)]
+
+bw<-1
+bh<-.002
+p<-ggplot(mlk,aes(K,..density..,fill=level)) +   
+  geom_bin2d(data=sim,aes(x=c,y=d,group=level,fill=level,alpha=..count..),binwidth=c(bw,bh),position=position_nudge(y=1e-5)) +
+  geom_step(aes(x=x,y=dp,color=level),data=dp,size=1,direction = 'vh') +
+# stat_bin(aes(color=level),geom="point",binwidth=bw,position=position_nudge(y=-1e-10),color='white',shape = 21,size=3) +
+  stat_bin(aes(color=level,label=ifelse(..density..>0,x,'')),geom="text",binwidth=bw,size=3) +
+  geom_label(aes(mK,y=1e-10,label=mK),mlk[,.(mK=median(K) %>% round(1)),by=level],color='white') +
+  theme_bw() + scale_color_brewer(type = 'qual',palette='Dark2') +
+  scale_fill_brewer(type = 'qual',palette='Dark2') + theme(legend.position = c(.9,.5))
+p
+```
+```{r mlk-tab}
+setkey(sim,level,c)
+t<-sim[,.(m=mean(d),se=sd(d)),keyby=.(level,c)][mlk[,.N,keyby=.(level,K)][,.(level,c=K,d=prop.table(N))] %>% setkey(level,c)]
+t[,t:=(d-m)/se]
+t
+```
+
+```{r}
+mlk2<-mlk[,vcd::goodfit(K),by=level][,.(count,observed=prop.table(observed),fitted=prop.table(fitted)),by=level][count>=min(sim$c)]
+p<-ggplot(mlk2,aes(x=count,fill=level)) +
+geom_bin2d(data=sim,aes(x=c,y=d,group=level,fill=level,alpha=..count..),binwidth=c(bw,bh)) +
+geom_step(aes(y=fitted,color=level),size=1,direction = 'vh') +
+geom_text(aes(y=observed,label=count,color=level),size=3) +
+geom_label(aes(mK,y=1e-10,label=mK),mlk[,.(mK=median(K) %>% round(1)),by=level],color='white') +
+theme_bw() + scale_color_brewer(type = 'qual',palette='Dark2') +
+scale_fill_brewer(type = 'qual',palette='Dark2') + theme(legend.position = c(.9,.5))
+p
+
+```
+
+
+```{r}
+k<-mlk[,.(k=replicate(1000,kurtosi(K %>% sample(replace = T)))),by=level]
+k[,.(e=mean(k),se=sd(k),l99=quantile(k,.005),u99=quantile(k,.995)),by=level] %>% print(digits=3)
+
+
+merge(t,mlk2,by.x=c('level','c'),by.y = c('level','count'))[,.(t=(observed-fitted)/se),keyby=.(level,c)] %>% qplot(data=.,geom='smooth',mapping=aes(x=c,y=t,color=level))
+
+```
+
+```{r mlc2stm}
+mod<-stmbow2lda.f(list(documents=mlc$par,vocab=mlc$voc),k=50,out.dir='d/p',verbose=F,visualize.results = T)
+mod$top.word.phi.beta[mod$top.word.phi.beta==0] <-.Machine$double.eps
+debugonce(lda2viz.f)
+viz<-lda2viz.f(mod,'d/b')
+```
 
 ## An end.
 
