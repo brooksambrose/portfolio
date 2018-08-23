@@ -12,7 +12,9 @@ topic modeling, history of social science
 
 Nulla  sint  art party ex, mlkshk disrupt selvage 90's.  Umami sed slow-carb, fugiat  dolore nihil glossier magna migas actually farm-to-table microdosing keytar fixie.  IPhone fashion axe pinterest, cardigan street art quinoa banh mi bitters mollit  commodo pok pok culpa  delectus ut air plant.  Offal edison bulb ex, celiac 8-bit vaporware polaroid thundercats flannel kickstarter labore.  Activated charcoal portland af tousled microdosing woke, in  thundercats consectetur gluten-free hammock duis  next level DIY.  Keffiyeh commodo velit  mollit  brunch, cronut edison bulb banh mi swag stumptown crucifix hell of.  Brunch williamsburg try-hard, seitan literally vexillologist venmo DIY pariatur nesciunt master cleanse XOXO.
 
-### JSTOR Journals
+## Topics in Time
+
+### JSTOR journals
 
 ```{r master2jstorm}
 f<-'d/q/jstorm.RData'
@@ -32,8 +34,9 @@ if(file.exists(f)){
 rm(f)
 ```
 
-```{r jstorm2tab,include=T}
-jstorm2tab.f(jstorm,beg.bef = 1900,end.aft = 2000,caption='20th Century Social Science Journals in JSTOR')
+```{r jstorm2tab}
+jtab<-jstorm2tab.f(jstorm,beg.bef = 1900,end.aft = 2000)
+kable(jtab,caption='20th Century Social Science Journals in JSTOR') %>% kable_styling(full_width = F)
 ```
 
 ```{r zot2bib}
@@ -121,7 +124,7 @@ if(file.exists(f)){
 rm(f)
 ```
 
-```{r imp2ftx}
+```{r imp2ftx,eval=F}
 f<-'d/p/ftx.RData'
 if(file.exists(f)){
   load(f)
@@ -132,9 +135,8 @@ if(file.exists(f)){
   s<-sample(jpdf$met[,doc],10)
   ftx<-imp2ftx.f(jpdf$imp[s])
   save(ftx,file = f)
-  rm(jpdf)
 }
-rm(f)
+rm(f,jpdf)
 ```
 
 ```{r ftx2pre}
@@ -145,7 +147,7 @@ if(file.exists(f)){
   pre<-ftx2pre.f(ftx,frq = 2,nch=2)
   save(pre,file = f)
 }
-rm(f)
+rm(f,ftx)
 ```
 
 ```{r pre2mlc}
@@ -170,13 +172,11 @@ if(file.exists(f)){
 rm(f)
 ```
 
-```{r ftx2des,include=T}
-des.com<-ftx2des.f(pre)
-des.stm<-ftx2des.f(pre[!is.na(stm)])
-knitr::kable(list(des.com,des.stm,data.table(tot=round(des.stm$cnt/des.com$cnt*100,2))),caption = 'Full Text Descriptives')
+```{r pre2des,include=T}
+des.com<-pre2des.f(pre)
+des.stm<-pre2des.f(pre[!is.na(stm)])
+knitr::kable(list(des.com,des.stm,data.table(tot=round(des.stm$cnt/des.com$cnt*100,2))),caption = 'Full Text Descriptives', booktabs = TRUE)
 ```
-
-### Topics in Time
 
 ```{r tamK}
 f<-'d/p/clu.RData'
@@ -190,6 +190,8 @@ rm(f)
 str(clu)
 ```
 
+### How many topics?
+
 ```{r mlc2mlk}
 f<-'d/p/mlk.txt'
 if(file.exists(f)) {mlk<-fread(f)} else {
@@ -200,64 +202,41 @@ rm(f)
 mlk<-melt(mlk,measure.vars = names(mlk),variable.name = 'level',value.name = 'K') %>% setkey(level)
 ```
 
-```{r mlk-fig}
-library(ggplot2)
-fit<-mlk[,.(lam=vcd::goodfit(K,'poisson')$par$lambda),by=level] %>% setkey(level)
-dp<-mlk[,.(x=list(do.call(seq,range(K) %>% as.list))),by=level][fit]
-dp<-data.table(dp[,.(dp=dpois(x %>% unlist,lam)),by=level],x=dp$x %>% unlist)
-
-psim<-function(x) replicate(1000,rpois(mlk[x,.N],fit[x,lam]) %>% table %>% prop.table %>% data.table,simplify = F) %>% rbindlist %>% setnames(c('c','d')) %>% data.table(level=x,.)
-sim<-pbapply::pblapply(fit$level %>% levels,psim) %>% rbindlist
-sim[,c:=as.numeric(c)]
-
-bw<-1
-bh<-.002
-p<-ggplot(mlk,aes(K,..density..,fill=level)) +   
-  geom_bin2d(data=sim,aes(x=c,y=d,group=level,fill=level,alpha=..count..),binwidth=c(bw,bh),position=position_nudge(y=1e-5)) +
-  geom_step(aes(x=x,y=dp,color=level),data=dp,size=1,direction = 'vh') +
-# stat_bin(aes(color=level),geom="point",binwidth=bw,position=position_nudge(y=-1e-10),color='white',shape = 21,size=3) +
-  stat_bin(aes(color=level,label=ifelse(..density..>0,x,'')),geom="text",binwidth=bw,size=3) +
-  geom_label(aes(mK,y=1e-10,label=mK),mlk[,.(mK=median(K) %>% round(1)),by=level],color='white') +
-  theme_bw() + scale_color_brewer(type = 'qual',palette='Dark2') +
-  scale_fill_brewer(type = 'qual',palette='Dark2') + theme(legend.position = c(.9,.5))
-p
-```
-```{r mlk-tab}
-setkey(sim,level,c)
-t<-sim[,.(m=mean(d),se=sd(d)),keyby=.(level,c)][mlk[,.N,keyby=.(level,K)][,.(level,c=K,d=prop.table(N))] %>% setkey(level,c)]
-t[,t:=(d-m)/se]
-t
+```{r mlk2sim}
+f<-'d/b/sim.RData'
+if(file.exists(f)) {load(f)} else {
+  sim<-mlk2sim.f(mlk)
+  save(sim,file=f)
+}
+rm(f)
 ```
 
-```{r}
-mlk2<-mlk[,vcd::goodfit(K),by=level][,.(count,observed=prop.table(observed),fitted=prop.table(fitted)),by=level][count>=min(sim$c)]
-p<-ggplot(mlk2,aes(x=count,fill=level)) +
-geom_bin2d(data=sim,aes(x=c,y=d,group=level,fill=level,alpha=..count..),binwidth=c(bw,bh)) +
-geom_step(aes(y=fitted,color=level),size=1,direction = 'vh') +
-geom_text(aes(y=observed,label=count,color=level),size=3) +
-geom_label(aes(mK,y=1e-10,label=mK),mlk[,.(mK=median(K) %>% round(1)),by=level],color='white') +
-theme_bw() + scale_color_brewer(type = 'qual',palette='Dark2') +
-scale_fill_brewer(type = 'qual',palette='Dark2') + theme(legend.position = c(.9,.5))
-p
-
+```{r sim-fig,include=T,fig.cap='Distribution of K by convex hull'}
+sim$fig
 ```
 
-
-```{r}
-k<-mlk[,.(k=replicate(1000,kurtosi(K %>% sample(replace = T)))),by=level]
-k[,.(e=mean(k),se=sd(k),l99=quantile(k,.005),u99=quantile(k,.995)),by=level] %>% print(digits=3)
-
-
-merge(t,mlk2,by.x=c('level','c'),by.y = c('level','count'))[,.(t=(observed-fitted)/se),keyby=.(level,c)] %>% qplot(data=.,geom='smooth',mapping=aes(x=c,y=t,color=level))
-
+```{r mlk2k}
+k<-mlk[,.(k=pbapply::pbreplicate(1e4,psych::kurtosi(K %>% sample(replace = T)),cl = 1)),by=level][,.(e=mean(k),se=sd(k),l99=quantile(k,.005),u99=quantile(k,.995),`p>=0`=mean(k>=0)),by=level]
 ```
+
+```{r k-fig,include=T,eval=F}
+kable(k)
+```
+
+```{r mlk-tab,include=T}
+kable(sim$tab) %>% kableExtra::kable_styling(full_width = F)
+```
+
+### Model selection
 
 ```{r mlc2stm}
-mod<-stmbow2lda.f(list(documents=mlc$par,vocab=mlc$voc),k=50,out.dir='d/p',verbose=F,visualize.results = T)
-mod$top.word.phi.beta[mod$top.word.phi.beta==0] <-.Machine$double.eps
-debugonce(lda2viz.f)
-viz<-lda2viz.f(mod,'d/b')
+# mod<-stmbow2lda.f(list(documents=mlc$par,vocab=mlc$voc),k=50,out.dir='d/p',verbose=F,visualize.results = T)
+# mod$top.word.phi.beta[mod$top.word.phi.beta==0] <-.Machine$double.eps
+# debugonce(lda2viz.f)
+# viz<-lda2viz.f(mod,'d/b')
 ```
+
+### Making sense
 
 ## An end.
 

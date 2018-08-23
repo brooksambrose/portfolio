@@ -7,6 +7,7 @@ knitr::opts_chunk$set(
   ,fig.align='center'
   ,comment=NA
 )
+latex<-is_latex_output()
 
 # asa.csl -----------------------------------------------------------------------
 # download asa citation style sheet
@@ -27,6 +28,5 @@ br<-grep('bibtex:',bib)
 for(i in br) bib[sr[which(i>sr) %>% max]] %<>% sub('\\{[^,]+',paste0('{',sub('.+tex: ([^}]+).*','\\1',bib[i])),.)
 writeLines(bib,'references.bib')
 rm(bib)
-
 
 
