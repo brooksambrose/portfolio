@@ -34,9 +34,10 @@ if(file.exists(f)){
 rm(f)
 ```
 
-```{r jstorm2tab}
+```{r jstorm2tab,include=T}
 jtab<-jstorm2tab.f(jstorm,beg.bef = 1900,end.aft = 2000)
-kable(jtab,caption='20th Century Social Science Journals in JSTOR') %>% kable_styling(full_width = F)
+cat('latex:',is_latex_output())
+kable(jtab,caption='20th Century Social Science Journals in JSTOR')
 ```
 
 ```{r zot2bib}
@@ -224,7 +225,7 @@ kable(k)
 ```
 
 ```{r mlk-tab,include=T}
-kable(sim$tab) %>% kableExtra::kable_styling(full_width = F)
+kable(sim$tab)
 ```
 
 ### Model selection

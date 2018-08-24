@@ -1,14 +1,13 @@
 ---
-title: "Knowledge Mapping of the U.S. Social Sciences: 1900--1922"
+title: "Knowledge Mapping of the U.S. Social Sciences: 1888--1922"
 author: "Brooks Ambrose"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-documentclass: book
+documentclass: article
 bibliography: references.bib
 link-citations: yes
 biblio-style: apalike
 csl: asa.csl
-graphics: yes
 ---
 
 <!-- This won't be displayed but it will initialize your R session. Add any R libraries you need here. -->

@@ -1,5 +1,4 @@
 bookdown::gitbook:
-    keep_md: yes
     number_sections: TRUE
     download: pdf
     dev: svglite
@@ -26,10 +25,8 @@ bookdown::gitbook:
       edit: https://github.com/brooksambrose/portfolio/edit/master/%s
       download: null
 bookdown::pdf_book:
-  keep_md: yes
   keep_tex: yes
   citation_package: natbib
-  template: null
   toc_depth: 3
   toc_unnumbered: no
   toc_appendix: yes
