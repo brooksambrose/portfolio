@@ -1,5 +1,3 @@
-rm(list=ls())
-
 # options ----------------------------------------------------------------
 knitr::opts_chunk$set(
   echo=F
@@ -14,7 +12,6 @@ latex<-is_latex_output()
 if(!file.exists('asa.csl')) 'https://www.zotero.org/styles/american-sociological-association' %>% 
   readLines(warn = F) %>% writeLines('asa.csl')
 
-
 # references.bib ----------------------------------------------------------
 
 # download bibtex from zotero cloud
@@ -24,8 +21,8 @@ if(!file.exists('asa.csl')) 'https://www.zotero.org/styles/american-sociological
 # manually replace zotero default with better bibtex citekeys
 bib<-readLines('references.bib')
 sr<-grep('^@',bib)
-br<-grep('bibtex:',bib)
-for(i in br) bib[sr[which(i>sr) %>% max]] %<>% sub('\\{[^,]+',paste0('{',sub('.+tex: ([^}]+).*','\\1',bib[i])),.)
+br<-grep('(bibtex)|(Citation Key):',bib)
+for(i in br) bib[sr[which(i>sr) %>% max]] %<>% sub('\\{[^,]+',paste0('{',sub('.+: ([^}]+).*','\\1',bib[i])),.)
 writeLines(bib,'references.bib')
 rm(bib)
 

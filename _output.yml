@@ -1,6 +1,5 @@
 bookdown::gitbook:
     number_sections: TRUE
-    download: pdf
     dev: svglite
     split_by: chapter
     split_bib: TRUE
@@ -14,14 +13,7 @@ bookdown::gitbook:
         after: |
           <li><a href="https://github.com/brooksambrose" target="blank">GitHub</a></li>
           <li><a href="https://www.ischool.berkeley.edu/people/brooks-ambrose" target="blank">UC Berkeley</a></li>
-      sharing:
-        facebook: no
-        twitter: no
-        google: no
-        weibo: no
-        instapper: no
-        vk: no
-        all: no
+      sharing: no
       edit: https://github.com/brooksambrose/portfolio/edit/master/%s
       download: null
 bookdown::pdf_book:

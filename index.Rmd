@@ -3,11 +3,27 @@ title: "Knowledge Mapping of the U.S. Social Sciences: 1888--1922"
 author: "Brooks Ambrose"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-documentclass: article
+documentclass: book
+linestretch: 2
 bibliography: references.bib
 link-citations: yes
 biblio-style: apalike
 csl: asa.csl
+header-includes:
+  - \usepackage{booktabs}
+  - \usepackage{longtable}
+  - \usepackage{array}
+  - \usepackage{multirow}
+  - \usepackage[table]{xcolor}
+  - \usepackage{wrapfig}
+  - \usepackage{float}
+  - \usepackage{colortbl}
+  - \usepackage{pdflscape}
+  - \usepackage{tabu}
+  - \usepackage{threeparttable}
+  - \usepackage{threeparttablex}
+  - \usepackage[normalem]{ulem}
+  - \usepackage{makecell}
 ---
 
 <!-- This won't be displayed but it will initialize your R session. Add any R libraries you need here. -->

@@ -8,35 +8,37 @@
 
 topic modeling, history of social science
 
-## A beginning.
+## Topics in time
 
-Nulla  sint  art party ex, mlkshk disrupt selvage 90's.  Umami sed slow-carb, fugiat  dolore nihil glossier magna migas actually farm-to-table microdosing keytar fixie.  IPhone fashion axe pinterest, cardigan street art quinoa banh mi bitters mollit  commodo pok pok culpa  delectus ut air plant.  Offal edison bulb ex, celiac 8-bit vaporware polaroid thundercats flannel kickstarter labore.  Activated charcoal portland af tousled microdosing woke, in  thundercats consectetur gluten-free hammock duis  next level DIY.  Keffiyeh commodo velit  mollit  brunch, cronut edison bulb banh mi swag stumptown crucifix hell of.  Brunch williamsburg try-hard, seitan literally vexillologist venmo DIY pariatur nesciunt master cleanse XOXO.
+Topic modeling refers to a variety of approaches to the statistical modeling of texts that blurs the distinction between qualitative and quantitative analysis. Texts are merely collections of terms (usually words) that are counted, and such counts may describe a text. In the same way that a civil census reduces communities to counts of the people who live in them, topic modeling reduces texts are texts to a count of words, to diction. And just as a census of people fails to capture the nuanced interactivity of human settlements found in their culture, politics, and economic activity, the meanings and intentions behind words are washed away.  At a very general level this term census paints a lexographic picture of texts, analogous to the demographic picture gained by a survey census of cities and towns. This approach to document description is sometimes called a "bag of words".
 
-## Topics in Time
+To explain the contents of the bag-of-word, topics are proposed. Topics can be thought of as catelogs out of which words are ordered and placed into the shopping cart that is the document. Different catelogs, different word availabilities, will produce different documents. The final bit of inference that makes topic models so practically useful is the idea that documents may be composed of multiple topics.
 
-### JSTOR journals
+The surprising qualities of texts are explained to be how authors draw on regular and commonplace topics to say something different.
+
+## Method
+
+### Sample definition
+
+#### JSTOR journals
 
 ```{r master2jstorm}
 f<-'d/q/jstorm.RData'
-# jstor throttles if too many calls
 if(file.exists(f)){
   load(f)
 } else {
-  u<-paste0('https://www.jstor.org/action/showJournals?contentType=journals&letter=',c('0-9',LETTERS))
-  jstorm<-list()
-  for(i in u[which(u%in%i):length(u)]){
-    jstorm[[i]]<-try(master2jstorm.f(i))
-    Sys.sleep(rnorm(1) %>% abs %>% `+`(.5))
-  }
-  jstorm<-jstorm[!sapply(jstorm,inherits,'try-error')] %>% rbindlist
-  save(jstorm,file=f)
+ jstorm<-master2jstorm.f()
+   save(jstorm,file=f)
 }
 rm(f)
 ```
 
+
+
+
 ```{r jstorm2tab,include=T}
+
 jtab<-jstorm2tab.f(jstorm,beg.bef = 1900,end.aft = 2000)
-cat('latex:',is_latex_output())
 kable(jtab,caption='20th Century Social Science Journals in JSTOR')
 ```
 
@@ -55,10 +57,14 @@ if(file.exists(f)){
 rm(f)
 d<-lapply(zot2bib,function(x) x[,.(publicationTitle,date,volume,issue,pages,bp,ep,title,creators,dateModified,url)]) %>% rbindlist %>% `[`(!duplicated(.[,!9]))
 setorder(d,publicationTitle,dateModified)
-# find corrupt
+##### find corrupt
 d[is.na(publicationTitle),]
 d<-d[!is.na(publicationTitle),]
 ```
+
+#### Data Quality
+
+Every record for every journal was downloaded manually, including front and back matter, articles, and book reviews.
 
 ```{r z2b-dups}
 # find duplicates
@@ -109,14 +115,16 @@ if(F) w<-lt[ltn,list({
 lt[ltn][,cat(publicationTitle,' ',date,' ',volume,' ',issue,' ',title,' ',pages,'\n',url,'\n\n',sep=''),by=dateModified] %>% invisible
 ```
 
+#### Sampling Frame
+
 ```{r jpdf2imp}
 f<-'d/d/jpdf.RData'
 if(file.exists(f)){
   load(f)
 } else{
-  seed<-.Random.seed %>% sample(1)
-  cat('Seed: ',seed,'\n',sep='')
-  set.seed(seed)
+  # seed<-.Random.seed %>% sample(1)
+  # cat('Seed: ',seed,'\n',sep='')
+  # set.seed(seed)
   jpdf<-jpdf2imp.f(
     dir('d/d',full.names = T,recursive = T,pattern = '\\.pdf$') # %>% sample(100) # readLines('test.txt')
     ,ocr = T) # write feedback for long imports
@@ -151,6 +159,8 @@ if(file.exists(f)){
 rm(f,ftx)
 ```
 
+#### Unit of Analysis
+
 ```{r pre2mlc}
 f<-'d/p/mlc.RData'
 if(file.exists(f)){
@@ -161,6 +171,16 @@ if(file.exists(f)){
 }
 rm(f)
 ```
+
+```{r pre2des,include=T}
+des.com<-pre2des.f(pre)
+des.stm<-pre2des.f(pre[!is.na(stm)])
+knitr::kable(list(des.com,des.stm,data.table(tot=round(des.stm$cnt/des.com$cnt*100,2))),caption = 'Full Text Descriptives', booktabs = TRUE)
+```
+
+#### Sampling
+
+### How many topics?
 
 ```{r pre2tel}
 f<-'d/p/tel.RData'
@@ -173,25 +193,17 @@ if(file.exists(f)){
 rm(f)
 ```
 
-```{r pre2des,include=T}
-des.com<-pre2des.f(pre)
-des.stm<-pre2des.f(pre[!is.na(stm)])
-knitr::kable(list(des.com,des.stm,data.table(tot=round(des.stm$cnt/des.com$cnt*100,2))),caption = 'Full Text Descriptives', booktabs = TRUE)
-```
-
 ```{r tamK}
 f<-'d/p/clu.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  clu<-fam2clu.f(tel)
+  clu<-tel2clu.f(tel)
   save(clu,file=f)  
 }
 rm(f)
 str(clu)
 ```
-
-### How many topics?
 
 ```{r mlc2mlk}
 f<-'d/p/mlk.txt'
@@ -212,7 +224,7 @@ if(file.exists(f)) {load(f)} else {
 rm(f)
 ```
 
-```{r sim-fig,include=T,fig.cap='Distribution of K by convex hull'}
+```{r sim-fig,include=F,fig.cap='Distribution of K by convex hull'}
 sim$fig
 ```
 
@@ -220,11 +232,11 @@ sim$fig
 k<-mlk[,.(k=pbapply::pbreplicate(1e4,psych::kurtosi(K %>% sample(replace = T)),cl = 1)),by=level][,.(e=mean(k),se=sd(k),l99=quantile(k,.005),u99=quantile(k,.995),`p>=0`=mean(k>=0)),by=level]
 ```
 
-```{r k-fig,include=T,eval=F}
+```{r k-fig,include=F,eval=F}
 kable(k)
 ```
 
-```{r mlk-tab,include=T}
+```{r mlk-tab,include=F} 
 kable(sim$tab)
 ```
 

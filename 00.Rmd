@@ -1,4 +1,4 @@
-# Profession against Education: Knowledge as Influence {#slug-two}
+# Profession against Education: Knowledge as Influence {#pe}
 
 #### Abstract {-}
 
@@ -8,9 +8,9 @@
 
 yaba, daba, do
 
-##0 Pitch
+## Pitch
 
-## Etymology
+### Etymology
 
 Education is from the Latin "to lead out", while profession is "to declare publicly". Knowledge establishes the parameters by which a teacher educes a student; the only way a student may be intentionally developed is to understand one's own knowledge as a standard against which a student's may be evaluated. There is a delta between the two and one may be brought nearer the other by a series of transformations.
 
@@ -20,7 +20,7 @@ Knowledge transforms in three simple ways: addition, deletion, and replacement. 
 
 Learning theory, cognitivism, behaviorism, constructivism. We would be communicationist.
 
-##1 Theory
+## Theory
 
 ### How Knowledge Works
 
@@ -148,7 +148,7 @@ To argue that neither extreme is possible is to make a different assumption abou
 
 So the extremes are not real, but are historically unrealized ratios indeed unreal?
 
-##2 Map
+## Map
 
 ### Maps
 
@@ -158,7 +158,18 @@ There are two reasons to map knowledge spaces. First, we may want to know how kn
 
 What has been missing is a  mapping of exclusion mechanisms to the cultural content of knowledge. How do incumbent or pretenders use their mastery of knowledge to do boundary work?
 
-##3 Story
+## Story
+### Remembering Social Science
 
-##4
+Library technology, paradoxically, makes it easy to forget scholarship. [@Cevolini2016Forgetting] A scholar who is confident that knowledge is safely protected in archives and who believes that it can always be accurately retrieved is relieved of the urgency of digesting it now. 
+Punting on understanding *from* texts opens space for exogenous understandings *of* texts. Contemporaneous cultures and societies constraining the reader prejudge the meanings of texts. While scholars genuflect to a quest for truth, the practical incentive to minimize time spent reading leads to several methods of collusion in the reduction of texts.
 
+First, any text that can be commonly declared irrelevant need not be bothered with it all. Forgetting is the most efficient way to deal with a text.
+
+Second, a text need not be read to be understood, as their meanings are common sense. Texts then have reputations and reputed meanings. These reputations like those of people stand in for the real thing in scholarly discourse. These mediated versions of the truth act as promissory notes in scholarly transactions; where the reputed meaning is accurately conveyed the issuing party is given credit for knowing the underlying truth, without burdening the transaction with a test of the truth. Like all symbolic currencies, the pace of commerce quickens where the symbol of the good is exchanged prior to the good itself needing to be mobilized.
+
+The utility of reputed rather than real meanings functions to save scholars from the existential crisis besieging them: the pace of the publication of scholarship has long outpaced anyone's capacity to read it. The existence of subdisciplines is an obvious symptom of this trend bemoaned by every generation of scholars.
+
+### Secondary selection
+
+Primary selection is that of the editors and reviewers; of all work submitted for publication they have authority to choose what is made public. Secondary selection
