@@ -18,29 +18,91 @@ The surprising qualities of texts are explained to be how authors draw on regula
 
 ## Method
 
-### Sample definition
+### Data Quality
 
 #### JSTOR journals
 
 ```{r master2jstorm}
 f<-'d/q/jstorm.RData'
-if(file.exists(f)){
+if(file.exists(f)) {
   load(f)
 } else {
- jstorm<-master2jstorm.f()
-   save(jstorm,file=f)
+  jstorm<-master2jstorm.f()
+  save(jstorm,file=f)
 }
 rm(f)
 ```
 
-
-
+```{r jstorm2jclu}
+f<-'d/q/jclu.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  jclu<-jstorm2jclu.f(jstorm)
+  save(jclu,file=f)
+}
+rm(f)
+```
 
 ```{r jstorm2tab,include=T}
-
-jtab<-jstorm2tab.f(jstorm,beg.bef = 1900,end.aft = 2000)
-kable(jtab,caption='20th Century Social Science Journals in JSTOR')
+#jtab<-jstorm2tab.f(jstorm,beg.bef = 1900,end.aft = 2000)
+#kable(jtab,caption='20th Century Social Science Journals in JSTOR')
 ```
+
+```{r}
+f<-'d/q/nces.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  system(paste('wget -qO',f,'https://nces.ed.gov/programs/digest/d14/tables/xls/tabn301.20.xls'))
+  nces<-readxl::read_xls(f)
+  save(nces,file=f)
+}
+rm(f)
+phd<-nces[c(1,grep('Doctor',nces[[1]])),grep('[0-9]{4}',nces[1,])] %>% t %>% data.table %>% setnames(c('year','N'))
+phd[,year:=sub('-.+','',year) %>% as.integer %>% `+`(1)]
+phd[,N:=as.numeric(N)]
+spl<-phd[,.(year=year[match(do.call(seq,range(year) %>% as.list),year,nomatch = NA)])]
+spl[!is.na(year),N:=phd$N]
+spl[,`:=`(
+  year=zoo::na.approx(year)
+  ,N=zoo::na.spline(N,method='hyman')
+  #,N=zoo::na.approx(N)
+  )]
+
+myth(qplot(x = year,y = N,geom='line',data=spl) + geom_point(data=phd,aes(x=year,y=N)))
+```
+
+
+```{r jstorm2fig,include=T}
+f<-'d/q/jfig.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  jfig<-jstorm2fig.f(jstorm,jclu)
+  save(jfig,file=f)
+}
+rm(f)
+jfig$p
+```
+
+```{r}
+rat<-jfig$d[between(year,1800,2000)&super=='Social Sciences'] %>% setkey(year)
+setkey(spl,year)
+rat<-merge(rat,spl)
+rat<-rat[,.(year,ratio=N.y/N.x,dif1g)]
+r<-rat[,range(ratio)]
+n<-diff(r)*.1
+
+myth(
+  ggplot(data=rat) +
+    annotate('rect',xmin=1888,xmax=1922,ymin=r[1]-n,ymax=r[2],alpha=.1) +
+    geom_line(aes(x=year,y=ratio,color=dif1g),size=1.5) 
+) + theme(legend.position="none")
+rat[between(year,1888,1922)]
+```
+
+This period represents one of stable growth, as the size of the field grows with the number of players on it.
 
 ```{r zot2bib}
 f<-'d/q/zot2bib.RData'
@@ -61,8 +123,6 @@ setorder(d,publicationTitle,dateModified)
 d[is.na(publicationTitle),]
 d<-d[!is.na(publicationTitle),]
 ```
-
-#### Data Quality
 
 Every record for every journal was downloaded manually, including front and back matter, articles, and book reviews.
 
