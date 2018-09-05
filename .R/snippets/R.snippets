@@ -1,0 +1,9 @@
+snippet if(file
+	f<-'${1:d/q/.RData}'
+	if(file.exists(f)){
+		load(f)
+	} else {
+		${2:obj}<-${3:func}
+		save(${2:obj},file=f)
+	}
+	rm(f)
