@@ -1,4 +1,4 @@
-# Knowledge Development {#kd}
+# The Development of Social Science Knowledge {#kd}
 
 #### Abstract {-}
 
@@ -6,21 +6,64 @@
 
 #### Keywords {-}
 
-topic modeling, history of social science
+sociology of knowledge, topic modeling, history of social science
 
-## Topics in time
+## History of Knowledge {#kd-problem}
 
-Topic modeling refers to a variety of approaches to the statistical modeling of texts that blurs the distinction between qualitative and quantitative analysis. Texts are merely collections of terms (usually words) that are counted, and such counts may describe a text. In the same way that a civil census reduces communities to counts of the people who live in them, topic modeling reduces texts are texts to a count of words, to diction. And just as a census of people fails to capture the nuanced interactivity of human settlements found in their culture, politics, and economic activity, the meanings and intentions behind words are washed away.  At a very general level this term census paints a lexographic picture of texts, analogous to the demographic picture gained by a survey census of cities and towns. This approach to document description is sometimes called a "bag of words".
+In the history of ideas the social sciences are young players, and the U.S. social sciences are even younger. 
+
+### Topics ≟ Ideas
+
+Topic modeling refers to a variety of approaches to the statistical modeling of texts that blurs the distinction between qualitative and quantitative analysis. Texts are merely collections of terms (usually words) that are counted, and such counts may describe a text. In the same way that a civil census reduces communities to counts of the people who live in them, topic modeling reduces texts to a count of words, to diction. And just as a census of people fails to capture the nuanced interactivity of human settlements found in their culture, politics, and economic activity, the meanings and intentions behind words are washed away.  At a very general level this term census paints a lexographic picture of texts, analogous to the demographic picture gained by a survey census of cities and towns. This approach to document description is sometimes called a "bag of words".
 
 To explain the contents of the bag-of-word, topics are proposed. Topics can be thought of as catelogs out of which words are ordered and placed into the shopping cart that is the document. Different catelogs, different word availabilities, will produce different documents. The final bit of inference that makes topic models so practically useful is the idea that documents may be composed of multiple topics.
 
 The surprising qualities of texts are explained to be how authors draw on regular and commonplace topics to say something different.
 
-## Method
+### Ontologies {#kd-concept}
 
-### Data Quality
+> One's own consciousness dances about upon the words like a will-o'-the-wisp.  
+> --Niklas Luhmann [-@Luhmann2002Theories]
 
-#### JSTOR journals
+```{r dgr-ont,include=T,out.height='33%',fig.cap='Ontological Approaches to Topics'}
+DiagrammeR::grViz('
+  graph {
+    graph [center=true]
+    node [shape=plaintext]
+    topic--useful
+    topic--true
+    true--thought
+    true--communication
+    true--artifact
+  }
+  ') 
+```
+
+latent semantic structure [@WallachStatisticalTopicModels2011]
+
+representational style [@Grimmer2016Measuring]
+
+information [@Boyd-Graber2017Applications]
+
+frame [@DiMaggio2013Exploiting]
+
+Analysts have conceptualized the use of topic models in very different ways. Outside of the social sciences 
+
+Text as thought, or as communication. Thought holds that the ideas can be reliably interpreted, perhaps hermeneutically, to recover the mental events or intentions of authors and readers. Ambitious. Easier is to treat texts as communications, as messages, and worry little about their meanings or interpretations. A study of communication is a good foundation for the study of thought, but it is a separate task and the one we undertake here.
+
+## Data {#kd-d}
+
+Computational text analysis requires that text corpora be transformed from a human to a machine readable format. Several efforts to digitize paper archives have made historical research designs possible, notably the Google Books project, HathiTrust, and ITHAKA JSTOR archive. Digital storage devices like the portable document format have also enabled texts to be represented in both a digital version and as a reasonable facsimile of paper originals. Reasonable, we should say, for most sociological purposes, put not for other historical questions where materiality of culture is important.
+
+Digital archives make research into the production of culture difficult, precisely because they misrepresent several aspects of the means of production. Because researchers should be mindful that digitization of texts abstracts some qualities of texts and renders many others invisible. The importance of physical space and material qualities of lbiraries is illegible when working with digital archives, while the verbal content of texts is highlighted. We must keep in mind that we are not viewing what historical actors saw. Digital texts are almost perfectly fungible, while, variability in historical texts. We are liable, for instance, to underestimate the search costs to locate texts, and the fungibility of texts themselves.
+
+There are reasons, however, to believe that digital text archives provide not just a useful but a historically valid abstraction from the material texts. If we want to understand how an individual scholar understood a particular text, better to have her personal copy, margin notes and all. Yet understanding how that scholar treated the text as a cultural item, she would abstract her own copy to a format credibly held in common, the more aniseptically clean version that we see in digital archives. These are the ghosts of the texts, so to speak, but they are what would be left when all idiosyncracies were removed, the version that one would assume colleagues thought of when declaring that text publically.
+
+This comment on evidentiary foundations introduces the theme of this paper, which is the difference between personal and social meanings of texts, and more genearlly how tendencies toward idiosyncracy attenuate those toward conformity, and vice versa.
+
+making database decisions about how texts should be represented for statistical manipulation. 
+
+### Social science journals {#kd-dq}
 
 ```{r master2jstorm}
 f<-'d/q/jstorm.RData'
@@ -49,32 +92,7 @@ rm(f)
 #kable(jtab,caption='20th Century Social Science Journals in JSTOR')
 ```
 
-```{r}
-f<-'d/q/nces.RData'
-if(file.exists(f)){
-  load(f)
-} else {
-  system(paste('wget -qO',f,'https://nces.ed.gov/programs/digest/d14/tables/xls/tabn301.20.xls'))
-  nces<-readxl::read_xls(f)
-  save(nces,file=f)
-}
-rm(f)
-phd<-nces[c(1,grep('Doctor',nces[[1]])),grep('[0-9]{4}',nces[1,])] %>% t %>% data.table %>% setnames(c('year','N'))
-phd[,year:=sub('-.+','',year) %>% as.integer %>% `+`(1)]
-phd[,N:=as.numeric(N)]
-spl<-phd[,.(year=year[match(do.call(seq,range(year) %>% as.list),year,nomatch = NA)])]
-spl[!is.na(year),N:=phd$N]
-spl[,`:=`(
-  year=zoo::na.approx(year)
-  ,N=zoo::na.spline(N,method='hyman')
-  #,N=zoo::na.approx(N)
-  )]
-
-myth(qplot(x = year,y = N,geom='line',data=spl) + geom_point(data=phd,aes(x=year,y=N)))
-```
-
-
-```{r jstorm2fig,include=T}
+```{r jstorm2fig,include=T,fig.cap='Periods in the Growth of the Number of Social Science Journals in the JSTOR Archive'}
 f<-'d/q/jfig.RData'
 if(file.exists(f)){
   load(f)
@@ -86,23 +104,40 @@ rm(f)
 jfig$p
 ```
 
-```{r}
+
+```{r nces2phd,include=T,fig.cap='Decennial growth in number of PhD degrees conferred in the U.S.'}
+f<-'d/q/nces.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  nces<-nces2phd.f()
+  save(nces,file=f)
+}
+rm(f)
+nces$fig
+```
+
+
+```{r nces/jstorm,include=T}
 rat<-jfig$d[between(year,1800,2000)&super=='Social Sciences'] %>% setkey(year)
-setkey(spl,year)
-rat<-merge(rat,spl)
+setkey(nces$int,year)
+rat<-merge(rat,nces$int)
 rat<-rat[,.(year,ratio=N.y/N.x,dif1g)]
 r<-rat[,range(ratio)]
 n<-diff(r)*.1
 
 myth(
-  ggplot(data=rat) +
+  ggplot(data=rat,mapping = aes(x=year,y=ratio)) +
     annotate('rect',xmin=1888,xmax=1922,ymin=r[1]-n,ymax=r[2],alpha=.1) +
-    geom_line(aes(x=year,y=ratio,color=dif1g),size=1.5) 
-) + theme(legend.position="none")
-rat[between(year,1888,1922)]
+    geom_line(aes(color=dif1g),size=1.5) +
+    geom_point(data=rat[.(nces$tab$year)] %>% na.omit,mapping = aes(x=year,y=ratio),shape=21,size=1.5,stroke=1,fill='white')
+) + theme(legend.position="none",axis.title.x = element_blank())
+wrk<-rat[between(year,1888,1922),summary(ratio)]
 ```
 
-This period represents one of stable growth, as the size of the field grows with the number of players on it.
+This period represents one of stable growth, as the size of the field grows with the number of players on it. Between 1888 and 1922 there tended to be about `r nn(wrk['Median'],0)` new PhDs in the U.S. for every social science journal even as each population grew year over year. These growth patterns begin to diverge around `r jfig$d[super=='Social Sciences'][dif1g==3][1,year]` as a decades long acceleration of personnel begins, relatively slowly between 1920 and 1960 at an average acceleration rate of `r rat[between(year,1920,1960,F),nn(ratio %>% mean)]`) PhDs per journal per year, and then quite precipitously in the 1960s at an average acceleration rate of `r rat[between(year,1960,1980,T),nn(ratio %>% mean)]`.
+
+### JSTOR archive {#kd-dd}
 
 ```{r zot2bib}
 f<-'d/q/zot2bib.RData'
@@ -175,7 +210,7 @@ if(F) w<-lt[ltn,list({
 lt[ltn][,cat(publicationTitle,' ',date,' ',volume,' ',issue,' ',title,' ',pages,'\n',url,'\n\n',sep=''),by=dateModified] %>% invisible
 ```
 
-#### Sampling Frame
+### Sampling {#kd-dp}
 
 ```{r jpdf2imp}
 f<-'d/d/jpdf.RData'
@@ -219,7 +254,7 @@ if(file.exists(f)){
 rm(f,ftx)
 ```
 
-#### Unit of Analysis
+### Unit of Analysis
 
 ```{r pre2mlc}
 f<-'d/p/mlc.RData'
@@ -238,7 +273,7 @@ des.stm<-pre2des.f(pre[!is.na(stm)])
 knitr::kable(list(des.com,des.stm,data.table(tot=round(des.stm$cnt/des.com$cnt*100,2))),caption = 'Full Text Descriptives', booktabs = TRUE)
 ```
 
-#### Sampling
+## Modeling {#kd-dp}
 
 ### How many topics?
 
@@ -309,8 +344,4 @@ kable(sim$tab)
 # viz<-lda2viz.f(mod,'d/b')
 ```
 
-### Making sense
-
-## An end.
-
-Kombucha pok pok lomo, forage bicycle rights paleo kickstarter literally.  Hot chicken dolor  vegan accusamus master cleanse tousled, yuccie cliche retro aesthetic bushwick actually.  Ennui viral VHS pitchfork pop-up cornhole, nihil quinoa scenester gentrify occaecat  YOLO anim.  Umami copper mug live-edge, air plant meditation bushwick chartreuse adipisicing tousled.  Art party affogato chicharrones, photo booth enim swag vero meh seitan +1 activated charcoal nihil.  Etsy gluten-free authentic mixtape.  Shabby chic duis  90's pop-up pinterest, lumbersexual mollit  cillum.
+## Making sense
