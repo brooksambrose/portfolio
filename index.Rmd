@@ -27,7 +27,23 @@ header-includes:
 ---
 
 <!-- This won't be displayed but it will initialize your R session. Add any R libraries you need here. -->
-```{r init,include=FALSE,echo=FALSE}
+```{r init,include=T,echo=FALSE}
+# options ----------------------------------------------------------------
+kop<-function(...) {
+  knitr::opts_chunk$set(
+    echo=F
+    ,include=F
+    ,fig.align='center'
+    ,comment=NA
+    ,...
+  )
+  if(knitr::opts_chunk$get('cache')) warning('Chunk caching is on!')
+}
+kop(cache=F)
+```
+
+
+```{r}
 source('_init.R')
 ```
 

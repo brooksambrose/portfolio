@@ -17,4 +17,6 @@
 !*.Rproj
 !_init.R
 !asa.csl
+!.R/snippets/
+!.R/snippets/*
 .Rproj.user

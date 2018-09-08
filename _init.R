@@ -1,10 +1,3 @@
-# options ----------------------------------------------------------------
-knitr::opts_chunk$set(
-  echo=F
-  ,include=F
-  ,fig.align='center'
-  ,comment=NA
-)
 latex<-is_latex_output()
 
 # asa.csl -----------------------------------------------------------------------
