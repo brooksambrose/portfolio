@@ -1,4 +1,4 @@
-# The Development of Social Science Knowledge {#kd}
+# `r tkd` {#kd}
 
 #### Abstract {-}
 
@@ -10,22 +10,21 @@ sociology of knowledge, topic modeling, history of social science
 
 ## History of Knowledge {#kd-problem}
 
-In the history of ideas the social sciences are young players, and the U.S. social sciences are even younger. 
-
-### Topics ≟ Ideas
-
-Topic modeling refers to a variety of approaches to the statistical modeling of texts that blurs the distinction between qualitative and quantitative analysis. Texts are merely collections of terms (usually words) that are counted, and such counts may describe a text. In the same way that a civil census reduces communities to counts of the people who live in them, topic modeling reduces texts to a count of words, to diction. And just as a census of people fails to capture the nuanced interactivity of human settlements found in their culture, politics, and economic activity, the meanings and intentions behind words are washed away.  At a very general level this term census paints a lexographic picture of texts, analogous to the demographic picture gained by a survey census of cities and towns. This approach to document description is sometimes called a "bag of words".
-
-To explain the contents of the bag-of-word, topics are proposed. Topics can be thought of as catelogs out of which words are ordered and placed into the shopping cart that is the document. Different catelogs, different word availabilities, will produce different documents. The final bit of inference that makes topic models so practically useful is the idea that documents may be composed of multiple topics.
-
-The surprising qualities of texts are explained to be how authors draw on regular and commonplace topics to say something different.
+In the history of ideas the social sciences are young players, and the U.S. social sciences are even younger. Though anthropology has generically referred to writings about . The oldest. Ph.D.s U.S. higher education, after all, is younger than the country. Actually American sociology had the first department in the world.
 
 ### Ontologies {#kd-concept}
+
+Ontologies are categories of being, or more simply they are the assumptions that answer the (usually implicit) question, "What is this?". Ontologies may be categories of classification in a descriptive sense or causal mechanisms in an explanatory. It is neigther possible to describe nor explain without making onotoligcal assumptions.
+
+Understanding differences in the ontological status of the "topic" concept is a good way to begin to understand how this method of analysis is used by researchers.
+
+Analysts have conceptualized the use of topic models in very different ways. Some researchers treat topics as useful for a particular purpose and not as true descriptions of real phenomena. Topics as information enhances the ability to search for relevant documents or statistical trends in otherwise unwieldy corpora as a time-saving alternative to manually reading large collections. [@Boyd-Graber2017Applications] Empirical problems, used as demonstrations of statistical techniques, have included
+
 
 > One's own consciousness dances about upon the words like a will-o'-the-wisp.  
 > --Niklas Luhmann [-@Luhmann2002Theories]
 
-```{r dgr-ont,include=T,out.height='33%',fig.cap='Ontological Approaches to Topics'}
+```{r dgr-ont,include=T,fig.cap='Ontological Approaches to Topics',screenshot.force = TRUE}
 DiagrammeR::grViz('
   graph {
     graph [center=true]
@@ -39,27 +38,42 @@ DiagrammeR::grViz('
   ') 
 ```
 
+This is the "needle and haystack" approach favored by computer and information scientists who tend not to be interested in theoretical intepretations beyond the statistical definitions of topics. Other researchers instead grant topics ontological status, and these can be divided into three types. Most ambitiously, topics may be treated as representing categories of thought. Latent semantic structure
 latent semantic structure [@WallachStatisticalTopicModels2011]
-
 representational style [@Grimmer2016Measuring]
-
-information [@Boyd-Graber2017Applications]
-
 frame [@DiMaggio2013Exploiting]
 
-Analysts have conceptualized the use of topic models in very different ways. Outside of the social sciences 
 
 Text as thought, or as communication. Thought holds that the ideas can be reliably interpreted, perhaps hermeneutically, to recover the mental events or intentions of authors and readers. Ambitious. Easier is to treat texts as communications, as messages, and worry little about their meanings or interpretations. A study of communication is a good foundation for the study of thought, but it is a separate task and the one we undertake here.
 
+### Topics `r if(latex) '\\normalfont{≟}' else '≟'` Ideas
+
+The strategy of the following analysis occurs in four steps.
+
+1. Sort text into categories of similar vocabulary.
+2. Describe the vocabularies that define category membership.
+3. Describe vocabulary strengths across time and discipline.
+4. Validate category contents by a traditional qualitative reading of texts.
+
+Steps 1-3 constitute a normal approach to quantitative intellectual history, whereas step 4 is seldom attempted. If in this way we may operationalize the notion of cultural meaning or cultural logic as conformity to vocabularies, then a new horizon of intellectual scholarship is possible that would allow a so-called "distant reading" of texts. If on the other hand we find that machine learned vocabularies do not correspond to human learned understandings of the texts drawing on those vocabularies, then we may in fact discover that distant reading is not a scientific, historical, or hermenuetical method, but rather a new humanistic method of reading texts de novo.
+
+A population studies of ideas at a societal scale has never been conducted in the social sciences.
+
+Topic modeling refers to a variety of approaches to the statistical modeling of texts that blurs the distinction between qualitative and quantitative analysis. Texts are merely collections of terms (usually words) that are counted, and such counts may describe a text. In the same way that a civil census reduces communities to counts of the people who live in them, topic modeling reduces texts to a count of words, to diction. And just as a census of people fails to capture the nuanced interactivity of human settlements found in their culture, politics, and economic activity, the meanings and intentions behind words are washed away.  At a very general level this term census paints a lexographic picture of texts, analogous to the demographic picture gained by a survey census of cities and towns. This approach to document description is sometimes called a "bag of words".
+
+To explain the contents of the bag-of-word, topics are proposed. Topics can be thought of as catelogs out of which words are ordered and placed into the shopping cart that is the document. Different catelogs, different word availabilities, will produce different documents. The final bit of inference that makes topic models so practically useful is the idea that documents may be composed of multiple topics.
+
+The surprising qualities of texts are explained to be how authors draw on regular and commonplace topics to say something different.
+
 ## Data {#kd-d}
 
-Computational text analysis requires that text corpora be transformed from a human to a machine readable format. Several efforts to digitize paper archives have made historical research designs possible, notably the Google Books project, HathiTrust, and ITHAKA JSTOR archive. Digital storage devices like the portable document format have also enabled texts to be represented in both a digital version and as a reasonable facsimile of paper originals. Reasonable, we should say, for most sociological purposes, put not for other historical questions where materiality of culture is important.
+Computational text analysis requires that text corpora be transformed from a human to a machine readable format. Several efforts to digitize paper archives have made historical research designs possible, notably the Google Books project, HathiTrust, and ITHAKA JSTOR archive. Digital storage devices like the portable document format (PDF) have also enabled texts to be represented in both a digital version and as a reasonable facsimile of paper originals. Reasonable, we should say, for most sociological purposes, put not for other historical questions where materiality of culture is important.
 
-Digital archives make research into the production of culture difficult, precisely because they misrepresent several aspects of the means of production. Because researchers should be mindful that digitization of texts abstracts some qualities of texts and renders many others invisible. The importance of physical space and material qualities of lbiraries is illegible when working with digital archives, while the verbal content of texts is highlighted. We must keep in mind that we are not viewing what historical actors saw. Digital texts are almost perfectly fungible, while, variability in historical texts. We are liable, for instance, to underestimate the search costs to locate texts, and the fungibility of texts themselves.
+Digital archives make research into the production of culture difficult, precisely because they misrepresent several aspects of the means of production. Because researchers should be mindful that digitization of texts abstracts some qualities of texts and renders many others invisible. The importance of physical space and material qualities of libraries is illegible when working with digital archives, while the verbal content of texts is highlighted. We must keep in mind that we are not viewing what historical actors saw. Digital texts are almost perfectly fungible, while, variability in historical texts. We are liable, for instance, to underestimate the search costs to locate texts, and the fungibility of texts themselves.
 
 There are reasons, however, to believe that digital text archives provide not just a useful but a historically valid abstraction from the material texts. If we want to understand how an individual scholar understood a particular text, better to have her personal copy, margin notes and all. Yet understanding how that scholar treated the text as a cultural item, she would abstract her own copy to a format credibly held in common, the more aniseptically clean version that we see in digital archives. These are the ghosts of the texts, so to speak, but they are what would be left when all idiosyncracies were removed, the version that one would assume colleagues thought of when declaring that text publically.
 
-This comment on evidentiary foundations introduces the theme of this paper, which is the difference between personal and social meanings of texts, and more genearlly how tendencies toward idiosyncracy attenuate those toward conformity, and vice versa.
+This comment on evidentiary foundations introduces the theme of this paper, which is the difference between personal and social meanings of texts, and more generally how tendencies toward idiosyncracy attenuate those toward conformity, and vice versa.
 
 making database decisions about how texts should be represented for statistical manipulation. 
 
@@ -87,6 +101,13 @@ if(file.exists(f)){
 rm(f)
 ```
 
+We rely on the JSTOR digital archive which gives access to optical scans of historical journals. The coverage of journals in the archive is very complete for those journals that were chosen for the database. As of this writing JSTOR contained `r jstorm[,nn(.N)]` journals which they organize into `r jclu$tab[,nn(.N)]` superdisciplines.
+
+```{r jclu-tab,include=T}
+kab(jclu$tab %>% setorder(-N),col.names=rep('',ncol(jclu$tab)),caption='Number of Journals in Superdisciplines')
+```
+
+
 ```{r jstorm2tab,include=T}
 #jtab<-jstorm2tab.f(jstorm,beg.bef = 1900,end.aft = 2000)
 #kable(jtab,caption='20th Century Social Science Journals in JSTOR')
@@ -101,7 +122,7 @@ if(file.exists(f)){
   save(jfig,file=f)
 }
 rm(f)
-jfig$p
+plt(jfig$p)
 ```
 
 
@@ -114,11 +135,11 @@ if(file.exists(f)){
   save(nces,file=f)
 }
 rm(f)
-nces$fig
+plt(nces$fig)
 ```
 
 
-```{r nces/jstorm,include=T}
+```{r nces/jstorm,include=T,fig.cap='Number of PhDs conferred in the United States per Social Science Journal'}
 rat<-jfig$d[between(year,1800,2000)&super=='Social Sciences'] %>% setkey(year)
 setkey(nces$int,year)
 rat<-merge(rat,nces$int)
@@ -126,16 +147,16 @@ rat<-rat[,.(year,ratio=N.y/N.x,dif1g)]
 r<-rat[,range(ratio)]
 n<-diff(r)*.1
 
-myth(
+plt(myth(
   ggplot(data=rat,mapping = aes(x=year,y=ratio)) +
     annotate('rect',xmin=1888,xmax=1922,ymin=r[1]-n,ymax=r[2],alpha=.1) +
     geom_line(aes(color=dif1g),size=1.5) +
     geom_point(data=rat[.(nces$tab$year)] %>% na.omit,mapping = aes(x=year,y=ratio),shape=21,size=1.5,stroke=1,fill='white')
-) + theme(legend.position="none",axis.title.x = element_blank())
+) + theme(legend.position="none",axis.title.x = element_blank()))
 wrk<-rat[between(year,1888,1922),summary(ratio)]
 ```
 
-This period represents one of stable growth, as the size of the field grows with the number of players on it. Between 1888 and 1922 there tended to be about `r nn(wrk['Median'],0)` new PhDs in the U.S. for every social science journal even as each population grew year over year. These growth patterns begin to diverge around `r jfig$d[super=='Social Sciences'][dif1g==3][1,year]` as a decades long acceleration of personnel begins, relatively slowly between 1920 and 1960 at an average acceleration rate of `r rat[between(year,1920,1960,F),nn(ratio %>% mean)]`) PhDs per journal per year, and then quite precipitously in the 1960s at an average acceleration rate of `r rat[between(year,1960,1980,T),nn(ratio %>% mean)]`.
+This period represents one of stable growth, as the size of the field grows with the number of players on it. Between 1888 and 1922 there tended to be about `r nn(wrk['Median'],0)` new PhDs in the U.S. for every social science journal even as each population grew year over year. These growth patterns begin to diverge around `r jfig$d[super=='Social Sciences'][dif1g==3][1,year]` as a decades long acceleration of personnel begins, relatively slowly between 1920 and 1960 at an average acceleration rate of `r rat[between(year,1920,1960,F),nn(ratio %>% mean)]` PhDs per journal per year, and then quite precipitously in the 1960s at an average acceleration rate of `r rat[between(year,1960,1980,T),nn(ratio %>% mean)]`.
 
 ### JSTOR archive {#kd-dd}
 
@@ -210,7 +231,7 @@ if(F) w<-lt[ltn,list({
 lt[ltn][,cat(publicationTitle,' ',date,' ',volume,' ',issue,' ',title,' ',pages,'\n',url,'\n\n',sep=''),by=dateModified] %>% invisible
 ```
 
-### Sampling {#kd-dp}
+### Sampling {#kd-dp1}
 
 ```{r jpdf2imp}
 f<-'d/d/jpdf.RData'
@@ -254,7 +275,7 @@ if(file.exists(f)){
 rm(f,ftx)
 ```
 
-### Unit of Analysis
+### Units of Analysis
 
 ```{r pre2mlc}
 f<-'d/p/mlc.RData'
@@ -267,15 +288,49 @@ if(file.exists(f)){
 rm(f)
 ```
 
-```{r pre2des,include=T}
+```{r pre2des}
 des.com<-pre2des.f(pre)
 des.stm<-pre2des.f(pre[!is.na(stm)])
-knitr::kable(list(des.com,des.stm,data.table(tot=round(des.stm$cnt/des.com$cnt*100,2))),caption = 'Full Text Descriptives', booktabs = TRUE)
 ```
 
-## Modeling {#kd-dp}
+```{r,include=T}
+kab(list(des.com,des.stm,data.table(tot=round(des.stm$cnt/des.com$cnt*100,2))),caption = 'Full Text Descriptives')
+```
+
+## Modeling {#kd-dp2}
+
+The modeling objective is twofold, to sort text into categories of similarity, and to describe the qualitative content that defines the category membership. In this way we may operationalize the notion of cultural meaning or cultural logic as the rules of category classification. reduce expressions as instances of a latent category of expression.
 
 ### How many topics?
+
+```{r mlc2kmc,eval=F}
+mlc2kmc.f<-function(mlc){
+  library(skmeans)
+  library(cluster)
+  library(ggrepel)
+  
+  kmc<-list()
+  for(i in c('doc','par','sen')){
+    sm<-stm::convertCorpus(mlc[[i]]$spm,mlc$voc,'slam')
+    u<-pbapply::pbsapply(1:min(500,nrow(mlc[[i]])),function(y) skmeans(x=sm,k=y,m=1.1) %>% silhouette %>% summary %>% `[[`('si.summary'),cl = 7 ) %>% t
+    r<-data.table(u)[,i:=.I]
+    r<-r[!is.infinite(Median)]
+    r[Median>=quantile(Median,.98),lab:=i]
+    r[,lo:=loess(Median~i) %>% predict]
+    kmc[[i]]<-myth(
+      ggplot(data=r,aes(x=i,y=Median)) + 
+        #geom_segment(aes(xend=i,y=lo,yend=Median),color='black',size=.1) +
+        geom_line(aes(y=lo),color='blue',size=1.5) + 
+        geom_text_repel(aes(label=lab),segment.color = 'gray',nudge_y=.5,na.rm=T) +
+        geom_point(size=.25) +
+        geom_text_repel(data=r[which.max(lo),.(i,lo)],aes(label=i,y=lo),color='blue',nudge_y=-.01,segment.color = 'gray')
+    ) + expand_limits(y=c(0,r[,max(Median)*1.05])) 
+    
+  }
+  
+}
+```
+
 
 ```{r pre2tel}
 f<-'d/p/tel.RData'
@@ -331,8 +386,8 @@ k<-mlk[,.(k=pbapply::pbreplicate(1e4,psych::kurtosi(K %>% sample(replace = T)),c
 kable(k)
 ```
 
-```{r mlk-tab,include=F} 
-kable(sim$tab)
+```{r mlk-tab,include=T}
+kab(sim$tab)
 ```
 
 ### Model selection

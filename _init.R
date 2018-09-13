@@ -1,8 +1,12 @@
 latex<-is_latex_output()
 
+# png optimization
+knit_hooks$set(optipng = hook_optipng)
+knit_hooks$set(pngquant = hook_pngquant)
+
 # asa.csl -----------------------------------------------------------------------
 # download asa citation style sheet
-if(!file.exists('asa.csl')) 'https://www.zotero.org/styles/american-sociological-association' %>% 
+if(!file.exists('asa.csl')) 'https://www.zotero.org/styles/american-sociological-association' %>%
   readLines(warn = F) %>% writeLines('asa.csl')
 
 # references.bib ----------------------------------------------------------

@@ -1,4 +1,69 @@
 
+@inproceedings{mimno_organizing_2007,
+	address = {New York, NY, USA},
+	series = {{JCDL} '07},
+	title = {Organizing the {OCA}: {Learning} {Faceted} {Subjects} from a {Library} of {Digital} {Books}},
+	isbn = {978-1-59593-644-8},
+	shorttitle = {Organizing the {OCA}},
+	url = {http://doi.acm.org/10.1145/1255175.1255249},
+	doi = {10.1145/1255175.1255249},
+	abstract = {Large scale library digitization projects such as the Open Content Alliance are producing vast quantities of text, but little has been done to organize this data. Subject headings inherited from card catalogs are useful but limited, while full-text indexing is most appropriate for readers who already know exactly what they want. Statistical topic models provide a complementary function. These models can identify semantically coherent "topics" that are easily recognizable and meaningful to humans, but they have been too computationally intensive to run on library-scale corpora. This paper presents DCM-LDA, a topic model based on Dirichlet Compound Multinomial distributions. This model is simultaneously better able to represent observed properties of text and more scalable to extremely large text collections. We train individual topic models for each book based on the cooccurrence of words within pages. We then cluster topics across books. The resulting topical clusters can be interpreted as subject facets, allowing readers to browse the topics of a collection quickly, find relevant books using topically expanded keyword searches, and explore topical relationships between books. We demonstrate this method finding topics on a corpus of 1.49 billion words from 42,000 books in less than 20 hours, and it easily could scale well beyond this.},
+	urldate = {2018-09-10},
+	booktitle = {Proceedings of the 7th {ACM}/{IEEE}-{CS} {Joint} {Conference} on {Digital} {Libraries}},
+	publisher = {ACM},
+	author = {Mimno, David and McCallum, Andrew},
+	year = {2007},
+	keywords = {classification, topic models},
+	pages = {376--385}
+}
+
+@inproceedings{hall_studying_2008,
+	address = {Stroudsburg, PA, USA},
+	series = {{EMNLP} '08},
+	title = {Studying the {History} of {Ideas} {Using} {Topic} {Models}},
+	url = {http://dl.acm.org/citation.cfm?id=1613715.1613763},
+	abstract = {How can the development of ideas in a scientific field be studied over time? We apply unsupervised topic modeling to the ACL Anthology to analyze historical trends in the field of Computational Linguistics from 1978 to 2006. We induce topic clusters using Latent Dirichlet Allocation, and examine the strength of each topic over time. Our methods find trends in the field including the rise of probabilistic methods starting in 1988, a steady increase in applications, and a sharp decline of research in semantics and understanding between 1978 and 2001, possibly rising again after 2001. We also introduce a model of the diversity of ideas, topic entropy, using it to show that COLING is a more diverse conference than ACL, but that both conferences as well as EMNLP are becoming broader over time. Finally, we apply Jensen-Shannon divergence of topic distributions to show that all three conferences are converging in the topics they cover.},
+	urldate = {2018-09-10},
+	booktitle = {Proceedings of the {Conference} on {Empirical} {Methods} in {Natural} {Language} {Processing}},
+	publisher = {Association for Computational Linguistics},
+	author = {Hall, David and Jurafsky, Daniel and Manning, Christopher D.},
+	year = {2008},
+	pages = {363--371}
+}
+
+@article{blei_correlated_2007,
+	title = {A correlated topic model of {Science}},
+	volume = {1},
+	issn = {1932-6157},
+	url = {http://arxiv.org/abs/0708.3601},
+	doi = {10.1214/07-AOAS114},
+	abstract = {Topic models, such as latent Dirichlet allocation (LDA), can be useful tools for the statistical analysis of document collections and other discrete data. The LDA model assumes that the words of each document arise from a mixture of topics, each of which is a distribution over the vocabulary. A limitation of LDA is the inability to model topic correlation even though, for example, a document about genetics is more likely to also be about disease than X-ray astronomy. This limitation stems from the use of the Dirichlet distribution to model the variability among the topic proportions. In this paper we develop the correlated topic model (CTM), where the topic proportions exhibit correlation via the logistic normal distribution [J. Roy. Statist. Soc. Ser. B 44 (1982) 139--177]. We derive a fast variational inference algorithm for approximate posterior inference in this model, which is complicated by the fact that the logistic normal is not conjugate to the multinomial. We apply the CTM to the articles from Science published from 1990--1999, a data set that comprises 57M words. The CTM gives a better fit of the data than LDA, and we demonstrate its use as an exploratory tool of large document collections.},
+	number = {1},
+	urldate = {2018-09-10},
+	journal = {The Annals of Applied Statistics},
+	author = {Blei, David M. and Lafferty, John D.},
+	month = jun,
+	year = {2007},
+	note = {arXiv: 0708.3601},
+	keywords = {Statistics - Applications},
+	pages = {17--35}
+}
+
+@inproceedings{newman_analyzing_2006,
+	series = {Lecture {Notes} in {Computer} {Science}},
+	title = {Analyzing {Entities} and {Topics} in {News} {Articles} {Using} {Statistical} {Topic} {Models}},
+	isbn = {978-3-540-34479-7},
+	abstract = {Statistical language models can learn relationships between topics discussed in a document collection and persons, organizations and places mentioned in each document. We present a novel combination of statistical topic models and named-entity recognizers to jointly analyze entities mentioned (persons, organizations and places) and topics discussed in a collection of 330,000 New York Times news articles. We demonstrate an analytic framework which automatically extracts from a large collection: topics; topic trends; and topics that relate entities.},
+	language = {en},
+	booktitle = {Intelligence and {Security} {Informatics}},
+	publisher = {Springer Berlin Heidelberg},
+	author = {Newman, David and Chemudugunta, Chaitanya and Smyth, Padhraic and Steyvers, Mark},
+	editor = {Mehrotra, Sharad and Zeng, Daniel D. and Chen, Hsinchun and Thuraisingham, Bhavani and Wang, Fei-Yue},
+	year = {2006},
+	keywords = {Latent Dirichlet Allocation, Latent Semantic Analysis, Latent Semantic Indexing, News Article, Topic Model},
+	pages = {93--104}
+}
+
 @incollection{Grimmer2016Measuring,
 	address = {New York, NY},
 	edition = {Reprint edition},

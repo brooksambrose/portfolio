@@ -9,6 +9,10 @@ bibliography: references.bib
 link-citations: yes
 biblio-style: apalike
 csl: asa.csl
+mainfont: FreeSerif
+indent: true
+lof: true
+lot: true
 header-includes:
   - \usepackage{booktabs}
   - \usepackage{longtable}
@@ -24,6 +28,7 @@ header-includes:
   - \usepackage{threeparttablex}
   - \usepackage[normalem]{ulem}
   - \usepackage{makecell}
+  - \floatplacement{figure}{H}
 ---
 
 <!-- This won't be displayed but it will initialize your R session. Add any R libraries you need here. -->
@@ -35,6 +40,7 @@ kop<-function(...) {
     ,include=F
     ,fig.align='center'
     ,comment=NA
+    ,optipng = '-o7'
     ,...
   )
   if(knitr::opts_chunk$get('cache')) warning('Chunk caching is on!')
@@ -48,31 +54,36 @@ source('_init.R')
 ```
 
 
-# Introduction {-}
+# {-}
 
 There are two reasons to map knowledge spaces. First, we may want to know how knowledge develops as a resource unto itself. Second, we may want to exploit such a map for a productive purpose. Here we will attempt the second as prologue to the first. We will tackle the technical problems of constructing a map. We will show how a map can be put to use. Finally, we will investigate how the particular map we make may tend to predictably get us lost. 
 
 ### Abstracts {-}
 
-#### Chapter 1 {-}
+`r tpe<-'Profession against Education: Knowledge as Influence'`
 
-(ref:abs1) 
+#### Chapter 1: `r tpe` {-}
 
-(ref:abs1)
+(ref:pe-abs) 
 
-#### Chapter 2 {-}
+(ref:pe-abs)
 
-(ref:abs-kd) Knowledge development of journals is measured as the change in topic prevalance over time.
+`r tkd<-'The Development of Social Science Knowledge'`
+
+#### Chapter 2: `r tkd` {-}
+
+(ref:abs-kd) Knowledge development of journals is measured as the change in topic prevalence over time.
 
 (ref:abs-kd) 
 
-#### Chapter 3 {-}
+`r tkm<-'Knowledge Mapping'`
+
+#### Chapter 3: `r tkm` {-}
 
 (ref:abs-km) Knowledge mapping of acadamic journals promotes the conservation of intellectual history and stimulates discovery of underexplored intellectual opportunities. Treated as a large network community detection problem, I demonstrate how to apply the clique percolation method to map two kinds of recorded knowledge: citations and full text. The features of generated maps are explained, and interpretive methods including visualization are presented. We use American social science scholarship in the first third of the 20th century prior to U.S. entry into World War II as a case, and describe how the intellectual landscape of four separate social science disciplines developed.
 
 (ref:abs-km) 
 
-## About the author {-}
+### About the author {-}
 
 Sustainable aute  gochujang, messenger bag vero dolor  blog pork belly knausgaard.  Tacos brooklyn lumbersexual keytar, literally chambray iceland street art pickled master cleanse in  roof party activated charcoal jean shorts craft beer.  Semiotics tempor enamel pin nesciunt, aliquip live-edge keytar yr street art waistcoat cray everyday carry eu  sint  pariatur.  Aliquip anim  godard leggings, flexitarian direct trade  humblebrag.  Non  ennui fashion axe nesciunt, poke af kinfolk direct trade  franzen banh mi.  Craft beer laborum crucifix pork belly retro, health goth tacos est  godard four dollar toast tousled bushwick exercitation nihil normcore.  Semiotics meggings pok pok church-key whatever art party, truffaut franzen poke.
-

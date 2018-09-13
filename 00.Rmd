@@ -1,8 +1,8 @@
-# Profession against Education: Knowledge as Influence {#pe}
+# `r tpe` {#pe}
 
 #### Abstract {-}
 
-(ref:abs2)
+(ref:pe-abs)
 
 #### Keywords {-}
 

@@ -17,9 +17,9 @@ bookdown::gitbook:
       edit: https://github.com/brooksambrose/portfolio/edit/master/%s
       download: null
 bookdown::pdf_book:
+  latex_engine: xelatex
   keep_tex: yes
   citation_package: natbib
   toc_depth: 3
   toc_unnumbered: no
   toc_appendix: yes
-
