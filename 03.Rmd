@@ -1,0 +1,47 @@
+# `r tkm` {#km}
+
+#### Abstract {-}
+
+(ref:abs-km)
+
+#### Keywords {-}
+
+knowledge mapping, citation networks, topic modelling, clique percolation
+
+## Knowledge, Profession, and Education {#km-act1}
+
+Knowledge is 
+
+All professions trade in knowledge as a source of their external value to markets and their internal control over workers. Professions develop as institutions by monopolizing access to skills. In limiting the ranks of the profession, a prestige toward the profession can be maintained in the relationship of professionals to the rest of society. This prestige serves as their primary advantage in price setting and contract negotiations in an economic sense. Such prestige penetrates into deeper levels of society, as the status is confers is coveted by the socially mobile. By maintaining a scarcity of trade skills, professions safeguard the economic value of their trade and establish a social class in the classical sense. By excluding and setting themsleves apart from society on the basis of secrete knowledge, professions also safeguard their social role as a status group.
+
+Knowledge is only one factor among many leading to the economic value of the trade. Professionals require the resources of firms and markets, namely material capital and customers, to conduct their trade and realize profits. The tools of the trade are useless without the knowledge to apply them. This attitude toward technology sets professions off from corporations, which tend to prefer investments in technology over investments in workers to increase efficiency or productivity. Operating procedures may stand in for professional judgment, and when facing consumers, market opportunity always exists for engineers to cut professionals out of the supply chain by building technology that knows in its design what professionals know in their work.
+
+This simple tension between technology and skilled labor suggests that knowledge is tricky enough to be ignored at its peril for social groups that would constitute themselves by seekign to control knowledge. If a profession lets knowledge leak, surely it will be deflated. Its economic value and social prestige may wane as alternatives to hiring pros to get the job done wax. Knowledge is nothing but information and as such it may codified, reproduced, and trasmitted in many media. The location of constitutional knowledge, whether in people or in technology, profoundly affects whether social structures can be stably maintained around it.
+
+It is a constant usually unobserved feature distinguishing professional organizations from corporations that knowledge is prevented from being sold as technology. This gives the prize away. It does not represent a lost economic opportunity only; the foundation of professional status may be threatened.
+
+Professions are always more cryptic than is technologically possible. A profession that has been stripped, that has been rendered legible to layity, has lost its source of security, and prestige depends entirely on the esteem supporters lend to individuals. This is a tenuous situation.
+
+Education concerns the development of knowledge within individuals, and in balance is a support to professions. Would an oversupply of education threaten the scarcity on which high fees or wages depend? Indeed it may not, if job growth grows slower than the educated class. Scarcity depends on the creation of jobs.
+
+So social asymmetries are easily maintained where knowledge is on equal footing across supporters. This is clear, as much more goes into job acquisition than knowledge. 
+
+
+### Data {#km-dq}
+
+#### Citations {#km-dq-c}
+
+#### Full text {#km-dq-ft}
+
+## Methods {#km-act2}
+
+### Pre-processing {#km-dd}
+
+#### Citations {#km-dd-c}
+
+#### Full text {#km-dd-ft}
+
+## Results {#km-db}
+
+## Discussion {#act3}
+
