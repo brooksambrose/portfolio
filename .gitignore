@@ -19,4 +19,4 @@
 !asa.csl
 !.R/snippets/
 !.R/snippets/*
-.Rproj.user
+!style.css

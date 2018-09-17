@@ -11,6 +11,7 @@ biblio-style: apalike
 csl: asa.csl
 mainfont: FreeSerif
 indent: true
+css: style.css
 lof: true
 lot: true
 header-includes:
