@@ -1,35 +1,37 @@
 ---
-title: "Knowledge Mapping of the U.S. Social Sciences: 1888--1922"
+title: 'Knowledge Mapping of the U.S. Social Sciences: 1888--1922'
 author: "Brooks Ambrose"
 date: "`r Sys.Date()`"
-site: bookdown::bookdown_site
-documentclass: book
-linestretch: 2
-bibliography: references.bib
-link-citations: yes
-biblio-style: apalike
-csl: asa.csl
-mainfont: FreeSerif
-indent: true
 css: style.css
-lof: true
-lot: true
+bibliography: references.bib
+documentclass: book
 header-includes:
-  - \usepackage{booktabs}
-  - \usepackage{longtable}
-  - \usepackage{array}
-  - \usepackage{multirow}
-  - \usepackage[table]{xcolor}
-  - \usepackage{wrapfig}
-  - \usepackage{float}
-  - \usepackage{colortbl}
-  - \usepackage{pdflscape}
-  - \usepackage{tabu}
-  - \usepackage{threeparttable}
-  - \usepackage{threeparttablex}
-  - \usepackage[normalem]{ulem}
-  - \usepackage{makecell}
-  - \floatplacement{figure}{H}
+- \usepackage{booktabs}
+- \usepackage{longtable}
+- \usepackage{array}
+- \usepackage{multirow}
+- \usepackage[table]{xcolor}
+- \usepackage{wrapfig}
+- \usepackage{float}
+- \usepackage{colortbl}
+- \usepackage{pdflscape}
+- \usepackage{tabu}
+- \usepackage{threeparttable}
+- \usepackage{threeparttablex}
+- \usepackage[normalem]{ulem}
+- \usepackage{makecell}
+- \usepackage{dcolumn}
+- \usepackage{longtable}
+- \floatplacement{figure}{H}
+indent: yes
+linestretch: 2
+link-citations: yes
+lof: yes
+lot: yes
+mainfont: FreeSerif
+csl: asa.csl
+site: bookdown::bookdown_site
+biblio-style: apalike
 ---
 
 <!-- This won't be displayed but it will initialize your R session. Add any R libraries you need here. -->
