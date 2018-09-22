@@ -14,12 +14,11 @@ In the history of ideas the social sciences are young players, and the U.S. soci
 
 ### Ontologies {#kd-concept}
 
-Ontologies are categories of being, or more simply they are the assumptions that answer the (usually implicit) question, "What is this?". Ontologies may be categories of classification in a descriptive sense or causal mechanisms in an explanatory. It is neigther possible to describe nor explain without making onotoligcal assumptions.
+Ontologies are categories of being, or more simply, they are the assumptions that answer the (usually implicit) question, "What is this?". Ontologies may be descriptive categories of classification or explanatory causal mechanisms. It is neither possible to describe nor explain without making onotological assumptions.
 
 Understanding differences in the ontological status of the "topic" concept is a good way to begin to understand how this method of analysis is used by researchers.
 
 Analysts have conceptualized the use of topic models in very different ways. Some researchers treat topics as useful for a particular purpose and not as true descriptions of real phenomena. Topics as information enhances the ability to search for relevant documents or statistical trends in otherwise unwieldy corpora as a time-saving alternative to manually reading large collections. [@Boyd-Graber2017Applications] Empirical problems, used as demonstrations of statistical techniques, have included
-
 
 > One's own consciousness dances about upon the words like a will-o'-the-wisp.  
 > --Niklas Luhmann [-@Luhmann2002Theories]
@@ -38,7 +37,9 @@ DiagrammeR::grViz('
   ') 
 ```
 
-This is the "needle and haystack" approach favored by computer and information scientists who tend not to be interested in theoretical intepretations beyond the statistical definitions of topics. Other researchers instead grant topics ontological status, and these can be divided into three types. Most ambitiously, topics may be treated as representing categories of thought. Latent semantic structure
+This is the "needle and haystack" approach favored by computer and information scientists who tend not to be interested in theoretical intepretations beyond the statistical definitions of topics.
+
+Other researchers instead grant topics ontological status, and these can be divided into three types. Most ambitiously, topics may be treated as representing categories of thought. Latent semantic structure
 latent semantic structure [@WallachStatisticalTopicModels2011]
 representational style [@Grimmer2016Measuring]
 frame [@DiMaggio2013Exploiting]
@@ -57,7 +58,7 @@ The strategy of the following analysis occurs in four steps.
 
 Steps 1-3 constitute a normal approach to quantitative intellectual history, whereas step 4 is seldom attempted. If in this way we may operationalize the notion of cultural meaning or cultural logic as conformity to vocabularies, then a new horizon of intellectual scholarship is possible that would allow a so-called "distant reading" of texts. If on the other hand we find that machine learned vocabularies do not correspond to human learned understandings of the texts drawing on those vocabularies, then we may in fact discover that distant reading is not a scientific, historical, or hermenuetical method, but rather a new humanistic method of reading texts de novo.
 
-A population studies of ideas at a societal scale has never been conducted in the social sciences.
+A population study of ideas at a societal scale has never been conducted in the social sciences.
 
 Topic modeling refers to a variety of approaches to the statistical modeling of texts that blurs the distinction between qualitative and quantitative analysis. Texts are merely collections of terms (usually words) that are counted, and such counts may describe a text. In the same way that a civil census reduces communities to counts of the people who live in them, topic modeling reduces texts to a count of words, to diction. And just as a census of people fails to capture the nuanced interactivity of human settlements found in their culture, politics, and economic activity, the meanings and intentions behind words are washed away.  At a very general level this term census paints a lexographic picture of texts, analogous to the demographic picture gained by a survey census of cities and towns. This approach to document description is sometimes called a "bag of words".
 
