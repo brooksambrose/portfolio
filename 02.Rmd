@@ -102,16 +102,41 @@ if(file.exists(f)){
 rm(f)
 ```
 
-We rely on the JSTOR digital archive which gives access to optical scans of historical journals. The coverage of journals in the archive is very complete for those journals that were chosen for the database. As of this writing JSTOR contained `r jstorm[,nn(.N)]` journals which they organize into `r jclu$tab[,nn(.N)]` superdisciplines.
+We rely on the JSTOR digital archive which gives access to optical scans of historical journals. The coverage of journals in the archive is very complete for those journals chosen for the database. As of this writing JSTOR contained `r jstorm[,nn(.N)]` journals organized into `r jclu$tab[,nn(.N)]` superdisciplines.
 
-```{r jclu-tab,include=T}
-kab(jclu$tab %>% setorder(-N),col.names=rep('',ncol(jclu$tab)),caption='Number of Journals in Superdisciplines')
+```{r jclu-tab-sup,include=T}
+jsup<-jclu$tab %>% setorder(-N)
+jsup[,Pct:=round(prop.table(N)*100,1)]
+setnames(jsup,'super','Superdiscipline')
+sg(jsup,tit = "JSTOR Journal Counts")
 ```
 
+```{r jclu-tab-sub,include=T}
+jclu_sub<-jstorm[sapply(discipline,function(x) 'Social Sciences'%in%x)][,discipline:=lapply(discipline,setdiff,'Social Sciences')] %>% jstorm2jclu.f
+jsub<-jclu_sub$tab
+setnames(jsub,'super','Subdiscipline')
+sg(jsub,tit = "JSTOR Social Sciences Journal Counts")
+```
 
-```{r jstorm2tab,include=T}
-#jtab<-jstorm2tab.f(jstorm,beg.bef = 1900,end.aft = 2000)
-#kable(jtab,caption='20th Century Social Science Journals in JSTOR')
+Social science journals are overrepresented due to JSTOR's initial focus in that area. The journals within social science cover `r jsub %>% length %>% nn` different subdisciplines.
+
+```{r jclu-tab-sub-econ,include=T}
+jclu_sub_econ<-jstorm[sapply(discipline,function(x) 'Business & Economics'%in%x)][,discipline:=lapply(discipline,setdiff,'Business & Economics')] %>% jstorm2jclu.f
+jsube<-jclu_sub_econ$tab
+setnames(jsube,'super','Subdiscipline')
+sg(jsube,tit = "JSTOR Business & Economics Journal Counts")
+```
+
+```{r jstorm2tab}
+jtab<-jstorm2tab.f(jstorm,beg.bef = 1900,end.aft = 1900)
+sg(jtab[,.(
+  `Title History`=publication_title
+  ,Discipline=discipline
+  ,Start=start %>% as.character
+  ,Stop=stop %>% as.character
+)],tit='20th Century Social Science Journals in JSTOR',new.col.align = 'p{0.4\\\\linewidth}p{0.3\\\\linewidth}rr'
+#,rplc = ec('\\{tabular\\},\\{longtable\\}')
+)
 ```
 
 ```{r jstorm2fig,include=T,fig.cap='Periods in the Growth of the Number of Social Science Journals in the JSTOR Archive'}
@@ -119,7 +144,7 @@ f<-'d/q/jfig.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  jfig<-jstorm2fig.f(jstorm,jclu)
+  jfig<-jstorm2fig.f(jstorm,jclu,series=jclu$tab$super[1])
   save(jfig,file=f)
 }
 rm(f)
@@ -150,7 +175,7 @@ n<-diff(r)*.1
 
 plt(myth(
   ggplot(data=rat,mapping = aes(x=year,y=ratio)) +
-    annotate('rect',xmin=1888,xmax=1922,ymin=r[1]-n,ymax=r[2],alpha=.1) +
+    annotate('rect',xmin=1888,xmax=1922,ymin=-Inf,ymax=Inf,alpha=.1) +
     geom_line(aes(color=dif1g),size=1.5) +
     geom_point(data=rat[.(nces$tab$year)] %>% na.omit,mapping = aes(x=year,y=ratio),shape=21,size=1.5,stroke=1,fill='white')
 ) + theme(legend.position="none",axis.title.x = element_blank()))
@@ -295,7 +320,7 @@ des.stm<-pre2des.f(pre[!is.na(stm)])
 ```
 
 ```{r,include=T}
-kab(list(des.com,des.stm,data.table(tot=round(des.stm$cnt/des.com$cnt*100,2))),caption = 'Full Text Descriptives')
+#kab(list(des.com,des.stm,data.table(tot=round(des.stm$cnt/des.com$cnt*100,2))),caption = 'Full Text Descriptives')
 ```
 
 ## Modeling {#kd-dp2}
@@ -369,26 +394,33 @@ mlk<-melt(mlk,measure.vars = names(mlk),variable.name = 'level',value.name = 'K'
 ```{r mlk2sim}
 f<-'d/b/sim.RData'
 if(file.exists(f)) {load(f)} else {
-  sim<-mlk2sim.f(mlk)
+  sim<-mlk2sim.f(mlk,rep = 1e3)
   save(sim,file=f)
 }
 rm(f)
 ```
 
-```{r sim-fig,include=F,fig.cap='Distribution of K by convex hull'}
-sim$fig
+```{r sim-fig,include=T,fig.cap='Distribution of K by convex hull'}
+sim$fig1
 ```
 
-```{r mlk2k}
-k<-mlk[,.(k=pbapply::pbreplicate(1e4,psych::kurtosi(K %>% sample(replace = T)),cl = 1)),by=level][,.(e=mean(k),se=sd(k),l99=quantile(k,.005),u99=quantile(k,.995),`p>=0`=mean(k>=0)),by=level]
+```{r mlk2k,include=T}
+f<-'d/b/k.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  k<-mlk[,.(k=pbapply::pbreplicate(1e5,psych::kurtosi(K %>% sample(replace = T)),cl = 1)),by=level][,.(e=mean(k),se=sd(k),l99=quantile(k,.005),u99=quantile(k,.995),`P(e ≦ 0)`=mean(k<=0)),by=level]
+  save(k,file=f)
+}
+rm(f)
+#debugonce(sg)
+sg(k[,round(.SD,4),.SDcols=names(k)[-1],by=level],tit='Kurtosis Permutation Test')
 ```
 
-```{r k-fig,include=F,eval=F}
-kable(k)
-```
+```{r mlk-tab,include=T,fig.cap='Significant Counts of K'}
+sim$fig2
 
-```{r mlk-tab,include=T}
-kab(sim$tab)
+#sg(sim$tab,'Significant Counts of K')
 ```
 
 ### Model selection
