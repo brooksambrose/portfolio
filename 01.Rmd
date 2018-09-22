@@ -22,6 +22,18 @@ Learning theory, cognitivism, behaviorism, constructivism. We would be communica
 
 ## Theory
 
+### Statuses
+
+To introduce the concept of status it will be useful to consider the most important case, which is itself constituitive of U.S. society.
+
+American society is constituted by five ascriptive statuses: age, gender, race, class, and language group. These statuses depend on trivial and near instant recognition in mediated social interactions, hence their grounding in perceivable physical characteristics. The ease with which new members of society are trained in the perception and classification of these statuses lends them stability. The institution they form is American society writ large as no person participating "in America" can escape their bearing. Age, gender, and race are usually discernible by simply witnessing another person's body. While class and language group sometimes not visually confirmable, they are just as trivially known the moment they become salient, when the use of language or mobilization of wealth is required for social interaction.
+
+That some American subsocieties attempt to abrograte these norms demonstrates rather than contradicts their saliency. Constitutional statuses, while never natural or inborn, are nonetheless historical, changing only on a societal or generational scale. So long as the norms are easier to learn than to forget they are reinforced.
+
+The classification of people by these constitutive statuses is a "cold" cognitive operation concerning definitions of reality. These statuses are social facts deeply embedded in the consciousnesses of experienced members of American society. The ordering of these statuses is a more complicated "warm" mixture of cognition and emotion concerning not only definitons of reality but affective values as well. ; it is a rigid, though less so than the classifications themselves.
+
+Their ubiquity in American society renders them foundational for other institutions more limited in scope, thus all other institutions are shot through with the effects of these societal statuses.
+
 ### How Knowledge Works
 
 Knowledge in general is both a content and a capacity. As particular content it is the result of human learning and forgetting that varies historically.  As a general capacity it is the mechanisms of learning and forgetting themselves that through constant operation yield the content of human experience. Knowledge is  a capacity with which all people are endowed and which operates naturally as a mechanism of human accomplishment.
