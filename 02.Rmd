@@ -8,7 +8,52 @@
 
 sociology of knowledge, topic modeling, history of social science
 
-## History of Knowledge {#kd-problem}
+## History of Ideas {#kd-problem}
+
+What were the ideas that predominated in the social sciences at their formation as professions in the postbellum United States? What was the course of their development over a generation of scholarship? Though the intellectual history of the social sciences begins well before the American Civil War (1861-1865), the current epoch of its institutional history, the epoch of professions, becomes possible only in the postbellum period. Before the Civil War, social research was a skilled occupation, and individual researchers found patrons through government and civil institutions supporting pursuits of knowledge, such the American Philosophical Society (APS) founded in 1743 in Philadelphia. One of the great consequences of war was renewed federal investment in nation building in its aftermath. Some saw the rebellion as a failure of education, prompting the beginning of the U.S. Department of Education in 1867. Thus in the postbellum period both anthropology and sociology develop as professions due primarily to the growth of universities as a new context of their activity. Without universities, social research would have remained an occupation in need of clientele. With them, social research develops the resources enabling relative autonomy, self reproduction, and occupational closure, the hallmarks of a profession.
+
+This study seeks to examine the period of transition after the Civil War from social research as occupation to social research as profession. While the roots of anthropology are as old as the republic, sociology did not develop in earnest until after the Civil War.
+
+U.S. nation building had continued since the end of the American Revolution and had enrolled researchers in the projects of westward expansion against native peoples, the consolidation of slave economies against Africans, and the legitimation of the American experiment against European detractors. These were pressing problems to the intellectuals among government leaders at different levels, and they worked to make investments in new knowledge to resolve them. Such new knowledge was initially an extension of older "theories of man" in theology and enlightment natural philosophy, which had a foothold in the private education of the American so-called natural aristocracy (think Thomas Jefferson's library) as well as in urban colonial institutions like the APS serving as meeting places for intellectual elites and scholars.
+
+An idea current after the revolution was that progress was located on a scale from barabrism to civilization, and that movement in the direction of progress was a function of time and innate capacity. European societies of the Old World had the best endowment of each, for they were very old (seen as continuous with pre-Christian antiquity) and of the highest capacity. Conversely colonized peoples were understood to suffer low endowments of both, developing slowly due to their lack of morality, reason, and aesthetics and having had less time to achieve what little progress they were capable of. Colonial theologens, philosophers, and learned elites had long provided the intellectual rationalizations of the domination of women and the environment, and such reasoning was readily exported to the yet unresolved problems of native tribes and African slaves.
+
+American intellectuals knew the same logic could applied to Americans who if they could not match the rate of progress of European society would be judged a newly diverging and potentially inferior race of men. Though it did little to ameliorate white male supremacist thinking, the contradictions between the univeralistic and egalitarian values expressed in the U.S. Constitution did occassionally create grist for academic debate leading to some investments in research critical of extant racist typologies.  In Europe scholars of comparative languages charted the supposed commmon origins of European cultures and the time it had taken them to diverge, and this inspired Thomas Jefferson to patronize ethnological research on the languages of native tribes in America. He had by 1785 amassed enough data to appreciate their diversity, which he took as evidence that New World cultures may be older, and therefore more developed, than commonly assumed by colonizers. 
+
+The egalitarian-for-its-time thinking of Jefferson did not contravene racism, but it did provide a different model of racial hierarchy, which could be consequential for government projects. Jefferson thought that if all men are equal, that they share the same human capacity for progress, then native people had merely not had the time to develop and discover progress for themselves. They could and should be taught, especially to abandon hunting in favor of agriculture. For a brief time in the 1840s the Virginia legislature used tax incentives and educational programs to promote intermarriage between male settlers and native women with the goal of accelerating the natural development of native culture. [@Patterson2001Social:9] Such experiments were short lived, as the predictable backlash was that such mixing would risk lowering white culture rather than elevating Indian, and genocidal and segregationist policies won out. Thus while all racial models concluded with the domination of natives by settlers, different models of racial hierarchy sewed policy disputes within colonial leadership.
+
+The role of social research then was to be in service of either government or private political associations. Careers were made for anthropologists in patronage relationships to generate knowledge to aid nation builders. These patrons facilities, resources, and institutions. Institutional foundations for 
+
+To discuss the epoch of professions 
+
+We can consider two approaches to answering these questions.
+
+The slow and steady historian would identify diverse documentary sources allowing her to collect the names of important people and organizations and learn what she could of their biographical facts and event timelines. She would then read the scholarship both produced and consumed by these important actors. The identification of ideas would be the most difficult task, not just because reading takes time and effort and there would be much of it, but because ideas exist in the minds of people, and thought leaves no direct empirical trace. The interpretation of writing in a historical context would suggest candidate ideas; their prevalence across time and place would indicate their historical importance. It would be tedious work requring intelligence and patience.
+
+The hasty and impudent sociologist would identify a convenient source and ask a computer to do the rest. Lacking the historian's fortitude and patience, the sociologist uses a mental prosthetic to achieve and perhaps exceed the scale at which a human reader can cosume documentation and in a fraction of the time. Much less, however, is learned. Whereas people can learn about what they were not looking for, machines learn only what they are told to learn.
+
+For shorthand, we can refer to these two approaches are Aesop's tortoise and hare, the classic humanist mode and the contemporary computational mode.
+
+Berlin 
+
+### Fox
+
+
+
+### Hedgehog
+
+
+### Plan of the Study
+
+```{r fab-tab, include=T}
+fab<-  data.table(` `=ec('\U1F422,\U1F407') ,'\U1F98A'=ec(',,'),'\U1F994'=ec(',,'))
+fab<-sg(fab,tit="Fable Table",type = 'latex') 
+if(latex) gsub('(\U1F422|\U1F407|\U1F994|\U1F98A)','\\\\normalfont{\\1}',fab) else fab
+```
+
+To save some face and avoid a totally impudent analysis, I will begin with an essay on computational text analysis to describe what a computer can actually do, and then discuss how this might be leveraged to pry at a more respectable history of ideas. Where we let the tail wag the dog, choosing cases for methodological convenience.
+
+The historian of ideas can be studied at different levels that are each easy to theorize but not always easy to observe. 
 
 In the history of ideas the social sciences are young players, and the U.S. social sciences are even younger. Though anthropology has generically referred to writings about . The oldest. Ph.D.s U.S. higher education, after all, is younger than the country. Actually American sociology had the first department in the world.
 
@@ -23,18 +68,40 @@ Analysts have conceptualized the use of topic models in very different ways. Som
 > One's own consciousness dances about upon the words like a will-o'-the-wisp.  
 > --Niklas Luhmann [-@Luhmann2002Theories]
 
-```{r dgr-ont,include=T,fig.cap='Ontological Approaches to Topics',screenshot.force = TRUE}
+
+```{r dgr-ont,include=T,fig.cap='Ontological Approaches to Topics',screenshot.force = T}
+# DiagrammeR::grViz('
+#   graph {
+#     graph [center=true]
+#     node [shape=plaintext]
+#     topic--useful
+#     topic--true
+#     true--thought
+#     true--communication
+#     true--artifact
+#   }
+#   ') 
 DiagrammeR::grViz('
-  graph {
-    graph [center=true]
-    node [shape=plaintext]
-    topic--useful
-    topic--true
-    true--thought
-    true--communication
-    true--artifact
+graph {
+  node [style=plaintext]
+  subgraph cluster_1 {
+    label = "phone"
+    1 [shape=plaintext,label="machine"]
+    subgraph cluster_2 {
+      style=filled
+      fillcolor=gray
+      label = "pheme"
+      2 [shape=plaintext,label="machine\nhuman"]
+      subgraph cluster_3 {
+        style=filled
+        fillcolor=white
+        label = "rheme"
+        3 [shape=plaintext,label="human"]
+      }
+    }
   }
-  ') 
+}
+')
 ```
 
 This is the "needle and haystack" approach favored by computer and information scientists who tend not to be interested in theoretical intepretations beyond the statistical definitions of topics.
@@ -257,8 +324,6 @@ if(F) w<-lt[ltn,list({
 lt[ltn][,cat(publicationTitle,' ',date,' ',volume,' ',issue,' ',title,' ',pages,'\n',url,'\n\n',sep=''),by=dateModified] %>% invisible
 ```
 
-### Sampling {#kd-dp1}
-
 ```{r jpdf2imp}
 f<-'d/d/jpdf.RData'
 if(file.exists(f)){
@@ -273,21 +338,47 @@ if(file.exists(f)){
   save(jpdf,file=f)
 }
 rm(f)
+if(!'filt'%in%ls()) filt<-list()
+filt$import<-cor2aud.f(jpdf$imp,'imported')
 ```
+
+```{r imp2cln}
+f<-'d/d/clnp.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  # seed<-.Random.seed %>% sample(1)
+  # cat('Seed: ',seed,'\n',sep='')
+  clnp<-imp2cln.f(
+    imp = jpdf$imp
+    ,hand = 'd/d/cln1537906742.txt'
+    # ,seed=seed    
+  )
+  save(clnp,file=f)
+}
+rm(f)
+if(!'filt'%in%ls()) filt<-list()
+filt$clean<-cor2aud.f({setkey(jpdf$imp,doc,par);jpdf$imp[clnp$prd[(mth),.(doc,par)]]},'cleaned')
+```
+
+### Sampling {#kd-dp1}
 
 ```{r imp2ftx,eval=F}
 f<-'d/p/ftx.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  seed<-.Random.seed %>% sample(1)
-  cat('Seed: ',seed,'\n',sep='')
-  set.seed(seed)
-  s<-sample(jpdf$met[,doc],10)
-  ftx<-imp2ftx.f(jpdf$imp[s])
+  # seed<-.Random.seed %>% sample(1)
+  # cat('Seed: ',seed,'\n',sep='')
+  # set.seed(seed)
+  # s<-sample(jpdf$met[,doc],10)
+  # ftx<-imp2ftx.f(jpdf$imp[s])
+  ftx<-imp2ftx.f({setkey(jpdf$imp,doc,par);jpdf$imp[clnp$prd[(mth),.(doc,par)]]})
   save(ftx,file = f)
 }
-rm(f,jpdf)
+if(!'filt'%in%ls()) filt<-list()
+filt$token<-cor2aud.f(ftx,'tokenized')
+rm(f,jpdf,clnp)
 ```
 
 ```{r ftx2pre}
@@ -295,31 +386,55 @@ f<-'d/p/pre.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  pre<-ftx2pre.f(ftx,frq = 2,nch=2)
+  pre<-ftx2pre.f(ftx,frq = 5,nchr=3)
   save(pre,file = f)
 }
 rm(f,ftx)
+if(!'filt'%in%ls()) filt<-list()
+filt$pre<-cor2aud.f(pre[!is.na(stm)],'preprocessed')
 ```
 
+```{r pre2sam}
+f<-'d/p/sam.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  seed<-.Random.seed %>% sample(1)
+  cat('Seed: ',seed,'\n',sep='')
+  set.seed(seed)
+  sam<-pre[sample(doc[!is.na(stm)] %>% unique,1e2)]
+  sam[,stm:=droplevels(stm,exclude=unique(sam[,.(stm,doc)])[,.N,by=stm][N==1,stm %>% as.character]) %>% droplevels %>% droplevels(exclude=NA)]
+  attr(sam,'seed')<-seed
+  save(sam,file=f)
+}
+rm(f)
+if(!'filt'%in%ls()) filt<-list()
+filt$sam<-cor2aud.f(sam[!is.na(stm)] %>% setkey(doc),'sampled')
+```
+
+
 ### Units of Analysis
+
+Conventionally researchers feed entire documents into the construction of term frequencies. This method treats any term in a document as being related to any other term by the same degree. The goal of any topic mixture model algorithm is to sift these terms into different topic categories basically by looking for clues across documents; a topic can be "seen" in a particular document to the extent that other documents include that topic and *other* topics different from the focal article, so that the intersection of terms reveals the topic. But a much simpler assumption to reduce the attendant noise within a document is to merely feed lower level syntactic structures--paragraphs and sentences--to the algorithm. We will see that doing so greatly improves the usefulness of discovered topics.
+
+The irony of this approach is that while topics become more clear as documents become shorter, the assignment of any particular shorter document to a topic is murkier due to the smaller word count. 
+
+Long documents will contribute more text to the corpus, but this is fair as they make up more of the population of text. Thus a simple random sample will allow better descriptive statistics. I sampled at the paragraph level because.
 
 ```{r pre2mlc}
 f<-'d/p/mlc.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  mlc<-pre2mlc.f(pre)
+  mlc<-pre2mlc.f(sam)
   save(mlc,file = f)
 }
 rm(f)
 ```
 
 ```{r pre2des}
-des.com<-pre2des.f(pre)
-des.stm<-pre2des.f(pre[!is.na(stm)])
-```
-
-```{r,include=T}
+# des.com<-pre2des.f(pre)
+# des.stm<-pre2des.f(pre[!is.na(stm)])
 #kab(list(des.com,des.stm,data.table(tot=round(des.stm$cnt/des.com$cnt*100,2))),caption = 'Full Text Descriptives')
 ```
 
@@ -330,33 +445,7 @@ The modeling objective is twofold, to sort text into categories of similarity, a
 ### How many topics?
 
 ```{r mlc2kmc,eval=F}
-mlc2kmc.f<-function(mlc){
-  library(skmeans)
-  library(cluster)
-  library(ggrepel)
-  
-  kmc<-list()
-  for(i in c('doc','par','sen')){
-    sm<-stm::convertCorpus(mlc[[i]]$spm,mlc$voc,'slam')
-    u<-pbapply::pbsapply(1:min(500,nrow(mlc[[i]])),function(y) skmeans(x=sm,k=y,m=1.1) %>% silhouette %>% summary %>% `[[`('si.summary'),cl = 7 ) %>% t
-    r<-data.table(u)[,i:=.I]
-    r<-r[!is.infinite(Median)]
-    r[Median>=quantile(Median,.98),lab:=i]
-    r[,lo:=loess(Median~i) %>% predict]
-    kmc[[i]]<-myth(
-      ggplot(data=r,aes(x=i,y=Median)) + 
-        #geom_segment(aes(xend=i,y=lo,yend=Median),color='black',size=.1) +
-        geom_line(aes(y=lo),color='blue',size=1.5) + 
-        geom_text_repel(aes(label=lab),segment.color = 'gray',nudge_y=.5,na.rm=T) +
-        geom_point(size=.25) +
-        geom_text_repel(data=r[which.max(lo),.(i,lo)],aes(label=i,y=lo),color='blue',nudge_y=-.01,segment.color = 'gray')
-    ) + expand_limits(y=c(0,r[,max(Median)*1.05])) 
-    
-  }
-  
-}
 ```
-
 
 ```{r pre2tel}
 f<-'d/p/tel.RData'
@@ -374,18 +463,61 @@ f<-'d/p/clu.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  clu<-tel2clu.f(tel)
+  tel<-tel[!s%in%tm::stopwords()] # remove stopwords
+  tel<-tel[!r%in%tm::stopwords()]
+  tel<-tel[s!=r] # remove remaining loops
+  system.time(clu<-tel2clu.f(tel))
   save(clu,file=f)  
 }
 rm(f)
-str(clu)
 ```
+
+```{r ctr}
+ctr<-apply(clu$memberships,1,function(x) x %>% table %>% sort(decreasing = T))
+View(ctr)
+top<-ctr[[1]] %>% prop.table %>% `*`(100) %>% round(3) 
+top %>% head(30)
+
+cp<-tilit::ov2chpt.f(top %>% head(50),min.period = 2,drv = 1)
+top %>% head(50) %>% as.vector %>%  plot(col=cp$g)
+
+```
+
+```{r crs}
+sm<-list()
+for(i in 1:nrow(clu$memberships)) sm[[i]]<-factor(clu$memberships[i,],levels=order(table(clu$memberships[i,]),decreasing = T))
+sm<-do.call(data.table,sm)
+setnames(sm,paste0('h',ncol(sm):1))
+sm[,cr:=clu$names]
+sm[,m:=as.integer(h1)] %>% setkey(m)
+sm %>% setkey(cr)
+
+tel[,`:=`(ms=sm[s,h3],mr=sm[r,h3])]
+tel[,bc:=ms==mr]
+bct<-list(tel[s!=r,.(tew=sum(ew)),by=.(s,bc)] %>% setnames('s','cr')
+,tel[s!=r,.(tew=sum(ew)),by=.(r,bc)] %>% setnames('r','cr')
+) %>% rbindlist %>% .[,.(tew=sum(tew)),by=.(cr,bc)] %>% setkey(cr,bc)
+bct[,m:=sm[cr,h3]]
+bct<-dcast(bct,cr+m~bc,value.var = 'tew',fill=0)
+bct[,tew:=`FALSE`+`TRUE`]
+bct[,pit:=`FALSE`/tew] # proportion internal ties
+bct[,`:=`(`FALSE`=NULL,`TRUE`=NULL)]
+bct[,m:=as.integer(m)]
+bct %>% setorder(m,-pit)
+bct %>% setkey(m)
+plt(
+myth(
+ggplot(bct[.(9)],aes(x=tew,y=pit)) + geom_text(aes(label=cr,angle=45),alpha=.5)
+) + scale_x_log10())
+```
+
+
 
 ```{r mlc2mlk}
 f<-'d/p/mlk.txt'
 if(file.exists(f)) {mlk<-fread(f)} else {
-  mlc2mlk.f(mlc) %>% fwrite(f)
-  pbapply::pbreplicate(999,mlc2mlk.f(mlc) %>% fwrite('d/p/mlk.txt',append = T),cl = 6)
+  system.time(mlc2mlk.f(mlc,verb=T) %>% fwrite(f))
+  pbapply::pbreplicate(999,mlc2mlk.f(mlc) %>% fwrite('d/p/mlk.txt',append = T),cl = 1)
 }
 rm(f)
 mlk<-melt(mlk,measure.vars = names(mlk),variable.name = 'level',value.name = 'K') %>% setkey(level)
