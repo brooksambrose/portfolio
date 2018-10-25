@@ -24,6 +24,6 @@ sr<-grep('^@',bib)
 br<-grep('(bibtex)|(Citation Key):',bib)
 for(i in br) bib[sr[which(i>sr) %>% max]] %<>% sub('\\{[^,]+',paste0('{',sub('.+: ([^}]+).*','\\1',bib[i])),.)
 writeLines(bib,'references.bib')
-rm(bib)
+rm(bib,sr,br,i)
 
 

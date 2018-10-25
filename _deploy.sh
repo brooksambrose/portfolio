@@ -7,9 +7,12 @@
 # commit
 # force push worktree
 # return to start
-git checkout master \
-&& echo -e "User-agent: *\nDisallow: /" > _book/robots.txt \
+
+# run this once to have git store your password
+# git config --global credential.helper cache
+
+echo -e "User-agent: *\nDisallow: /" > _book/robots.txt \
 && cd _book && git add . && git status \
-&& git -c user.email="brooksambrose-machine@gmail.com" commit --allow-empty -m "deploy $(git log '--format=format:%h' master -1)" \
+&& git -c user.email="brooksambrose@gmail.com" commit --allow-empty -m "deploy $(git log '--format=format:%h' draft -1)" \
 && git push origin gh-pages --force \
 && cd ..

@@ -5,6 +5,8 @@ bookdown::gitbook:
     split_bib: TRUE
     toc_depth: 2
     config:
+      fontsettings:
+        family: serif
       toc:
         collapse: section
         scroll_highlight: yes
@@ -14,8 +16,8 @@ bookdown::gitbook:
           <li><a href="https://github.com/brooksambrose" target="blank">GitHub</a></li>
           <li><a href="https://www.ischool.berkeley.edu/people/brooks-ambrose" target="blank">UC Berkeley</a></li>
       sharing: no
-      edit: https://github.com/brooksambrose/portfolio/edit/master/%s
-      download: null
+      edit: https://github.com/brooksambrose/portfolio/blob/draft/%s
+      download: pdf
 bookdown::pdf_book:
   latex_engine: xelatex
   keep_tex: yes
