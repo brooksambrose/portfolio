@@ -218,13 +218,14 @@ if(file.exists(f)){
   jnet<-jclu2net.f(
     jclu
     ,layout='fruchtermanreingold'
-   ,repulse.rad=gorder(jclu$gd)^1.7 # reign in isolates, smaller is more compact
-    ,niter=5e4
+    ,repulse.rad=log(gorder(jclu$gd))*gorder(jclu$gd)^2 # reign in isolates, smaller is more compact
+    ,niter=1e5
+    ,isolates = F
   )
   save(jnet,file=f)
 }
 rm(f)
-suppressWarnings(print(plt(jnet,tooltip='text')))
+plt(jnet,tooltip='text')
 ```
 
 
@@ -264,11 +265,19 @@ f<-'d/q/jfig.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  jfig<-jstorm2fig.f(jstorm,jclu,series=jclu$tab$super[1])
+  jfig<-jstorm2fig.f(
+    jstorm,jclu,series='Social Sciences',
+    ann=rbindlist(list(
+      data.table(text='Sample',xmin=1888,xmax=1922,dodge=.01)
+      ,data.table(text='Civil War',xmin=1861,xmax=1865,dodge=.99)
+      ,data.table(text='WWI',xmin=1914,xmax=1918,dodge=.99)
+      ,data.table(text='WWII',xmin=1939,xmax=1945,dodge=.99)
+    ))[,col:=c('darkgray',rep('red',3))]
+  )
   save(jfig,file=f)
 }
 rm(f)
-plt(jfig$p,tooltip=c('text'))
+plt(jfig$p,tooltip=ec('text'))
 ```
 
 
@@ -289,20 +298,20 @@ plt(nces$fig)
 rat<-jfig$d[between(year,1800,2000)&super=='Social Sciences'] %>% setkey(year)
 setkey(nces$int,year)
 rat<-merge(rat,nces$int)
-rat<-rat[,.(year,ratio=N.y/N.x,dif1g)]
+rat<-rat[,.(year,ratio=N.y/N.x,g1)]
 r<-rat[,range(ratio)]
 n<-diff(r)*.1
 
 plt(myth(
   ggplot(data=rat,mapping = aes(x=year,y=ratio)) +
     annotate('rect',xmin=1888,xmax=1922,ymin=-Inf,ymax=Inf,alpha=.1) +
-    geom_line(aes(color=dif1g),size=1.5) +
+    geom_line(aes(color=g1),size=1.5) +
     geom_point(data=rat[.(nces$tab$year)] %>% na.omit,mapping = aes(x=year,y=ratio),shape=21,size=1.5,stroke=1,fill='white')
 ) + theme(legend.position="none",axis.title.x = element_blank()))
 wrk<-rat[between(year,1888,1922),summary(ratio)]
 ```
 
-This period represents one of stable growth, as the size of the field grows with the number of players on it. Between 1888 and 1922 there tended to be about `r nn(wrk['Median'],0)` new PhDs in the U.S. for every social science journal even as each population grew year over year. These growth patterns begin to diverge around `r jfig$d[super=='Social Sciences'][dif1g==3][1,year]` as a decades long acceleration of personnel begins, relatively slowly between 1920 and 1960 at an average acceleration rate of `r rat[between(year,1920,1960,F),nn(ratio %>% mean)]` PhDs per journal per year, and then quite precipitously in the 1960s at an average acceleration rate of `r rat[between(year,1960,1980,T),nn(ratio %>% mean)]`.
+This period represents one of stable growth, as the size of the field grows with the number of players on it. Between 1888 and 1922 there tended to be about `r nn(wrk['Median'],0)` new PhDs in the U.S. for every social science journal even as each population grew year over year. These growth patterns begin to diverge around `r jfig$d[super=='Social Sciences'][g1==3][1,year]` as a decades long acceleration of personnel begins, relatively slowly between 1920 and 1960 at an average acceleration rate of `r rat[between(year,1920,1960,F),nn(ratio %>% mean)]` PhDs per journal per year, and then quite precipitously in the 1960s at an average acceleration rate of `r rat[between(year,1960,1980,T),nn(ratio %>% mean)]`.
 
 ## JSTOR archive {#kd-dd}
 
@@ -620,4 +629,83 @@ sim$fig2
 # viz<-lda2viz.f(mod,'d/b')
 ```
 
-# Making sense
+# Web of Knowledge
+
+```{r wok2dbl}
+f<-'d/p/wok2dbl.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  wok2dbl<-wok2dbl.f(dir='d/d/wok','d/p')
+}
+rm(f)
+```
+
+```{r dbl2bel}
+f<-'d/p/dbl2bel.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  load('d/d/wok/fuzzy-sets.RData')
+  dbl2bel<-dbl2bel.f(wok2dbl,out = 'd/p',saved_recode = fuzzy.sets)
+}
+rm(f,fuzzy.sets)
+```
+
+```{r bel2mel}
+f<-'d/p/bel2mel.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  bel2mel<-bel2mel.f(dbl2bel[!((pend)|(zpend)|(zdup)|(loop)|(zloop)),.(ut,cr=zcr)],out='d/p')
+}
+rm(f)
+```
+
+```{r mel2comps}
+f<-'d/p/mel2comps.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  if(dir.exists('d/p/mel2comps')) system('rm -rf d/p/mel2comps')
+  mel2comps<-mel2comps.f(bel2mel,out='d/p')
+  save(mel2comps,file=f)
+}
+rm(f)
+```
+
+```{r comps2cos}
+f<-'d/p/comps2cos.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  comps2cos<-comps2cos.f('d/p/mel2comps')
+  save(comps2cos,file=f)
+}
+rm(f)
+```
+
+```{r cos2kcc}
+f<-'d/p/cos2kcc.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  cos2kcc<-cos2kcc.f('d/p/mel2comps',out = 'd/p',type='crel') 
+  save(cos2kcc,file=f)
+}
+rm(f)
+```
+
+```{r kcc2isl,fig.cap='K-clique Community Island Plot',include=T}
+f<-'d/b/kcc2isl.RData'
+if(file.exists(f)){
+  load(f)
+  kcc2isl<-kcc2isl.f(bel2mel,cos2kcc,co=kcc2isl)
+} else {
+  kcc2isl<-kcc2isl.f(bel2mel,cos2kcc)
+  save(kcc2isl,file=f)
+}
+rm(f)
+```
+
+# Making Sense

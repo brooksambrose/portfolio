@@ -48,7 +48,7 @@ kop<-function(...) {
   )
   if(knitr::opts_chunk$get('cache')) warning('Chunk caching is on!')
 }
-kop(cache=F,message=FALSE)
+kop(cache=F,message=TRUE)
 ```
 
 
