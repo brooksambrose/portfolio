@@ -163,7 +163,7 @@ Here some of the granular categories are collapsed. The humanities includes arts
 
 Though graph layouts are imperfect and should not be overinterpreted, the global features of facing within clusters do indicate the disciplines that straddle boundaries. On the border between the social sciences and science and mathematics are the social sciences dealing most with the physical problems of space, health, and technology. On the edge of the humanities and social sciences are history, philosophy, and anthropology. 
 
-### Social Science Journals {#kd-dq2}
+## Social Science Journals {#kd-dq2}
 
 The journals within social science cover `r jclu$tab %>% length %>% nn` different subdisciplines.
 
@@ -245,7 +245,7 @@ wrk<-rat[between(year,1888,1922),summary(ratio)]
 
 This period represents one of stable growth, as the size of the field grows with the number of players on it. Between 1888 and 1922 there tended to be about `r nn(wrk['Median'],0)` new PhDs in the U.S. for every social science journal even as each population grew year over year. These growth patterns begin to diverge around `r jfig$d[super=='Social Sciences'][g1==3][1,year]` as a decades long acceleration of personnel begins, relatively slowly between 1920 and 1960 at an average acceleration rate of `r rat[between(year,1920,1960,F),nn(ratio %>% mean)]` PhDs per journal per year, and then quite precipitously in the 1960s at an average acceleration rate of `r rat[between(year,1960,1980,T),nn(ratio %>% mean)]`.
 
-## Preparation {#kd-dd}
+# Data {#kd-dd}
 
 ```{r zot2bib}
 f<-'d/q/zot2bib.RData'
