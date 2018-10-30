@@ -68,7 +68,7 @@ latent semantic structure [@WallachStatisticalTopicModels2011]
 representational style [@Grimmer2016Measuring]
 frame [@DiMaggio2013Exploiting]
 
-# Data {#kd-d}
+# Disciplines {#kd-d}
 
 Computational text analysis requires that text corpora be transformed from a human to a machine readable format. Several efforts to digitize paper archives have made historical research designs possible, notably the Google Books project, HathiTrust, and ITHAKA JSTOR archive. Digital storage devices like the portable document format (PDF) have also enabled texts to be represented in both a digital version and as a reasonable facsimile of paper originals. Reasonable, we should say, for most sociological purposes, put not for other historical questions where materiality of culture is important. [@Schreibman2014NonConsumptive\:149]
 
@@ -82,7 +82,7 @@ This is by way of saying that the texts I compile below are not the same that we
 
 The optical character recognition that computers require in order to store text digitally depends critically on the hard work of creating quality scans of journal archives. JSTOR has done a comendable job of this. Next we will describe what the JSTOR archive has to offer.
 
-## Social Science Journals {#kd-dq}
+## JSTOR Journals {#kd-dq1}
 
 ```{r master2jstorm}
 f<-'d/q/jstorm.RData'
@@ -101,26 +101,28 @@ f<-'d/q/jclu.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  jclu<-jstorm2jclu.f(jstorm)
+  jclu<-jstorm2jclu.f(jstorm) # TODO consider two passes, one identifying sups, the second removing them
   save(jclu,file=f)
 }
 rm(f)
 ```
 
-We rely on the JSTOR digital archive which gives access to optical scans of historical journals. JSTOR provides a title list of their journal coverage [@2018JSTOR]. The coverage of journals in the archive is very complete for those journals chosen for the database. As of this writing JSTOR contained `r jstorm[,nn(.N)]` different journal titles and `r nn(jN)` journals from `r jstorm[,publisher_name %>% unique %>% length] %>% nn` different publishers. The different journal counts are due to some journals changing titles at least once.^[To avoid overcounting, title histories are collapsed into their most recent record, meaning all subsequent counts are out of `r nn(jN)`. Even though we might expect disciplinary identity to change over time, JSTOR discipline labels do not vary within title histories. `r {dN<-jstorm[title_id==title_history,sapply(discipline,length)]==0;if(any(dN)) ftn<-paste0(nn(sum(dN),cap=T),' journals--',jstorm[title_id==title_history][dN,paste(publication_title,collapse=', %%') %>% sub('(.+), %','\\1, and ',.)],'--lacked any discipline labels and are excluded from tabulations.');if(sum(dN)==2) sub(', and %',' and ',ftn) %>% gsub('%','',.) else ftn %>% gsub('%','',.)}`] <!--TODO add sentence concatenator to tilit--> These journals are organized into `r jclu$tab[,nn(.N)]` superdisciplines under which may be found `r nn(jstorm[,discipline %>% unlist %>% unique %>% length]-jclu$tab[,.N])` subdisciplines.
+We rely on the JSTOR digital archive which gives access to optical scans of historical journals. JSTOR provides a title list of their journal coverage [@2018JSTOR]. The coverage of journals in the archive is very complete for those journals chosen for the database. As of this writing JSTOR contained `r jstorm[,nn(.N)]` different journal titles and `r nn(jN)` journals from `r jstorm[,publisher_name %>% unique %>% length] %>% nn` different publishers. The different journal counts are due to some journals changing titles at least once.^[To avoid overcounting, title histories are collapsed into their most recent record, meaning all subsequent counts are out of `r nn(jN)`. Even though we might expect disciplinary identity to change over time, JSTOR discipline labels do not vary within title histories. `r {dN<-jstorm[title_id==title_history,sapply(discipline,length)]==0;if(any(dN)) ftn<-paste0(nn(sum(dN),cap=T),' journals--',jstorm[title_id==title_history][dN,paste(publication_title,collapse=', %%') %>% sub('(.+), %','\\1, and ',.)],'--lacked any discipline labels and are excluded from tabulations.');if(sum(dN)==2) sub(', and %',' and ',ftn) %>% gsub('%','',.) else ftn %>% gsub('%','',.)}`] <!--TODO add sentence concatenator to tilit--> These journals are organized into `r jclu$tab[,nn(.N)]` superdisciplines under which may be found `r nn(jstorm[,discipline %>% unlist %>% unique %>% length]-jclu$tab[,.N])` disciplines.
 
-Most journals are given more than one discipline label, and the superdisciplines are not marked as such in the database  creating some redundancy. For instance, a journal labeled as "Sociology" will also be labeled as "Social Sciences". In order to separate the hierarchy in a reproducible way, I projected the journals as a bimodal network with journals in the first mode bearing ties to discipline labels in the second mode. I then projected the bimodal network into two unimodal networks, one where journals are connected by ties equal to the number of discipline labels they have in common, and another where labels are tied by the number of articles carrying both labels. These two networks capture interdisciplinarity as defined by JSTOR coders. To draw out their disciplinary scheme I conducted community detection, a network method that classifies nodes according to the dense subnetworks they occupy, to cluster each network according to the potentially latent patterns in JSTOR's labeling policy. The goal was to confirm the expectation of which labels counted as superdisciplines in a data driven way, or to learn a different classification scheme if the results were surprising.
+Most journals are given more than one discipline label, and the superdisciplines are not marked as such in the database  creating some redundancy. For instance, a journal labeled as "Sociology" will also be labeled as "Social Sciences". In order to separate the hierarchy in a reproducible way, I projected the journals as a bimodal network with journals in the first mode bearing ties to discipline labels in the second mode. I then projected the bimodal network into two unimodal networks, one where journals are connected by ties equal to the number of discipline labels they have in common, and another where labels are tied by the number of articles carrying both labels.
+
+These two networks capture interdisciplinarity as defined by JSTOR coders. To draw out their disciplinary scheme I conducted community detection, a network method that classifies nodes according to the dense subnetworks they occupy, to cluster each network according to the potentially latent patterns in JSTOR's labeling policy. The goal was to confirm the expectation of which labels counted as superdisciplines in a data driven way, or to learn a different classification scheme if the results were surprising. The results in Table \@ref(tab:jclu-tab-sup) are achieved by separating the *journal-label-journal* network into the detected clusters, and then by assigning it the name of its most frequent label. The learned labels refine the superdisciplines by making them mutually exclusive, as is apparent by the sum of the given labels exceeding 100%.
 
 ```{r jclu-tab-sup,include=T}
-sg(jclu$tab %>% copy %>% setnames('N','Learned') %>% setnames('Labeled','Given') %>% setnames('LPct','GPct')
+sg(jclu$tab %>% copy %>% setnames(ec('super,N,Labeled,LPct'),ec('Superdiscipline,Learned,Given,GPct'))
    ,tit = "JSTOR Journal Counts")
 ```
 
-The results in Table \@ref(tab:jclu-tab-sup) are achieved by separating the *journal-label-journal* network into the detected clusters, and then by assigning it the name of its most frequent label. The learned labels refine the superdisciplines by making them mutually exclusive, as is apparent by the sum of the given labels exceeding 100%. The cluster labels comport with a commonsensical understanding of superdisciplines.
+The cluster labels comport with a commonsensical understanding of superdisciplines. Social science journals appear to be overrepresented due to JSTOR's initial focus in that area, even moreso if one adds business and economics to its total. The smallest fields are professional, in which we include business and economics which as a label conflates academic and professional journals.
 
+Clustering of the *label-journal-label* network reveals a simplifie. Because there are far fewer labels than journals, the clustering is less granular. Figure \@ref(fig:jclu-lnet) shows a graph of the relationships among labels, where again the strength of ties is equal to the number of journals bearing both labels. Again community detection partitions the network into its most dense subregions. Here the the label with highest degree is assigned to the category and then ommited as a node. Astronomy, an isolate that never accompanies another label, is also ommited from the graph, resulting in four superdiscipline categories.
 
-
-```{r jclu-net,include=T,fig.cap='Discipline Network'}
+```{r jclu-net,eval=F,include=F,fig.cap='Discipline Network. Within-cluster ties are darker and between-cluster ties lighter.'}
 f<-'d/b/jclu2net.RData'
 if(file.exists(f)){
   load(f)
@@ -135,10 +137,35 @@ if(file.exists(f)){
   save(jnet,file=f)
 }
 rm(f)
-plt(jnet,tooltip='text')
+plt(jnet,tooltip='text') # TODO fix tooltips to omit edge tips
 ```
 
-Social science journals are overrepresented due to JSTOR's initial focus in that area. The journals within social science cover `r jclu$tab %>% length %>% nn` different subdisciplines.
+```{r jclu-lnet,include=T,fig.cap='Discipline Network (Latent Positions)'}
+f<-'d/b/jclu2lnet.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  jlnet<-jclu2net.f(
+    jclu
+    ,layout='latent'
+    ,isolates = F
+    ,sample.size=1e4
+    ,burnin=1e6
+    ,interval=1e2
+  )
+  save(jlnet,file='d/b/jclu2lnet.RData')
+}
+rm(f)
+plt(jlnet,tooltip='text')
+```
+
+Here some of the granular categories are collapsed. The humanities includes arts, as we might expect, but also area studies, which one might have classed with the social sciences, but which bear stronger ties to cultural studies like music, folklore, religion, and language and literature. Law and medicine and allied health are grouped with the social sciences, and business and economics is maintained as separate field due merely to the attachment of three professional fields--development studies, management and organizational behavior, and marketing and advertising--to their parent disciplines business and economics (not to be confused with the separate and ommitted label "business and economics"), which are themselves strongly tied to the social sciences.
+
+Though graph layouts are imperfect and should not be overinterpreted, the global features of facing within clusters do indicate the disciplines that straddle boundaries. On the border between the social sciences and science and mathematics are the social sciences dealing most with the physical problems of space, health, and technology. On the edge of the humanities and social sciences are history, philosophy, and anthropology. 
+
+### Social Science Journals {#kd-dq2}
+
+The journals within social science cover `r jclu$tab %>% length %>% nn` different subdisciplines.
 
 ```{r jclu-tab-sub,include=T}
 jclu_sub<-jstorm[sapply(discipline,function(x) 'Social Sciences'%in%x)][,discipline:=lapply(discipline,setdiff,'Social Sciences')] %>% jstorm2jclu.f
@@ -419,7 +446,7 @@ rm(f)
 #kab(list(des.com,des.stm,data.table(tot=round(des.stm$cnt/des.com$cnt*100,2))),caption = 'Full Text Descriptives')
 ```
 
-# Modeling {#kd-dp2}
+# Topics {#kd-dp2}
 
 The modeling objective is twofold, to sort text into categories of similarity, and to describe the qualitative content that defines the category membership. In this way we may operationalize the notion of cultural meaning or cultural logic as the rules of category classification. reduce expressions as instances of a latent category of expression.
 
