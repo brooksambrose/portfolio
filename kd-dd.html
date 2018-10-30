@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="kd-dd.html">
-<link rel="next" href="web-of-knowledge.html">
+<link rel="prev" href="kd-d.html">
+<link rel="next" href="kd-dp2.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -128,123 +128,207 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="kd-dp2" class="section level1">
-<h1><span class="header-section-number">5</span> Topics</h1>
-<p>The modeling objective is twofold, to sort text into categories of similarity, and to describe the qualitative content that defines the category membership. In this way we may operationalize the notion of cultural meaning or cultural logic as the rules of category classification. reduce expressions as instances of a latent category of expression.</p>
-<div id="how-many-topics" class="section level2">
-<h2><span class="header-section-number">5.1</span> How many topics?</h2>
-<div class="figure" style="text-align: center"><span id="fig:sim-fig"></span>
-<img src="ambrose_dissertation_files/figure-html/sim-fig-1.svg" alt="Distribution of K by convex hull" width="672" />
-<p class="caption">
-Figure 5.1: Distribution of K by convex hull
-</p>
-</div>
+<div id="kd-dd" class="section level1">
+<h1><span class="header-section-number">4</span> Data</h1>
+<p>Every record for every journal was downloaded manually, including front and back matter, articles, and book reviews.</p>
+<div id="kd-dp1" class="section level2">
+<h2><span class="header-section-number">4.1</span> Sampling</h2>
 <table style="text-align:center">
 <caption>
-<span id="tab:mlk2k">Table 5.1: </span><strong>Kurtosis Permutation Test</strong>
+<span id="tab:filt">Table 4.1: </span><strong>Filtering due to Data Management</strong>
 </caption>
 <tr>
-<td colspan="6" style="border-bottom: 1px solid black">
+<td colspan="8" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
-level
+step
 </td>
 <td>
-e
-</td>
-<td>
-se
-</td>
-<td>
-l99
-</td>
-<td>
-u99
-</td>
-<td>
-P(e ≦ 0)
-</td>
-</tr>
-<tr>
-<td colspan="6" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
 doc
 </td>
 <td>
--0.0932
+pag
 </td>
 <td>
-0.1149
-</td>
-<td>
--0.3682
-</td>
-<td>
-0.2252
-</td>
-<td>
-0.7948
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
 par
 </td>
 <td>
--0.1125
+sen
 </td>
 <td>
-0.1206
+tok
 </td>
 <td>
--0.3999
+ter
 </td>
 <td>
-0.2185
+lem
 </td>
-<td>
-0.8257
+</tr>
+<tr>
+<td colspan="8" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
-sen
+imported
 </td>
 <td>
-0.0118
+100
 </td>
 <td>
-0.2304
+100
 </td>
 <td>
--0.5078
+100
 </td>
 <td>
-0.6471
 </td>
 <td>
-0.4973
+</td>
+<td>
+</td>
+<td>
 </td>
 </tr>
 <tr>
-<td colspan="6" style="border-bottom: 1px solid black">
+<td style="text-align:left">
+cleaned
+</td>
+<td>
+99.27
+</td>
+<td>
+98.21
+</td>
+<td>
+67.51
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+tokenized
+</td>
+<td>
+99.27
+</td>
+<td>
+98.21
+</td>
+<td>
+67.51
+</td>
+<td>
+100
+</td>
+<td>
+100
+</td>
+<td>
+100
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+preprocessed
+</td>
+<td>
+99.27
+</td>
+<td>
+98.01
+</td>
+<td>
+67.35
+</td>
+<td>
+91.38
+</td>
+<td>
+42.21
+</td>
+<td>
+35.74
+</td>
+<td>
+100
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+sampled
+</td>
+<td>
+1.84
+</td>
+<td>
+1.56
+</td>
+<td>
+1.17
+</td>
+<td>
+1.43
+</td>
+<td>
+0.62
+</td>
+<td>
+4.95
+</td>
+<td>
+20.86
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+100%
+</td>
+<td>
+5444
+</td>
+<td>
+47596
+</td>
+<td>
+232085
+</td>
+<td>
+818183
+</td>
+<td>
+19983852
+</td>
+<td>
+326889
+</td>
+<td>
+31963
+</td>
+</tr>
+<tr>
+<td colspan="8" style="border-bottom: 1px solid black">
 </td>
 </tr>
 </table>
-<div class="figure" style="text-align: center"><span id="fig:mlk-tab"></span>
-<img src="ambrose_dissertation_files/figure-html/mlk-tab-1.svg" alt="Significant Counts of K" width="672" />
-<p class="caption">
-Figure 5.2: Significant Counts of K
-</p>
 </div>
-</div>
-<div id="model-selection" class="section level2">
-<h2><span class="header-section-number">5.2</span> Model selection</h2>
+<div id="units-of-analysis" class="section level2">
+<h2><span class="header-section-number">4.2</span> Units of Analysis</h2>
+<p>Conventionally researchers feed entire documents into the construction of term frequencies. This method treats any term in a document as being related to any other term by the same degree. The goal of any topic mixture model algorithm is to sift these terms into different topic categories basically by looking for clues across documents; a topic can be “seen” in a particular document to the extent that other documents include that topic and <em>other</em> topics different from the focal article, so that the intersection of terms reveals the topic. But a much simpler assumption to reduce the attendant noise within a document is to merely feed lower level syntactic structures–paragraphs and sentences–to the algorithm. We will see that doing so greatly improves the usefulness of discovered topics.</p>
+<p>The irony of this approach is that while topics become more clear as documents become shorter, the assignment of any particular shorter document to a topic is murkier due to the smaller word count.</p>
+<p>Long documents will contribute more text to the corpus, but this is fair as they make up more of the population of text. Thus a simple random sample will allow better descriptive statistics. I sampled at the paragraph level because.</p>
 </div>
 </div>
             </section>
@@ -252,8 +336,8 @@ Figure 5.2: Significant Counts of K
           </div>
         </div>
       </div>
-<a href="kd-dd.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="web-of-knowledge.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="kd-d.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="kd-dp2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
