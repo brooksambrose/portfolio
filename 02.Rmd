@@ -45,7 +45,7 @@ Even without conducting the second labeling step, in step 3 it will already be p
 
 <!-- Operationally, what I have called vocabularies are the columns of a term-topic table, which is one of the two matrices that constitute a topic model. To explain the contents of the bag-of-word, topics are proposed. Topics can be thought of as catelogs out of which words are ordered and placed into the shopping cart that is the document. Different catelogs, different word availabilities, will produce different documents. The final bit of inference that makes topic models so practically useful is the idea that documents may be composed of multiple topics. The surprising qualities of texts are explained to be how authors draw on regular and commonplace topics to say something different. -->
 
-In the next section, before we delve into the statistical and computational nuances of topic models, I will spend some time developing a few themes to help organize the blending of quantitative and qualitative methods invited by topic modeling in particular and computational text analysis generally..
+In the next section, before we delve into the statistical and computational nuances of topic models, I will spend some time developing a few themes to help organize the blending of quantitative and qualitative methods invited by topic modeling in particular and computational text analysis generally.
 
 # Prior Work {#kd-lit}
 
@@ -101,7 +101,7 @@ f<-'d/q/jclu.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  jclu<-jstorm2jclu.f(jstorm) # TODO consider two passes, one identifying sups, the second removing them
+  jclu<-jstorm2jclu.f(jstorm,shallow=T) # TODO consider two passes, one identifying sups, the second removing them
   save(jclu,file=f)
 }
 rm(f)
@@ -120,7 +120,7 @@ sg(jclu$tab %>% copy %>% setnames(ec('super,N,Labeled,LPct'),ec('Superdiscipline
 
 The cluster labels comport with a commonsensical understanding of superdisciplines. Social science journals appear to be overrepresented due to JSTOR's initial focus in that area, even moreso if one adds business and economics to its total. The smallest fields are professional, in which we include business and economics which as a label conflates academic and professional journals.
 
-Clustering of the *label-journal-label* network reveals a simplifie. Because there are far fewer labels than journals, the clustering is less granular. Figure \@ref(fig:jclu-lnet) shows a graph of the relationships among labels, where again the strength of ties is equal to the number of journals bearing both labels. Again community detection partitions the network into its most dense subregions. Here the the label with highest degree is assigned to the category and then ommited as a node. Astronomy, an isolate that never accompanies another label, is also ommited from the graph, resulting in four superdiscipline categories.
+Clustering of the *label-journal-label* network presents a simpler view. Because there are far fewer labels than journals, the clustering is less granular. Figure \@ref(fig:jclu-lnet) shows a graph of the relationships among labels, where again the strength of ties is equal to the number of journals bearing both labels. Again community detection partitions the network into its most dense subregions. Here the the label with highest degree is assigned to the category and then ommited as a node. Astronomy, an isolate that never accompanies another label, is also ommited from the graph, resulting in four superdiscipline categories.
 
 ```{r jclu-net,eval=F,include=F,fig.cap='Discipline Network. Within-cluster ties are darker and between-cluster ties lighter.'}
 f<-'d/b/jclu2net.RData'
@@ -140,7 +140,7 @@ rm(f)
 plt(jnet,tooltip='text') # TODO fix tooltips to omit edge tips
 ```
 
-```{r jclu-lnet,include=T,fig.cap='Discipline Network (Latent Positions)'}
+```{r jclu-lnet,include=T,fig.cap='Discipline Network (Residual Latent Space controlling for Sociality)'}
 f<-'d/b/jclu2lnet.RData'
 if(file.exists(f)){
   load(f)
@@ -149,9 +149,12 @@ if(file.exists(f)){
     jclu
     ,layout='latent'
     ,isolates = F
-    ,sample.size=1e4
-    ,burnin=1e6
-    ,interval=1e2
+    # ,burnin=1e4
+    # ,sample.size=1e3
+    # ,interval=1e2
+    ,burnin=1e7
+    ,sample.size=1e3
+    ,interval=1e4
   )
   save(jlnet,file='d/b/jclu2lnet.RData')
 }
