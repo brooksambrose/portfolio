@@ -82,7 +82,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2018-10-30}
+    \date{2018-11-03}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -377,7 +377,7 @@ In the next section, before we delve into the statistical and
 computational nuances of topic models, I will spend some time developing
 a few themes to help organize the blending of quantitative and
 qualitative methods invited by topic modeling in particular and
-computational text analysis generally..
+computational text analysis generally.
 
 \chapter{Prior Work}\label{kd-lit}
 
@@ -532,15 +532,15 @@ business and economics to its total. The smallest fields are
 professional, in which we include business and economics which as a
 label conflates academic and professional journals.
 
-Clustering of the \emph{label-journal-label} network reveals a
-simplifie. Because there are far fewer labels than journals, the
-clustering is less granular. Figure \ref{fig:jclu-lnet} shows a graph of
-the relationships among labels, where again the strength of ties is
-equal to the number of journals bearing both labels. Again community
-detection partitions the network into its most dense subregions. Here
-the the label with highest degree is assigned to the category and then
-ommited as a node. Astronomy, an isolate that never accompanies another
-label, is also ommited from the graph, resulting in four superdiscipline
+Clustering of the \emph{label-journal-label} network presents a simpler
+view. Because there are far fewer labels than journals, the clustering
+is less granular. Figure \ref{fig:jclu-lnet} shows a graph of the
+relationships among labels, where again the strength of ties is equal to
+the number of journals bearing both labels. Again community detection
+partitions the network into its most dense subregions. Here the the
+label with highest degree is assigned to the category and then ommited
+as a node. Astronomy, an isolate that never accompanies another label,
+is also ommited from the graph, resulting in four superdiscipline
 categories.
 
 \begin{figure}
@@ -549,7 +549,7 @@ categories.
 
 }
 
-\caption{Discipline Network (Latent Positions)}\label{fig:jclu-lnet}
+\caption{Discipline Network (Residual Latent Space controlling for Sociality)}\label{fig:jclu-lnet}
 \end{figure}
 
 Here some of the granular categories are collapsed. The humanities
