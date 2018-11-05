@@ -1,0 +1,5 @@
+# (APPENDIX) Appendix {-} 
+
+# Latent Space Network Model {#latentnet}
+
+[@Krivitsky2008Fitting]
