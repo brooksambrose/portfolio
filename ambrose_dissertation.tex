@@ -82,7 +82,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2018-11-03}
+    \date{2018-11-06}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -465,13 +465,13 @@ this. Next we will describe what the JSTOR archive has to offer.
 
 We rely on the JSTOR digital archive which gives access to optical scans
 of historical journals. JSTOR provides a title list of their journal
-coverage \citep{2018JSTOR}. The coverage of journals in the archive is
-very complete for those journals chosen for the database. As of this
-writing JSTOR contained 4,162 different journal titles and 2,708
+coverage \citep{JSTOR2018Title}. The coverage of journals in the archive
+is very complete for those journals chosen for the database. As of this
+writing JSTOR contained 4,162 different journal titles and 2,706
 journals from 1,121 different publishers. The different journal counts
 are due to some journals changing titles at least once.\footnote{To
   avoid overcounting, title histories are collapsed into their most
-  recent record, meaning all subsequent counts are out of 2,708. Even
+  recent record, meaning all subsequent counts are out of 2,706. Even
   though we might expect disciplinary identity to change over time,
   JSTOR discipline labels do not vary within title histories. Two
   journals--Haldane Bulletin and Scientific American Mind--lacked any
@@ -482,27 +482,100 @@ disciplines.
 Most journals are given more than one discipline label, and the
 superdisciplines are not marked as such in the database creating some
 redundancy. For instance, a journal labeled as ``Sociology'' will also
-be labeled as ``Social Sciences''. In order to separate the hierarchy in
-a reproducible way, I projected the journals as a bimodal network with
-journals in the first mode bearing ties to discipline labels in the
-second mode. I then projected the bimodal network into two unimodal
-networks, one where journals are connected by ties equal to the number
-of discipline labels they have in common, and another where labels are
-tied by the number of articles carrying both labels.
+be labeled as ``Social Sciences''. Most academics will be familiar with
+whether a label is for a superdiscipline or a subdiscipline, yet for
+outsiders or for skeptical insiders, the only clue is in the frequency
+with which a label is applied. Counting labels, however, does not
+unambiguously place a journal in one discipline or another because
+journals may bear multiple labels, even multiple superdiscipline labels.
 
-These two networks capture interdisciplinarity as defined by JSTOR
-coders. To draw out their disciplinary scheme I conducted community
-detection, a network method that classifies nodes according to the dense
-subnetworks they occupy, to cluster each network according to the
-potentially latent patterns in JSTOR's labeling policy. The goal was to
-confirm the expectation of which labels counted as superdisciplines in a
-data driven way, or to learn a different classification scheme if the
-results were surprising. The results in Table \ref{tab:jclu-tab-sup} are
-achieved by separating the \emph{journal-label-journal} network into the
-detected clusters, and then by assigning it the name of its most
-frequent label. The learned labels refine the superdisciplines by making
-them mutually exclusive, as is apparent by the sum of the given labels
-exceeding 100\%.
+To assess the size of the disciplines and to disentangle their
+hierarchies it will be helpful to have a mutually exclusive labeling
+scheme that draws on the JSTOR curators' judgement while simplifying it.
+
+\section{Network Mode Projection}\label{network-mode-projection}
+
+I rely on network methods to accomplish this labeling in a data driven
+and reproducible way. First I projected the journals as a bimodal
+network with journals in the first mode bearing ties to discipline
+labels in the second mode. I then projected the bimodal network into two
+unimodal networks, one where journals are connected by ties equal to the
+number of discipline labels they have in common, and another where
+labels are tied by the number of articles carrying both labels. Call
+each of these unimodal networks, the (\emph{journal-label-journal})
+journal network and (\emph{label-journal-label}) label network, a facet
+of the original bimodal network.
+
+Figure \ref{fig:mod-proj} illustrates the effects of network mode
+projection on a random sample of 300 edges. The first panel illustrates
+the bimodal network where journals are yellow dots and labels blue dots.
+As an artifact of sampling, most journals here are shown tied to only
+one label. In fact this is never the case in the full network; as each
+journal has at least one discipline and one superdiscipline label the
+minimum number of labels is two, the median case accounting for 53.6
+percent of journals. The most labels any journal bears is 10, but these
+are outliers with most journals bearing only a few labels.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.33\linewidth]{ambrose_dissertation_files/figure-latex/mod-proj-1} \includegraphics[width=0.33\linewidth]{ambrose_dissertation_files/figure-latex/mod-proj-2} \includegraphics[width=0.33\linewidth]{ambrose_dissertation_files/figure-latex/mod-proj-3} 
+
+}
+
+\caption{Mode Conversion on a 300 Edge Random Sample of the JSTOR Journal Label Network}\label{fig:mod-proj}
+\end{figure}
+
+It is worth noting a few features of unimodal projections. First,
+unimodal projections will always be made of up of overlapping cliques.
+Take the journal facet; each journal bearing a particular label will be
+tied to every other journal with the same label, and together they will
+form a maximal clique, a subnetwork where all possible ties exist. Such
+cliques grow nearly exponentially, as each additional journal with the
+same label joins the clique and adds a number of ties equal to the
+former size of the clique. Practically, very common labels like ``Social
+Sciences'' can easily dominate a network. Here the weighting of edges
+becomes important; if two labels overlap because some nodes bear both
+labels, then within the intersection of the two groups the ties may
+``weigh more'' by adding the contribution of each label separately.
+Using methods that take edge weights into account is a good way to
+ameliorate the exponential influence of popular labels.
+
+Second, though unimodal facets of a bimodal network represent the same
+data, each may have different characteristics especially in the common
+case of a large population imbalance between modes. Here we have 34
+times as many journals as labels and each journal sends multiple ties.
+This degree imbalance between the two modes may mean that one facet is
+more dense than its inverse. Density is the proportion of actual ties
+out of all possible ties. An imbalance may be observed in the sample
+network where the journal facet has many dense and interconnected
+cliques and where the label network appears to be mostly made of
+isolated labels save for the few larger components. Here the journal
+facet is seven times more dense than the label facet.
+
+While each of the isolates in the label facet represents a larger or
+smaller number of journals (se the free floating cliques observable in
+the journal facet) they supply no information about interdisciplinarity.
+Practically, analyzing the journal network highlights the population
+sizes, while analyzing the label network highlights interdisciplinarity.
+
+In the case of our full network, the potential imbalance in degree
+distribution between facets happens to be offset by the population
+imbalance itself. The densities in the full journal and label facets are
+comparable, 26 and 27 percent respectively, meaning that analysis will
+not merely hinge on which facet is analyzed.
+
+\section{Network Community Detection}\label{network-community-detection}
+
+With our facets in hand we may now tackle the problem of partitioning
+the JSTOR journals into mutually exclusive disciplines. I define
+disciplines as clustering within each of the two facet networks. I
+conducted community detection--a set of network methods that classify
+nodes according to the dense subnetworks they occupy--to cluster each
+network and reveal patterns in JSTOR's labeling policy. (See appendix
+\protect\hyperlink{a-louvain}{?} for technical details.) The goal was to
+confirm the expectation of which labels counted as superdisciplines, or
+to learn a different classification scheme if the results were
+surprising.
 
 \begin{table}[!htbp] \centering 
   \caption{JSTOR Journal Counts} 
@@ -512,12 +585,12 @@ exceeding 100\%.
 \hline \\[-1.8ex] 
 Superdiscipline & Learned & Pct & Given & GPct \\ 
 \hline \\[-1.8ex] 
-Social Sciences & 937 & 34.6 & 916 & 33.9 \\ 
-Humanities & 548 & 20.3 & 688 & 25.4 \\ 
-Area Studies & 426 & 15.7 & 499 & 18.4 \\ 
-Science \& Mathematics & 293 & 10.8 & 360 & 13.3 \\ 
-Arts & 202 & 7.5 & 292 & 10.8 \\ 
-Business \& Economics & 186 & 6.9 & 284 & 10.5 \\ 
+Social Sciences & 752 & 27.8 & 916 & 33.9 \\ 
+Humanities & 666 & 24.6 & 688 & 25.4 \\ 
+Area Studies & 355 & 13.1 & 499 & 18.4 \\ 
+Science \& Mathematics & 311 & 11.5 & 360 & 13.3 \\ 
+Business \& Economics & 264 & 9.8 & 284 & 10.5 \\ 
+Arts & 244 & 9 & 292 & 10.8 \\ 
 Law & 84 & 3.1 & 132 & 4.9 \\ 
 Medicine \& Allied Health & 30 & 1.1 & 52 & 1.9 \\ 
 Total & 2706 & 100 & 3223 & 119.1 \\ 
@@ -525,23 +598,33 @@ Total & 2706 & 100 & 3223 & 119.1 \\
 \end{tabular} 
 \end{table}
 
-The cluster labels comport with a commonsensical understanding of
-superdisciplines. Social science journals appear to be overrepresented
-due to JSTOR's initial focus in that area, even moreso if one adds
-business and economics to its total. The smallest fields are
-professional, in which we include business and economics which as a
-label conflates academic and professional journals.
+The results in Table \ref{tab:jclu-tab-sup} are achieved by partitioning
+the \emph{journal} network into the detected clusters, and then by
+assigning each cluster the name of its most frequent label. The learned
+labels refine the superdisciplines by making them mutually exclusive, as
+is apparent by the sum of the given labels exceeding 100\%. The cluster
+labels comport with a commonsensical understanding of superdisciplines.
+Social Sciences journals predominate due to JSTOR's initial focus in
+that area, even without counting economics among them. Business \&
+Economics marks the transition from the larger academic journal space to
+the smaller professional space.
 
-Clustering of the \emph{label-journal-label} network presents a simpler
-view. Because there are far fewer labels than journals, the clustering
-is less granular. Figure \ref{fig:jclu-lnet} shows a graph of the
-relationships among labels, where again the strength of ties is equal to
-the number of journals bearing both labels. Again community detection
-partitions the network into its most dense subregions. Here the the
-label with highest degree is assigned to the category and then ommited
-as a node. Astronomy, an isolate that never accompanies another label,
-is also ommited from the graph, resulting in four superdiscipline
-categories.
+Clustering of the label facet presents a similar view. Recall that each
+facet represents the same data, the difference being whether a journal
+or a label is represented as a node or an edge. The larger population of
+journals is easier to partition it into a greater number of
+subpopulations. Converseley, because there are far fewer labels than
+journals, we would expect the clustering to be less granular for the
+label network than for the journal network. In fact there is only one
+fewer clusters, with the difference being Law.
+
+Figure \ref{fig:jclu-lnet} shows a graph of the relationships among
+labels, where again the strength of ties is equal to the number of
+journals bearing both labels. Again community detection partitions the
+network into its most dense subregions. Here the the label with highest
+degree is assigned to the category and then ommited as a node.
+Astronomy, an isolate that never accompanies another label, is also
+ommited from the graph, resulting in four superdiscipline categories.
 
 \begin{figure}
 
