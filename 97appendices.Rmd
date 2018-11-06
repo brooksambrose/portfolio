@@ -1,5 +1,15 @@
-# (APPENDIX) Appendix {-} 
+# (APPENDIX) Appendices {-} 
 
-# Latent Space Network Model {#latentnet}
+# Community Detection {#a-comdet}
+
+## Hierarchical Communities {#a-louvain}
+
+Louvain [@Blondel2008Fast]
+
+## Clique Percolation
+
+[@Gregori2013Parallel; @Palla2007Quantifying]
+
+# Latent Space Network Model {#a-lnet}
 
 [@Krivitsky2008Fitting]

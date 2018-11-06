@@ -7,6 +7,9 @@ knit_hooks$set(pngquant = hook_pngquant)
 #synctex integration
 opts_knit$set(concordance=TRUE)
 
+#color pallete
+cb<-RColorBrewer::brewer.pal(8,'Dark2')
+
 # asa.csl -----------------------------------------------------------------------
 # download asa citation style sheet
 if(!file.exists('asa.csl')) 'https://www.zotero.org/styles/american-sociological-association' %>%
@@ -25,5 +28,6 @@ br<-grep('(bibtex)|(Citation Key):',bib)
 for(i in br) bib[sr[which(i>sr) %>% max]] %<>% sub('\\{[^,]+',paste0('{',sub('.+: ([^}]+).*','\\1',bib[i])),.)
 writeLines(bib,'references.bib')
 rm(bib,sr,br,i)
+
 
 
