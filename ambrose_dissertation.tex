@@ -82,7 +82,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2018-11-06}
+    \date{2018-11-07}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -475,9 +475,9 @@ are due to some journals changing titles at least once.\footnote{To
   though we might expect disciplinary identity to change over time,
   JSTOR discipline labels do not vary within title histories. Two
   journals--Haldane Bulletin and Scientific American Mind--lacked any
-  discipline labels and are excluded from tabulations.} These journals
-are organized into nine superdisciplines under which may be found 70
-disciplines.
+  discipline labels and are excluded from tabulations.} The JSTOR coding
+contains 79 subject labels. These labels refer to eight superdisciplines
+under which may be found 71 disciplines.
 
 Most journals are given more than one discipline label, and the
 superdisciplines are not marked as such in the database creating some
@@ -496,25 +496,44 @@ scheme that draws on the JSTOR curators' judgement while simplifying it.
 \section{Network Mode Projection}\label{network-mode-projection}
 
 I rely on network methods to accomplish this labeling in a data driven
-and reproducible way. First I projected the journals as a bimodal
-network with journals in the first mode bearing ties to discipline
-labels in the second mode. I then projected the bimodal network into two
-unimodal networks, one where journals are connected by ties equal to the
-number of discipline labels they have in common, and another where
-labels are tied by the number of articles carrying both labels. Call
-each of these unimodal networks, the (\emph{journal-label-journal})
-journal network and (\emph{label-journal-label}) label network, a facet
-of the original bimodal network.
+and reproducible way. In a network representation of journal discipline
+labels, two journals may be said to be be related if they carry the same
+label. In network terms this can be represented as a bipartite or
+bimodal network. In a bimodal network there are two types (modes) of
+nodes, a journal and a label, and ties can only be registered between,
+not within, these modes. So journals are not tied directly to other
+journals and labels are not tied directly to other labels.
+
+Given any bimodal network, we may translate or project it into either of
+two unimodal forms. In a single mode or unimodal projection of a bimodal
+network there is only one type of node, in my case either a journal or a
+label, but not both. The omitted type is instead represented as a set of
+ties among the included type. Though the bimodal network is a more
+elegant represenation, it is technically necessary to project it into
+one of its two bimodal forms to leverage network methods that are
+desinged with unimodal data in mind.
+
+Using the list of subjects associated with each journal in the JSTOR
+title list, I construct the bimodal \emph{journal-label} network with
+journals in the first mode bearing ties to discipline labels in the
+second mode. I then project the bimodal network into two unimodal
+networks, one where journals are connected by ties equal to the number
+of discipline labels they have in common, and another where labels are
+tied by the number of articles carrying both labels. Call each of these
+unimodal networks, the (\emph{journal-label-journal}) journal network
+and (\emph{label-journal-label}) label network, a facet of the original
+bimodal network.
 
 Figure \ref{fig:mod-proj} illustrates the effects of network mode
-projection on a random sample of 300 edges. The first panel illustrates
-the bimodal network where journals are yellow dots and labels blue dots.
-As an artifact of sampling, most journals here are shown tied to only
-one label. In fact this is never the case in the full network; as each
-journal has at least one discipline and one superdiscipline label the
-minimum number of labels is two, the median case accounting for 53.6
-percent of journals. The most labels any journal bears is 10, but these
-are outliers with most journals bearing only a few labels.
+projection on a random sample of 300 edges from the full JSTOR title
+list network. The first panel illustrates the bimodal network where
+journals are yellow dots and labels are blue dots. As an artifact of
+sampling, most journals here are shown tied to only one label. In fact
+this is never the case in the full network; as each journal has at least
+one discipline and one superdiscipline label the minimum number of
+labels is two, which is the median case accounting for 53.6 percent of
+journals. The most labels any journal bears is 10, but these are
+outliers with most journals bearing only a few labels.
 
 \begin{figure}
 
@@ -522,60 +541,134 @@ are outliers with most journals bearing only a few labels.
 
 }
 
-\caption{Mode Conversion on a 300 Edge Random Sample of the JSTOR Journal Label Network}\label{fig:mod-proj}
+\caption{Mode Conversion on a 300 Edge Random Sample of the JSTOR Title List Label Network}\label{fig:mod-proj}
 \end{figure}
 
-It is worth noting a few features of unimodal projections. First,
-unimodal projections will always be made of up of overlapping cliques.
-Take the journal facet; each journal bearing a particular label will be
-tied to every other journal with the same label, and together they will
-form a maximal clique, a subnetwork where all possible ties exist. Such
+It is worth noting a few features of the unimodal projections or facets
+illustrated in the second and third palens. First, unimodal projections
+will always be made of up of overlapping cliques. Take the journal
+facet; each journal bearing a particular label will be tied to each
+other journal with the same label. Together they will form a clique, a
+subnetwork of maximum density where all possible ties exist. Such
 cliques grow nearly exponentially, as each additional journal with the
 same label joins the clique and adds a number of ties equal to the
-former size of the clique. Practically, very common labels like ``Social
-Sciences'' can easily dominate a network. Here the weighting of edges
-becomes important; if two labels overlap because some nodes bear both
-labels, then within the intersection of the two groups the ties may
-``weigh more'' by adding the contribution of each label separately.
-Using methods that take edge weights into account is a good way to
-ameliorate the exponential influence of popular labels.
+former size of the clique. In practice this means that very common
+labels like ``Social Sciences'' can easily dominate the unimodal
+projection of the network. Here the weighting of edges becomes
+important; if two labels overlap because some nodes bear both labels,
+then within the intersection of the two cliques the ties may be treated
+as ``weighing more'' by adding the contribution of each label
+separately. The exception is if the cliques overlap by only one node, in
+which case they have a node but no ties in common. Nevertheless using
+methods that take edge weights into account is a good way to ameliorate
+the exponential influence of popular labels.
 
-Second, though unimodal facets of a bimodal network represent the same
-data, each may have different characteristics especially in the common
-case of a large population imbalance between modes. Here we have 34
-times as many journals as labels and each journal sends multiple ties.
-This degree imbalance between the two modes may mean that one facet is
-more dense than its inverse. Density is the proportion of actual ties
-out of all possible ties. An imbalance may be observed in the sample
-network where the journal facet has many dense and interconnected
-cliques and where the label network appears to be mostly made of
-isolated labels save for the few larger components. Here the journal
-facet is seven times more dense than the label facet.
+Second, though the unimodal facets of a bimodal network represent the
+same data, each may have different characteristics especially in the
+common case of a large population imbalance between modes. In the full
+network we have 34 times as many journals as labels and each journal
+sends multiple ties. This degree imbalance between the two modes may
+mean that one facet is more dense than its inverse. Density is the
+proportion of actual ties out of all possible ties. In Figure
+\ref{fig:mod-proj} an imbalance may be observed where the journal facet
+has many dense free floating or overlapping cliques and where the label
+network appears to be mostly made of isolated labels save for the few
+larger components. In the sampled network the journal facet is seven
+times more dense than the label facet. In the case of our full network,
+the potential imbalance in degree distribution between facets happens to
+be offset by the population imbalance itself. The densities in the full
+journal and label facets are comparable, 26.3 and 27.2 percent
+respectively, meaning that analysis will not merely hinge on which facet
+is analyzed.
 
-While each of the isolates in the label facet represents a larger or
-smaller number of journals (se the free floating cliques observable in
-the journal facet) they supply no information about interdisciplinarity.
-Practically, analyzing the journal network highlights the population
-sizes, while analyzing the label network highlights interdisciplinarity.
-
-In the case of our full network, the potential imbalance in degree
-distribution between facets happens to be offset by the population
-imbalance itself. The densities in the full journal and label facets are
-comparable, 26 and 27 percent respectively, meaning that analysis will
-not merely hinge on which facet is analyzed.
+Third, unimodal projection has the effect of pruning what are sometimes
+referred to as pendants, which are simply nodes with only a single tie.
+. Each of the isolates in the label facet represents a larger or smaller
+number of journals, which may be observed in the different sizes of the
+free floating cliques of the journal facet, yet no matter their size
+they supply no information about interdisciplinarity. Because the
+journal facet captures both size (of cliques) and relatedness (clique
+overlap) it is a better representation of the information of the
+original bimodal network. Its drawback is that it is larger and more
+unwieldy to analyze. The label facet offers a simpler picture of
+interdisciplinarity.
 
 \section{Network Community Detection}\label{network-community-detection}
 
-With our facets in hand we may now tackle the problem of partitioning
-the JSTOR journals into mutually exclusive disciplines. I define
-disciplines as clustering within each of the two facet networks. I
-conducted community detection--a set of network methods that classify
-nodes according to the dense subnetworks they occupy--to cluster each
-network and reveal patterns in JSTOR's labeling policy. (See appendix
-\protect\hyperlink{a-louvain}{?} for technical details.) The goal was to
-confirm the expectation of which labels counted as superdisciplines, or
-to learn a different classification scheme if the results were
-surprising.
+Each facet described above will help answer a different question about
+disciplinarity in the JSTOR archive as indicated by JSTOR's labeling
+policy. I aim to resolve the uncertainty about which labels count as
+superdisciplines and to reveal patterns of sorting not apparent in the
+labels themselves. The rationale for doing this is to observe not the
+choices of JSTOR coders, but the tacit judgement they likely used in
+applying labels. I expect that the 79 fine grained labels bely a simpler
+classification scheme of academic genres.
+
+I will use two techniques, community detection and graph visualization,
+to answer these questions. Communities are really subnetworks of high
+density, or clusters. I operationalize disciplinarity as the presence of
+clusters within the journal facet network. Community detection on the
+journal facet will answer how many superdisciplines there are and the
+size of each in terms of the number of journals belonging to it.
+Visualization of the label facet will show how hard or soft are the
+boundaries between disciplines and where the strongest interdisciplinary
+relationships lay.
+
+First, I use community detection to partition the JSTOR journals into
+mutually exclusive disciplines. Community detection is a set of network
+methods designed to expose clusters by grouping nodes together such that
+they send more ties to members of their own group than they send to
+members of different groups. There is a cottage industry around
+developing algorithms and statistical models to learn an unobserved
+community structure of a network \citep[see][ for an excellent
+review]{Fortunato2016Community}. The choice of the right community
+detection method is controversial especially for very large networks in
+which cross-validation is difficult. Fortunately the network at hand is
+small enough to validate directly which lowers the risks of choosing the
+wrong method .
+
+To wit I adopt the well-known Louvain method of community detection
+based on hierarchical modularity maximization. \citep{Blondel2008Fast}
+Modularity is a quality metric quantifying the tradeoff between
+within-group and between-group ties. The modularity of any given
+partition of a network into clusters is equal to the proportion of ties
+that fall within clusters minus the expected proportion of within-group
+ties if ties were distributed randomly. A division that is as good as
+chance would have a modularity value of zero, a division better than
+chance a value between zero and one, and a division worse than chance a
+value between negative one and zero. \citep[8]{Newman2004Finding} Higher
+modularity scores indicate a better sorting of the network into densely
+tied clusters.
+
+The Louvain method is a bottom-up agglomerative algorithm. The procedure
+starts by assigning each node to its own community. Then, for each node,
+it assigns the node to the neighbor's group that would most improve
+global modularity. It repeats this until no move improves modularity.
+This forms the first layer in the hierarchy. It then collapses groups
+into nodes and repeats the algorithm on the condensed network, stopping
+at the first level where there is no modularity improving move to make.
+The first layer represents the most local, the last layer the most
+global resolution of community structure.
+
+Modularity-based methods are tried and true, and their drawbacks are
+well-known. The Louvain method is not deterministic, as the outcome may
+(but usually does not) depend on the ordering of the nodes in the
+reassignment qeue. However Louvain has several features that recommend
+it. It is computationaly fast on small to medium graphs and it is freely
+available in network analysis software. It also gives a hierarchical
+solution that provides the analyst with options to inspect community
+structure at a range of local and global resolutions, akin to a
+cartography of counties versus one of continents. Given the small size
+of our network, a local resolution will not be overwhelming, so Louvain
+is preferable to other methods that only offer the coarser global view.
+
+Table \ref{tab:jclu-tab-sup} summarizes the results of applying the
+Louvain method to the journal facet and taking the most localized layer
+of the community structure. Learned labels are applied to the clusters
+by assigning each the name of its most frequent label. Community
+detection sharpens the boundaries between fields by placing each journal
+unambiguously in one superdiscipline or another. This mutual exclusivity
+is apparent by the sum of the given labels exceeding 100\%.
 
 \begin{table}[!htbp] \centering 
   \caption{JSTOR Journal Counts} 
@@ -598,33 +691,87 @@ Total & 2706 & 100 & 3223 & 119.1 \\
 \end{tabular} 
 \end{table}
 
-The results in Table \ref{tab:jclu-tab-sup} are achieved by partitioning
-the \emph{journal} network into the detected clusters, and then by
-assigning each cluster the name of its most frequent label. The learned
-labels refine the superdisciplines by making them mutually exclusive, as
-is apparent by the sum of the given labels exceeding 100\%. The cluster
-labels comport with a commonsensical understanding of superdisciplines.
-Social Sciences journals predominate due to JSTOR's initial focus in
-that area, even without counting economics among them. Business \&
-Economics marks the transition from the larger academic journal space to
-the smaller professional space.
+The first finding is that of the 79 labels these eight form the top of a
+hierarchy of superdisciplines. Area Studies stands apart and is not
+subsumed under either Social Sciences or Humanities. Social Sciences
+journals predominate due to JSTOR's initial focus in that area, even
+without counting economics among them, and Science \& Mathematics counts
+for a larger than one might think. Economics stands apart from the
+Social Sciences, and indeed Business \& Economics marks the transition
+from the larger academic journal space to the smaller professional space
+of Arts, Law, and Medicine \& Allied Health.
 
-Clustering of the label facet presents a similar view. Recall that each
-facet represents the same data, the difference being whether a journal
-or a label is represented as a node or an edge. The larger population of
-journals is easier to partition it into a greater number of
-subpopulations. Converseley, because there are far fewer labels than
-journals, we would expect the clustering to be less granular for the
-label network than for the journal network. In fact there is only one
-fewer clusters, with the difference being Law.
+The given labels do overlap and we can recover a picture of
+interdisciplinary by clustering and visualizing the label facet. This
+facet presents a simplified view. Recall that each facet represents the
+same data, the difference being whether a journal or a label is
+represented as a node or an edge, and that there is a population
+imbalance in favor of journals over labels. The larger the population
+the easier it is to partition into a greater number of subpopulations.
+Converseley, because there are far fewer labels than journals, we would
+expect the clustering to be less granular for the label network than for
+the journal network. In fact there is only one less cluster--Law--which
+is subsumed under Social Sciences.
 
-Figure \ref{fig:jclu-lnet} shows a graph of the relationships among
-labels, where again the strength of ties is equal to the number of
-journals bearing both labels. Again community detection partitions the
-network into its most dense subregions. Here the the label with highest
-degree is assigned to the category and then ommited as a node.
-Astronomy, an isolate that never accompanies another label, is also
-ommited from the graph, resulting in four superdiscipline categories.
+Figure \ref{fig:jclu-lnet} visualizations the relationships among
+disciplines, where again the strength of ties is equal to the number of
+journals bearing both labels. Here the label with highest number of ties
+within its cluster becomes the category name of the cluster. That label
+is then ommitted as a node and is instead visualized as a color coding
+of its cluster, reflecting the special status of the superdiscipline
+labels.
+
+Unlike traditional graph visualizations that are designed to be pleasing
+to the eye, this one is drawn according to a statistical model called a
+latent position or latent space model. It starts with a simple idea that
+the weight of the edges (the number of journals carrying both labels) is
+a count that follows a Poisson distribution. This distribution may be
+modeled by log-linear regression where the logarithm of the mean of the
+distribution is a linear function of an intercept term and covariates.
+What is interesting about the model is that the covariate of interest is
+treated as the distance between the nodes in an unobserved or latent
+space. The distance is treated as negative such that as nodes get closer
+together (as the negative distance increases) the count of the edge
+weight between them increases (technically the logarithm of the mean of
+the count increases).
+
+It is an elegant idea, but estimating the model is complicated. The
+distances are metaphorical, and to realize them requires positing a
+euclidean space in which each node has coordinates. From the coordinates
+the distances can be easily caculated, but knowing which are the right
+coordinates requires a complicated estimation routine based on
+optimizing goodness of fit between guesses of the coordinates and the
+actual count data. The estimator begins with coordinates taken from the
+conventional Fruchterman Reingold layout algorithm and uses Markov Chain
+Monte Carlo simulation to converge toward the positions that optimally
+fit the latent space assumption \citep[See][ for details of the model,
+estimation, and software]{Krivitsky2008Fitting}. Even if the estimator
+does not arrive at a perfect solution it improves upon a conventional
+layout in the direction of meaningful, and not just pretty, aesthetics
+thereby helping the viewer to avoid artifacts and perceive real
+information about the network.
+
+Another great feature of the latent space model is that it allows
+additional terms to be fit alongside the latent distances. It is
+possible to control for or net out the effect of nuisance terms like any
+other regression. As discussed above there is a concern about the undue
+effect of popular labels. We have already tried to remove the
+superdiscipline labels from the label network, preferring to represent
+them as color coded categories rather than nodes. Popular labels may
+still remain, however, and due to the exponential growth of ties during
+downmode conversion even a handful of them will have a disproportionate
+influence on the global layout of the graph.
+
+This degree distortion can be controlled for by what is called a
+sociality term, which can be thought of as a measure of a node's
+popularity. A sociality term is a score for every node that if positive
+means a node is more attractive and if negative means a node is actually
+repulsive of ties. When viewing the positions of a latent space model
+also fit with a sociality term, the space will measure relatedness
+without the effects of popularity.
+
+Figure \ref{fig:jclu-lnet} plots the results of a latent space model on
+the label facet omitting superdiscipline nodes.
 
 \begin{figure}
 
@@ -632,7 +779,7 @@ ommited from the graph, resulting in four superdiscipline categories.
 
 }
 
-\caption{Discipline Network (Residual Latent Space controlling for Sociality)}\label{fig:jclu-lnet}
+\caption{Discipline Network in Latent Space. Node size represents sociality. The larger a node, the more attractive it is, and the larger a white dot within a node, the more repulsive it is.}\label{fig:jclu-lnet}
 \end{figure}
 
 Here some of the granular categories are collapsed. The humanities
