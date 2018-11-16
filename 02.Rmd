@@ -158,6 +158,8 @@ The first finding is that of the `r nn(jclu$n$l)` labels these `r nn(jclu$n$s)` 
 
 The given labels do overlap and we can recover a picture of interdisciplinary by clustering and visualizing the label facet. This facet presents a simplified view. Recall that each facet represents the same data, the difference being whether a journal or a label is represented as a node or an edge, and that there is a population imbalance in favor of journals over labels. The larger the population the easier it is to partition into a greater number of subpopulations. Converseley, because there are far fewer labels than journals, we would expect the clustering to be less granular for the label network than for the journal network. In fact there `r wrk<-lapply(jclu[ec('title_history,discipline')],function(x) {x$memberships[1,]} %>% unique %>% length) %>% do.call(what='-'); if(wrk==1) 'is' else 'are'` only `r wrk %>% nn` `r if(wrk==1) 'less' else ec('fewer,more')[(wrk<0)+1]` cluster`r if(abs(wrk)>1) 's'`--`r do.call(setdiff,{wrk1<-lapply(jclu[ec('ft,fd')] %>% unname,levels);if(wrk<0) rev(wrk1) else wrk1})`--which is subsumed under Social Sciences.
 
+## Network Visualization
+
 Figure \@ref(fig:jclu-lnet) visualizations the relationships among disciplines, where again the strength of ties is equal to the number of journals bearing both labels. Here the label with highest number of ties within its cluster becomes the category name of the cluster. That label is then ommitted as a node and is instead visualized as a color coding of its cluster, reflecting the special status of the superdiscipline labels.
 
 Unlike traditional graph visualizations that are designed to be pleasing to the eye, this  one is drawn according to a statistical model called a latent position or latent space  model. It starts with a simple idea that the weight of the edges (the number of journals carrying both labels) is a count that follows a Poisson distribution. This distribution may be modeled by log-linear regression where the logarithm of the mean of the distribution is a linear function of an intercept term and covariates. What is interesting about the model is that the covariate of interest is treated as the distance between the nodes in an unobserved or latent space. The distance is treated as negative such that as nodes get closer together (as the negative distance increases) the count of the edge weight between them increases (technically the logarithm of the mean of the count increases).
@@ -170,7 +172,7 @@ This degree distortion can be controlled for by what is called a sociality term,
 
 Figure \@ref(fig:jclu-lnet) plots the results of a latent space model on the label facet omitting superdiscipline nodes.
 
-```{r jclu-net,eval=F,include=F,fig.cap='Discipline Network. Within-cluster ties are darker and between-cluster ties lighter.'}
+```{r jclu-net,eval=T,include=F,fig.cap='Discipline Network. Within-cluster ties are darker and between-cluster ties lighter.'}
 f<-'d/b/jclu2net.RData'
 if(file.exists(f)){
   load(f)
@@ -185,7 +187,7 @@ if(file.exists(f)){
   save(jnet,file=f)
 }
 rm(f)
-plt(jnet,tooltip='text') # TODO fix tooltips to omit edge tips
+#plt(jnet,tooltip='text') # TODO fix tooltips to omit edge tips
 ```
 
 ```{r jclu-lnet,include=T,fig.cap='Discipline Network in Latent Space. Node size represents sociality. The larger a node, the more attractive it is, and the larger a white dot within a node, the more repulsive it is.'}
@@ -210,7 +212,149 @@ rm(f)
 plt(jlnet,tooltip='text')
 ```
 
+```{r lnetg,eval=F}
+f<-'d/p/lnetg.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  p=4
+  t=1
+  i=1e4
+  s=max(600*t,1000)
+  b=250*i*p
+  cat('i =',i,'b =',b,'\n')
+  g<-(attributes(jnet)$zkref %>% unique %>% length):1
+  names(g)<-g
+  lnetg<-pbapply::pblapply(g, function(x)
+    try(jclu2net.f(
+      jclu
+      ,layout='latent'
+      ,isolates = F
+      ,grp = x
+      ,burnin=b
+      ,interval=i
+      ,pilot.runs=p
+      ,sample.size=s
+      ,store.burnin=T
+      ,threads=t
+    ))
+    ,cl = 7
+  )
+  save(obj,file=f)
+}
+rm(f)
+pdf('_book/lnetg-diag.pdf')
+lapply(lnetg,function(x) latentnet::bic.ergmm(attr(x,'lnet'))$overall) %>% {plot(x=names(.) %>% as.integer,y=.,type='b')}
+withr::with_package('latentnet',lapply(lnetg[!sapply(lnetg,is.null)],function(x) attr(x,'lnet') %>% mcmc.diagnostics))
+dev.off()
+```
+
+```{r lnet-frames,eval=F}
+lnetg2pfp.f<-function(lnetg){
+lnetg<-lnetg[order(names(lnetg) %>% as.numeric)]  
+prc<-list()
+pdf('_book/lnetg-plt.pdf')
+prc[[1]]<-data.table(
+  1
+  ,attr(lnetg[[1]],'net') %v% 'vertex.names'
+  ,attr(lnetg[[1]],'net') %v% 'memb'
+  ,attr(lnetg[[1]],'lnet')$mkl$sociality %>% exp
+  ,attr(lnetg[[1]],'lnet')$mkl$Z.K
+  ,attr(lnetg[[1]],'lnet')$mkl$mbc$Z.pZK %>% apply(1,max)
+  ,latentnet:::plot.ergmm(attr(lnetg[[1]],'lnet'),Z.ref = attr(jnet,'zref'))
+) %>% setnames(ec('f,vertex.names,memb,rs,zk,part,x,y')) # part = partisanship
+for(i in 2:length(lnetg)) prc[[i]]<-data.table(
+  i
+  ,attr(lnetg[[i]],'net') %v% 'vertex.names'
+  ,attr(lnetg[[i]],'net') %v% 'memb'
+  ,attr(lnetg[[i]],'lnet')$mkl$sociality %>% exp
+  ,attr(lnetg[[i]],'lnet')$mkl$Z.K
+  ,attr(lnetg[[i]],'lnet')$mkl$mbc$Z.pZK %>% apply(1,max)
+  ,latentnet:::plot.ergmm(x = attr(lnetg[[i]],'lnet'),Z.ref = prc[[i-1]][,cbind(x,y)],Z.K.ref = prc[[i-1]][,zk])
+) %>% setnames(ec('f,vertex.names,memb,rs,zk,part,x,y'))
+dev.off()
+prc<-rbindlist(prc)
+prc<-rbindlist(list(
+  data.table(
+    f=0
+    ,vertex.names=attr(jnet,'net')%v%'vertex.names'
+    ,memb=attr(jnet,'net')%v%'memb'
+    ,rs=attr(jnet,'net')%v%'rs'
+    ,zk=attr(jnet,'net')%v%'memb' %>% factor(levels=jclu$fd %>% levels) %>% as.numeric
+    ,part=1
+    ,attr(jnet,'zref')) %>% setnames(ec('V1,V2'),ec('x,y'))
+,prc))[,zk:=factor(zk,levels=table(zk) %>% sort(T) %>% names %>% as.integer) %>% as.double,by=f][,zk:=factor(zk)]
+scl<-prc[f>0,range(rs)]
+prc[f==0,rs:=lintran(rs,range(rs),scl)]
+prc[,x:=scale(x),by=f]
+prc[,y:=scale(y),by=f]
+prc[f!=0,x:=prc$x[prc$f==1]]
+prc[f!=0,y:=prc$y[prc$f==1]]
+setkey(prc,f)
+pfp<-prc[.(c(0,1))][,f:=ec('Fruchterman\nReingold,Latent\nSpace')[f+1]][,memb:=factor(memb,levels=levels(jclu$fd))]
+fp<-myth(ggplot(pfp,aes(x=x,y=y
+#                        ,alpha=part
+                        ,color=memb,ids=vertex.names
+,size=rs,text=vertex.names,frame=f)) + geom_point(aes(stroke=1+rs/max(rs)*5),size=2,shape=21,fill='white',position = position_jitter(width=.01,height=0,seed=12345)
+) + guides(alpha=F,size=F)) + theme_blank()
+plt(fp,tooltip='text') %>% plotly::animation_opts(redraw=T,frame = 2* 1e3,transition=2* 1e3)
+}
+```
+
+```{r testplot,eval=F}
+
+
+net<-attr(lnetg[[1]],'net')
+e<-net %>% as.edgelist
+vn<-attributes(e)$vnames
+e<-data.table(e) %>% setnames(ec('s,r'))
+e[,`:=`(s=vn[s],r=vn[r])]
+e[,weight:=net%e%'weight']
+e[,cross:=net%e%'cross']
+ct<-RColorBrewer::brewer.pal(unique(pfp$memb) %>% length,'Dark2')
+names(ct)<-table(pfp$memb) %>% sort(T) %>% names
+
+setkey(pfp,vertex.names)
+pfp[,clr:=ct[memb]]
+e[,`:=`(
+  x=pfp[s,x]
+  ,xend=pfp[r,x]
+  ,y=pfp[s,y]
+  ,yend=pfp[r,y]
+  ,xm=pfp[s,memb]
+  ,ym=pfp[r,memb]
+)]
+e[,clr:=mapply(function(s,r) colorRampPalette(c(s,r))(3)[2],s=ct[xm],r=ct[ym])]
+}
+
+cp<-ggplot() +
+  geom_segment(data=e,mapping=aes(x=x,y=y,xend=xend,yend=yend,group=clr),alpha=.1,color=e$clr,size=e$weight/max(e$weight)) +
+    geom_point(data=v,mapping=aes(x=x,y=y,text=name,size=rs),shape=21,color=desat(v$clr,.01),fill=v$clr)
+cp
+
+```
+
 Here some of the granular categories are collapsed. The humanities includes arts, as we might expect, but also area studies, which one might have classed with the social sciences, but which bear stronger ties to cultural studies like music, folklore, religion, and language and literature. Law and medicine and allied health are grouped with the social sciences, and business and economics is maintained as separate field due merely to the attachment of three professional fields--development studies, management and organizational behavior, and marketing and advertising--to their parent disciplines business and economics (not to be confused with the separate and ommitted label "business and economics"), which are themselves strongly tied to the social sciences.
+
+```{r layouts,include=T,fig.cap='Fruchterman Reingold and Latent Space Layouts Compared'}
+f<-'d/b/pp.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  load('d/b/jclu2net.RData')
+  load('d/p/lnetg.RData')
+  fr<-data.table(attributes(jnet)$ggnet)[,f:='FR']
+  ls<-data.table(attributes(lnetg$`1`)$ggnet)[,f:='LS']
+  x<-rbindlist(list(fr,ls))[,n:=is.na(weight)]
+  pp<-plot_ly(x=~x,y=~y,frame=~f) %>% 
+    add_segments(data=x[(!n)],xend=~xend,yend=~yend) %>% 
+    add_markers(data=x[(n)],color=~memb,ids=~vertex.names,text=~vertex.names,size=~rs)
+  save(pp,file=f)
+}
+rm(f)
+pp
+```
+
 
 Though graph layouts are imperfect and should not be overinterpreted, the global features of facing within clusters do indicate the disciplines that straddle boundaries. On the border between the social sciences and science and mathematics are the social sciences dealing most with the physical problems of space, health, and technology. On the edge of the humanities and social sciences are history, philosophy, and anthropology. 
 
@@ -694,14 +838,50 @@ rm(f)
 f<-'d/b/kcc2isl.RData'
 if(file.exists(f)){
   load(f)
-  kcc2isl<-kcc2isl.f(bel2mel,cos2kcc,co=kcc2isl)
+  kcc2isl<-kcc2isl.f(bel2mel,cos2kcc,wok2dbl,dbl2bel,co=kcc2isl,ordinal=F)
 } else {
-  kcc2isl<-kcc2isl.f(bel2mel,cos2kcc)
+  kcc2isl<-kcc2isl.f(bel2mel,cos2kcc,wok2dbl,ordinal=F,rad=.8,nit=5e4)
   save(kcc2isl,file=f)
 }
 rm(f)
 ```
 
+```{r isl3d, fig.cap='Time to Explore!', warning=FALSE, include=T}
+f<-'d/b/isl3d.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  library(plotly)
+  bgc<-desat(topo.colors(1),.4)
+  bck<-list(backgroundcolor=bgc,color=bgc,showbackground=T,showspikes=F,visible=T,showticklabels=F,showaxeslabels=F,title=F,showgrid=F)
+  ki<-highlight_key(kcc2isl,~g,'K-clique Community')
+  mrk<-list(symbol='circle',size=4,opacity=1,line=list(width=0))
+  cm<-ki$origData() %>% names %>% setdiff(ec('x,y,names,v,k,g,text,gn'))
+  names(cm)<-cm
+  #viridis::viridis
+  #colorRampPalette(desat(ec('yellow,red'),.8))
+  cm<-lapply(cm,function(x) {x<-ki$origData()[[x]];w<-is.na(x);y<-x[!w] %>% {colorRamps::blue2red({diff(round(range(.)))+1})[.-min(.)+1]};x<-rep(NA_character_,length(x));x[!w]<-y;x})
+  adm<-lapply(cm,function(x) function(p,vis,y=x) {add_markers(p,data=ki,visible=vis,color=I(y),text=~text,hoverinfo='text',hoverlabel=list(bgcolor=I(y)),showlegend=F,marker=mrk)})
+  isl3d<-plot_ly(x=~x,y=~y,z=~k+1) %>%
+    add_mesh(inherit=F,data=kcc2isl,x=~x,y=~y,z=~k,intensity=~k,colors=attr(kcc2isl,'colors'),hoverinfo='skip') %>%
+    adm$cc(p=.,vis=T) %>% adm$`AM ANTHROPOL`(p=.,vis=F) %>% adm$`AM J SOCIOL`(p=.,vis=F) %>% adm$py(p=.,vis=F) %>% adm$ca(p=.,vis=F) %>%
+    layout(paper_bgcolor=bgc,plot_bgcolor=attr(kcc2isl,'colors')[1],dragmode='turntable',scene=list(aspectratio = list(x = 1, y = 1, z = 0.25),xaxis=bck,yaxis=bck,zaxis=bck,camera=list(eye=list(x=0,y=-.5,z=1)))
+           ,updatemenus = list(list(buttons = list(
+             list(method = "restyle", args = list("visible", list(T,T,F,F,F,F)),label = "Citation Count")
+             ,list(method = "restyle",args = list("visible", list(T,F,T,F,F,F)),label = "Anthropology")
+             ,list(method = "restyle",args = list("visible", list(T,F,F,T,F,F)),label = "Sociology")
+             ,list(method = "restyle",args = list("visible", list(T,F,F,F,T,F)),label = "Avg Publication Year")
+             ,list(method = "restyle",args = list("visible", list(T,F,F,F,F,T)),label = "Avg Citation Age")
+           )))
+    ) %>% 
+    highlight(on='plotly_hover',opacityDim = .1)
+  save(isl3d,file=f)
+}
+rm(f)
+isl3d
+
+
+```
 
 # Four Fables
 
