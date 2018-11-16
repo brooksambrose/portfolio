@@ -82,7 +82,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2018-11-07}
+    \date{2018-11-14}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -467,17 +467,17 @@ We rely on the JSTOR digital archive which gives access to optical scans
 of historical journals. JSTOR provides a title list of their journal
 coverage \citep{JSTOR2018Title}. The coverage of journals in the archive
 is very complete for those journals chosen for the database. As of this
-writing JSTOR contained 4,162 different journal titles and 2,706
-journals from 1,121 different publishers. The different journal counts
+writing JSTOR contained 4,224 different journal titles and 2,738
+journals from 1,147 different publishers. The different journal counts
 are due to some journals changing titles at least once.\footnote{To
   avoid overcounting, title histories are collapsed into their most
-  recent record, meaning all subsequent counts are out of 2,706. Even
+  recent record, meaning all subsequent counts are out of 2,738. Even
   though we might expect disciplinary identity to change over time,
-  JSTOR discipline labels do not vary within title histories. Two
-  journals--Haldane Bulletin and Scientific American Mind--lacked any
-  discipline labels and are excluded from tabulations.} The JSTOR coding
-contains 79 subject labels. These labels refer to eight superdisciplines
-under which may be found 71 disciplines.
+  JSTOR discipline labels do not vary within title histories. One
+  journal--Scientific American Mind--lacked any discipline labels and is
+  excluded from tabulations.} The JSTOR coding contains 79 subject
+labels. These labels refer to eight superdisciplines under which may be
+found 71 disciplines.
 
 Most journals are given more than one discipline label, and the
 superdisciplines are not marked as such in the database creating some
@@ -531,7 +531,7 @@ journals are yellow dots and labels are blue dots. As an artifact of
 sampling, most journals here are shown tied to only one label. In fact
 this is never the case in the full network; as each journal has at least
 one discipline and one superdiscipline label the minimum number of
-labels is two, which is the median case accounting for 53.6 percent of
+labels is two, which is the median case accounting for 53.9 percent of
 journals. The most labels any journal bears is 10, but these are
 outliers with most journals bearing only a few labels.
 
@@ -566,18 +566,18 @@ the exponential influence of popular labels.
 Second, though the unimodal facets of a bimodal network represent the
 same data, each may have different characteristics especially in the
 common case of a large population imbalance between modes. In the full
-network we have 34 times as many journals as labels and each journal
+network we have 35 times as many journals as labels and each journal
 sends multiple ties. This degree imbalance between the two modes may
 mean that one facet is more dense than its inverse. Density is the
 proportion of actual ties out of all possible ties. In Figure
 \ref{fig:mod-proj} an imbalance may be observed where the journal facet
 has many dense free floating or overlapping cliques and where the label
 network appears to be mostly made of isolated labels save for the few
-larger components. In the sampled network the journal facet is seven
+larger components. In the sampled network the journal facet is five
 times more dense than the label facet. In the case of our full network,
 the potential imbalance in degree distribution between facets happens to
 be offset by the population imbalance itself. The densities in the full
-journal and label facets are comparable, 26.3 and 27.2 percent
+journal and label facets are comparable, 26.2 and 27.3 percent
 respectively, meaning that analysis will not merely hinge on which facet
 is analyzed.
 
@@ -678,15 +678,15 @@ is apparent by the sum of the given labels exceeding 100\%.
 \hline \\[-1.8ex] 
 Superdiscipline & Learned & Pct & Given & GPct \\ 
 \hline \\[-1.8ex] 
-Social Sciences & 752 & 27.8 & 916 & 33.9 \\ 
-Humanities & 666 & 24.6 & 688 & 25.4 \\ 
-Area Studies & 355 & 13.1 & 499 & 18.4 \\ 
-Science \& Mathematics & 311 & 11.5 & 360 & 13.3 \\ 
-Business \& Economics & 264 & 9.8 & 284 & 10.5 \\ 
-Arts & 244 & 9 & 292 & 10.8 \\ 
-Law & 84 & 3.1 & 132 & 4.9 \\ 
+Social Sciences & 790 & 28.9 & 916 & 33.5 \\ 
+Humanities & 664 & 24.3 & 719 & 26.3 \\ 
+Area Studies & 357 & 13 & 499 & 18.2 \\ 
+Science \& Mathematics & 307 & 11.2 & 360 & 13.1 \\ 
+Business \& Economics & 266 & 9.7 & 285 & 10.4 \\ 
+Arts & 240 & 8.8 & 293 & 10.7 \\ 
+Law & 84 & 3.1 & 132 & 4.8 \\ 
 Medicine \& Allied Health & 30 & 1.1 & 52 & 1.9 \\ 
-Total & 2706 & 100 & 3223 & 119.1 \\ 
+Total & 2738 & 100.1 & 3256 & 118.9 \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
@@ -712,6 +712,8 @@ Converseley, because there are far fewer labels than journals, we would
 expect the clustering to be less granular for the label network than for
 the journal network. In fact there is only one less cluster--Law--which
 is subsumed under Social Sciences.
+
+\section{Network Visualization}\label{network-visualization}
 
 Figure \ref{fig:jclu-lnet} visualizations the relationships among
 disciplines, where again the strength of ties is equal to the number of
@@ -795,6 +797,19 @@ economics (not to be confused with the separate and ommitted label
 ``business and economics''), which are themselves strongly tied to the
 social sciences.
 
+\begin{verbatim}
+Setting the `off` event (i.e., 'plotly_doubleclick') to match the `on` event (i.e., 'plotly_click'). You can change this default via the `highlight()` function.
+\end{verbatim}
+
+\begin{figure}
+
+{\centering \includegraphics{ambrose_dissertation_files/figure-latex/layouts-1} 
+
+}
+
+\caption{Fruchterman Reingold and Latent Space Layouts Compared}\label{fig:layouts}
+\end{figure}
+
 Though graph layouts are imperfect and should not be overinterpreted,
 the global features of facing within clusters do indicate the
 disciplines that straddle boundaries. On the border between the social
@@ -816,14 +831,14 @@ The journals within social science cover five different subdisciplines.
 Subdiscipline & N & Pct & Labeled & LPct \\ 
 \hline \\[-1.8ex] 
 Archaeology & 256 & 27.9 & 115 & 12.6 \\ 
-Political Science & 215 & 23.5 & 180 & 19.7 \\ 
-Education & 196 & 21.4 & 174 & 19 \\ 
+Political Science & 219 & 23.9 & 183 & 20 \\ 
+Education & 192 & 21 & 170 & 18.6 \\ 
 Sociology & 160 & 17.5 & 145 & 15.8 \\ 
 Anthropology & 46 & 5 & 89 & 9.7 \\ 
 Population Studies & 22 & 2.4 & 27 & 2.9 \\ 
 Geography & 18 & 2 & 32 & 3.5 \\ 
 Transportation Studies & 3 & 0.3 & 7 & 0.8 \\ 
-Total & 916 & 100 & 769 & 84 \\ 
+Total & 916 & 100 & 768 & 83.8 \\ 
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
@@ -947,6 +962,30 @@ sen & 0.0118 & 0.2304 & -0.5078 & 0.6471 & 0.4973 \\
 \hline \\[-1.8ex] 
 \end{tabular} 
 \end{table}
+
+\begin{verbatim}
+Warning: Unknown or uninitialised column: 'linetype'.
+\end{verbatim}
+
+\begin{verbatim}
+Warning: Unknown or uninitialised column: 'label'.
+\end{verbatim}
+
+\begin{verbatim}
+Warning: Unknown or uninitialised column: 'linetype'.
+\end{verbatim}
+
+\begin{verbatim}
+Warning: Unknown or uninitialised column: 'label'.
+\end{verbatim}
+
+\begin{verbatim}
+Warning: Unknown or uninitialised column: 'linetype'.
+\end{verbatim}
+
+\begin{verbatim}
+Warning: Unknown or uninitialised column: 'label'.
+\end{verbatim}
 
 \begin{figure}
 
