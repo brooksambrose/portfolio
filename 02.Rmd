@@ -714,8 +714,6 @@ ggplot(bct[.(9)],aes(x=tew,y=pit)) + geom_text(aes(label=cr,angle=45),alpha=.5)
 ) + scale_x_log10())
 ```
 
-
-
 ```{r mlc2mlk,eval=F}
 f<-'d/p/mlk.txt'
 if(file.exists(f)) {mlk<-fread(f)} else {
@@ -806,7 +804,7 @@ if(file.exists(f)){
   load(f)
 } else {
   if(dir.exists('d/p/mel2comps')) system('rm -rf d/p/mel2comps')
-  mel2comps<-mel2comps.f(bel2mel,out='d/p')
+  mel2comps<-mel2comps.f(bel2mel,out='d/p',min.ew = 1,min.size = 3)
   save(mel2comps,file=f)
 }
 rm(f)
@@ -838,49 +836,24 @@ rm(f)
 f<-'d/b/kcc2isl.RData'
 if(file.exists(f)){
   load(f)
-  kcc2isl<-kcc2isl.f(bel2mel,cos2kcc,wok2dbl,dbl2bel,co=kcc2isl,ordinal=F)
+  kcc2isl<-kcc2isl.f(bel2mel,cos2kcc,wok2dbl,dbl2bel,co=kcc2isl,ordinal=F,minew=1)
 } else {
-  kcc2isl<-kcc2isl.f(bel2mel,cos2kcc,wok2dbl,ordinal=F,rad=.8,nit=5e4)
+  kcc2isl<-kcc2isl.f(bel2mel,cos2kcc,wok2dbl,dbl2bel,ordinal=F,rad=.8,nit=1e4,minew=1)
   save(kcc2isl,file=f)
 }
 rm(f)
 ```
 
-```{r isl3d, fig.cap='Time to Explore!', warning=FALSE, include=T}
+```{r isl3d, fig.cap='Time to Explore!', message=FALSE, warning=FALSE, include=T}
 f<-'d/b/isl3d.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  library(plotly)
-  bgc<-desat(topo.colors(1),.4)
-  bck<-list(backgroundcolor=bgc,color=bgc,showbackground=T,showspikes=F,visible=T,showticklabels=F,showaxeslabels=F,title=F,showgrid=F)
-  ki<-highlight_key(kcc2isl,~g,'K-clique Community')
-  mrk<-list(symbol='circle',size=4,opacity=1,line=list(width=0))
-  cm<-ki$origData() %>% names %>% setdiff(ec('x,y,names,v,k,g,text,gn'))
-  names(cm)<-cm
-  #viridis::viridis
-  #colorRampPalette(desat(ec('yellow,red'),.8))
-  cm<-lapply(cm,function(x) {x<-ki$origData()[[x]];w<-is.na(x);y<-x[!w] %>% {colorRamps::blue2red({diff(round(range(.)))+1})[.-min(.)+1]};x<-rep(NA_character_,length(x));x[!w]<-y;x})
-  adm<-lapply(cm,function(x) function(p,vis,y=x) {add_markers(p,data=ki,visible=vis,color=I(y),text=~text,hoverinfo='text',hoverlabel=list(bgcolor=I(y)),showlegend=F,marker=mrk)})
-  isl3d<-plot_ly(x=~x,y=~y,z=~k+1) %>%
-    add_mesh(inherit=F,data=kcc2isl,x=~x,y=~y,z=~k,intensity=~k,colors=attr(kcc2isl,'colors'),hoverinfo='skip') %>%
-    adm$cc(p=.,vis=T) %>% adm$`AM ANTHROPOL`(p=.,vis=F) %>% adm$`AM J SOCIOL`(p=.,vis=F) %>% adm$py(p=.,vis=F) %>% adm$ca(p=.,vis=F) %>%
-    layout(paper_bgcolor=bgc,plot_bgcolor=attr(kcc2isl,'colors')[1],dragmode='turntable',scene=list(aspectratio = list(x = 1, y = 1, z = 0.25),xaxis=bck,yaxis=bck,zaxis=bck,camera=list(eye=list(x=0,y=-.5,z=1)))
-           ,updatemenus = list(list(buttons = list(
-             list(method = "restyle", args = list("visible", list(T,T,F,F,F,F)),label = "Citation Count")
-             ,list(method = "restyle",args = list("visible", list(T,F,T,F,F,F)),label = "Anthropology")
-             ,list(method = "restyle",args = list("visible", list(T,F,F,T,F,F)),label = "Sociology")
-             ,list(method = "restyle",args = list("visible", list(T,F,F,F,T,F)),label = "Avg Publication Year")
-             ,list(method = "restyle",args = list("visible", list(T,F,F,F,F,T)),label = "Avg Citation Age")
-           )))
-    ) %>% 
-    highlight(on='plotly_hover',opacityDim = .1)
+  isl3d<-isl2isl3d.f(kcc2isl,rad=3,res=100,ln=T,floor=T,close = T)
   save(isl3d,file=f)
 }
 rm(f)
 isl3d
-
-
 ```
 
 # Four Fables
