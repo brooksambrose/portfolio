@@ -1,0 +1,92 @@
+
+# Web of Knowledge {#wok}
+
+```{r wok2dbl}
+f<-'d/p/wok2dbl.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  wok2dbl<-wok2dbl.f(dir='d/d/wok','d/p')
+}
+rm(f)
+```
+
+```{r dbl2bel}
+f<-'d/p/dbl2bel.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  load('d/d/wok/fuzzy-sets.RData')
+  dbl2bel<-dbl2bel.f(wok2dbl,out = 'd/p',saved_recode = fuzzy.sets)
+}
+rm(f,fuzzy.sets)
+```
+
+```{r bel2mel}
+f<-'d/p/bel2mel.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  bel2mel<-bel2mel.f(dbl2bel[!((pend)|(zpend)|(zdup)|(loop)|(zloop)),.(ut,cr=zcr)],out='d/p')
+}
+rm(f)
+```
+
+```{r mel2comps}
+f<-'d/p/mel2comps.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  if(dir.exists('d/p/mel2comps')) system('rm -rf d/p/mel2comps')
+  mel2comps<-mel2comps.f(bel2mel,out='d/p',min.ew = 1,min.size = 3)
+  save(mel2comps,file=f)
+}
+rm(f)
+```
+
+```{r comps2cos}
+f<-'d/p/comps2cos.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  comps2cos<-comps2cos.f('d/p/mel2comps')
+  save(comps2cos,file=f)
+}
+rm(f)
+```
+
+```{r cos2kcc}
+f<-'d/p/cos2kcc.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  cos2kcc<-cos2kcc.f('d/p/mel2comps',out = 'd/p',type='crel') 
+  save(cos2kcc,file=f)
+}
+rm(f)
+```
+
+```{r kcc2isl,fig.cap='K-clique Community Island Plot',include=T}
+f<-'d/b/kcc2isl.RData'
+if(file.exists(f)){
+  load(f)
+  kcc2isl<-kcc2isl.f(bel2mel,cos2kcc,wok2dbl,dbl2bel,co=kcc2isl,ordinal=F,minew=1)
+} else {
+  kcc2isl<-kcc2isl.f(bel2mel,cos2kcc,wok2dbl,dbl2bel,ordinal=F,rad=.8,nit=1e4,minew=1)
+  save(kcc2isl,file=f)
+}
+rm(f)
+```
+
+```{r isl3d, fig.cap='Time to Explore!', message=FALSE, warning=FALSE, include=T}
+f<-'d/b/isl3d.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  isl3d<-isl2isl3d.f(kcc2isl,rad=3,res=100,ln=T,floor=T,close = T)
+  save(isl3d,file=f)
+}
+rm(f)
+isl3d
+```
+

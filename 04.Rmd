@@ -1,0 +1,325 @@
+# Data {#kd-dd}
+
+```{r zot2bib}
+f<-'d/q/zot2bib.RData'
+if(file.exists(f)){
+  load(f)
+} else{
+  zot2bib<-zot2bib.f(
+    users='2730456'
+    ,collections = fread('d/q/zotcollections.txt')$URL
+    ,key = 'qMxyytAhp07W9jNOGssIQasg'
+  )
+  save(zot2bib,file=f)
+}
+rm(f)
+d<-lapply(zot2bib,function(x) x[,.(publicationTitle,date,volume,issue,pages,bp,ep,title,creators,dateModified,url)]) %>% rbindlist %>% `[`(!duplicated(.[,!9]))
+setorder(d,publicationTitle,dateModified)
+##### find corrupt
+d[is.na(publicationTitle),]
+d<-d[!is.na(publicationTitle),]
+```
+
+Every record for every journal was downloaded manually, including front and back matter, articles, and book reviews.
+
+```{r z2b-dups}
+# find duplicates
+d[duplicated(d[,!9:10]),.(dateModified,pub=publicationTitle,tit=substr(title,1,50),date,volume,issue,pages)][,cat(date,' ',volume,' ',issue,' ',tit,' ',pages,'\n',sep=''),by=dateModified]
+```
+
+```{r z2p-pgap}
+# find page gaps
+p<-d[!(duplicated(d[,!9:10])|is.na(bp)),.(
+  t=publicationTitle
+  ,d=date
+  ,v=volume
+  ,i=issue
+  ,p=mapply(function(b,e) b:e,b=bp,e=ep)
+),by=.I]
+p[,.(gap=setdiff(
+  p %>% unlist %>% range %>% as.list %>% do.call(seq,.)
+  ,p %>% unlist %>% unique %>% sort
+)),by=.(t,d,v,i)][,.(gap=list(gap)),by=.(t,d,v,i)]
+```
+
+```{r z2b-vgap}
+# find volume gaps
+p[,table(t,i)]
+cat('',sep='\n')
+vg<-p[,table(d,factor(i,levels=1:6),t)]
+vg[vg==0]<-NA
+h<-hist(vg)
+h<-which(vg<=h$breaks[2],arr.ind = T)
+check<-cbind(h[,-1],vg[h])[order(h[,3],h[,1]),]
+colnames(check)<-c('i','j','n')
+cat('\nDouble check these volumes:\n\n')
+check
+```
+
+```{r z2b-short}
+# find short runs
+setorder(d,publicationTitle,date,volume,issue,bp)
+lt<-d[!is.na(bp+ep),.(title=title[.N],pages=pages[.N],dateModified=dateModified[.N],url=url[.N]),by=.(publicationTitle,date,volume,issue)]
+ltn<-lt[,.N,by=title][N<3,title]
+setkey(lt,title)
+# will cause autoban, but this will test automatically
+if(F) w<-lt[ltn,list({
+  Sys.sleep(rnorm(1) %>% abs %>% `+`(1.5))
+  cat('.')
+  try(url %>% read_html %>% html_text %>% grepl('Next Item',.))
+}),by=url]
+lt[ltn][,cat(publicationTitle,' ',date,' ',volume,' ',issue,' ',title,' ',pages,'\n',url,'\n\n',sep=''),by=dateModified] %>% invisible
+```
+
+```{r jpdf2imp}
+f<-'d/d/jpdf.RData'
+if(file.exists(f)){
+  load(f)
+} else{
+  # seed<-.Random.seed %>% sample(1)
+  # cat('Seed: ',seed,'\n',sep='')
+  # set.seed(seed)
+  jpdf<-jpdf2imp.f(
+    dir('d/d',full.names = T,recursive = T,pattern = '\\.pdf$') # %>% sample(100) # readLines('test.txt')
+    ,ocr = T) # write feedback for long imports
+  save(jpdf,file=f)
+}
+rm(f)
+if(!'filt'%in%ls()) filt<-list()
+filt$import<-cor2aud.f(jpdf$imp,'imported')
+```
+
+```{r imp2cln}
+f<-'d/d/clnp.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  # seed<-.Random.seed %>% sample(1)
+  # cat('Seed: ',seed,'\n',sep='')
+  clnp<-imp2cln.f(
+    imp = jpdf$imp
+    ,hand = 'd/d/cln1537906742.txt'
+    # ,seed=seed    
+  )
+  save(clnp,file=f)
+}
+rm(f)
+if(!'filt'%in%ls()) filt<-list()
+filt$clean<-cor2aud.f({setkey(jpdf$imp,doc,par);jpdf$imp[clnp$prd[(mth),.(doc,par)]]},'cleaned')
+```
+
+## Sampling {#kd-dp1}
+
+```{r imp2ftx,eval=F}
+f<-'d/p/ftx.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  # seed<-.Random.seed %>% sample(1)
+  # cat('Seed: ',seed,'\n',sep='')
+  # set.seed(seed)
+  # s<-sample(jpdf$met[,doc],10)
+  # ftx<-imp2ftx.f(jpdf$imp[s])
+  ftx<-imp2ftx.f({setkey(jpdf$imp,doc,par);jpdf$imp[clnp$prd[(mth),.(doc,par)]]})
+  save(ftx,file = f)
+}
+if(!'filt'%in%ls()) filt<-list()
+filt$token<-cor2aud.f(ftx,'tokenized')
+rm(f,jpdf,clnp)
+```
+
+```{r ftx2pre}
+f<-'d/p/pre.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  pre<-ftx2pre.f(ftx,frq = 5,nchr=3)
+  save(pre,file = f)
+}
+rm(f,ftx)
+if(!'filt'%in%ls()) filt<-list()
+filt$pre<-cor2aud.f(pre[!is.na(stm)],'preprocessed')
+```
+
+```{r pre2sam}
+f<-'d/p/sam.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  seed<-.Random.seed %>% sample(1)
+  cat('Seed: ',seed,'\n',sep='')
+  set.seed(seed)
+  sam<-pre[sample(doc[!is.na(stm)] %>% unique,1e2)]
+  sam[,stm:=droplevels(stm,exclude=unique(sam[,.(stm,doc)])[,.N,by=stm][N==1,stm %>% as.character]) %>% droplevels %>% droplevels(exclude=NA)]
+  attr(sam,'seed')<-seed
+  save(sam,file=f)
+}
+rm(f)
+if(!'filt'%in%ls()) filt<-list()
+filt$sam<-cor2aud.f(sam[!is.na(stm)] %>% setkey(doc),'sampled')
+```
+
+```{r filt,include=T}
+f<-'d/b/filt.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  filt<-rbindlist(filt)
+  filt<-rbindlist(list(
+  lapply(filt,function(x) if(is.integer(x)) round(x/max(na.omit(x))*100,2) else x) %>% do.call(data.table,.)
+  ,lapply(filt,function(x) if(is.numeric(x)) max(na.omit(x)) else '100%') %>% do.call(data.table,.)))
+  save(filt,file=f)
+}
+rm(f)
+sg(filt,tit='Filtering due to Data Management')
+```
+
+## Units of Analysis
+
+Conventionally researchers feed entire documents into the construction of term frequencies. This method treats any term in a document as being related to any other term by the same degree. The goal of any topic mixture model algorithm is to sift these terms into different topic categories basically by looking for clues across documents; a topic can be "seen" in a particular document to the extent that other documents include that topic and *other* topics different from the focal article, so that the intersection of terms reveals the topic. But a much simpler assumption to reduce the attendant noise within a document is to merely feed lower level syntactic structures--paragraphs and sentences--to the algorithm. We will see that doing so greatly improves the usefulness of discovered topics.
+
+The irony of this approach is that while topics become more clear as documents become shorter, the assignment of any particular shorter document to a topic is murkier due to the smaller word count. 
+
+Long documents will contribute more text to the corpus, but this is fair as they make up more of the population of text. Thus a simple random sample will allow better descriptive statistics. I sampled at the paragraph level because.
+
+```{r pre2mlc}
+f<-'d/p/mlc.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  mlc<-pre2mlc.f(sam)
+  save(mlc,file = f)
+}
+rm(f)
+```
+
+```{r pre2des}
+# des.com<-pre2des.f(pre)
+# des.stm<-pre2des.f(pre[!is.na(stm)])
+#kab(list(des.com,des.stm,data.table(tot=round(des.stm$cnt/des.com$cnt*100,2))),caption = 'Full Text Descriptives')
+```
+
+# Topics {#kd-dp2}
+
+The modeling objective is twofold, to sort text into categories of similarity, and to describe the qualitative content that defines the category membership. In this way we may operationalize the notion of cultural meaning or cultural logic as the rules of category classification. reduce expressions as instances of a latent category of expression.
+
+## How many topics?
+
+```{r mlc2kmc,eval=F}
+```
+
+```{r pre2tel}
+f<-'d/p/tel.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  tel<-pre2tel.f(pre[!is.na(stm)],stop = 3)
+  save(tel,file = f)
+}
+rm(f)
+```
+
+```{r tamK}
+f<-'d/p/clu.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  tel<-tel[!s%in%tm::stopwords()] # remove stopwords
+  tel<-tel[!r%in%tm::stopwords()]
+  tel<-tel[s!=r] # remove remaining loops
+  system.time(clu<-tel2clu.f(tel))
+  save(clu,file=f)  
+}
+rm(f)
+```
+
+```{r ctr,eval=F}
+ctr<-apply(clu$memberships,1,function(x) x %>% table %>% sort(decreasing = T))
+View(ctr)
+top<-ctr[[1]] %>% prop.table %>% `*`(100) %>% round(3) 
+top %>% head(30)
+
+cp<-tilit::ov2chpt.f(top %>% head(50),min.period = 2,drv = 1)
+top %>% head(50) %>% as.vector %>%  plot(col=cp$g)
+
+```
+
+```{r crs,eval=F}
+sm<-list()
+for(i in 1:nrow(clu$memberships)) sm[[i]]<-factor(clu$memberships[i,],levels=order(table(clu$memberships[i,]),decreasing = T))
+sm<-do.call(data.table,sm)
+setnames(sm,paste0('h',ncol(sm):1))
+sm[,cr:=clu$names]
+sm[,m:=as.integer(h1)] %>% setkey(m)
+sm %>% setkey(cr)
+
+tel[,`:=`(ms=sm[s,h3],mr=sm[r,h3])]
+tel[,bc:=ms==mr]
+bct<-list(tel[s!=r,.(tew=sum(ew)),by=.(s,bc)] %>% setnames('s','cr')
+,tel[s!=r,.(tew=sum(ew)),by=.(r,bc)] %>% setnames('r','cr')
+) %>% rbindlist %>% .[,.(tew=sum(tew)),by=.(cr,bc)] %>% setkey(cr,bc)
+bct[,m:=sm[cr,h3]]
+bct<-dcast(bct,cr+m~bc,value.var = 'tew',fill=0)
+bct[,tew:=`FALSE`+`TRUE`]
+bct[,pit:=`FALSE`/tew] # proportion internal ties
+bct[,`:=`(`FALSE`=NULL,`TRUE`=NULL)]
+bct[,m:=as.integer(m)]
+bct %>% setorder(m,-pit)
+bct %>% setkey(m)
+plt(
+myth(
+ggplot(bct[.(9)],aes(x=tew,y=pit)) + geom_text(aes(label=cr,angle=45),alpha=.5)
+) + scale_x_log10())
+```
+
+```{r mlc2mlk,eval=F}
+f<-'d/p/mlk.txt'
+if(file.exists(f)) {mlk<-fread(f)} else {
+  system.time(mlc2mlk.f(mlc,verb=T) %>% fwrite(f))
+  pbapply::pbreplicate(999,mlc2mlk.f(mlc) %>% fwrite('d/p/mlk.txt',append = T),cl = 1)
+}
+rm(f)
+mlk<-melt(mlk,measure.vars = names(mlk),variable.name = 'level',value.name = 'K') %>% setkey(level)
+```
+
+```{r mlk2sim}
+f<-'d/b/sim.RData'
+if(file.exists(f)) {load(f)} else {
+  sim<-mlk2sim.f(mlk,rep = 1e3)
+  save(sim,file=f)
+}
+rm(f)
+```
+
+```{r sim-fig,include=T,fig.cap='Distribution of K by convex hull'}
+sim$fig1
+```
+
+```{r mlk2k,include=T}
+f<-'d/b/k.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  k<-mlk[,.(k=pbapply::pbreplicate(1e5,psych::kurtosi(K %>% sample(replace = T)),cl = 1)),by=level][,.(e=mean(k),se=sd(k),l99=quantile(k,.005),u99=quantile(k,.995),`P(e ≦ 0)`=mean(k<=0)),by=level]
+  save(k,file=f)
+}
+rm(f)
+#debugonce(sg)
+sg(k[,round(.SD,4),.SDcols=names(k)[-1],by=level],tit='Kurtosis Permutation Test')
+```
+
+```{r mlk-tab,include=T,fig.cap='Significant Counts of K'}
+sim$fig2
+
+#sg(sim$tab,'Significant Counts of K')
+```
+
+## Model selection
+
+```{r mlc2stm}
+# mod<-stmbow2lda.f(list(documents=mlc$par,vocab=mlc$voc),k=50,out.dir='d/p',verbose=F,visualize.results = T)
+# mod$top.word.phi.beta[mod$top.word.phi.beta==0] <-.Machine$double.eps
+# debugonce(lda2viz.f)
+# viz<-lda2viz.f(mod,'d/b')
+```
+

@@ -1,0 +1,371 @@
+# Disciplines {#kd-d}
+
+Computational text analysis requires that text corpora be transformed from a human to a machine readable format. Several efforts to digitize paper archives have made historical research designs possible, notably the Google Books project, HathiTrust, and ITHAKA JSTOR archive. Digital storage devices like the portable document format (PDF) have also enabled texts to be represented in both a digital version and as a reasonable facsimile of paper originals. Reasonable, we should say, for most sociological purposes, put not for other historical questions where materiality of culture is important. [@Schreibman2014NonConsumptive\:149]
+
+Digital archives make research into the production of culture difficult, precisely because they misrepresent several aspects of the means of production. Because researchers should be mindful that digitization of texts abstracts some qualities of texts and renders many others invisible. The importance of physical space and material qualities of libraries is illegible when working with digital archives, while the verbal content of texts is highlighted. We must keep in mind that we are not viewing what historical actors saw. Digital texts are almost perfectly fungible, while, variability in historical texts. We are liable, for instance, to underestimate the search costs to locate texts, and the fungibility of texts themselves.
+
+There are reasons, however, to believe that digital text archives provide not just a useful but an historically valid abstraction from the material texts. If we want to understand how an individual scholar understood a particular text, better to have her personal copy, margin notes and all. Yet how would that scholar have treated the text as a cultural item? She would abstract her own copy to a format credibly held in common, the more aniseptically clean version that we see in digital archives. These are the ghosts of the texts, so to speak, but they are what would be left when all idiosyncracies were removed, the version that one would assume colleagues thought of when declaring that text publically.
+
+<!-- This comment on evidentiary foundations introduces the theme of this paper, which is the difference between personal and social meanings of texts, and more generally how tendencies toward idiosyncracy attenuate those toward conformity, and vice versa. -->
+
+This is by way of saying that the texts I compile below are not the same that were read by the historical actors under consideration. They are the texts that historical actors would assume their contemporaries were reading, that is, the sanitized, fungible, original published form of the text. By getting at these texts, we are getting at the real historical infrastructure for scholarly communication.
+
+The optical character recognition that computers require in order to store text digitally depends critically on the hard work of creating quality scans of journal archives. JSTOR has done a comendable job of this. Next we will describe what the JSTOR archive has to offer.
+
+## JSTOR Journals {#kd-dq1}
+
+```{r master2jstorm}
+f<-'d/q/jstorm.RData'
+if(file.exists(f)) {
+  load(f)
+} else {
+  jstorm<-master2jstorm.f()
+  save(jstorm,file=f)
+}
+rm(f)
+```
+
+```{r jstorm2jclu}
+f<-'d/q/jclu.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  jclu<-jstorm2jclu.f(jstorm,shallow=T) # TODO consider two passes, one identifying sups, the second removing them
+  save(jclu,file=f)
+}
+rm(f)
+```
+
+We rely on the JSTOR digital archive which gives access to optical scans of historical journals. JSTOR provides a title list of their journal coverage [@JSTOR2018Title]. The coverage of journals in the archive is very complete for those journals chosen for the database. As of this writing JSTOR contained `r nn(jclu$n$t)` different journal titles and `r nn(jclu$n$j)` journals from `r nn(jclu$n$p)` different publishers. The different journal counts are due to some journals changing titles at least once.^[To avoid overcounting, title histories are collapsed into their most recent record, meaning all subsequent counts are out of `r nn(jclu$n$j)`. Even though we might expect disciplinary identity to change over time, JSTOR discipline labels do not vary within title histories. `r {dN<-jstorm[title_id==title_history,sapply(discipline,length)]==0;if(any(dN)) dS<-sum(dN);paste0(nn(dS,cap=T),' journal',if(dS>1) 's','--',jstorm[title_id==title_history][dN,nl(publication_title)],'--lacked any discipline labels and ',if(dS>1) 'are' else 'is',' excluded from tabulations.')}`] The JSTOR coding contains `r nn(jclu$n$l)` subject labels. These labels refer to `r nn(jclu$n$s)` superdisciplines under which may be found `r nn(jclu$n$d)` disciplines.
+
+Most journals are given more than one discipline label, and the superdisciplines are not marked as such in the database  creating some redundancy. For instance, a journal labeled as "Sociology" will also be labeled as "Social Sciences". Most academics will be familiar with whether a label is for a superdiscipline or a subdiscipline, yet for outsiders or for skeptical insiders, the only clue is in the frequency with which a label is applied. Counting labels, however, does not unambiguously place a journal in one discipline or another because journals may bear multiple labels, even multiple superdiscipline labels.
+
+To assess the size of the disciplines and to disentangle their hierarchies it will be helpful to have a mutually exclusive labeling scheme that draws on the JSTOR curators' judgement while simplifying it.
+
+## Network Mode Projection
+
+I rely on network methods to accomplish this labeling in a data driven and reproducible way. In a network representation of journal discipline labels, two journals may be said to be be related if they carry the same label. In network terms this can be represented as a bipartite or bimodal network. In a bimodal network there are two types (modes) of nodes, a journal and a label, and ties can only be registered between, not within, these modes. So journals are not tied directly to other journals and labels are not tied directly to other labels.
+
+Given any bimodal network, we may translate or project it into either of two unimodal forms. In a single mode or unimodal projection of a bimodal network there is only one type of node, in my case either a journal or a label, but not both. The omitted type is instead represented as a set of ties among the included type. Though the bimodal network is a more elegant represenation, it is technically necessary to project it into one of its two bimodal forms to leverage network methods that are desinged with unimodal data in mind.
+
+Using the list of subjects associated with each journal in the JSTOR title list, I construct the bimodal *journal-label* network with journals in the first mode bearing ties to discipline labels in the second mode. I then project the bimodal network into two unimodal networks, one where journals are connected by ties equal to the number of discipline labels they have in common, and another where labels are tied by the number of articles carrying both labels. Call each of these unimodal networks, the (*journal-label-journal*) journal network and (*label-journal-label*) label network, a facet of the original bimodal network.
+
+`r {wrk<-jstorm[title_history==title_id,sapply(discipline,length)];wrk %<>% .[.!=0];tab<-table(wrk)}`
+Figure \@ref(fig:mod-proj) illustrates the effects of network mode projection on a random sample of 300 edges from the full JSTOR title list network. The first panel illustrates the bimodal network where journals are yellow dots and labels are blue dots. As an artifact of sampling, most journals here are shown tied to only one label. In fact this is never the case in the full network; as each journal has at least one discipline and one superdiscipline label the minimum number of labels is two, which is the median case accounting for `r (prop.table(tab)*100)['2'] %>% nn(1)` percent of journals. The most labels any journal bears is `r names(tab) %>% tail(1) %>% as.integer %>% nn`, but these are outliers with most journals bearing only a few labels.
+
+```{r mod-proj,include=T,cache=T,dev='png',fig.width=3,fig.height=3,out.width='33%',fig.show = 'hold',fig.cap='Mode Conversion on a 300 Edge Random Sample of the JSTOR Title List Label Network'}
+bup<-jclu2bup.f(jclu)
+```
+
+It is worth noting a few features of the unimodal projections or facets illustrated in the second and third palens. First, unimodal projections will always be made of up of overlapping cliques. Take the journal facet; each journal bearing a particular label will be tied to each other journal with the same label. Together they will form a clique, a subnetwork of maximum density where all possible ties exist. Such cliques grow nearly exponentially, as each additional journal with the same label joins the clique and adds a number of ties equal to the former size of the clique. In practice this means that very common labels like "Social Sciences" can easily dominate the unimodal projection of the network. Here the weighting of edges becomes important; if two labels overlap because some nodes bear both labels, then within the intersection of the two cliques the ties may be treated as "weighing more" by adding the contribution of each label separately. The exception is if the cliques overlap by only one node, in which case they have a node but no ties in common. Nevertheless using methods that take edge weights into account is a good way to ameliorate the exponential influence of popular labels. 
+
+Second, though the unimodal facets of a bimodal network represent the same data, each may have different characteristics especially in the common case of a large population imbalance between modes. In the full network we have `r jclu$b %>% {V(.)$type} %>% {sum(!.)/sum(.)} %>% nn` times as many journals as labels and each journal sends multiple ties. This degree imbalance between the two modes may mean that one facet is more dense than its inverse. Density is the proportion of actual ties out of all possible ties. In Figure \@ref(fig:mod-proj) an imbalance may be observed where the journal facet has many dense free floating or overlapping cliques and where the label network appears to be mostly made of isolated labels save for the few larger components. In the sampled network the journal facet is `r lapply(bup[ec('proj1,proj2')],igraph::graph.density) %>% do.call(what='/') %>% nn` times more dense than the label facet. In the case of our full network, the potential imbalance in degree distribution between facets happens to be offset by the population imbalance itself. The densities in the full journal and label facets are comparable, `r (sapply(FUN=igraph::graph.density,jclu[ec('gt,gd')])*100) %>% nn(1) %>% nl` percent respectively, meaning that analysis will not merely hinge on which facet is analyzed.
+
+Third, unimodal projection has the effect of pruning what are sometimes referred to as pendants, which are simply nodes with only a single tie. . Each of the isolates in the label facet represents a larger or smaller number of journals, which may be observed in the different sizes of the free floating cliques of the journal facet, yet no matter their size they supply no information about interdisciplinarity. Because the journal facet captures both size (of cliques) and relatedness (clique overlap) it is a better representation of the information of the original bimodal network. Its drawback is that it is larger and more unwieldy to analyze. The label facet offers a simpler picture of interdisciplinarity.
+
+## Network Community Detection
+
+Each facet described above will help answer a different question about disciplinarity in the JSTOR archive as indicated by JSTOR's labeling policy. I aim to resolve the uncertainty about which labels count as superdisciplines and to reveal patterns of sorting not apparent in the labels themselves. The rationale for doing this is to observe not the choices of JSTOR coders, but the tacit judgement they likely used in applying labels. I expect that the `r jclu$n$l` fine grained labels bely a simpler classification scheme of academic genres.
+
+I will use two techniques, community detection and graph visualization, to answer these questions. Communities are really subnetworks of high density, or clusters. I operationalize disciplinarity as the presence of clusters within the journal facet network. Community detection on the journal facet will answer how many superdisciplines there are and the size of each in terms of the number of journals belonging to it. Visualization of the label facet will show how hard or soft are the boundaries between disciplines and where the strongest interdisciplinary relationships lay.
+
+First, I use community detection to partition the JSTOR journals into mutually exclusive disciplines. Community detection is a set of network methods designed to expose clusters by grouping nodes together such that they send more ties to members of their own group than they send to members of different groups. There is a cottage industry around developing algorithms and statistical models to learn an unobserved community structure of a network [see @Fortunato2016Community for an excellent review]. The choice of the right community detection method is controversial especially for very large networks in which cross-validation is difficult. Fortunately the network at hand is small enough to validate directly which lowers the risks of choosing the wrong method .
+
+To wit I adopt the well-known Louvain method of community detection based on hierarchical modularity maximization. [@Blondel2008Fast] Modularity is a quality metric quantifying the tradeoff between within-group and between-group ties. The modularity of any given partition of a network into clusters is equal to the proportion of ties that fall within clusters minus the expected proportion of within-group ties if ties were distributed randomly. A division that is as good as chance would have a modularity value of zero, a division better than chance a value between zero and one, and a division worse than chance a value between negative one and zero. [@Newman2004Finding\:8] Higher modularity scores indicate a better sorting of the network into densely tied clusters.
+
+The Louvain method is a bottom-up agglomerative algorithm. The procedure starts by assigning each node to its own community. Then, for each node, it assigns the node to the neighbor's group that would most improve global modularity. It repeats this until no move improves modularity. This forms the first layer in the hierarchy. It then collapses groups into nodes and repeats the algorithm on the condensed network, stopping at the first level where there is no modularity improving move to make. The first layer represents the most local, the last layer the most global resolution of community structure.
+
+Modularity-based methods are tried and true, and their drawbacks are well-known. The Louvain method is not deterministic, as the outcome may (but usually does not) depend on the ordering of the nodes in the reassignment qeue. However Louvain has several features that recommend it. It is computationaly fast on small to medium graphs and it is freely available in network analysis software. It also gives a hierarchical solution that provides the analyst with options to inspect community structure at a range of local and global resolutions, akin to a cartography of counties versus one of continents. Given the small size of our network, a local resolution will not be overwhelming, so Louvain is preferable to other methods that only offer the coarser global view.
+
+Table \@ref(tab:jclu-tab-sup) summarizes the results of applying the Louvain method to the journal facet and taking the most localized layer of the community structure. Learned labels are applied to the clusters by assigning each the name of its most frequent label. Community detection sharpens the boundaries between fields by placing each journal unambiguously in one superdiscipline or another. This mutual exclusivity is apparent by the sum of the given labels exceeding 100%.
+
+```{r jclu-tab-sup,include=T}
+sg(jclu$tab %>% copy %>% setnames(ec('super,N,Labeled,LPct'),ec('Superdiscipline,Learned,Given,GPct'))
+   ,tit = "JSTOR Journal Counts")
+```
+
+The first finding is that of the `r nn(jclu$n$l)` labels these `r nn(jclu$n$s)` form the top of a hierarchy of superdisciplines. Area Studies stands apart and is not subsumed under either Social Sciences or Humanities. Social Sciences journals predominate due to JSTOR's initial focus in that area, even without counting economics among them, and Science & Mathematics counts for a larger than one might think. Economics stands apart from the Social Sciences, and indeed Business & Economics marks the transition from the larger academic journal space to the smaller professional space of Arts, Law, and Medicine & Allied Health.
+
+The given labels do overlap and we can recover a picture of interdisciplinary by clustering and visualizing the label facet. This facet presents a simplified view. Recall that each facet represents the same data, the difference being whether a journal or a label is represented as a node or an edge, and that there is a population imbalance in favor of journals over labels. The larger the population the easier it is to partition into a greater number of subpopulations. Converseley, because there are far fewer labels than journals, we would expect the clustering to be less granular for the label network than for the journal network. In fact there `r wrk<-lapply(jclu[ec('title_history,discipline')],function(x) {x$memberships[1,]} %>% unique %>% length) %>% do.call(what='-'); if(wrk==1) 'is' else 'are'` only `r wrk %>% nn` `r if(wrk==1) 'less' else ec('fewer,more')[(wrk<0)+1]` cluster`r if(abs(wrk)>1) 's'`--`r do.call(setdiff,{wrk1<-lapply(jclu[ec('ft,fd')] %>% unname,levels);if(wrk<0) rev(wrk1) else wrk1})`--which is subsumed under Social Sciences.
+
+## Network Visualization
+
+Figure \@ref(fig:jclu-lnet) visualizations the relationships among disciplines, where again the strength of ties is equal to the number of journals bearing both labels. Here the label with highest number of ties within its cluster becomes the category name of the cluster. That label is then ommitted as a node and is instead visualized as a color coding of its cluster, reflecting the special status of the superdiscipline labels.
+
+Unlike traditional graph visualizations that are designed to be pleasing to the eye, this  one is drawn according to a statistical model called a latent position or latent space  model. It starts with a simple idea that the weight of the edges (the number of journals carrying both labels) is a count that follows a Poisson distribution. This distribution may be modeled by log-linear regression where the logarithm of the mean of the distribution is a linear function of an intercept term and covariates. What is interesting about the model is that the covariate of interest is treated as the distance between the nodes in an unobserved or latent space. The distance is treated as negative such that as nodes get closer together (as the negative distance increases) the count of the edge weight between them increases (technically the logarithm of the mean of the count increases).
+
+It is an elegant idea, but estimating the model is complicated. The distances are metaphorical, and to realize them requires positing a euclidean space in which each node has coordinates. From the coordinates the distances can be easily caculated, but knowing which are the right coordinates requires a complicated estimation routine based on optimizing goodness of fit between guesses of the coordinates and the actual count data. The estimator begins with coordinates taken from the conventional Fruchterman Reingold layout algorithm and uses Markov Chain Monte Carlo simulation to converge toward the positions that optimally fit the latent space assumption [See @Krivitsky2008Fitting for details of the model, estimation, and software]. Even if the estimator does not arrive at a perfect solution it improves upon a conventional layout in the direction of meaningful, and not just pretty, aesthetics thereby helping the viewer to avoid artifacts and perceive real information about the network.
+
+Another great feature of the latent space model is that it allows additional terms to be fit alongside the latent distances. It is possible to control for or net out the effect of nuisance terms like any other regression. As discussed above there is a concern about the undue effect of popular labels. We have already tried to remove the superdiscipline labels from the label network, preferring to represent them as color coded categories rather than nodes. Popular labels may still remain, however, and due to the exponential growth of ties during downmode conversion even a handful of them will have a disproportionate influence on the global layout of the graph.
+
+This degree distortion can be controlled for by what is called a sociality term, which can be thought of as a measure of a node's popularity. A sociality term is a score for every node that if positive means a node is more attractive and if negative means a node is actually repulsive of ties. When viewing the positions of a latent space model also fit with a sociality term, the space will measure relatedness without the effects of popularity.
+
+Figure \@ref(fig:jclu-lnet) plots the results of a latent space model on the label facet omitting superdiscipline nodes.
+
+```{r jclu-net,eval=T,include=F,fig.cap='Discipline Network. Within-cluster ties are darker and between-cluster ties lighter.'}
+f<-'d/b/jclu2net.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  jnet<-jclu2net.f(
+    jclu
+    ,layout='fruchtermanreingold'
+    ,repulse.rad=log(gorder(jclu$gd))*gorder(jclu$gd)^2 # reign in isolates, smaller is more compact
+    ,niter=1e5
+    ,isolates = F
+  )
+  save(jnet,file=f)
+}
+rm(f)
+#plt(jnet,tooltip='text') # TODO fix tooltips to omit edge tips
+```
+
+```{r jclu-lnet,include=T,fig.cap='Discipline Network in Latent Space. Node size represents sociality. The larger a node, the more attractive it is, and the larger a white dot within a node, the more repulsive it is.'}
+f<-'d/b/jclu2lnet.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  jlnet<-jclu2net.f(
+    jclu
+    ,layout='latent'
+    ,isolates = F
+    # ,burnin=1e4
+    # ,sample.size=1e3
+    # ,interval=1e2
+    ,burnin=1e7
+    ,sample.size=1e3
+    ,interval=1e4
+  )
+  save(jlnet,file='d/b/jclu2lnet.RData')
+}
+rm(f)
+plt(jlnet,tooltip='text')
+```
+
+```{r lnetg,eval=F}
+f<-'d/p/lnetg.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  p=4
+  t=1
+  i=1e4
+  s=max(600*t,1000)
+  b=250*i*p
+  cat('i =',i,'b =',b,'\n')
+  g<-(attributes(jnet)$zkref %>% unique %>% length):1
+  names(g)<-g
+  lnetg<-pbapply::pblapply(g, function(x)
+    try(jclu2net.f(
+      jclu
+      ,layout='latent'
+      ,isolates = F
+      ,grp = x
+      ,burnin=b
+      ,interval=i
+      ,pilot.runs=p
+      ,sample.size=s
+      ,store.burnin=T
+      ,threads=t
+    ))
+    ,cl = 7
+  )
+  save(obj,file=f)
+}
+rm(f)
+pdf('_book/lnetg-diag.pdf')
+lapply(lnetg,function(x) latentnet::bic.ergmm(attr(x,'lnet'))$overall) %>% {plot(x=names(.) %>% as.integer,y=.,type='b')}
+withr::with_package('latentnet',lapply(lnetg[!sapply(lnetg,is.null)],function(x) attr(x,'lnet') %>% mcmc.diagnostics))
+dev.off()
+```
+
+```{r lnet-frames,eval=F}
+lnetg2pfp.f<-function(lnetg){
+lnetg<-lnetg[order(names(lnetg) %>% as.numeric)]  
+prc<-list()
+pdf('_book/lnetg-plt.pdf')
+prc[[1]]<-data.table(
+  1
+  ,attr(lnetg[[1]],'net') %v% 'vertex.names'
+  ,attr(lnetg[[1]],'net') %v% 'memb'
+  ,attr(lnetg[[1]],'lnet')$mkl$sociality %>% exp
+  ,attr(lnetg[[1]],'lnet')$mkl$Z.K
+  ,attr(lnetg[[1]],'lnet')$mkl$mbc$Z.pZK %>% apply(1,max)
+  ,latentnet:::plot.ergmm(attr(lnetg[[1]],'lnet'),Z.ref = attr(jnet,'zref'))
+) %>% setnames(ec('f,vertex.names,memb,rs,zk,part,x,y')) # part = partisanship
+for(i in 2:length(lnetg)) prc[[i]]<-data.table(
+  i
+  ,attr(lnetg[[i]],'net') %v% 'vertex.names'
+  ,attr(lnetg[[i]],'net') %v% 'memb'
+  ,attr(lnetg[[i]],'lnet')$mkl$sociality %>% exp
+  ,attr(lnetg[[i]],'lnet')$mkl$Z.K
+  ,attr(lnetg[[i]],'lnet')$mkl$mbc$Z.pZK %>% apply(1,max)
+  ,latentnet:::plot.ergmm(x = attr(lnetg[[i]],'lnet'),Z.ref = prc[[i-1]][,cbind(x,y)],Z.K.ref = prc[[i-1]][,zk])
+) %>% setnames(ec('f,vertex.names,memb,rs,zk,part,x,y'))
+dev.off()
+prc<-rbindlist(prc)
+prc<-rbindlist(list(
+  data.table(
+    f=0
+    ,vertex.names=attr(jnet,'net')%v%'vertex.names'
+    ,memb=attr(jnet,'net')%v%'memb'
+    ,rs=attr(jnet,'net')%v%'rs'
+    ,zk=attr(jnet,'net')%v%'memb' %>% factor(levels=jclu$fd %>% levels) %>% as.numeric
+    ,part=1
+    ,attr(jnet,'zref')) %>% setnames(ec('V1,V2'),ec('x,y'))
+,prc))[,zk:=factor(zk,levels=table(zk) %>% sort(T) %>% names %>% as.integer) %>% as.double,by=f][,zk:=factor(zk)]
+scl<-prc[f>0,range(rs)]
+prc[f==0,rs:=lintran(rs,range(rs),scl)]
+prc[,x:=scale(x),by=f]
+prc[,y:=scale(y),by=f]
+prc[f!=0,x:=prc$x[prc$f==1]]
+prc[f!=0,y:=prc$y[prc$f==1]]
+setkey(prc,f)
+pfp<-prc[.(c(0,1))][,f:=ec('Fruchterman\nReingold,Latent\nSpace')[f+1]][,memb:=factor(memb,levels=levels(jclu$fd))]
+fp<-myth(ggplot(pfp,aes(x=x,y=y
+#                        ,alpha=part
+                        ,color=memb,ids=vertex.names
+,size=rs,text=vertex.names,frame=f)) + geom_point(aes(stroke=1+rs/max(rs)*5),size=2,shape=21,fill='white',position = position_jitter(width=.01,height=0,seed=12345)
+) + guides(alpha=F,size=F)) + theme_blank()
+plt(fp,tooltip='text') %>% plotly::animation_opts(redraw=T,frame = 2* 1e3,transition=2* 1e3)
+}
+```
+
+```{r testplot,eval=F}
+
+
+net<-attr(lnetg[[1]],'net')
+e<-net %>% as.edgelist
+vn<-attributes(e)$vnames
+e<-data.table(e) %>% setnames(ec('s,r'))
+e[,`:=`(s=vn[s],r=vn[r])]
+e[,weight:=net%e%'weight']
+e[,cross:=net%e%'cross']
+ct<-RColorBrewer::brewer.pal(unique(pfp$memb) %>% length,'Dark2')
+names(ct)<-table(pfp$memb) %>% sort(T) %>% names
+
+setkey(pfp,vertex.names)
+pfp[,clr:=ct[memb]]
+e[,`:=`(
+  x=pfp[s,x]
+  ,xend=pfp[r,x]
+  ,y=pfp[s,y]
+  ,yend=pfp[r,y]
+  ,xm=pfp[s,memb]
+  ,ym=pfp[r,memb]
+)]
+e[,clr:=mapply(function(s,r) colorRampPalette(c(s,r))(3)[2],s=ct[xm],r=ct[ym])]
+}
+
+cp<-ggplot() +
+  geom_segment(data=e,mapping=aes(x=x,y=y,xend=xend,yend=yend,group=clr),alpha=.1,color=e$clr,size=e$weight/max(e$weight)) +
+    geom_point(data=v,mapping=aes(x=x,y=y,text=name,size=rs),shape=21,color=desat(v$clr,.01),fill=v$clr)
+cp
+
+```
+
+Here some of the granular categories are collapsed. The humanities includes arts, as we might expect, but also area studies, which one might have classed with the social sciences, but which bear stronger ties to cultural studies like music, folklore, religion, and language and literature. Law and medicine and allied health are grouped with the social sciences, and business and economics is maintained as separate field due merely to the attachment of three professional fields--development studies, management and organizational behavior, and marketing and advertising--to their parent disciplines business and economics (not to be confused with the separate and ommitted label "business and economics"), which are themselves strongly tied to the social sciences.
+
+```{r layouts,include=T,fig.cap='Fruchterman Reingold and Latent Space Layouts Compared'}
+f<-'d/b/pp.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  load('d/b/jclu2net.RData')
+  load('d/p/lnetg.RData')
+  fr<-data.table(attributes(jnet)$ggnet)[,f:='FR']
+  ls<-data.table(attributes(lnetg$`1`)$ggnet)[,f:='LS']
+  x<-rbindlist(list(fr,ls))[,n:=is.na(weight)]
+  pp<-plot_ly(x=~x,y=~y,frame=~f) %>% 
+    add_segments(data=x[(!n)],xend=~xend,yend=~yend) %>% 
+    add_markers(data=x[(n)],color=~memb,ids=~vertex.names,text=~vertex.names,size=~rs)
+  save(pp,file=f)
+}
+rm(f)
+pp
+```
+
+
+Though graph layouts are imperfect and should not be overinterpreted, the global features of facing within clusters do indicate the disciplines that straddle boundaries. On the border between the social sciences and science and mathematics are the social sciences dealing most with the physical problems of space, health, and technology. On the edge of the humanities and social sciences are history, philosophy, and anthropology. 
+
+## Social Science Journals {#kd-dq2}
+
+The journals within social science cover `r jclu$tab %>% length %>% nn` different subdisciplines.
+
+```{r jclu-tab-sub,include=T}
+jclu_sub<-jstorm[sapply(discipline,function(x) 'Social Sciences'%in%x)][,discipline:=lapply(discipline,setdiff,'Social Sciences')] %>% jstorm2jclu.f
+setnames(jclu_sub$tab,'super','Subdiscipline')
+sg(jclu_sub$tab,tit = "JSTOR Social Sciences Journal Counts")
+```
+
+```{r jclu-tab-sub-econ,eval=F,include=T}
+jclu_sub_econ<-jstorm[sapply(discipline,function(x) 'Business & Economics'%in%x)][,discipline:=lapply(discipline,setdiff,'Business & Economics')] %>% jstorm2jclu.f
+jsube<-jclu_sub_econ$tab
+setnames(jsube,'super','Subdiscipline')
+sg(jsube,tit = "JSTOR Business & Economics Journal Counts")
+```
+
+```{r jstorm2tab}
+jtab<-jstorm2tab.f(jstorm,beg.bef = 1900,end.aft = 1900)
+sg(jtab[,.(
+  `Title History`=publication_title
+  ,Discipline=discipline
+  ,Start=start %>% as.character
+  ,Stop=stop %>% as.character
+)],tit='20th Century Social Science Journals in JSTOR',new.col.align = 'p{0.4\\\\linewidth}p{0.3\\\\linewidth}rr'
+#,rplc = ec('\\{tabular\\},\\{longtable\\}')
+)
+```
+
+```{r jstorm2fig,include=T,fig.cap='Periods in the Growth of the Number of Social Science Journals in the JSTOR Archive'}
+f<-'d/q/jfig.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  jfig<-jstorm2fig.f(
+    jstorm,jclu,series='Social Sciences',
+    ann=rbindlist(list(
+      data.table(text='Sample',xmin=1888,xmax=1922,dodge=.01)
+      ,data.table(text='Civil War',xmin=1861,xmax=1865,dodge=.99)
+      ,data.table(text='WWI',xmin=1914,xmax=1918,dodge=.99)
+      ,data.table(text='WWII',xmin=1939,xmax=1945,dodge=.99)
+    ))[,col:=c('darkgray',rep('red',3))]
+  )
+  save(jfig,file=f)
+}
+rm(f)
+plt(jfig$p,tooltip=ec('text'))
+```
+
+
+```{r nces2phd,include=T,fig.cap='Decennial growth in number of PhD degrees conferred in the U.S.'}
+f<-'d/q/nces.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  nces<-nces2phd.f()
+  save(nces,file=f)
+}
+rm(f)
+plt(nces$fig)
+```
+
+
+```{r nces/jstorm,include=T,fig.cap='Number of PhDs conferred in the United States per Social Science Journal'}
+rat<-jfig$d[between(year,1800,2000)&super=='Social Sciences'] %>% setkey(year)
+setkey(nces$int,year)
+rat<-merge(rat,nces$int)
+rat<-rat[,.(year,ratio=N.y/N.x,g1)]
+r<-rat[,range(ratio)]
+n<-diff(r)*.1
+
+plt(myth(
+  ggplot(data=rat,mapping = aes(x=year,y=ratio)) +
+    annotate('rect',xmin=1888,xmax=1922,ymin=-Inf,ymax=Inf,alpha=.1) +
+    geom_line(aes(color=g1),size=1.5) +
+    geom_point(data=rat[.(nces$tab$year)] %>% na.omit,mapping = aes(x=year,y=ratio),shape=21,size=1.5,stroke=1,fill='white')
+) + theme(legend.position="none",axis.title.x = element_blank()))
+wrk<-rat[between(year,1888,1922),summary(ratio)]
+```
+
+This period represents one of stable growth, as the size of the field grows with the number of players on it. Between 1888 and 1922 there tended to be about `r nn(wrk['Median'],0)` new PhDs in the U.S. for every social science journal even as each population grew year over year. These growth patterns begin to diverge around `r jfig$d[super=='Social Sciences'][g1==3][1,year]` as a decades long acceleration of personnel begins, relatively slowly between 1920 and 1960 at an average acceleration rate of `r rat[between(year,1920,1960,F),nn(ratio %>% mean)]` PhDs per journal per year, and then quite precipitously in the 1960s at an average acceleration rate of `r rat[between(year,1960,1980,T),nn(ratio %>% mean)]`.
