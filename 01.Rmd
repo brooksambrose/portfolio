@@ -1,14 +1,14 @@
-# `r tkd` {-#kd}
+# `r tint` {#int}
 
 #### Abstract {-}
 
-(ref:abs-kd)
+(ref:abs-int)
 
 #### Keywords {-}
 
-sociology of knowledge, topic modeling, history of social science
+(ref:key-int)
 
-# Introduction {#kd-intro}
+## Knowledge Development {#kd}
 
 What were the ideas that predominated in the social sciences at their formation as professions in the postbellum United States? What was the course of their development over a generation of scholarship?  In this study I will answer these questions inductively through a reading of the original journals in each discipline. Though the goal is substantive, the methodological challenges of consuming a large quantity of text will feature importantly in the story that unfolds. Along the way I will demonstrate the usefulness of the computational *distant reading* that is being explored in the humanities and how it can be combined with traditional textual analysis for social science purposes. While controversial in humanistic circles that emphasize the primacy of the reader’s novel interpretive work when consuming text, distant reading fits comfortably within a social science epistemology that aims to achieve an objective description of intellectual history Indeed, computational methods offer a useful backstop to the idiosyncrasy of a particular person’s reading of history.
 
@@ -47,7 +47,7 @@ Even without conducting the second labeling step, in step 3 it will already be p
 
 In the next section, before we delve into the statistical and computational nuances of topic models, I will spend some time developing a few themes to help organize the blending of quantitative and qualitative methods invited by topic modeling in particular and computational text analysis generally.
 
-# Prior Work {#kd-lit}
+## Prior Work {#kd-lit}
 
 
 ## Information

@@ -1,12 +1,59 @@
+# `r tcit` {#cit}
 
-# Web of Knowledge {#wok}
+#### Abstract {-}
+
+(ref:abs-cit)
+
+#### Keywords {-}
+
+(ref:key-cit)
+
+## Mapping Knowledge {#wok}
+
+There are two reasons to map knowledge spaces. First, we may want to know how knowledge develops as a resource unto itself. Second, we may want to exploit such a map for a productive purpose. Here we will attempt the second as prologue to the first. We will tackle the technical problems of constructing a map. We will show how a map can be put to use. Finally, we will investigate how the particular map we make may tend to predictably get us lost.
+
+All knowledge mapping requires first an ontological and then an analytical action. Ontological actions delineate the things that matter. They arbitrarily construct from perception the items that we then think about. While onotological decisions tend to define the scope of everything that may be learned from an investigation, they are often assumed rather than demonstrated. Actor Network Theory (ANT) provides a unique example of a method of research that, because it is ethnographic and thus marinating in an abundance of perception, allows the cast of ontic characters to grow. Literally anything can be deigned significant for inclusion in a web of knoweldge. In an ANT study of science, if the feel of a reading chair modifies a reader's oreintation to a text they are reading, the chair counts.
+
+The lion's share of knowledge mapping studies are not so ontologically radical as ANT. Take the field of bibliometrics. The ontological decision here is to take documents as the primary ontic. Documents are nothing but collections of glyphs, so the first task of bibliometricians tends to be to map glyphs to terms and analyze them. Here we have already used the ontic triad underlying bibliometrics. In the sentence
+
+> "Go, dog, go!"
+
+there are twelve discrete glyphs and two terms. A grammatical cutting rule renders the glyph sequences as 
+
+> "Go, " "dog, " "go!"
+
+and a tokenization rule maps the cuts to two terms
+
+> "go" "dog" "go"
+
+ which may in turn be analyzed, for instance by counting the tokens. The documents form the bins within and across which the terms will be analyzed. The token, as a mere operational step, is used and then dispensed with unless questions of measurement surface. Clearly the *glyph-term-document* (GTD) ontic does not care about the armchair of a reader of a document, and indeed does not even care about the reader herself. <!-- An ANTy idea that is more directly adjecent to GTD is inquiry into the materiality of texts, a topic with a long history in the humanities and a much more recent history in digital analysis.  -->
+
+So the reader is invisible because she is not inscribed in the document. What about the writer? Bibliometricians may backfill GTD by entity recognition or grounding. Once terms are recognized, we may further recognize that we know more about them. A simple example of this is pulling out "metadata", for instance, the author of a document. The author's name is not just any term, but a conceptually very important one. Grounding is how bibliometrics may be linked to theories and programs of greater importance.
+
+Bibliometrics has indeed been based more on the reference of a text as a particular grounded entity rather than on the use of the full text of a document. If a text is a house, the reference is its address. More precise than a name, an address is a codification of different hierarchically ordered elements that describe the location of an entity. The consistent tokenization of a reference is not an easy task, as it depends on entity recognition of several different kinds of things, including year of publication, author, title, and source.
+
+The citation became the basis of the concept of a web of knowledge as coined by the work of Eugene Garfield and institutionalized in the Institute for Scientific Information (ISI). Citations solved the problem that ideas do not have addresses that we can understand empirically. Documents do have such addresses, and documents related to ideas as the container of texts scholars use to commmunicate them. While the reproduction and location of ideas cannot be reliably observed, documents are the fungible currency with which scholars communicate about ideas. 
+
+There have been two main orientations to mapping the web of knowledge, description and conscription. Description has either scientific aims, to underatand and explain the facts of knoweldge development, or practical aims, to locate and retrieve knowledge required for a particular purpose. Conscription on the other hand aims to mobilize bibliometric patterns of knowledge as measures of value in competitive markets, namely hiring, promotion, and awards within scholarly professions.
+
+There are several ways to digitally represent texts as knowledge.
+
+From an empirical perspective, texts are nothing but collections or bins of glyphs.  The current paradigm is to render glyphs and recognize them as terms. Such terms may then be analyzed, for instance, by counting diction. Alternative paradigms are cropping up
+
+Second is entity recognition or grounding, where recognized terms are mapped to an existing database of structured knowledge.  
+
+
+
+ [@Pilkington2009evolution]
+
+
 
 ```{r wok2dbl}
 f<-'d/p/wok2dbl.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  wok2dbl<-wok2dbl.f(dir='d/d/wok','d/p')
+  wok2dbl<-wok2dbl.f(dir='d/d/wok0041','d/p')
 }
 rm(f)
 ```
@@ -66,27 +113,47 @@ if(file.exists(f)){
 rm(f)
 ```
 
+## Disciplines as a Large World Co-reference Network
+
+The structure of a large world as revealed by KCC can be explored in a bottom-up and top-down fashion. Bottom-up observes 3-clique communities first. In the social science co-reference network.
+
+```{r kcc2tree, fig.cap='K-clique Community Structure',include=T, message=FALSE, warning=FALSE}
+f<-'d/b/kcc2tree.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  system.time(kcc2tree<-kcc2tree.f(cos2kcc,bel2mel,wok2dbl))
+  save(kcc2tree,file=f)
+}
+rm(f)
+kcc2tree$int
+```
+
 ```{r kcc2isl,fig.cap='K-clique Community Island Plot',include=T}
 f<-'d/b/kcc2isl.RData'
 if(file.exists(f)){
   load(f)
   kcc2isl<-kcc2isl.f(bel2mel,cos2kcc,wok2dbl,dbl2bel,co=kcc2isl,ordinal=F,minew=1)
 } else {
-  kcc2isl<-kcc2isl.f(bel2mel,cos2kcc,wok2dbl,dbl2bel,ordinal=F,rad=.8,nit=1e4,minew=1)
+  seed<-.Random.seed %>% sample(1)
+  cat('Seed: ',seed,'\n',sep='')
+  set.seed(seed)
+  kcc2isl<-kcc2isl.f(bel2mel,cos2kcc,wok2dbl,dbl2bel,ordinal=F,rad=1.8,area=1.6,nit=1e4,minew=1,res=200,hex = .01)
   save(kcc2isl,file=f)
 }
 rm(f)
 ```
 
-```{r isl3d, fig.cap='Time to Explore!', message=FALSE, warning=FALSE, include=T}
+```{r isl3d, fig.cap='Time to Explore! [Pop-out]("isl3d.html")', message=FALSE, warning=FALSE, include=T}
 f<-'d/b/isl3d.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  isl3d<-isl2isl3d.f(kcc2isl,rad=3,res=100,ln=T,floor=T,close = T)
+  isl3d<-isl2isl3d.f(kcc2isl,rad=1,res=200,ln=T,floor=T,close = T,tight = F,cont=F,zasp=.15,zoom=.75,pins=T,medcen = F,raise=1)
   save(isl3d,file=f)
 }
 rm(f)
+htmlwidgets::saveWidget(isl3d,file.path(getwd(), '_book', paste0(opts_current$get('label'),'.html')),selfcontained = T,title = opts_current$get('fig.cap'))
 isl3d
 ```
 

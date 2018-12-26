@@ -1,3 +1,11 @@
+<!-- `r tpe<-'Profession against Education: Knowledge as Influence'` -->
+
+<!-- #### Chapter 1: `r tpe` {-} -->
+
+<!-- (ref:pe-abs) Status reflects a person's generalized ability or inability to accrue resources to herself over the claims of others. Social institutions define the conditions of status attainment, and different institutions validate statuses according to different norms, truths, and values. Knowledge as a valued resource forms a basis of status hierarchies in two institutions in American society: profession and education. This essay explains how knowledge mediates social relationships to stabilize status hierarchies differently in professions and in education. It also describes how stability of status hierarchies depends on a qualified segregation of these institutions, as the norms of one can be corrosive to the norms of the other. -->
+
+<!-- (ref:pe-abs) -->
+
 # `r tpe` {#pe}
 
 #### Abstract {-}

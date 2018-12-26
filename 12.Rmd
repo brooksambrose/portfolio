@@ -92,11 +92,11 @@ graph {
 
 Text as thought, or as communication. Thought holds that the ideas can be reliably interpreted, perhaps hermeneutically, to recover the mental events or intentions of authors and readers. Ambitious. Easier is to treat texts as communications, as messages, and worry little about their meanings or interpretations. A study of communication is a good foundation for the study of thought, but it is a separate task and the one we undertake here.
 
-# History of Ideas {#kd-problem}
+## History of Ideas {#kd-problem}
 
 Though the intellectual history of the social sciences begins well before the Civil War, the current epoch of its institutional history, the epoch of professions, becomes possible only in the postbellum period. Before the Civil War, social research was a skilled occupation, and individual researchers found patrons through government and civil institutions supporting pursuits of knowledge, such as the American Philosophical Society (APS) founded in 1743 in Philadelphia. One of the great consequences of war was renewed federal investment in nation building in its aftermath. Some Union congressmen saw the rebellion as a failure of education, prompting the creation of the U.S. Department of Education in 1867 to strengthen nation building. In the postbellum period both anthropology and sociology develop as professions due primarily to the growth of universities as a new context of their activity. Without universities, social research would have remained an occupation in need of clientele. With them, social research develops the resources enabling relative autonomy, self reproduction, and occupational closure, the hallmarks of a profession. This study seeks to examine the period of transition after the Civil War from social research as occupation to social research as profession. 
 
-## Antebellum Social Research 1783-1865
+### Antebellum Social Research 1783-1865
 
 U.S. nation building had continued since the end of the American Revolution and had enrolled researchers in the projects of westward expansion against native peoples, the consolidation of slave economies against Africans, and the legitimation of the American experiment against European detractors. These were pressing problems to the intellectuals among government leaders at different levels, and they worked to make investments in new knowledge to resolve them. Such new knowledge was initially an extension of older "theories of man" in theology and enlightenment natural philosophy, which had a foothold in the private education of the American so-called natural aristocracy as well as in urban colonial institutions like the APS serving as meeting places for intellectual elites and scholars. After the British burned the Library of Congress in 1914 Thomas Jefferson famously sold his personal library to Congress to restore it, an illustration that secular arts and sciences were produced and maintained by and under the patronage of private elites. 
 
@@ -112,7 +112,7 @@ The egalitarian-for-its-time thinking of Jefferson did not contravene racism, bu
 
 The role of social research then was to be in service of either government or private political associations. Careers were made for anthropologists in patronage relationships to generate knowledge to aid nation builders. 
 
-## Postbellum Social Research 1866-1918
+### Postbellum Social Research 1866-1918
 
 While the roots of anthropology are as old as the republic, sociology did not develop in earnest until after the Civil War. 
 

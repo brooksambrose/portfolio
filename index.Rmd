@@ -1,5 +1,5 @@
 ---
-title: "Knowledge of the U.S. Social Sciences, 1888--1922"
+title: "Knowledge of the U.S. Social Sciences"
 author: "Brooks Ambrose"
 date: "`r Sys.Date()`"
 css: style.css
@@ -34,7 +34,6 @@ site: bookdown::bookdown_site
 biblio-style: apalike
 ---
 
-<!-- This won't be displayed but it will initialize your R session. Add any R libraries you need here. -->
 ```{r init,include=T,echo=FALSE}
 # options ----------------------------------------------------------------
 kop<-function(...) {
@@ -81,33 +80,55 @@ I hope you enjoy the study, and please feel free to report bugs, comment, and co
 Best,  
 Brooks
 
-<!-- There are two reasons to map knowledge spaces. First, we may want to know how knowledge develops as a resource unto itself. Second, we may want to exploit such a map for a productive purpose. Here we will attempt the second as prologue to the first. We will tackle the technical problems of constructing a map. We will show how a map can be put to use. Finally, we will investigate how the particular map we make may tend to predictably get us lost.  -->
+# Knowledge of the U.S. Social Sciences {-}
 
-<!-- ### Abstracts {-} -->
+`r tint<-'Introduction'`
 
-<!-- `r tpe<-'Profession against Education: Knowledge as Influence'` -->
+### `r tint` {-}
 
-<!-- #### Chapter 1: `r tpe` {-} -->
+(ref:abs-int)
 
-<!-- (ref:pe-abs) Status reflects a person's generalized ability or inability to accrue resources to herself over the claims of others. Social institutions define the conditions of status attainment, and different institutions validate statuses according to different norms, truths, and values. Knowledge as a valued resource forms a basis of status hierarchies in two institutions in American society: profession and education. This essay explains how knowledge mediates social relationships to stabilize status hierarchies differently in professions and in education. It also describes how stability of status hierarchies depends on a qualified segregation of these institutions, as the norms of one can be corrosive to the norms of the other. -->
+(ref:abs-int)
 
-<!-- (ref:pe-abs) -->
+(ref:key-int) sociology of knowledge, topic modeling, history of social science
 
-`r tkd<-'Knowledge of the U.S. Social Sciences, 1888--1922'`
+**Keywords**: (ref: key-int)
 
-<!-- #### `r tkd` {-} -->
+`r tgen<-'Social Science Genres Today'`
 
-(ref:abs-kd) Knowledge development of journals is measured as the change in topic prevalence over time.
+### `r tgen` {-}
 
-<!-- (ref:abs-kd)  -->
+(ref:abs-gen)
 
-<!-- `r tkm<-'Knowledge Mapping'` -->
+(ref:abs-gen)
 
-<!-- #### Chapter 3: `r tkm` {-} -->
+(ref:key-gen)
 
-<!-- (ref:abs-km) Knowledge mapping of acadamic journals promotes the conservation of intellectual history and stimulates discovery of underexplored intellectual opportunities. Treated as a large network community detection problem, I demonstrate how to apply the clique percolation method to map two kinds of recorded knowledge: citations and full text. The features of generated maps are explained, and interpretive methods including visualization are presented. We use American social science scholarship in the first third of the 20th century prior to U.S. entry into World War II as a case, and describe how the intellectual landscape of four separate social science disciplines developed. -->
+**Keywords**: (ref: key-gen)
 
-<!-- (ref:abs-km)  -->
+`r tcit<-'The Citation Landscape of Sociology and Anthropology, 1900-1940'`
+
+### `r tcit` {-}
+
+(ref:abs-cit) Knowledge mapping of acadamic journals promotes the conservation of intellectual history and stimulates discovery of underexplored intellectual opportunities. Treated as a large network community detection problem, I demonstrate how to apply the clique percolation method to map two kinds of recorded knowledge: citations and full text. The features of generated maps are explained, and interpretive methods including visualization are presented. We use American social science scholarship in the first third of the 20th century prior to U.S. entry into World War II as a case, and describe how the intellectual landscape of four separate social science disciplines developed.
+
+(ref:abs-cit)
+
+(ref:key-cit) citations, k-clique communities, community detection, landscape
+
+**Keywords**: (ref: key-cit)
+
+`r tvoc<-'Social Science Vocabularies, 1888-1922'`
+
+### `r tvoc` {-}
+
+(ref:abs-voc) Knowledge development of journals is measured as the change in topic prevalence over time.
+
+(ref:abs-voc)
+
+(ref:key-voc) topic modeling
+
+**Keywords**: (ref: key-voc)
 
 <!-- ### About the author {-} -->
 
