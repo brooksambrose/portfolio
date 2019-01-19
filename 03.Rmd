@@ -8,7 +8,25 @@
 
 (ref:key-cit)
 
-## Mapping Knowledge {#wok}
+## Introduction
+
+If knowledge is power then scholar must be a powerful class. But what kind of power is knowledge and in what way do scholars wield it? Is knowledge powerful a utility, like water or electricity, to drive a tool and accomplish a task? Is it an asymmetry of information, like a stock tip or the combination to a safe, that gives one a leg up on her competition? Is knowledge like the power of an authority, like a governor, a military commander, or clergyman, to compel the loyalty and obedience of another person? 
+
+How we conceive of knowledge affects how we view the nature and importance of the people and institutions that produce it. Scholars certainly do not have a monopoly on the utilization of production of knowledge in society, but their occupational roles are conditioned by the stuff of knowledge at the same time that knowledge is itself conditioned by the technology and social arrangements that constitute scholarly occupations. 
+
+### Scholarly Communication vs Knowledge Terrain
+
+If the production of culture perspective were to argue against Marx's German Ideology, it might say, "Not all mental laborers have soft hands." Marx drew a course distinction between mental and material labor to demonstrate that the former is not possible without the latter, even when at the time mental labor had already been commidified with the advent of print media. The production of culture perspective simply effaces the distinction altogether; mental labor, or cultural products, are like any other industrialized commodity.
+
+The production of culture perspective is at odds with public sector economics that argues that non market mechanisms create value where markets fail to do so. [@Hayes2000Assessing]
+
+Remuneration 
+
+Are culturally interior products <!-- artifacts --> referenced by socially superior <!-- artificers --> producers?
+
+### Mapping Knowledge Terrain {#wok}
+
+#### knowledge stuff
 
 There are two reasons to map knowledge spaces. First, we may want to know how knowledge develops as a resource unto itself. Second, we may want to exploit such a map for a productive purpose. Here we will attempt the second as prologue to the first. We will tackle the technical problems of constructing a map. We will show how a map can be put to use. Finally, we will investigate how the particular map we make may tend to predictably get us lost.
 
@@ -30,9 +48,19 @@ and a tokenization rule maps the cuts to two terms
 
 So the reader is invisible because she is not inscribed in the document. What about the writer? Bibliometricians may backfill GTD by entity recognition or grounding. Once terms are recognized, we may further recognize that we know more about them. A simple example of this is pulling out "metadata", for instance, the author of a document. The author's name is not just any term, but a conceptually very important one. Grounding is how bibliometrics may be linked to theories and programs of greater importance.
 
-Bibliometrics has indeed been based more on the reference of a text as a particular grounded entity rather than on the use of the full text of a document. If a text is a house, the reference is its address. More precise than a name, an address is a codification of different hierarchically ordered elements that describe the location of an entity. The consistent tokenization of a reference is not an easy task, as it depends on entity recognition of several different kinds of things, including year of publication, author, title, and source.
+Bibliometrics has indeed been based more on the reference of a text as a particular grounded entity rather than on the use of the full text of a document. If a text is a building, the reference is its address. More precise than a name, an address is a codification of different hierarchically ordered elements that describe the location of an entity. The consistent tokenization of a reference is not an easy task, as it depends on entity recognition of several different kinds of things, including year of publication, author, title, and source.
 
-The citation became the basis of the concept of a web of knowledge as coined by the work of Eugene Garfield and institutionalized in the Institute for Scientific Information (ISI). Citations solved the problem that ideas do not have addresses that we can understand empirically. Documents do have such addresses, and documents related to ideas as the container of texts scholars use to commmunicate them. While the reproduction and location of ideas cannot be reliably observed, documents are the fungible currency with which scholars communicate about ideas. 
+The citation became the basis of the concept of a web of knowledge as coined in the work of Eugene Garfield and institutionalized in the Institute for Scientific Information (ISI). 
+
+Citations solved the problem that ideas do not have signatures or addresses that we can trace reliably. Jargon is an attempt to give an idea a unique address as an idiosyncratic term, and etymology seeks to hierarchically order words according to their origins, but an idea per se will always elude precise identification. Unlike a document, an idea is not mechanically reproducible; it always requires interpretation and understanding in a mind, and a mental event as subtle as an idea cannot be observed.
+
+[@Lederberg2000How] Garfield conflates citations with several roles in the network around ideas. Compares value of citations to value of subject coders, coding meaning of paragraphs intractable. ISI became a commercial pursuit because Garfield failed to get scientific institutions, especially the NSF, to fund it. The goal was primarily practical, to give researches access to current or historical references relevant to articles, perhaps especially their own, they knew they were already interested in.
+
+Unlike ideas, documents are physical artifacts and can be traced empirically. They are fungible, reproducible, and locatable with addresses.
+
+The reproduction and location of ideas cannot be reliably observed, and documents only contain ideas in a metaphorical sense, as a Leyden jar was once thought to contain electricity.
+
+Documents are the tangible and fungible currency with which scholars communicate about ideas, yet how knowledge is actually communicated via documents is not amenable to direct observation at scale. In bibliometrics they have served as a proxy for ideas.
 
 There have been two main orientations to mapping the web of knowledge, description and conscription. Description has either scientific aims, to underatand and explain the facts of knoweldge development, or practical aims, to locate and retrieve knowledge required for a particular purpose. Conscription on the other hand aims to mobilize bibliometric patterns of knowledge as measures of value in competitive markets, namely hiring, promotion, and awards within scholarly professions.
 
@@ -42,10 +70,22 @@ From an empirical perspective, texts are nothing but collections or bins of glyp
 
 Second is entity recognition or grounding, where recognized terms are mapped to an existing database of structured knowledge.  
 
+[@Pilkington2009evolution]
+
+### Disciplines as a Large World Co-reference Network
+
+A large world network is not amenable to traditional visual representations due to its extreme density. Scholars often use edge filtering to reduce this density down to a manageable size for vizualization. Unfortunately this convenience function renders a large world as a small world and grossly misrepresents the true structure of the network. In the KCC representation, the network is partitioned into subnetworks of differential density. Nodes are included in a subnetwork if they are involved in ties at a given floor of density, for instance, they need to be tied to at least five other nodes. At a level of five, then, nodes involved in only four ties would be excluded. As this standard is raised, more nodes are excluded. This results in a nested set of subnetworks, where nodes included in a community at a lower threshold are excluded at a higher threshold. Subnetworks of lower density thresholds are always as big or larger than those at higher threshholds. Moreover, higher density subnetworks are always subsets of lower density communities, as their density meets and exceeds the standard for inclusion at the lower level. As one can imagine, inclusive levels are larger. As the threshold is raised subgroupings are sluffed off until reaching points of maximal density. In a world where almost everything is connected, there are no structural holes to reveal differences between subnetworks. Instead, we can view the structure as gradations in density within a very densely connected world.
+
+Nodes meeting the highest standards can be thought of as omnivorous; their ties draw them to the masses, but the masses are not sufficiently tied to the higher standard community. Where the gentry may be as comfortable at the movies as at the symphony, the layity lacks access to the more erudite circles.
+
+What is the credential that would allow a node to climb the hierarchy? One's list of aqcuaintances must overlap by a certain amount (defined by the threshold) with the membership of the higher tier. Indeed their inclusion would change the credentials of everyone they are tied with, as anyone who was just under the standard would be tipped in based on their friend's promotion.
+
+In the KCC model the references are the members of the hierarchy. Their association with each other is determined by how they are used by published authors. Authors who include two references on their bibliography tie those references together in the network. Indeed each citing article lays down a dense clique of references, and the impact of an article grows quadratically with the length of its reference list.
 
 
- [@Pilkington2009evolution]
+## Methods
 
+## Data
 
 
 ```{r wok2dbl}
@@ -75,6 +115,17 @@ if(file.exists(f)){
   load(f)
 } else {
   bel2mel<-bel2mel.f(dbl2bel[!((pend)|(zpend)|(zdup)|(loop)|(zloop)),.(ut,cr=zcr)],out='d/p')
+}
+rm(f)
+```
+
+```{r mel2hcs}
+f<-'d/p/mel2hcs.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  mel2hcs<-mel2hcs.f(bel2mel,wok2dbl)
+  save(mel2hcs,file=f)
 }
 rm(f)
 ```
@@ -113,23 +164,65 @@ if(file.exists(f)){
 rm(f)
 ```
 
-## Disciplines as a Large World Co-reference Network
+## Results
 
 The structure of a large world as revealed by KCC can be explored in a bottom-up and top-down fashion. Bottom-up observes 3-clique communities first. In the social science co-reference network.
 
-```{r kcc2tree, fig.cap='K-clique Community Structure',include=T, message=FALSE, warning=FALSE}
+```{r kcc2tree, fig.cap='K-clique Community Structure ([popout](tree.html))',eval=T,include=T, message=FALSE, warning=FALSE}
 f<-'d/b/kcc2tree.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  system.time(kcc2tree<-kcc2tree.f(cos2kcc,bel2mel,wok2dbl))
+  #{load('d/p/cos2kcc.RData');load('d/p/bel2mel.RData');load('d/p/wok2dbl.RData')}
+  system.time(kcc2tree<-kcc2tree.f(cos2kcc,bel2mel,wok2dbl,sides = 100,transform=T))
   save(kcc2tree,file=f)
+htmlwidgets::saveWidget(kcc2tree$int,file = getwd() %>% paste('tree.html',sep=.Platform$file.sep),background='gray')
 }
 rm(f)
 kcc2tree$int
 ```
 
-```{r kcc2isl,fig.cap='K-clique Community Island Plot',include=T}
+Figure \ref(fig:kcc2tree) shows a KCC model of the social sciences in the first half of the twentieth century.
+
+Disciplinarity and interdisciplinarity are revealed in a novel fashion in the KCC model. Disciplinarity is shown as a level of exclusion.
+
+### Continents
+
+The global map is made of many separate regions ranging in scale from large continents to small isles. These regions are either showlowly connected or totally separated from each other. The vast majority of these regions are "flat isles" with little to no internal structure of their own. Most flat isles are supported by only a single article, some by a couple of articles penned by the same author, and only a few represent real activity among a small group of different authors.
+
+```{r flat-isle,fig.cap='Flat Isles, where Reviewers tend their Flock',include=T}
+include_graphics('img/flat-isle.png')
+```
+
+
+The most substantial flat isle <!-- k50c1-5 --> comes from four authors publishing in the same 1930 [issue](https://www.jstor.org/stable/i40084238) of *`r j9so('Z NATIONALOKON')`*. It includes 50 references the most prominent of which are Angell's 1926 *The Theory of International Prices* and Tugwell's 1924 *The Trends of Economics*. The structure of the group is provided by an article by Robert Reisch <!-- https://www.jstor.org/stable/41792307 -->; the other three shared no references in common and Reisch's article, titled "The 'Deposit'-Myth In Banking Theory" and containing 108 references, is likely to have been written as an introduction to the journal on the basis of what had already been accepted for publication. Indeed another flat isle of four articles has the exact same pattern, also from *`r j9so('Z NATIONALOKON')`* but from an [issue](https://www.jstor.org/stable/i40084262) in 1937, the article on the first page of the issue, titled "Theory Of Capital, Introduction" and containing 25 references, includes subsections of the bibliographies of three other articles that do not themselves overlap.
+
+```{r hill-isle,fig.cap='Hill Isles, where the Wild Things Are',include=T}
+include_graphics('img/hill-isle.png')
+```
+
+Reviews, whether they are formally labeled as such, borrow directly from the bibliographies of one or more seed articles and in this way they contribute a disproportionate amount of the global structure of the co-reference network. This kind of review, rather than looking again at an existing intellectual trend, creates the cohesion it purports to describe. Flat isles, especially if they are large, are flat due to the retrospection of a usually solitary reviewer. Compare this to "hill isles" with more internal structure growing out of the related but uncoordinated reference activity of authors. 
+
+```{r k3c1-22,fig.cap='Hill Isle in Graph Layout',include=T}
+tree2igr.f(kcc2tree,mel2hcs,vpal='E',light=1,dark=100,transform=T,root=T,print=F,plot=T,ew=1,3,1,22)
+#include_graphics('img/k3c1-22.png')
+```
+
+<!-- k3.k3c1-22 top cluster in screen grab--> 
+
+
+### Peaks
+
+The KCC model reveals 
+
+### Valleys
+
+### Do reference lists describe author knowledge?
+
+The peer review process can now be thought of as a process of auditing credentials. An author makes an opening bid with the submission of a particular reference list. What this reference list implies about what the author knows is unclear. One may omit a knowledge signal because it is truthfully irrelevent or in a deceptive sin of ommission oriented to what they expect to be the expectations of editors and reviewers. One may also include what they do not know out of error, bragadoccio, carelessness, or fraud. Part of the work of reviewers will be to validate those claims to knowledge.
+
+
+```{r kcc2isl,fig.cap='K-clique Community Island Plot',include=F,eval=F}
 f<-'d/b/kcc2isl.RData'
 if(file.exists(f)){
   load(f)
@@ -144,7 +237,7 @@ if(file.exists(f)){
 rm(f)
 ```
 
-```{r isl3d, fig.cap='Time to Explore! [Pop-out]("isl3d.html")', message=FALSE, warning=FALSE, include=T}
+```{r isl3d, fig.cap='Time to Explore! [Pop-out]("isl3d.html")', message=FALSE, warning=FALSE, include=F,eval=F}
 f<-'d/b/isl3d.RData'
 if(file.exists(f)){
   load(f)

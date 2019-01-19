@@ -8,8 +8,6 @@
 
 (ref:key-gen)
 
-# Disciplines {#kd-d}
-
 ## JSTOR Journals {#kd-dq1}
 
 ```{r master2jstorm}
@@ -51,7 +49,7 @@ Using the list of subjects associated with each journal in the JSTOR title list,
 `r {wrk<-jstorm[title_history==title_id,sapply(discipline,length)];wrk %<>% .[.!=0];tab<-table(wrk)}`
 Figure \@ref(fig:mod-proj) illustrates the effects of network mode projection on a random sample of 300 edges from the full JSTOR title list network. The first panel illustrates the bimodal network where journals are yellow dots and labels are blue dots. As an artifact of sampling, most journals here are shown tied to only one label. In fact this is never the case in the full network; as each journal has at least one discipline and one superdiscipline label the minimum number of labels is two, which is the median case accounting for `r (prop.table(tab)*100)['2'] %>% nn(1)` percent of journals. The most labels any journal bears is `r names(tab) %>% tail(1) %>% as.integer %>% nn`, but these are outliers with most journals bearing only a few labels.
 
-```{r mod-proj,include=T,cache=T,dev='png',fig.width=3,fig.height=3,out.width='33%',fig.show = 'hold',fig.cap='Mode Conversion on a 300 Edge Random Sample of the JSTOR Title List Label Network'}
+```{r mod-proj,include=T,cache=T,dev='png',fig.width=if(docx) 6 else 3,fig.height=3,out.width='33%',fig.show = 'hold',fig.cap='Mode Conversion on a 300 Edge Random Sample of the JSTOR Title List Label Network'}
 bup<-jclu2bup.f(jclu)
 ```
 

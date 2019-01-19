@@ -1,4 +1,5 @@
 latex<-is_latex_output()
+docx<-'docx'%in%knitr::opts_knit$get("rmarkdown.pandoc.to")
 
 # png optimization
 knit_hooks$set(optipng = hook_optipng)

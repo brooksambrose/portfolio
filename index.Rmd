@@ -47,7 +47,9 @@ kop<-function(...) {
   )
   if(knitr::opts_chunk$get('cache')) warning('Chunk caching is on!')
 }
-kop(cache=F,message=TRUE)
+kop(cache=F,message=TRUE,screenshot.opts=list(delay=5,cliprect='viewport',eval="this.then(function () {
+ while(this.evaluate(function () { return document.readyState != 'complete' && document.readyState != 'interactive'; })) {}
+});"))
 ```
 
 
@@ -106,7 +108,7 @@ Brooks
 
 **Keywords**: (ref: key-gen)
 
-`r tcit<-'The Citation Landscape of Sociology and Anthropology, 1900-1940'`
+`r tcit<-'The Social Science Citation Landscape, 1900-1940'`
 
 ### `r tcit` {-}
 
@@ -118,7 +120,7 @@ Brooks
 
 **Keywords**: (ref: key-cit)
 
-`r tvoc<-'Social Science Vocabularies, 1888-1922'`
+`r tvoc<-'Vocabularies of Anthropology and Sociology, 1888-1922'`
 
 ### `r tvoc` {-}
 
