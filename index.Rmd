@@ -132,6 +132,19 @@ Brooks
 
 **Keywords**: (ref: key-voc)
 
+`r tten<-'The Development of Intensive Referencing'`
+
+### `r tten` {-}
+
+(ref:abs-ten) Early in the history of the U.S. social sciences, scholars tended to extend the space of references into new territories. After a transition point in the 1920s, they shifted toward an intensive pattern of citation where scholars routinely retraced well-trodden steps in the citation space. The transition coincides with the development of professional labor markets in the social sciences.
+
+(ref:abs-ten)
+
+(ref:key-ten) poisson, permutation test, historical development, citation, bibliometry, history of social science
+
+**Keywords**: (ref: key-ten)
+
+
 <!-- ### About the author {-} -->
 
 <!-- Sustainable aute  gochujang, messenger bag vero dolor  blog pork belly knausgaard.  Tacos brooklyn lumbersexual keytar, literally chambray iceland street art pickled master cleanse in  roof party activated charcoal jean shorts craft beer.  Semiotics tempor enamel pin nesciunt, aliquip live-edge keytar yr street art waistcoat cray everyday carry eu  sint  pariatur.  Aliquip anim  godard leggings, flexitarian direct trade  humblebrag.  Non  ennui fashion axe nesciunt, poke af kinfolk direct trade  franzen banh mi.  Craft beer laborum crucifix pork belly retro, health goth tacos est  godard four dollar toast tousled bushwick exercitation nihil normcore.  Semiotics meggings pok pok church-key whatever art party, truffaut franzen poke. -->

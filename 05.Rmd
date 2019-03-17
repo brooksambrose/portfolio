@@ -1,0 +1,24 @@
+# `r ten` {#ten}
+
+#### Abstract {-}
+
+(ref:abs-ten)
+
+#### Keywords {-}
+
+(ref:key-ten)
+
+## subhead
+
+For every year, find distribution of bibliography size.
+We will draw from this to show the effect of variation in bibliography lengths. We may already surmise that extreme values will create some instability.
+
+For every year, find edge weight distribution, including zeroes.
+
+Find size of total "space" in which edes might be laid down. Find total number of co-citations.
+
+Simulate simple poisson in that space.
+
+Compare to simulation of actually bibliographies in that space.
+
+Test hypothesis that there is a move from extensive to intensive development.

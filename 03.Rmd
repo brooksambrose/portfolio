@@ -188,20 +188,39 @@ Disciplinarity and interdisciplinarity are revealed in a novel fashion in the KC
 
 ### Continents
 
-The global map is made of many separate regions ranging in scale from large continents to small isles. These regions are either showlowly connected or totally separated from each other. The vast majority of these regions are "flat isles" with little to no internal structure of their own. Most flat isles are supported by only a single article, some by a couple of articles penned by the same author, and only a few represent real activity among a small group of different authors.
+The global map is made of many separate regions ranging in scale from large continents to small isles. These regions are either shawlowly connected or entirely separated from each other. The vast majority of these regions are "flat isles" with little to no internal structure of their own. Most flat isles are supported by only a single article, some by a couple of articles penned by the same author, and only a few represent real activity among a small group of different authors.
 
 ```{r flat-isle,fig.cap='Flat Isles, where Reviewers tend their Flock',include=T}
 include_graphics('img/flat-isle.png')
 ```
 
 
-The most substantial flat isle <!-- k50c1-5 --> comes from four authors publishing in the same 1930 [issue](https://www.jstor.org/stable/i40084238) of *`r j9so('Z NATIONALOKON')`*. It includes 50 references the most prominent of which are Angell's 1926 *The Theory of International Prices* and Tugwell's 1924 *The Trends of Economics*. The structure of the group is provided by an article by Robert Reisch <!-- https://www.jstor.org/stable/41792307 -->; the other three shared no references in common and Reisch's article, titled "The 'Deposit'-Myth In Banking Theory" and containing 108 references, is likely to have been written as an introduction to the journal on the basis of what had already been accepted for publication. Indeed another flat isle of four articles has the exact same pattern, also from *`r j9so('Z NATIONALOKON')`* but from an [issue](https://www.jstor.org/stable/i40084262) in 1937, the article on the first page of the issue, titled "Theory Of Capital, Introduction" and containing 25 references, includes subsections of the bibliographies of three other articles that do not themselves overlap.
+The most substantial flat isle <!-- k50c1-5 -->, the largest unenclosed and unenclosing circle in Figure \ref(fig:flat-isle), comes from four authors publishing in the same 1930 [issue](https://www.jstor.org/stable/i40084238) of *`r j9so('Z NATIONALOKON')`*. It includes 50 references the most prominent of which are Angell's 1926 *The Theory of International Prices* and Tugwell's 1924 *The Trends of Economics*. The structure of the group is provided entirely by an article by Robert Reisch <!-- https://www.jstor.org/stable/41792307 -->; the other three shared no references in common and Reisch's article, titled "The 'Deposit'-Myth In Banking Theory" and containing 108 references, is likely to have been written as an introduction to the journal on the basis of what had already been accepted for publication. 
+
+Another flat isle of four articles has the exact same pattern, also from *`r j9so('Z NATIONALOKON')`* but from an [issue](https://www.jstor.org/stable/i40084262) in 1937, the article on the first page of the issue, titled "Theory Of Capital, Introduction" <!-- k16c1-47 --> by von Hayek and containing 25 references, includes subsections of the bibliographies of three other articles that do not themselves overlap. Normally the longer a bibliography the more likely it is that an article functions as a review linking other disparate bibliographies. That von Hayek's article has such a short bibliography and yet still links three otherwise separate articles confirms its derivative character.
+
+The following features then suggest when a flat isle represents an issue introduction. All articles are published in the same issue. The removal of the longest bibliography in the community yields a network of disconnected components each uniquely representing the remaining bibs. This longest bib is also either the first article in the issue or precedes the others in pagination. These characteristics suggest authorship internal to the editorial process itself. Later we will explore how the removal of such articles helps to reveal "bottom-up" structure by removing the editorial advantage of certain authors to bestow an ad hoc intellectual coherence on scholarship.
+
+Table \ref(tab:iss-int) enumerates issue introductions and shows how many are the structuring article in their community.
+
+```{r iss-int}
+# kcc level
+# number issues repped
+# if one, longest bib is first
+
+wok2dbl[CJ(unlist(id) %>% unique,ec('PY,J9,AU,TI,VL,IS,SN,BP,EP,PG'),sorted = F)] %>% dcast(id~field,value.var='val',fun.aggregate=list,fill=NA)
+#need to merge CR to KCC
+
+# issue level
+# number kccs repped
+# if any 
+```
 
 ```{r hill-isle,fig.cap='Hill Isles, where the Wild Things Are',include=T}
 include_graphics('img/hill-isle.png')
 ```
 
-Reviews, whether they are formally labeled as such, borrow directly from the bibliographies of one or more seed articles and in this way they contribute a disproportionate amount of the global structure of the co-reference network. This kind of review, rather than looking again at an existing intellectual trend, creates the cohesion it purports to describe. Flat isles, especially if they are large, are flat due to the retrospection of a usually solitary reviewer. Compare this to "hill isles" with more internal structure growing out of the related but uncoordinated reference activity of authors. 
+Reviews, whether they are self described as such, borrow directly from the bibliographies of one or more seed articles, and in this way they contribute a disproportionate amount of the global structure of the co-reference network. This kind of review, rather than looking again at an existing intellectual trend, creates the cohesion it purports to describe. Flat isles, especially if they are large, are flat due to the retrospection of a usually solitary reviewer. Compare this to "hill isles" with more internal structure growing out of the related but uncoordinated reference activity of authors. 
 
 ```{r k3c1-22,fig.cap='Hill Isle in Graph Layout',include=T}
 tree2igr.f(kcc2tree,mel2hcs,vpal='E',light=1,dark=100,transform=T,root=T,print=F,plot=T,ew=1,3,1,22)
