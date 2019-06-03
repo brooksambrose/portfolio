@@ -8,6 +8,17 @@
 
 (ref:key-gen)
 
+## Introduction
+
+Bodies of knowledge and practice, cultures, exist because of yet apart from particular people. While some cultures are ubiquitous and inculcated in all members of the societies in which they are substantiated, others are esoteric and marked by significant barriers to learning them. Such esoteric cultures are as inaccessible as they are unnecessary. A child who does not learn what to eat and how to eat it in her local culture will have great difficulty doing anything else in her society. Food culture is of the ubiquitous type and is not difficult to learn. A child who does not master scripture will be ashamed at temple, but shame is bearable in a way that hunger is not. Scripture is of the esoteric type; knowledge of it enables access to restricted aspects of a society, but ignorance of it does not threaten one's livelihood as laity. Even in religiously totalitarian societies, what religous knowledge is necessary will be ubiquitous. What religious knowledge is esoteric can be safely left to the clerics. It is not too narrowly circular to say that the knowledge that enables daily life is the easiest to aqcuire, and that the mere act of living also reproduces that knowledge within contexts that are themselves ubiquitous, usually familial and either economic and state relations.
+
+Esoteric cultures, then, require specialized social relationships for their reproduction in populations. These special relationships may be called fields of cultural production (FCP). FCPs are both reproductive of extant knowledge and productive of novel knowledge. To the extent that esoteric cultures are complicated or otherwise have high entropy, the failure to reproduce cultural content is always an existential threat. While it is a gaurantee that cultural content is constantly actually lost to reproduction failures, cultures that nonetheless persist historically must always have a socially structured FCP that in inculcating new members and reinforcing the knowledge of extant members resists the entropic decay that would otherwise lead to extinction. Socialization of new members, maintenance of existing members,  of culture with high entropy, while also sometimes being generative of extensions to that culture. FCPs are social structures that can be thought of as the articulation points between people and a special type of culture that we associate with higher education.
+
+To be sure, if esoteric cultures are marked by asymmetries of knowledge between laity and clergy, to continue with the religious example, we must admit that such asymetries exist in ubiquitous culture as well, as in the supposed ignorance of a child against the learning of an adult. The ignorance of children combined with their megalomania is a useful example of how social structures operate. Social structures are always culturally conservative; a child's ignorance is a generative force, as they may attempt to solve problems in novel ways, and their efforts will frequently be corrected by the experts. Whether the correction takes marks the chagrin of the parent. Children quickly become specialists in their own FCPs, but this is never because they aren't also aware of the ubiquity. They may know it, it may bore them, and they efface it for fun. But they know what is ubiquitous; their proximity to ignorance of it may animate their creative abrogation of culture. The essentially conservative function of pedagogy will stamp out that creative flame in time. Indeed children are a great source of entropy for ubiquitous culture, hence the large investment in education generally.
+
+This evolutionary argument can be more simply stated as, complicated cultures cannot exist for very long without stewardship.
+
+
 ## JSTOR Journals {#kd-dq1}
 
 ```{r master2jstorm}
@@ -31,6 +42,8 @@ if(file.exists(f)){
 }
 rm(f)
 ```
+
+Genre classifications are totalizing, as any factor or product in a field of production can be labeled and sorted according to a categorical logic. 
 
 We rely on the JSTOR digital archive which gives access to optical scans of historical journals. JSTOR provides a title list of their journal coverage [@JSTOR2018Title]. The coverage of journals in the archive is very complete for those journals chosen for the database. As of this writing JSTOR contained `r nn(jclu$n$t)` different journal titles and `r nn(jclu$n$j)` journals from `r nn(jclu$n$p)` different publishers. The different journal counts are due to some journals changing titles at least once.^[To avoid overcounting, title histories are collapsed into their most recent record, meaning all subsequent counts are out of `r nn(jclu$n$j)`. Even though we might expect disciplinary identity to change over time, JSTOR discipline labels do not vary within title histories. `r {dN<-jstorm[title_id==title_history,sapply(discipline,length)]==0;if(any(dN)) dS<-sum(dN);paste0(nn(dS,cap=T),' journal',if(dS>1) 's','--',jstorm[title_id==title_history][dN,nl(publication_title)],'--lacked any discipline labels and ',if(dS>1) 'are' else 'is',' excluded from tabulations.')}`] The JSTOR coding contains `r nn(jclu$n$l)` subject labels. These labels refer to `r nn(jclu$n$s)` superdisciplines under which may be found `r nn(jclu$n$d)` disciplines.
 

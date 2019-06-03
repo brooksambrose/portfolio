@@ -102,11 +102,11 @@ Brooks
 
 ### `r tgen` {-}
 
-(ref:abs-gen)
+(ref:abs-gen) Social science is arranged into disciplines in a manner strikingly similar to the genre systems of commercial fields of cultural production (FCP) like music, yet evolving at a slower pace. Genres appear static and given in the form of the labeling schemes of archivists and librarians. Such schemes aim to describe academic genres objectively, yet in so doing referencers and indexers reify them historically. Such genre classifications are at times useful, frustrating, or didactic for the academic "disciples" or knowledge workers of higher education. This study maps the cognitive system of genre classifications in one particular labeling scheme, that of the JSTOR historical archive, as applied to one aspect of academic FCPs, journals. The patterns of interdisciplinary cross labeling, of allowing journals to bear multiple labels, reveal how global axes among science, social science, and humanities condition the local relationships of disciplines like sociology and anthroplogy.
 
 (ref:abs-gen)
 
-(ref:key-gen)
+(ref:key-gen) genre, social science, knowledge mapping, labeling, cognition
 
 **Keywords**: (ref: key-gen)
 
