@@ -357,7 +357,7 @@ n<-diff(r)*.1
 
 plt(myth(
   ggplot(data=rat,mapping = aes(x=year,y=ratio)) +
-    annotate('rect',xmin=1888,xmax=1922,ymin=-Inf,ymax=Inf,alpha=.1) +
+    ggplot2::annotate('rect',xmin=1888,xmax=1922,ymin=-Inf,ymax=Inf,alpha=.1) +
     geom_line(aes(color=g1),size=1.5) +
     geom_point(data=rat[.(nces$tab$year)] %>% na.omit,mapping = aes(x=year,y=ratio),shape=21,size=1.5,stroke=1,fill='white')
 ) + theme(legend.position="none",axis.title.x = element_blank()))
