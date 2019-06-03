@@ -84,6 +84,8 @@ Brooks
 
 # Knowledge of the U.S. Social Sciences {-}
 
+# Abstracts {-}
+
 `r tint<-'Introduction'`
 
 ### `r tint` {-}
@@ -92,7 +94,7 @@ Brooks
 
 (ref:abs-int)
 
-(ref:key-int) sociology of knowledge, topic modeling, history of social science
+(ref:key-int) 
 
 **Keywords**: (ref: key-int)
 
@@ -128,7 +130,7 @@ Brooks
 
 (ref:abs-voc)
 
-(ref:key-voc) topic modeling
+(ref:key-voc) sociology of knowledge, topic modeling, history of social science
 
 **Keywords**: (ref: key-voc)
 
