@@ -1,4 +1,4 @@
-# `r ten` {#ten}
+# `r tten` {#ten}
 
 #### Abstract {-}
 
@@ -8,7 +8,14 @@
 
 (ref:key-ten)
 
-## subhead
+##intro
+The citation network of scholarship is a critical analytical tool in bibliometry; indeed the field was revolutionized by the advent of citation indexing.
+Nonetheless the concept has alternately been treated as an analytical device and as a characterization of the phenomenon, what I will call an ontology. These are very different approaches to citation networks. As analytical device, citation networks are instruments by which the researcher uncovers features of scholarship that were not visible without application of the network. For instance, a citation network may reveal a cluster indicating the presence of an invisible college. The invisible college is not itself a citation network; perhaps it is research partnership may be a local phenomenon explained by facts on the ground that have little to do with citations. When treated as an ontology, the researcher reifies the citation network as the real phenomenon; the network tends to explain itself. An article, in making a citation, creates a conduit allowing knowledge or influence to flow into it. It is via the citation that knowledge happens.
+The ontology may depend on how the citation network is constructed.  In a knowledge flow network, citations are directed links, and sending and receiving articles have equal status as nodes. In a co-reference network, citations are nodes, and articles are links among those citations appearing in the articles’ bibliographies. Because such a network is undirected there can be no ontology of knowledge flow. 
+The citation network, however, is an historical development that privileges the professional aspect of the university.
+The citation network allows national and international relations to dominate local ones. It allows publication to dominate all other venues of intellectual production.
+
+## method
 
 For every year, find distribution of bibliography size.
 We will draw from this to show the effect of variation in bibliography lengths. We may already surmise that extreme values will create some instability.
@@ -22,3 +29,55 @@ Simulate simple poisson in that space.
 Compare to simulation of actually bibliographies in that space.
 
 Test hypothesis that there is a move from extensive to intensive development.
+
+## lit review
+```{r import}
+jdfrcn<-dir('d/d/jstordfr/citation-network/metadata/',full.names=T) %>% lapply(FUN=jstor::jst_get_article) %>% lapply(data.table) %>% rbindlist
+ngram<-dir('d/d/jstordfr/citation-network/ngram1/',full.names=T) %>% lapply(FUN=jstor::jst_get_ngram) %>% lapply(data.table)%>% rbindlist
+```
+
+```{r tfidf}
+library(tm)
+library(Matrix)
+library(slam)
+tfidf<-ngram[n>1] %>% {
+  j=factor(.[[1]])
+  i=factor(.[[2]])
+  simple_triplet_matrix(
+  i=i %>% as.integer
+  ,j=j %>% as.integer
+  ,v=.[[3]]
+  ,dimnames=list(i %>% levels,j %>% levels)
+  )
+  }
+tfidf<-as.TermDocumentMatrix(tfidf,weighting=weightTfIdf,normalize=T) %>% unclass
+voc<-data.table(
+  file_name=tfidf$dimnames$Docs[tfidf$j]
+  ,ngram=tfidf$dimnames$Terms[tfidf$i]
+  ,n=tfidf$v
+)[,.(n=sum(n)),by=ngram] %>% setorder(-n)
+```
+
+
+```{r section}
+# voc<-voc[n>2&j>2&grepl('^[A-Za-z]+$',ngram)&nchar(ngram)>1]
+ov<-ov2chpt.f(voc[!duplicated(n)][seq(from=1,to=.N,length.out=500),log(n)],drv=2)
+ggplot(ov,aes(y=x,x=1:ov[,.N])) + geom_line(aes(color=g),size=1)
+```
+
+```{r cull}
+table(ov$g) %>% prop.table %>% {.*100} %>% round(2)
+idub<-ov[g==2,range(x)]
+voc[,between(log(n),idub[1],idub[2]) %>% {c(sum(.),mean(.))}] %>% cat
+ovo<-ngram[,.(n=sum(n),j=length(unique(file_name))),by=ngram] %>% setorder(-n)
+ovo
+fovo<-function(x) ovo[x[sample(1:.N,25),.(ngram,w=n)],on='ngram'] %>% setorder(-w) %>% print
+
+cat('\n\nidiosyncratic terms:\n\n')
+fovo(voc[log(n)<idub[1]])
+cat('\n\nnormal terms:\n\n')
+fovo(voc[between(log(n),idub[1],idub[2])])
+cat('\n\nubiquitous terms:\n\n')
+fovo(voc[log(n)>idub[2]])
+```
+
