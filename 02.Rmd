@@ -10,6 +10,8 @@
 
 ## Introduction
 
+Genre is a both a phenomenon and an analytical approach. Genres are the highest objective classification 
+
 Bodies of knowledge and practice, cultures, exist because of yet apart from particular people. While some cultures are ubiquitous and inculcated in all members of the societies in which they are substantiated, others are esoteric and marked by significant barriers to learning them. Such esoteric cultures are as inaccessible as they are unnecessary. A child who does not learn what to eat and how to eat it in her local culture will have great difficulty doing anything else in her society. Food culture is of the ubiquitous type and is not difficult to learn. On the other hand, a child who does not master scripture will be ashamed at temple, but shame is bearable in a way that hunger is not. Scripture is of the esoteric type; knowledge of it enables special abilities and grants access to restricted aspects of a society, but ignorance of it does not threaten one's lay livelihood. Even in religiously totalitarian societies, what religous knowledge is necessary will be ubiquitous. What religious knowledge is esoteric can be safely left to the clergy. It is not too narrowly circular to say that the knowledge that informs daily life is the easiest to aqcuire, and that the mere act of living also reproduces that knowledge within contexts that are themselves ubiquitous. Whether relationships of ubiquity are familial, economic, or state relations varies by society, but no society lacks ubiquitous culture and the means of reproducing it.
 
 Esoteric cultures, then, are removed from ubiquitous ones though they depend on them. They require specialized social relationships for their reproduction in populations. These special relationships may be called fields of cultural production (FCP). FCPs are both reproductive of extant knowledge and productive of novel knowledge relevant usually only to the field itself. To the extent that esoteric cultures are complicated or otherwise have high entropy, the failure to reproduce their cultural content is always an existential threat. While it is a gaurantee that cultural content is constantly actually lost to reproduction failures, cultures that nonetheless persist historically must always have a socially structured FCP that, in inculcating new members and reinforcing the knowledge of extant members, resists the entropic decay that would otherwise lead to extinction.
@@ -42,6 +44,21 @@ This evolutionary argument can be more simply stated as, complicated cultures ca
 
 ## Genre, Profession, and Cultural Morphodynamics
 
+Genre in sociology has been treated from literary, economic, and historical vantages.
+
+Economic sociology has treated genre as an integrating feature of markets, expressed simultaneously by both supply side and demand side actors [@DiMaggio1987Classification\:441]. DiMaggio posits an oversocialized conception of artistic classification systems that sets genre as a matching between consumers on one hand and production, including producers and distributors, on the other. Consumption of art is essentially transacted for social goods, that is, is a form of cultural capital. Because cultural products are objects of ritual satisfaction among consumers, social relations are limited to intra-economic categories. This is the same as saying that social boundaries mark cultural boundaries. The meaning of cultural products to producers is very different than to consumers, there is no cultural logic that transcends social boundaries, that is, there is no "cultural totality" even at restricted scales.
+
+Whether this is an accurate depcitions of the arts, it is not adequate for direct adaption to the analysis of scholarly disciplines. The missing variable is the pedagogical nature of social relationships. In pedagogical relations assymetries of cultural understanding are built in to the role structure of social relationships. 
+
+The professional relates to a client.
+The administrator relates to a subject.
+The purveyor relates to a customer.
+
+
+This may be an accurate 
+
+DiMaggio discusses three organizational forms--commercial, professional, and administrative--as explaining gen
+
 ### Generic vs Typical
 
 Following Schutz all cognition is process that begins by matching knowledge to experience via an intial process of typification. Empirical objects are categorized according to types, and our knowledge is also indexed according to those types. We know what to do once we have typed an object and matched it to type organized knowledge.
@@ -51,6 +68,14 @@ Genres
 In non market societies, FCPs are financed by state patronage. Here esoteric cultures that have no need of a laity will be invisible to most of the members of the society, and their knowledge will be naturally excludable. Market societies organize 
 
 @Schutz1970Reflections
+
+Beer [*@Beer2013Genre] posits genre as a form of Foucaultian classification where a formal "grid" of knowledge structures observations while inviting subversive criticism. Missing in the use of Foucault is a sense of historical transition between types of knowledge. Scientific knowledge passed through stages limited by new concepts of order. The grid or classification logic was replaced by causal logic in a process spanning generations. [@Foucault2002order\:150] Reading Foucault as a developmental theory means that a classification logic provides the knowledge necessary to envision a causal logic. In this sense, a reified and possibly stitled genre classification system is generative of a more nuanced causal logic in that it provides an anchor and set of easily workable tacit arguments; sociology is different from anthroplogy because of a deployed catalogical schema. Beer however puts formal and informal genre systems into an ahistorical relation; formal genres are not generative of causal explanations of genre, but rather they are power structures against which interested actors struggle to either support or efface.
+
+Foucaultian genre requires a method of description, and the components of the method describe or order observations of the thing. Genres do not work this way except in a post-hoc way, as the recent controversy over the single Country Road illustrates. Genres in this sense actually work as a pre-classification Classical system, as pure language in which knowledge is knitted together by merely tracking down uses of the term. Genres amount to anyone's use of the genres as terms. Genre criticsm operates in this mode; genres are leverged to inflrate deflate the reputation of particular social alters. Far from describing the characteristics of the music, genre as a term encompasses how the genres are used, such as in their influence on scene formations and fashion. These are primitive forms of knowledge if Foucault's account of science is taken developmentally.
+
+Marxian structural development classically contends that stages of history cannot be skipped. Some theorists partially relax this model with a version of structural memory wherein a society that has undergone a transition into a particular stage of development, the resources genreating the relationsihps of the previous stages are already available. This is why development is slow first, but when the process has been played it may be replayed at much greater speed, and it may be played out of order. What is normally mapped to a process of time may in an advanced stage be mapped to different dimensions. The one we will be concered with is a status dimension. The classical form of knowledge, wherein it is stiched together piecemeal by focus on the language, the use of the term, leaving little coherence to the threads so collected, is simple and available always. The more structure classificaiton according to a rule-based grid is more advanced. Rather than being available only in time, after it's invention, it may be aviaalbe as an asymmetry of training or socializaiton. Grid-knowledge may be utilized among the clerics and not available to the laity. At the core of the clerics, the elite of the esoterics, the most complicated stage of causal reasoning, is available to even fewer people. Boulding, in his own genre scheme, called the same the distinction between frameworks and clockworks [@Boulding1956General\:202].
+
+What this view allows us to ask is, for Beer's emphasis on the critical use of genre categories, does it matter that the laity flirt with classical kinds of knowledge. Does it, as Beer suggests, work to reform the genre categories? Or on the other hand, to the institutions of formal categorization easily ignore such debates, or do they rather have aggreagtion systems of their own to handle "deomcratic" or market research processes like genre term searches?
 
 ## JSTOR Journals {#kd-dq1}
 
