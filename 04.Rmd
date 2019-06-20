@@ -24,6 +24,89 @@ This at least is the rationale for what follows. I begin with a discussion of in
 
 I use intellectual histories of anthropology to characterize the antebellum period, and the same for the postbellum period including sociology. The most important journals in each field date from the postbellum period, and the appearance of each is implicated in the project of professionalization for each discipline. The 1920s marked the end of war with the last of the militating American Indian tribes, and a reckoning with the darkest sides of industrialization laid bare by WWI. Social research had by this time completed a shift from colonial to industrial problems and enjoyed a golden decade of development as a profession, punctuated by the next great historical crisis in the Great Depression. With the 1920s begins the adolescence of social research, which is beyond the present scope. This study is of its childhood, which ends with the Great War. I however draw the study out until 1922 because it is the end of the public domain in U.S. copyright, to aid in the reproducibility of the analysis and so that all readers may recover the texts in question without difficulty.
 
+## Social Science Journals {#kd-dq2}
+
+The journals within social science cover `r jclu$tab %>% length %>% nn` different subdisciplines.
+
+```{r jclu-tab-sub,include=T}
+jclu_sub<-jstorm[sapply(discipline,function(x) 'Social Sciences'%in%x)][,discipline:=lapply(discipline,setdiff,'Social Sciences')] %>% jstorm2jclu.f
+setnames(jclu_sub$tab,'super','Subdiscipline')
+sg(jclu_sub$tab,tit = "JSTOR Social Sciences Journal Counts")
+```
+
+```{r jclu-tab-sub-econ,eval=F,include=T}
+jclu_sub_econ<-jstorm[sapply(discipline,function(x) 'Business & Economics'%in%x)][,discipline:=lapply(discipline,setdiff,'Business & Economics')] %>% jstorm2jclu.f
+jsube<-jclu_sub_econ$tab
+setnames(jsube,'super','Subdiscipline')
+sg(jsube,tit = "JSTOR Business & Economics Journal Counts")
+```
+
+```{r jstorm2tab}
+jtab<-jstorm2tab.f(jstorm,beg.bef = 1900,end.aft = 1900)
+sg(jtab[,.(
+  `Title History`=publication_title
+  ,Discipline=discipline
+  ,Start=start %>% as.character
+  ,Stop=stop %>% as.character
+)],tit='20th Century Social Science Journals in JSTOR',new.col.align = 'p{0.4\\\\linewidth}p{0.3\\\\linewidth}rr'
+#,rplc = ec('\\{tabular\\},\\{longtable\\}')
+)
+```
+
+```{r jstorm2fig,include=T,fig.cap='Periods in the Growth of the Number of Social Science Journals in the JSTOR Archive'}
+f<-'d/q/jfig.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  jfig<-jstorm2fig.f(
+    jstorm,jclu,series='Social Sciences',
+    ann=rbindlist(list(
+      data.table(text='Sample',xmin=1888,xmax=1922,dodge=.01)
+      ,data.table(text='Civil War',xmin=1861,xmax=1865,dodge=.99)
+      ,data.table(text='WWI',xmin=1914,xmax=1918,dodge=.99)
+      ,data.table(text='WWII',xmin=1939,xmax=1945,dodge=.99)
+    ))[,col:=c('darkgray',rep('red',3))]
+  )
+  save(jfig,file=f)
+}
+rm(f)
+plt(jfig$p,tooltip=ec('text'))
+```
+
+
+```{r nces2phd,include=T,fig.cap='Decennial growth in number of PhD degrees conferred in the U.S.'}
+f<-'d/q/nces.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  nces<-nces2phd.f()
+  save(nces,file=f)
+}
+rm(f)
+plt(nces$fig)
+```
+
+
+```{r nces/jstorm,include=T,fig.cap='Number of PhDs conferred in the United States per Social Science Journal'}
+rat<-jfig$d[between(year,1800,2000)&super=='Social Sciences'] %>% setkey(year)
+setkey(nces$int,year)
+rat<-merge(rat,nces$int)
+rat<-rat[,.(year,ratio=N.y/N.x,g1)]
+r<-rat[,range(ratio)]
+n<-diff(r)*.1
+
+plt(myth(
+  ggplot(data=rat,mapping = aes(x=year,y=ratio)) +
+    ggplot2::annotate('rect',xmin=1888,xmax=1922,ymin=-Inf,ymax=Inf,alpha=.1) +
+    geom_line(aes(color=g1),size=1.5) +
+    geom_point(data=rat[.(nces$tab$year)] %>% na.omit,mapping = aes(x=year,y=ratio),shape=21,size=1.5,stroke=1,fill='white')
+) + theme(legend.position="none",axis.title.x = element_blank()))
+wrk<-rat[between(year,1888,1922),summary(ratio)]
+```
+
+This period represents one of stable growth, as the size of the field grows with the number of players on it. Between 1888 and 1922 there tended to be about `r nn(wrk['Median'],0)` new PhDs in the U.S. for every social science journal even as each population grew year over year. These growth patterns begin to diverge around `r jfig$d[super=='Social Sciences'][g1==3][1,year]` as a decades long acceleration of personnel begins, relatively slowly between 1920 and 1960 at an average acceleration rate of `r rat[between(year,1920,1960,F),nn(ratio %>% mean)]` PhDs per journal per year, and then quite precipitously in the 1960s at an average acceleration rate of `r rat[between(year,1960,1980,T),nn(ratio %>% mean)]`.
+
+
 ## Topics `r if(latex) '\\normalfont{≟}' else '≟'` Ideas
 
 The strategy of the study occurs in four steps.
