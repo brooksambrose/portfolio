@@ -10,7 +10,19 @@
 
 ## Introduction
 
-Genre is a both a phenomenon and an analytical approach, indeed, several analytical approaches. Genres are a feature of two kinds of cultural surplus. First, genres are not necessary if knowledge is limited to a small number of lessons, stories, ideas, or skills. Such a cultural corpus is naturally held as "the" obligatory culture, and because knowers do not experience options they do not face the problem that genres solve. When such a unary culture expands beyond the mental or technological limits of memory, or when it is faced with alien knowledge sources, a proto genre is functionally necessary that allows for a binary classification between sense and nonsense.
+Genre is a both a phenomenon and an analytical approach, indeed, several analytical approaches. I critique a contemporary use of multimodal network analysis to study genre as measured in cultural object network data. I argue that standard rational choice approaches in the sociology of culture, the theory of consumer preferences or tastes, does not pass a prima facie test of validity as an accurate representation of the global properties of so-called cultural networks. The same data that are used to demonstrate taste theory better support an alternative knowledge based approach to culture.
+
+### Taste
+
+Lizardo operationalizes genre preference data in network terms by "inducing a network of persons connected to the cultural genres they choose" [-@Lizardo2018mutual\:53], which allows him to analyze individual preferences within global contexts revealed in bimodal network patterns.
+
+Multimodal networks are an analytical convention where there are at least two classes of items that bear relations and in which a rule is imposed that such items may only be related to items of a different class. Insofar as the researcher cares about intraclass relationships she must understand them as mediated by one of the alternative classes. The simplest multimodal network has two classes (see [@Shi2015Weaving] for examples of many more).
+
+culture as a disembodied abstraction [@Lizardo2018mutual]
+
+### Structuralist
+
+Genres are a feature of two kinds of cultural surplus. First, genres are not necessary if knowledge is limited to a small number of lessons, stories, ideas, or skills. Such a cultural corpus is naturally held as "the" obligatory culture, and because knowers do not experience options they do not face the problem that genres solve. When such a unary culture expands beyond the mental or technological limits of memory, or when it is faced with alien knowledge sources, a proto genre is functionally necessary that allows for a binary classification between sense and nonsense.
 
 Such a proto genre allows two things. Alien material becomes obvious, perhaps dangerous, but not confusing as it can be safely cordoned off from what is real knowledge. Second and perhaps more interestingly, a proto genre precipitates cultural expansion by allowing some stories (ideas, skills, products) to be told differently. Such novelty maintains interest without exciting alienation. In those acts of deciding what makes sense (inclusion) and what is nonsense (exclusion) the rules of the genre begin to form.
 
