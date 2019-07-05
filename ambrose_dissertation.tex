@@ -82,7 +82,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-01-18}
+    \date{2019-07-05}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -102,6 +102,20 @@
 \usepackage{longtable}
 \floatplacement{figure}{H}
 
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
 \begin{document}
 \maketitle
 
@@ -111,7 +125,8 @@
 }
 \listoftables
 \listoffigures
-\chapter*{Getting Started}\label{getting-started}
+\hypertarget{getting-started}{%
+\chapter*{Getting Started}\label{getting-started}}
 
 
 Dear reader,
@@ -154,36 +169,72 @@ comment, and collaborate at the issue tracker of the GitHub repository.
 Best,\\
 Brooks
 
+\hypertarget{knowledge-of-the-u.s.-social-sciences}{%
 \chapter*{Knowledge of the U.S. Social
-Sciences}\label{knowledge-of-the-u.s.-social-sciences}
+Sciences}\label{knowledge-of-the-u.s.-social-sciences}}
 
 
-\subsection*{Introduction}\label{introduction}
+\hypertarget{abstracts}{%
+\chapter*{Abstracts}\label{abstracts}}
+
+
+\hypertarget{introduction}{%
+\subsection*{Introduction}\label{introduction}}
 
 
 (ref:abs-int)
 
 (ref:abs-int)
 
-
-
+(ref:key-int)
 
 \textbf{Keywords}: (ref: key-int)
 
+\hypertarget{social-science-genres-today}{%
 \subsection*{Social Science Genres
-Today}\label{social-science-genres-today}
+Today}\label{social-science-genres-today}}
 
 
-(ref:abs-gen)
 
-(ref:abs-gen)
 
-(ref:key-gen)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Social science is arranged into disciplines in a manner
+strikingly similar to the genre systems of commercial fields of cultural
+production (FCP) like music, yet evolving at a slower pace. Genres
+appear static and given in the form of the labeling schemes of
+archivists and librarians. Such schemes aim to describe academic genres
+objectively, yet in so doing referencers and indexers reify them
+historically. Such genre classifications are at times useful,
+frustrating, or didactic for the academic ``disciples'' or knowledge
+workers of higher education. This study maps the cognitive system of
+genre classifications in one particular labeling scheme, that of the
+JSTOR historical archive, as applied to one aspect of academic FCPs,
+journals. The patterns of interdisciplinary cross labeling, of allowing
+journals to bear multiple labels, reveal how global axes among science,
+social science, and humanities condition the local relationships of
+disciplines like sociology and anthroplogy.
+
+
+
 
 \textbf{Keywords}: (ref: key-gen)
 
+\hypertarget{the-social-science-citation-landscape-1900-1940}{%
 \subsection*{The Social Science Citation Landscape,
-1900-1940}\label{the-social-science-citation-landscape-1900-1940}
+1900-1940}\label{the-social-science-citation-landscape-1900-1940}}
 \addcontentsline{toc}{subsection}{The Social Science Citation Landscape,
 1900-1940}
 
@@ -216,8 +267,9 @@ disciplines developed.
 
 \textbf{Keywords}: (ref: key-cit)
 
+\hypertarget{vocabularies-of-anthropology-and-sociology-1888-1922}{%
 \subsection*{Vocabularies of Anthropology and Sociology,
-1888-1922}\label{vocabularies-of-anthropology-and-sociology-1888-1922}
+1888-1922}\label{vocabularies-of-anthropology-and-sociology-1888-1922}}
 \addcontentsline{toc}{subsection}{Vocabularies of Anthropology and
 Sociology, 1888-1922}
 
@@ -229,274 +281,772 @@ change in topic prevalence over time.
 
 
 
+
 \textbf{Keywords}: (ref: key-voc)
 
-\chapter{Introduction}\label{int}
+\hypertarget{the-development-of-intensive-referencing}{%
+\subsection*{The Development of Intensive
+Referencing}\label{the-development-of-intensive-referencing}}
+\addcontentsline{toc}{subsection}{The Development of Intensive
+Referencing}
 
-\subsubsection*{Abstract}\label{abstract}
+
+
+
+
+
+
+
+Early in the history of the U.S. social sciences, scholars
+tended to extend the space of references into new territories. After a
+transition point in the 1920s, they shifted toward an intensive pattern
+of citation where scholars routinely retraced well-trodden steps in the
+citation space. The transition coincides with the development of
+professional labor markets in the social sciences.
+
+
+
+
+\textbf{Keywords}: (ref: key-ten)
+
+\hypertarget{int}{%
+\chapter{Introduction}\label{int}}
+
+\hypertarget{abstract}{%
+\subsubsection*{Abstract}\label{abstract}}
 
 
 (ref:abs-int)
 
-\subsubsection*{Keywords}\label{keywords}
+\hypertarget{keywords}{%
+\subsubsection*{Keywords}\label{keywords}}
 
 
-sociology of knowledge, topic modeling, history of social
-science
+(ref:key-int)
 
-\section{Knowledge Development}\label{kd}
+\hypertarget{genre-and-the-literature}{%
+\section{Genre and the Literature}\label{genre-and-the-literature}}
 
-What were the ideas that predominated in the social sciences at their
-formation as professions in the postbellum United States? What was the
-course of their development over a generation of scholarship? In this
-study I will answer these questions inductively through a reading of the
-original journals in each discipline. Though the goal is substantive,
-the methodological challenges of consuming a large quantity of text will
-feature importantly in the story that unfolds. Along the way I will
-demonstrate the usefulness of the computational \emph{distant reading}
-that is being explored in the humanities and how it can be combined with
-traditional textual analysis for social science purposes. While
-controversial in humanistic circles that emphasize the primacy of the
-reader's novel interpretive work when consuming text, distant reading
-fits comfortably within a social science epistemology that aims to
-achieve an objective description of intellectual history Indeed,
-computational methods offer a useful backstop to the idiosyncrasy of a
-particular person's reading of history.
+Genre is a specialty concept in sociology, a ubiquitous one in the
+humanities, and a common sense word in popular parlance. Genre as a
+scholarly term is defined and used differently by different disciplines
+and among researchers in the same discipline. These varied uses of the
+term would make reviewing the literature on the topic of genre
+difficult, were it not for the discipline structure of the academy. The
+uses of the term genre are themselves systematically organized by
+discipline, and a disciple who is adequately trained will know the
+correct ways to use the term in her local context. To use genre as a
+disciplinary convention means to first identify your location in the
+disciplinary field, and then to accept the limitations on scope by
+excluding those treatments of the term that are extradisciplinary, that
+is, irrelevant. Disciplinary structure reduces the true cultural
+complexity of the meaning of genre to a restricted form, which in turn
+allows humble knowledge workers to engage upon a set of shared
+assumptions. Such simplicty begets new complexity as disciples spin out
+the consequences of their local use of ther term genre.
 
-Computational textual analysis promises to automate a particular slice
-of what hermeneutic methods accomplish. Hermeneutics claims that through
-historical methods it is possible to reconstruct the interpretive
-context of texts such that they can be understood in the same way that
-contemporary historical actors understood them. Establishing such
-context is a laudable yet arduous feat of historical research to uncover
-the social and intellectual milieu of a particular text. This is the
-gold standard approach, but one that restricts the field to specialists
-with the training and resources necessary for the undertaking.
+In the sociology of culture, genre is a form of classification enacted
+by people in various social contexts. In the context of industrial
+capitalism, genre is an economic principle helping to organize supply
+and demand within markets for cultural products. There actors see genres
+among the borders between economic, social, and cultural uses, as a
+market category helping them acquire or produce content, as a card in
+proximate games of prestige, or as something to taste, to consume and
+enjoy directly. Less often genre is knowledge, a component of culture
+separate from taste, that is a factor in the formation of ideas and
+skills, whether these lead in turn to economic production or not.
+Genre's meaning is context specific and variable across sociological
+subfields, though it is amplified in empiricist fashion by economy and
+society approaches that reduce genre to the act of classification
+itself, empiricist because of the empirical ease with which the
+classification or labeling actions are observed. Especially with
+Internet distribution systems, it becomes trivial for corporations to
+observe when a consumer labels their preferences while browing a content
+catalog; it is much harder to observe the ideas that consuming a
+particular piece of content sparks in the consumer.
 
-Computers cannot study history in this way. What they can do, however,
-is mine source material for limited kinds of contexts. The kind I am
-concerned with below are the \emph{historical vocabularies} that writers
-used to construct texts in historical time. Vocabularies are glyphs
-without grammar; they do not mean anything, but nothing meaningful can
-be said without them in the present or in the past. They are the
-mediated form of language, and in communicating with each other
-historical actors leave traces that survive perfectly in time so long as
-texts themselves survive.
+In a different discipline, far removed from sociology, disciples of
+cultural studies use the term much differently. To the humanist, genre
+is an ontological phenomenon, which is to say, genres are differentiated
+from each other by combinations of discrete features of signs and
+signifieds. Humanists are trained to establish these ontologies through
+methodological readings of texts and through cultivation of theories of
+genre types. These methods are at the same time empirical and
+interpretive, because in consuming objective texts the researcher
+actually observes the ideas that form in her own consciousness, and hope
+that others have a resonant experience. In any event, genres have much
+more substance to them for humanists than they do for sociologists. For
+sociologists of culture, genres are how people use genre labels, while
+for humanists, genres are knowledge.
 
-While computers cannot read meaning in texts, and can barely recognize
-it, they are almost as good as humans at recognizing the glyphs of
-texts, and vocabularies are nothing but glyphs. What computers lack in
-smarts, they make up in speed and memory. The quantitative scale of
-their recognition makes for a qualitative shift because vocabularies can
-be enumerated across immense corpora of texts. Immense, at least, by
-human standards as there are limits to even computer memory and speed.
-Yet such enumeration of texts into objective historical categories; this
-is a profound resource for the intellectual historian. That one could
-begin a reading with such context would be a transformative research
-tool. Vocabulary enumeration, by which I mean simply the counting and
-classifying of texts according to the vocabularies they contain, invites
-a population studies approach to intellectual history. Where
-sense-making is driven by comparisons, a reader's arbitrary combination
-of texts is guaranteed to lead to anachronism. But if we can know that
-texts are relevant to each other without knowing why, we have done some
-small amount of hermeneutic work by supplying texts as historically
-correct context to each other.
+What then is genre to a sociologist of knowledge, and perhaps to a
+cultural sociologist? It is ontology as it is for the humanist, however
+it is not the ontology as represented to the researcher in the
+consumption of texts. It is the hopelessly unobservable distribution of
+ontologies appearing in a population of consumers objecting to similar
+texts (objecting in the etymological sense of throwing content in their
+own way, of compeling attention). The sociologist of knowledge accuses
+the sociologist of culture of reducing internalist concepts, thought and
+experience, to externalist ones, taste and preference. The sociologist
+of culture rejoinds, show me yours and I'll show you mine, and the
+interlocuters spin around the axis defining the boundary between their
+subfields.
 
-And even going so far as abandoning the project of reading texts in a
-historically correct way, vocabulary enumeration can still lend
-objectivity to a novel construction, a productive anachronism, of
-textual meaning. Because vocabularies, the problems solved by computers,
-are mathematically, algorithmically, or stochastically determined, they
-may provide an immutable description of corpora that, like a map,
-enables individual and collective exploration within a common framework.
-Such maps may become the parameters of interpretive methods, which we
-may use to surface and control some of our subjectivity.
+Yet for all their differences, do these views of genres contradict, or
+are they complementary? Does genre as distribution serve the economic
+sociologists's goals, or does a lack of ontological substance lead her
+astray? Does genre as knowledge remain hopelessly unverifiable, or are
+theoretical constructs necessary to achieve a correct interpretation of
+facts? Is everyone at the club listening to the same song hearing the
+same thing?
 
-This at least is the rationale for what follows. I begin with a
-discussion of intellectual history of two social sciences, anthropology
-and sociology, in the United States. I take a coarse view of national
-history as the history of wars because of their downstream effects on
-government activity and institutional investments. The first period is
-between the end of the American Revolution (1783) and the end of the
-American Civil War (1865) and is the national context for the origin of
-U.S. anthropology. The second period is after the Civil War until the
-end of World War I (1918) and is the context for the origin of U.S.
-sociology and of modern U.S. higher education generally. Wars of
-territorial expansion are waged regularly during both periods against
-native peoples and rival colonial empires, and social research was
-always recruited to solve attendant problems of population and to
-provide rationales for the relationships with and understandings of
-conquered or would-be conquered people.
+To return to disciplines, answering such questions would put the
+researcher in an adisciplinary predicament, for it would mean eschewing
+the scope restrictions cherished by disciples. The challenges of a
+meta-disciplinary analysis are manifold and uncertain. One is as likely
+to grow her audience as to lose it altogether. She risks the deletantism
+of a jack-of-all-trades. What's worse, she exposes herself to a dizzying
+scale of content to consider. If disciplines are indeed functional, then
+the meta-analysis that effaces disciplines risks being dysfunctional.
+The upside, however, is appealing. If the universe of meanings given to
+the term genre does contain complementary uses, a meta-analysis will
+allow one to consider the consequences of the now arbitrary segregation
+of a superior metaconcept across disciplinary boundaries. Both sides of
+the divide could be strengthened by a cultural exchange of their
+respective terms. The redundancy of parallel discovery can be avoided.
 
-I use intellectual histories of anthropology to characterize the
-antebellum period, and the same for the postbellum period including
-sociology. The most important journals in each field date from the
-postbellum period, and the appearance of each is implicated in the
-project of professionalization for each discipline. The 1920s marked the
-end of war with the last of the militating American Indian tribes, and a
-reckoning with the darkest sides of industrialization laid bare by WWI.
-Social research had by this time completed a shift from colonial to
-industrial problems and enjoyed a golden decade of development as a
-profession, punctuated by the next great historical crisis in the Great
-Depression. With the 1920s begins the adolescence of social research,
-which is beyond the present scope. This study is of its childhood, which
-ends with the Great War. I however draw the study out until 1922 because
-it is the end of the public domain in U.S. copyright, to aid in the
-reproducibility of the analysis and so that all readers may recover the
-texts in question without difficulty.
+Pathologies of disciplinarity can be diagnosed and treated. Disciplines
+are social substructures embedded in a larger society and culture. If
+disciplinarity is a kind of controlled ignorance exchanged for access to
+secret knowledge. The wayward uses of a term like genre are always
+lurking at the edges of the firelight defined by a particular
+disciplinary camp. Discipline as rigor instructs disciples to resist
+flirtations with the available complexity of the term. The essential
+tension is very rarely between what is known and unknown; rather it is
+more commonly between what is known ``here'' versus what we are
+conditioned to be willfully ignorant of ``there''.
 
-\section{\texorpdfstring{Topics \normalfont{≟}
-Ideas}{Topics  Ideas}}\label{topics-ideas}
+In a motivation of some of the arguments to follow, I take a
+metadisciplinary approach, which is to cast as wide a net as possible on
+the term genre. Insodoing I hope to test the tacit cultural assumption
+that discipline-based decisions of relevance are valid, that is, that
+when we exclude arguments from other disciplines we remove distractions
+and focus on what is important. The alternative possibility is that we
+are wasting intellectual resources, because to exclude important work
+about our topic, even if it is codified in foreign terms, is to risk
+ignorance and redundancy.
 
-The strategy of the study occurs in four steps.
+\hypertarget{method}{%
+\section{Method}\label{method}}
+
+As I have said, the first consequence of eschewing disciplinary
+limitations is to bloat the size of the ``literature'' on genre, since
+no uses of the term would be excluded. An empirical approach to the
+standard academic convention of a literature review will help reign in
+the scale and complexity of the task. My aim, however, remains practical
+rather than scientific. The methods need to be good enough to yield
+results that offer something new above a traditional literature review
+relying on library search and disciplinary wisdom about what is
+important.
+
+\hypertarget{distant-sampling}{%
+\subsection{Distant sampling}\label{distant-sampling}}
+
+The methodological premise of a metanalysis of genre is that the Gordian
+knot of global cultural complexity can be cut by stratified sampling. I
+use a large digital archive of texts, JSTOR, to define the cultural
+universe, and a simple term search of the keyword ``genre'' to define a
+sampling frame. I could then take a simple random sample of texts,
+analyze how each uses the term genre, develop a classification scheme,
+and enumerate the different uses of the term. Unfortunately, a small
+sample in a statistical sense may be larger than a poor researcher can
+handle. 1,000 texts is not large statistically, but it is huge from a
+content analysis perspective. What's worse, 1,000 texts may still
+exclude, by random chance, small subcultures of the term. Stratification
+resolves this issue by delineating those subcultures so none would be
+left out.
+
+Alas, the JSTOR digital archive lacks subject labels at the article
+level, though it does include them for book chapters and for journals.
+While not foolish, inheriting a journal label to the articles included
+within it may be a coarse approximation if within-journal content
+variation exceeds between-journal variation. We can use text analytic
+classification methods to cluster articles directly and discover latent
+groups of articles, and insodoing we can have an independent standard to
+compare to the discipline labels given to journals. It is an open
+question whether such methods align with what we have discussed above as
+disciplinary and subdisciplinary groupings, for us whether regularities
+in vocabulary correspond to regularities in the meaning of the term
+genre. If they do not, then the study will only be a stop en route to a
+true census of the uses of the term genre, and the contribution will be
+to have interrogated the quality of the methods used, though this would
+be a small consolation indeed!
+
+The choice in computational text analysis (CTA) about how to represent
+texts as data hinges on whether word order is preserved. The older and
+more tested approach is to not preserve word order. The name given to
+this ``bag of words'' format reminds one of its inelegance. A bag of
+words is a frequency table for each document counting up the number of
+times particular words are used, a representation that effectively
+reduces a text to its vocabulary. It is the analyst's crude operational
+decision to treat vocabularies as indicators of meaning, but social
+scientists conventionally insist on cross validation via qualitative
+analysis. While the ambitions of computaitonal text analysis may start
+with a replacement of, for instance, the standard literature review, the
+conventional distrust, at least in sociology, of mathematical models of
+text makes CTA more of a sampling method than an analytical method. The
+study will culminate in a reading of texts, albeit one that is different
+than traditional qualitative analysis because the CTA researcher
+welcomes the introduction of interpretive bias from an understanding of
+the mathematical model before, during, or after the texts are read. In
+the game of ``choose your influence'', CTA is one choice while
+disciplinary wisdom is another.
+
+There are two types of classification methods in text analysis, direct
+document clustering and topic modeling. Direct document clustering
+treats the bag of words as a vector space and calculates distance or
+similarity metrics between documents, which are then clustered. In a
+topic model, the relationship between documents is mediated by an
+unobserved but latently modeled representation of their content;
+documents are similar because they are formed from the same topics.
+
+Whichever approach one takes, and both may be used, recall that the goal
+is to organize the texts into strata for the purpose of stratified
+sampling. We said that we wish to typify and enumerate the different
+uses of the term genre. By qualitative analysis, we could read every
+text in a simple random sample and come up with a theory of the use of
+genre in that text. The demerits of this approach are several
+\citep[c.f.][5]{Nelson2017Computational}. It would take longer than we
+want even for too small a sample. We are not humanists and have not been
+trained in text analysis (this will hound us no matter what). Fatigue
+will set in, and accuracy and consistency will suffer. We may limit our
+set of theories to spare us the agony of complexity. It will be hard to
+reproduce our results. There may be path dependency with a different
+reading order producing different theories. On the upside, we would be
+more educated for it.
+
+Instead, we will stratify the sample, and it is in the configuration of
+the strata that much of the work will be done. The strata impose upon
+our interpretation of the texts the assumption of sameness.
+
+\hypertarget{arms-length-reading}{%
+\subsection{Arms-length reading}\label{arms-length-reading}}
+
+The radical (and much maligned) distant reading approach taken by
+digital humanists is partially used here. While I employ a quantitative
+analysis of texts the goal is to not replace human reading with machine
+reading; knowledge, understanding, and the cultural logics of arguments
+are still only obtainable by reading primary texts, closely or not. What
+computational text analysis offers guidance in answering the question of
+what to read, and perhaps in what order to do so. Clearly this question
+is answered institutionally for scholars already in canon, curriculum,
+word of mouth, and reference services. The social patterns of these
+answers are topics for the sociology of knowledge and science and for
+the information sciences. Whatever they are, however, we assume them to
+be arbitrary reductions in the overwhelming complexity of published
+scholarship. The pious hope of the present exercise is to move in a less
+arbitrary direction in aswering the question of what to read.
+
+If distant reading is a criticsm of close reading then it has a big hill
+to climb especially among humanists who are trained to deal methodically
+with texts very carefully. In the social sciences a type of customary
+distant reading is that of ritual citations, those that have developed a
+meaning that may be oblique to their content or at odds with the
+intentions of the the original authors. A ritual citation is simply one
+that is cited but not read, but also one that is so often used that its
+socially acceptable usages are known from other secondary accounts.
+
+\hypertarget{data}{%
+\section{Data}\label{data}}
+
+We will use the JSTOR Data for Research service to download a corpus of
+texts for topic modeling. I take the following steps to develop a
+corpus:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  Sort text into categories of similar vocabulary.
+  Search dfr.jstor.org using the query
+  \texttt{(ta:genre\ OR\ ab:genre)\ AND\ la:eng} and requesting 1grams.
 \item
-  Describe the vocabularies that define category membership.
+  To cull documents for which genre is not an important term, exclude
+  documents containing the 1gram ``genre'' fewer than five times.
 \item
-  Describe vocabulary prevalence across time and discipline.
+  Remove ngrams appearing fewer than three times, which often includes
+  optical character recognition errors.
 \item
-  Validate category contents by a traditional qualitative reading of
-  texts.
+  Remove ngrams shorter than three characters and longer than 25
+  characters, again often OCR errors but also stopwords that will be
+  removed anyway.\footnote{The Freudian ``id'' is an unfortunate
+    casualty of this step, as well as some footnotes, endnotes, and
+    captions containing small text where word boundaries were not
+    detected during OCR and a series of words was concatenated.}
+\item
+  Compile baseline word counts for each document assuming that at this
+  step the documents contain only valid terms, and no OCR errors.
+\item
+  Remove SMART stopwords.
+\item
+  Remove numbers.
+\item
+  Remove punctuation, except intraword hyphens.
+\item
+  Lemmatize or stem English words.
+\item
+  Remove lemma with fewer than three characters.
+\item
+  Aggregate 1grams defined by a single lemma and, for ease of
+  interpretation, name the sum after the most common 1gram.
+\item
+  Remove terms appearing in fewer than 20 documents.
+\item
+  Remove documents that, after the above filters, have a word count of
+  fewer than 500 words.
 \end{enumerate}
 
-I will spend considerable effort on solving the problem presented by
-step 1, as here everything depends on the computational methods
-employed. Steps 2 and 3 are straightforward given a successful
-mathematical model of texts. Step 4 is seldom attempted, and may be the
-hardest of all, because it is here that machine and human learning must
-be integrated. If I am successful, if through these steps I may
-operationalize the notion of cultural meaning or cultural logic as
-conformity to vocabularies, then I believe a new horizon of intellectual
-scholarship is possible. If on the other hand I find that
-machine-learned vocabularies do not correspond to human-learned
-understandings of the texts drawing on those vocabularies, then the
-discovery will be negative, that distant reading is not a scientific,
-historical, or hermeneutic method, but rather a toy at worst and a best
-new humanistic method of reading texts de novo.
+The initial query returned ? articles from ? different journals, as well
+as ? book chapters. After the above processing steps, the sample was
+reduced to ?. It is fair to ask what was lost. While I do not carefully
+look at the content of the excluded documents, assuming they were not
+texts that made important use of the term genre, I do retain some
+information about what components of a text were lost of those documents
+that were not cut. This is a measure called idiosyncracy, which I will
+have cause to interpret later.
 
-The mathematical tool I will rely on in step 1 is called topic modeling,
-which refers to a variety of computational approaches to text data that
-blur the distinction between qualitative and quantitative analysis. The
-topic model paints a lexicographic picture of texts, analogous to the
-demographic picture gained by a civil census survey of cities and towns.
-To a topic model, texts are merely collections of terms (usually words)
-that are counted to create the so-called ``bag of words'' description of
-a text. In the same way that a census reduces communities to counts of
-the names of people who live in them, topic modeling reduces texts to
-the frequency of word choices in texts, to their diction or vocabulary.
-Just as a census of people fails to capture the nuanced interactivity of
-human settlements found in their culture, politics, and economic
-activity, the topic model washes away the meanings and intentions behind
-the words that are enumerated.
+\hypertarget{sankey}{%
+\chapter{sankey}\label{sankey}}
 
-A population census would not be very helpful were it only a count of
-the names of respondents, and of course the really helpful data derive
-from the demographic and economic survey attached to the name. Text data
-do not usually come with such a collection of rich covariates, yet
-nevertheless topic models promise to discern helpful patterns from
-counts alone. The trick behind the estimation of a topic model is that
-it attempts to learn the demographic information (topics) without
-asking, by merely looking at how the names alone (terms) are distributed
-across geographies of interest (texts). If it can keep its promise, a
-topic model applied to census data might recover the cultural patterns
-latent in the distribution of names. It might, for instance, learn
-different groupings of names that in turn correspond to markers like
-age, race, national origin, or gender, so long as membership in those
-categories was related to geography. It might, for instance,
-successfully separate a category of Hmong names out from among the names
-of all people living in St.~Paul because the non-Hmong names appeared in
-other regions where no Hmong names appeared.
+Topic models require the analyst to choose the number of topics \(K\).
+The approach we take to guiding this decision is not to expect one
+correct specification of K but rather to see it as a changing
+resolution. A K=2 model usefully bifurcates the sample and is not wrong
+because it is too restrictive. As K increases we expect the samples to
+continue to divide as new parameter spaces become available to partition
+the sample. While this is not strictly a hierarchical design, since each
+K model is fit independently, we should expect to see aspects of
+hierarchical topics as well as some degree of stability in the
+relationships among topics.
 
-To call the category of names ``Hmong'' requires an interpretation of
-the model, which by itself is just lists of names. This is the work of
-step 2, and requires a little bit of shoe leather by trying to make
-sense of what a list of names refers to. Here reading texts is like a
-census taker knocking on a door, and a topic model's latent analysis
-saves on this effort. Sometimes bringing domain knowledge to bear on the
-list itself will suggest a category label, but often choosing a small
-sample of texts as exemplars of the category. Still this requires much
-less shoe leather than a traditional qualitative analysis in which each
-text is studied directly. Of course the census is much more informative
-because it asks about demographic categories directly thereby avoiding
-the need for a latent analysis. In domains where rich covariates are not
-yet available or are prohibitively expensive to acquire, latent analysis
-provides promising clues of patterns that already exist. What is even
-more interesting, and something that might surprise even census
-analysts, is when latent categories do not correspond to known survey
-items. In either event the power of topic modeling for inductive
-analysis is to reveal structure in how names hang together that was
-hidden.
+Categorical Expectation Maximization is known to
 
-Even without conducting the second labeling step, in step 3 it will
-already be possible from the output of the model to inspect the
-distribution of topics across available covariates, especially time.
-These are the patterns that will help validate the topic models against
-what is already known about intellectual history. For instance, the
-power of institutional and generational change may well be apparent in
-the historical distribution of topics. This step leads naturally into
-step 4 by suggesting anomalies that can only be explained by a closer
-look at the texts, the chore that the entire preceding analysis punts
-on. In step 4 we learn either that our understanding of history was
-wrong, or that our topic model was wrong, and there may be no method
-other than one's judgement to decide.
+\hypertarget{top-x-doc}{%
+\section{top x doc}\label{top-x-doc}}
 
-In the next section, before we delve into the statistical and
-computational nuances of topic models, I will spend some time developing
-a few themes to help organize the blending of quantitative and
-qualitative methods invited by topic modeling in particular and
-computational text analysis generally.
+\hypertarget{gen}{%
+\chapter{Social Science Genres Today}\label{gen}}
 
-\section{Prior Work}\label{kd-lit}
-
-\section{Information}\label{information}
-
-Understanding differences in the ontological status of the ``topic''
-concept is a good way to begin to understand how this method of analysis
-is used by researchers.
-
-Analysts have conceptualized the use of topic models in very different
-ways. Some researchers treat topics as useful for a particular purpose
-and not as true descriptions of real phenomena. Topics as information
-enhances the ability to search for relevant documents or statistical
-trends in otherwise unwieldy corpora as a time-saving alternative to
-manually reading large collections. \citep{Boyd-Graber2017Applications}
-Empirical problems, used as demonstrations of statistical techniques,
-have included
-
-This is the ``needle and haystack'' approach favored by computer and
-information scientists who tend not to be interested in theoretical
-intepretations beyond the statistical definitions of topics.
-
-\section{Meaning}\label{meaning}
-
-Other researchers instead grant topics ontological status, and these can
-be divided into three types. Most ambitiously, topics may be treated as
-representing categories of thought. Latent semantic structure latent
-semantic structure \citep{WallachStatisticalTopicModels2011}
-
-\section{Communication}\label{communication}
-
-representational style \citep{Grimmer2016Measuring} frame
-\citep{DiMaggio2013Exploiting}
-
-\chapter{Social Science Genres Today}\label{gen}
-
-\subsubsection*{Abstract}\label{abstract-1}
+\hypertarget{abstract-1}{%
+\subsubsection*{Abstract}\label{abstract-1}}
 
 
-(ref:abs-gen)
+Social science is arranged into disciplines in a manner
+strikingly similar to the genre systems of commercial fields of cultural
+production (FCP) like music, yet evolving at a slower pace. Genres
+appear static and given in the form of the labeling schemes of
+archivists and librarians. Such schemes aim to describe academic genres
+objectively, yet in so doing referencers and indexers reify them
+historically. Such genre classifications are at times useful,
+frustrating, or didactic for the academic ``disciples'' or knowledge
+workers of higher education. This study maps the cognitive system of
+genre classifications in one particular labeling scheme, that of the
+JSTOR historical archive, as applied to one aspect of academic FCPs,
+journals. The patterns of interdisciplinary cross labeling, of allowing
+journals to bear multiple labels, reveal how global axes among science,
+social science, and humanities condition the local relationships of
+disciplines like sociology and anthroplogy.
 
-\subsubsection*{Keywords}\label{keywords-1}
+\hypertarget{keywords-1}{%
+\subsubsection*{Keywords}\label{keywords-1}}
 
 
-(ref:key-gen)
+genre, social science, knowledge mapping, labeling,
+cognition
 
-\section{JSTOR Journals}\label{kd-dq1}
+\hypertarget{introduction-1}{%
+\section{Introduction}\label{introduction-1}}
+
+Genre is a both a phenomenon and an analytical approach, indeed, several
+analytical approaches. I critique a contemporary use of multimodal
+network analysis to study genre as measured in cultural object network
+data. I argue that standard rational choice approaches in the sociology
+of culture, the theory of consumer preferences or tastes, does not pass
+a prima facie test of validity as an accurate representation of the
+global properties of so-called cultural networks. The same data that are
+used to demonstrate taste theory better support an alternative knowledge
+based approach to culture.
+
+\hypertarget{taste}{%
+\subsection{Taste}\label{taste}}
+
+Lizardo operationalizes genre preference data in network terms by
+``inducing a network of persons connected to the cultural genres they
+choose'' \citeyearpar[53]{Lizardo2018mutual}. This allows him to analyze
+individual preferences within a global context represented in bimodal
+network patterns. Multimodal networks, of which a bimodal network is the
+simplest type, are an analytical convention wherein at least two classes
+of items bear relations and in which a rule is imposed that such items
+may only be related to items of a different class. Insofar as the
+researcher cares about intraclass relationships she must understand them
+as mediated by one of the alternative classes.
+
+This multimodal metric convention aligns with cultural capital theories
+of culture which treat the consumption of cultural objects as
+transactions out of knowledge relationships and into status ones. In a
+knowledge relationship cultural logics obtain, usually a principle of
+rightness like truth, beauty, or morality. Social relationships, on the
+other hand, are governed by different rules, e.g.~those of commitments
+like love and enmity or loyalty and rivalry. The meaning of a cultural
+object is given by the interactions established around it, which are
+themselves conditioned by role expectations
+\citep[445]{DiMaggio1987Classification}. Cultural capital then is the
+type of relationship process where an actor tries to exchange knowledge
+for status as the basis for a relationship or at least to motivate a
+particular role interaction.
+
+This treatment of cultural capital differs from more strictly
+Bourdieusian approaches. Serino et al \citeyearpar{Serino2017Bridging}
+do it differently.
+
+The simplest multimodal network has two classes (see
+\citep{Shi2015Weaving} for examples of many more).
+
+culture as a disembodied abstraction \citep{Lizardo2018mutual}
+
+\begin{quote}
+\begin{quote}
+Genre classifications socialize the infrastructure costs of artistic
+production. \citep[445]{DiMaggio1987Classification}
+\end{quote}
+\end{quote}
+
+\hypertarget{structuralist}{%
+\subsection{Structuralist}\label{structuralist}}
+
+Genres are a feature of two kinds of cultural surplus. First, genres are
+not necessary if knowledge is limited to a small number of lessons,
+stories, ideas, or skills. Such a cultural corpus is naturally held as
+``the'' obligatory culture, and because knowers do not experience
+options they do not face the problem that genres solve. When such a
+unary culture expands beyond the mental or technological limits of
+memory, or when it is faced with alien knowledge sources, a proto genre
+is functionally necessary that allows for a binary classification
+between sense and nonsense.
+
+Such a proto genre allows two things. Alien material becomes obvious,
+perhaps dangerous, but not confusing as it can be safely cordoned off
+from what is real knowledge. Second and perhaps more interestingly, a
+proto genre precipitates cultural expansion by allowing some stories
+(ideas, skills, products) to be told differently. Such novelty maintains
+interest without exciting alienation. In those acts of deciding what
+makes sense (inclusion) and what is nonsense (exclusion) the rules of
+the genre begin to form.
+
+When genres become multiple they cease to be about sense and nonsense
+and begin to be about relevance and irrelevance. They allow local action
+with a globalized culture by reducing local cultural complexity to a
+manageable level, and what is more important, they make normative and
+binding the particular pattern of exclusion. The genre classification of
+particular cultural objects must be done correctly or they will invite
+more or less predictable social backlash. In this way ``personal genre''
+must be understood to be an oxymoron; a person may have tastes, her own
+rules of repulsion and attraction, but to the extent that these tastes
+abrogate genre conventions a person has difficult decisions to make
+about how she will field the forms of social regulations, and perhaps
+rewards, that she will incur in expressing those tastes.
+
+This is not to say that socialized tastes, tastes that conform to genre
+convention, do not incure regulation and reward. Indeed we will see that
+one function of multigenre systems is to allow cultural industries to
+minimize exclusion and maximize conversions. In this sense the
+developmental model with which we began has a circular logic of scale;
+as genre systems grow and differentiate in the vain attempt to index the
+wild cultural content they hope to classify, industrial action lights
+upon this natural tendency and works to domesticate it. In working to
+exclude nothing, purveyors of culture demonstrate themselves to be
+tastelessly willing to hock something to anyone.
+
+This simple structuralism is a functional understanding of genres, which
+though not a sensible analytical approach in contemporary sociology,
+forms the spine of the argument to follow. The effect of genres that we
+wish to focus on is their exclusion potential.
+
+\hypertarget{culture}{%
+\section{Culture}\label{culture}}
+
+Bodies of knowledge and practice, cultures, exist because of yet apart
+from particular people. While some cultures are ubiquitous and
+inculcated in all members of the societies in which they are
+substantiated, others are esoteric and marked by significant barriers to
+learning them. Such esoteric cultures are as inaccessible as they are
+unnecessary. A child who does not learn what to eat and how to eat it in
+her local culture will have great difficulty doing anything else in her
+society. Food culture is of the ubiquitous type and is not difficult to
+learn. On the other hand, a child who does not master scripture will be
+ashamed at temple, but shame is bearable in a way that hunger is not.
+Scripture is of the esoteric type; knowledge of it enables special
+abilities and grants access to restricted aspects of a society, but
+ignorance of it does not threaten one's lay livelihood. Even in
+religiously totalitarian societies, what religous knowledge is necessary
+will be ubiquitous. What religious knowledge is esoteric can be safely
+left to the clergy. It is not too narrowly circular to say that the
+knowledge that informs daily life is the easiest to aqcuire, and that
+the mere act of living also reproduces that knowledge within contexts
+that are themselves ubiquitous. Whether relationships of ubiquity are
+familial, economic, or state relations varies by society, but no society
+lacks ubiquitous culture and the means of reproducing it.
+
+Esoteric cultures, then, are removed from ubiquitous ones though they
+depend on them. They require specialized social relationships for their
+reproduction in populations. These special relationships may be called
+fields of cultural production (FCP). FCPs are both reproductive of
+extant knowledge and productive of novel knowledge relevant usually only
+to the field itself. To the extent that esoteric cultures are
+complicated or otherwise have high entropy, the failure to reproduce
+their cultural content is always an existential threat. While it is a
+gaurantee that cultural content is constantly actually lost to
+reproduction failures, cultures that nonetheless persist historically
+must always have a socially structured FCP that, in inculcating new
+members and reinforcing the knowledge of extant members, resists the
+entropic decay that would otherwise lead to extinction.
+
+The scope of a culture has a knowledge and a social dimension. Units of
+knowledge are both discrete and combinatoric. Discretely, the size of a
+culture can be measured by a count of co-occuring ideas and skills. The
+utility of knowledge, for instance as instantiated in an FCP, often
+depends on the combination and interaction of such discrete elements.
+The mass of knowledge in a culture is related to the count of units and
+to the ease with which those units can be learned, thought, or deployed
+in meaningful activity. Some cultures are easier than others, and it is
+the effort-adjusted size that is the real mass of the ideational content
+of a culture.
+
+Not all sociologically relevant information is cultural. In the triadic
+relationship among culture, social structure, and personality,
+psychological concepts like schemata that are sometimes treated as
+constitutive of social structure do not belong in the category of
+culture. Schemata allow personalities to organize their responses to a
+world that includes many things beyond culture. In order for cultures
+and social structures to function stably in time, they depend on the
+successful operation of schema, but they do not necessarily provision
+these schema. An only partial exception is the limiting and very
+specialized cases of pedagogical institutions. A culture can only exist
+if people can reproduce it, but the people must solve the psychological
+problems of cognition on their own. Whereas culture is fungible in its
+different mediated forms, there is no reason to believe that a ``single
+schema'' occurs across a population of people. There are no
+one-size-fits-all solutions to human motivation, and schema will to a
+large extent be idiosyncratic, adapted as they must be to the particular
+circumstances in which people as träger find themselves.
+
+What cultures can do to hedge their bets against the instability of
+personalities is to introduce kinds of knowledge adapted to cognitive
+problems. Schutz identifies systems of relevance from the side of
+personalities, and here we understand the same from the side of
+cultures.
+
+People know culture and it does not appear apart from them. Put
+differently, culture is information and people are the media that
+concretely manifest it. The size of a culture is the count of the unique
+ideas and idea combinations appearing in a deduplicated media catalog,
+excluding possible but unrealized combinations. The potential of a
+culture is the size of the realized and unrealized combinations, where
+the number of elements in a set is limited by a given historical
+cognitive and technological memory capacity. The potential of a real
+culture is always greater than its size, as combination novelty always
+easily exceeds the available media.
+
+The social mass of the culture is the enumeration of the media in which
+cultural content actually appears historically. The cultural mass is
+copied piecemeal among a population of knowers. The mass may be enlarged
+by information technology by making it easier to access and transmit
+culture, but the artifacts and technology themselves do not count in the
+mass of the culture. Real, historical human nervous systems, including
+language expression,
+
+Dead cultures cannot live again because the dead part, the social part,
+is highly ephemeral. Even if a culture leaves material and symbolic
+artifacts, the ``dead'' parts are precisely those human relationships
+that would socialize new members in particular ways that cannot be
+deduced by people who never belonged to begin with, namely the
+archeologists of the future. Such archeologists belong to the FCP of
+their own time, and approach the historical artifacts of a dead culture
+as any other FCP approaches regular patterns in the world, as subject to
+their own particular cultural logics.
+
+Reproduction does not necessarily imply long term consistency of
+cultural content, indeed a high level of knowledge loss may be a sign of
+historical stability in an esoteric culture if it results from a highly
+productive FCP. An oversupply of cultural content increases the chances
+that some, any culture can be conveyed into the future in a chain of
+descent.
+
+Esoteric knowledge is essentially cryptic, ubiquituous knowledge
+essentially evident. Crypticism means that layity cannot acquire
+knowledge on their own, that is, without socially structured access to
+an FCP. Esotericism is the social consequence of crypticism. Cultures
+vary by knowledge features, as knowledge is a social axis of power along
+which status hierarchy necessarily develops. Knowledge asymmetry
+structures social relationships, usually leading to status inequality.
+
+High entropy cultures must socialize new and maintain existing members
+like any culture, but their complications also tend to be generative of
+novelty.
+
+The ubiquitous cultures will be learned because there is nothing in a
+society to do without knowing them, while esoteric ones are gauranteed
+to be forgotten by most, swapped easily for the always ready ubiquitous
+alternatives. Ubiquitous cultures have high ambient findability
+\citep{Morville2009Ambient}, they can be transparently acquired for
+instance through mimicry \citep{DiMaggio1983Iron}.
+
+FCPs are social structures that can be thought of as the articulation
+points between people and a special type of culture that we associate
+with higher education.
+
+To be sure, if esoteric cultures are marked by asymmetries of knowledge
+between laity and clergy, to continue with the religious example, we
+must admit that such asymetries exist in ubiquitous culture as well, as
+in the supposed ignorance of a child against the learning of an adult.
+The ignorance of children combined with their megalomania is a useful
+example of how social structures operate. Social structures are always
+culturally conservative; a child's ignorance is a generative force, as
+they may attempt to solve problems in novel ways, and their efforts will
+frequently be corrected by the experts. Whether the correction takes
+marks the chagrin of the parent. Children quickly become specialists in
+their own FCPs, but this is never because they aren't also aware of the
+ubiquity. They may know it, it may bore them, and they efface it for
+fun. But they know what is ubiquitous; their proximity to ignorance of
+it may animate their creative abrogation of culture. The essentially
+conservative function of pedagogy will stamp out that creative flame in
+time. Indeed children are a great source of entropy for ubiquitous
+culture, hence the large investment in education generally.
+
+This evolutionary argument can be more simply stated as, complicated
+cultures cannot exist for very long without stewardship.
+
+\hypertarget{genre-profession-and-cultural-morphodynamics}{%
+\section{Genre, Profession, and Cultural
+Morphodynamics}\label{genre-profession-and-cultural-morphodynamics}}
+
+Genre in sociology has been treated from literary, economic, and
+historical vantages.
+
+Economic sociology has treated genre as an integrating feature of
+markets, expressed simultaneously by both supply side and demand side
+actors \citep[441]{DiMaggio1987Classification}. DiMaggio posits an
+oversocialized conception of artistic classification systems that sets
+genre as a matching between consumers on one hand and production,
+including producers and distributors, on the other. Consumption of art
+is essentially transacted for social goods, that is, is a form of
+cultural capital. Because cultural products are objects of ritual
+satisfaction among consumers, social relations are limited to
+intra-economic categories. This is the same as saying that social
+boundaries mark cultural boundaries. The meaning of cultural products to
+producers is very different than to consumers, there is no cultural
+logic that transcends social boundaries, that is, there is no ``cultural
+totality'' even at restricted scales.
+
+Whether this is an accurate depcitions of the arts, it is not adequate
+for direct adaption to the analysis of scholarly disciplines. The
+missing variable is the pedagogical nature of social relationships. In
+pedagogical relations assymetries of cultural understanding are built in
+to the role structure of social relationships.
+
+The professional relates to a client. The administrator relates to a
+subject. The purveyor relates to a customer.
+
+This may be an accurate
+
+DiMaggio discusses three organizational forms--commercial, professional,
+and administrative--as explaining gen
+
+\hypertarget{generic-vs-typical}{%
+\subsection{Generic vs Typical}\label{generic-vs-typical}}
+
+Following Schutz all cognition is process that begins by matching
+knowledge to experience via an intial process of typification. Empirical
+objects are categorized according to types, and our knowledge is also
+indexed according to those types. We know what to do once we have typed
+an object and matched it to type organized knowledge.
+
+Genres
+
+In non market societies, FCPs are financed by state patronage. Here
+esoteric cultures that have no need of a laity will be invisible to most
+of the members of the society, and their knowledge will be naturally
+excludable. Market societies organize
+
+\citet{Schutz1970Reflections}
+
+Beer \citeyearpar{Beer2013Genre} posits genre as a form of Foucaultian
+classification where a formal ``grid'' of knowledge structures
+observations while inviting subversive criticism. Missing in the use of
+Foucault is a sense of historical transition between types of knowledge.
+Scientific knowledge passed through stages limited by new concepts of
+order. The grid or classification logic was replaced by causal logic in
+a process spanning generations. \citep[150]{Foucault2002order} Reading
+Foucault as a developmental theory means that a classification logic
+provides the knowledge necessary to envision a causal logic. In this
+sense, a reified and possibly stitled genre classification system is
+generative of a more nuanced causal logic in that it provides an anchor
+and set of easily workable tacit arguments; sociology is different from
+anthroplogy because of a deployed catalogical schema. Beer however puts
+formal and informal genre systems into an ahistorical relation; formal
+genres are not generative of causal explanations of genre, but rather
+they are power structures against which interested actors struggle to
+either support or efface.
+
+Foucaultian genre requires a method of description, and the components
+of the method describe or order observations of the thing. Genres do not
+work this way except in a post-hoc way, as the recent controversy over
+the single Country Road illustrates. Genres in this sense actually work
+as a pre-classification Classical system, as pure language in which
+knowledge is knitted together by merely tracking down uses of the term.
+Genres amount to anyone's use of the genres as terms. Genre criticsm
+operates in this mode; genres are leverged to inflrate deflate the
+reputation of particular social alters. Far from describing the
+characteristics of the music, genre as a term encompasses how the genres
+are used, such as in their influence on scene formations and fashion.
+These are primitive forms of knowledge if Foucault's account of science
+is taken developmentally.
+
+Marxian structural development classically contends that stages of
+history cannot be skipped. Some theorists partially relax this model
+with a version of structural memory wherein a society that has undergone
+a transition into a particular stage of development, the resources
+genreating the relationsihps of the previous stages are already
+available. This is why development is slow first, but when the process
+has been played it may be replayed at much greater speed, and it may be
+played out of order. What is normally mapped to a process of time may in
+an advanced stage be mapped to different dimensions. The one we will be
+concered with is a status dimension. The classical form of knowledge,
+wherein it is stiched together piecemeal by focus on the language, the
+use of the term, leaving little coherence to the threads so collected,
+is simple and available always. The more structure classificaiton
+according to a rule-based grid is more advanced. Rather than being
+available only in time, after it's invention, it may be aviaalbe as an
+asymmetry of training or socializaiton. Grid-knowledge may be utilized
+among the clerics and not available to the laity. At the core of the
+clerics, the elite of the esoterics, the most complicated stage of
+causal reasoning, is available to even fewer people. Boulding, in his
+own genre scheme, called the same the distinction between frameworks and
+clockworks \citep[202]{Boulding1956General}.
+
+What this view allows us to ask is, for Beer's emphasis on the critical
+use of genre categories, does it matter that the laity flirt with
+classical kinds of knowledge. Does it, as Beer suggests, work to reform
+the genre categories? Or on the other hand, to the institutions of
+formal categorization easily ignore such debates, or do they rather have
+aggreagtion systems of their own to handle ``deomcratic'' or market
+research processes like genre term searches?
+
+\hypertarget{kd-dq1}{%
+\section{JSTOR Journals}\label{kd-dq1}}
+
+Genre classifications are totalizing, as any factor or product in a
+field of production can be labeled and sorted according to a categorical
+logic.
 
 We rely on the JSTOR digital archive which gives access to optical scans
 of historical journals. JSTOR provides a title list of their journal
@@ -528,7 +1078,8 @@ To assess the size of the disciplines and to disentangle their
 hierarchies it will be helpful to have a mutually exclusive labeling
 scheme that draws on the JSTOR curators' judgement while simplifying it.
 
-\section{Network Mode Projection}\label{network-mode-projection}
+\hypertarget{network-mode-projection}{%
+\section{Network Mode Projection}\label{network-mode-projection}}
 
 I rely on network methods to accomplish this labeling in a data driven
 and reproducible way. In a network representation of journal discipline
@@ -608,10 +1159,10 @@ proportion of actual ties out of all possible ties. In Figure
 \ref{fig:mod-proj} an imbalance may be observed where the journal facet
 has many dense free floating or overlapping cliques and where the label
 network appears to be mostly made of isolated labels save for the few
-larger components. In the sampled network the journal facet is 11 times
-more dense than the label facet. In the case of our full network, the
-potential imbalance in degree distribution between facets happens to be
-offset by the population imbalance itself. The densities in the full
+larger components. In the sampled network the journal facet is five
+times more dense than the label facet. In the case of our full network,
+the potential imbalance in degree distribution between facets happens to
+be offset by the population imbalance itself. The densities in the full
 journal and label facets are comparable, 26.2 and 27.3 percent
 respectively, meaning that analysis will not merely hinge on which facet
 is analyzed.
@@ -628,7 +1179,9 @@ original bimodal network. Its drawback is that it is larger and more
 unwieldy to analyze. The label facet offers a simpler picture of
 interdisciplinarity.
 
-\section{Network Community Detection}\label{network-community-detection}
+\hypertarget{network-community-detection}{%
+\section{Network Community
+Detection}\label{network-community-detection}}
 
 Each facet described above will help answer a different question about
 disciplinarity in the JSTOR archive as indicated by JSTOR's labeling
@@ -748,7 +1301,8 @@ expect the clustering to be less granular for the label network than for
 the journal network. In fact there is only one less cluster--Law--which
 is subsumed under Social Sciences.
 
-\section{Network Visualization}\label{network-visualization}
+\hypertarget{network-visualization}{%
+\section{Network Visualization}\label{network-visualization}}
 
 Figure \ref{fig:jclu-lnet} visualizations the relationships among
 disciplines, where again the strength of ties is equal to the number of
@@ -853,70 +1407,11 @@ most with the physical problems of space, health, and technology. On the
 edge of the humanities and social sciences are history, philosophy, and
 anthropology.
 
-\section{Social Science Journals}\label{kd-dq2}
+\hypertarget{cit}{%
+\chapter{The Social Science Citation Landscape, 1900-1940}\label{cit}}
 
-The journals within social science cover five different subdisciplines.
-
-\begin{table}[!htbp] \centering 
-  \caption{JSTOR Social Sciences Journal Counts} 
-  \label{tab:jclu-tab-sub} 
-\begin{tabular}{@{\extracolsep{5pt}} lrrrr} 
-\\[-1.8ex]\hline 
-\hline \\[-1.8ex] 
-Subdiscipline & N & Pct & Labeled & LPct \\ 
-\hline \\[-1.8ex] 
-Archaeology & 256 & 27.9 & 115 & 12.6 \\ 
-Political Science & 219 & 23.9 & 183 & 20 \\ 
-Education & 192 & 21 & 170 & 18.6 \\ 
-Sociology & 160 & 17.5 & 145 & 15.8 \\ 
-Anthropology & 46 & 5 & 89 & 9.7 \\ 
-Population Studies & 22 & 2.4 & 27 & 2.9 \\ 
-Geography & 18 & 2 & 32 & 3.5 \\ 
-Transportation Studies & 3 & 0.3 & 7 & 0.8 \\ 
-Total & 916 & 100 & 768 & 83.8 \\ 
-\hline \\[-1.8ex] 
-\end{tabular} 
-\end{table}
-
-\begin{figure}
-
-{\centering \includegraphics{ambrose_dissertation_files/figure-latex/jstorm2fig-1} 
-
-}
-
-\caption{Periods in the Growth of the Number of Social Science Journals in the JSTOR Archive}\label{fig:jstorm2fig}
-\end{figure}
-
-\begin{figure}
-
-{\centering \includegraphics{ambrose_dissertation_files/figure-latex/nces2phd-1} 
-
-}
-
-\caption{Decennial growth in number of PhD degrees conferred in the U.S.}\label{fig:nces2phd}
-\end{figure}
-
-\begin{figure}
-
-{\centering \includegraphics{ambrose_dissertation_files/figure-latex/nces/jstorm-1} 
-
-}
-
-\caption{Number of PhDs conferred in the United States per Social Science Journal}\label{fig:nces/jstorm}
-\end{figure}
-
-This period represents one of stable growth, as the size of the field
-grows with the number of players on it. Between 1888 and 1922 there
-tended to be about seven new PhDs in the U.S. for every social science
-journal even as each population grew year over year. These growth
-patterns begin to diverge around 1920 as a decades long acceleration of
-personnel begins, relatively slowly between 1920 and 1960 at an average
-acceleration rate of 22 PhDs per journal per year, and then quite
-precipitously in the 1960s at an average acceleration rate of 121.
-
-\chapter{The Social Science Citation Landscape, 1900-1940}\label{cit}
-
-\subsubsection*{Abstract}\label{abstract-2}
+\hypertarget{abstract-2}{%
+\subsubsection*{Abstract}\label{abstract-2}}
 
 
 Knowledge mapping of acadamic journals promotes the
@@ -931,13 +1426,15 @@ century prior to U.S. entry into World War II as a case, and describe
 how the intellectual landscape of four separate social science
 disciplines developed.
 
-\subsubsection*{Keywords}\label{keywords-2}
+\hypertarget{keywords-2}{%
+\subsubsection*{Keywords}\label{keywords-2}}
 
 
 citations, k-clique communities, community detection,
 landscape
 
-\section{Introduction}\label{introduction-1}
+\hypertarget{introduction-2}{%
+\section{Introduction}\label{introduction-2}}
 
 If knowledge is power then scholar must be a powerful class. But what
 kind of power is knowledge and in what way do scholars wield it? Is
@@ -956,8 +1453,9 @@ the stuff of knowledge at the same time that knowledge is itself
 conditioned by the technology and social arrangements that constitute
 scholarly occupations.
 
+\hypertarget{scholarly-communication-vs-knowledge-terrain}{%
 \subsection{Scholarly Communication vs Knowledge
-Terrain}\label{scholarly-communication-vs-knowledge-terrain}
+Terrain}\label{scholarly-communication-vs-knowledge-terrain}}
 
 If the production of culture perspective were to argue against Marx's
 German Ideology, it might say, ``Not all mental laborers have soft
@@ -974,12 +1472,14 @@ markets fail to do so. \citep{Hayes2000Assessing}
 
 Remuneration
 
-Are culturally interior artifacts referenced by socially superior
-scholars?
+Are culturally interior products referenced by socially superior
+producers?
 
-\subsection{Mapping Knowledge Terrain}\label{wok}
+\hypertarget{wok}{%
+\subsection{Mapping Knowledge Terrain}\label{wok}}
 
-\subsubsection{knowledge stuff}\label{knowledge-stuff}
+\hypertarget{knowledge-stuff}{%
+\subsubsection{knowledge stuff}\label{knowledge-stuff}}
 
 There are two reasons to map knowledge spaces. First, we may want to
 know how knowledge develops as a resource unto itself. Second, we may
@@ -1107,8 +1607,9 @@ mapped to an existing database of structured knowledge.
 
 \citep{Pilkington2009evolution}
 
+\hypertarget{disciplines-as-a-large-world-co-reference-network}{%
 \subsection{Disciplines as a Large World Co-reference
-Network}\label{disciplines-as-a-large-world-co-reference-network}
+Network}\label{disciplines-as-a-large-world-co-reference-network}}
 
 A large world network is not amenable to traditional visual
 representations due to its extreme density. Scholars often use edge
@@ -1153,11 +1654,14 @@ bibliography tie those references together in the network. Indeed each
 citing article lays down a dense clique of references, and the impact of
 an article grows quadratically with the length of its reference list.
 
-\section{Methods}\label{methods}
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
 
-\section{Data}\label{data}
+\hypertarget{data-1}{%
+\section{Data}\label{data-1}}
 
-\section{Results}\label{results}
+\hypertarget{results}{%
+\section{Results}\label{results}}
 
 The structure of a large world as revealed by KCC can be explored in a
 bottom-up and top-down fashion. Bottom-up observes 3-clique communities
@@ -1178,11 +1682,12 @@ the first half of the twentieth century.
 Disciplinarity and interdisciplinarity are revealed in a novel fashion
 in the KCC model. Disciplinarity is shown as a level of exclusion.
 
-\subsection{Continents}\label{continents}
+\hypertarget{continents}{%
+\subsection{Continents}\label{continents}}
 
 The global map is made of many separate regions ranging in scale from
-large continents to small isles. These regions are either showlowly
-connected or totally separated from each other. The vast majority of
+large continents to small isles. These regions are either shawlowly
+connected or entirely separated from each other. The vast majority of
 these regions are ``flat isles'' with little to no internal structure of
 their own. Most flat isles are supported by only a single article, some
 by a couple of articles penned by the same author, and only a few
@@ -1197,22 +1702,43 @@ represent real activity among a small group of different authors.
 \caption{Flat Isles, where Reviewers tend their Flock}\label{fig:flat-isle}
 \end{figure}
 
-The most substantial flat isle comes from four authors publishing in the
-same 1930 \href{https://www.jstor.org/stable/i40084238}{issue} of
+The most substantial flat isle , the largest unenclosed and unenclosing
+circle in Figure \ref(fig:flat-isle), comes from four authors publishing
+in the same 1930 \href{https://www.jstor.org/stable/i40084238}{issue} of
 \emph{Zeitschrift Fur Nationalokonomie}. It includes 50 references the
 most prominent of which are Angell's 1926 \emph{The Theory of
 International Prices} and Tugwell's 1924 \emph{The Trends of Economics}.
-The structure of the group is provided by an article by Robert Reisch ;
-the other three shared no references in common and Reisch's article,
-titled ``The `Deposit'-Myth In Banking Theory'' and containing 108
-references, is likely to have been written as an introduction to the
+The structure of the group is provided entirely by an article by Robert
+Reisch ; the other three shared no references in common and Reisch's
+article, titled ``The `Deposit'-Myth In Banking Theory'' and containing
+108 references, is likely to have been written as an introduction to the
 journal on the basis of what had already been accepted for publication.
-Indeed another flat isle of four articles has the exact same pattern,
-also from \emph{Zeitschrift Fur Nationalokonomie} but from an
+
+Another flat isle of four articles has the exact same pattern, also from
+\emph{Zeitschrift Fur Nationalokonomie} but from an
 \href{https://www.jstor.org/stable/i40084262}{issue} in 1937, the
 article on the first page of the issue, titled ``Theory Of Capital,
-Introduction'' and containing 25 references, includes subsections of the
-bibliographies of three other articles that do not themselves overlap.
+Introduction'' by von Hayek and containing 25 references, includes
+subsections of the bibliographies of three other articles that do not
+themselves overlap. Normally the longer a bibliography the more likely
+it is that an article functions as a review linking other disparate
+bibliographies. That von Hayek's article has such a short bibliography
+and yet still links three otherwise separate articles confirms its
+derivative character.
+
+The following features then suggest when a flat isle represents an issue
+introduction. All articles are published in the same issue. The removal
+of the longest bibliography in the community yields a network of
+disconnected components each uniquely representing the remaining bibs.
+This longest bib is also either the first article in the issue or
+precedes the others in pagination. These characteristics suggest
+authorship internal to the editorial process itself. Later we will
+explore how the removal of such articles helps to reveal ``bottom-up''
+structure by removing the editorial advantage of certain authors to
+bestow an ad hoc intellectual coherence on scholarship.
+
+Table \ref(tab:iss-int) enumerates issue introductions and shows how
+many are the structuring article in their community.
 
 \begin{figure}
 
@@ -1223,8 +1749,8 @@ bibliographies of three other articles that do not themselves overlap.
 \caption{Hill Isles, where the Wild Things Are}\label{fig:hill-isle}
 \end{figure}
 
-Reviews, whether they are formally labeled as such, borrow directly from
-the bibliographies of one or more seed articles and in this way they
+Reviews, whether they are self described as such, borrow directly from
+the bibliographies of one or more seed articles, and in this way they
 contribute a disproportionate amount of the global structure of the
 co-reference network. This kind of review, rather than looking again at
 an existing intellectual trend, creates the cohesion it purports to
@@ -1235,21 +1761,24 @@ uncoordinated reference activity of authors.
 
 \begin{figure}
 
-{\centering \includegraphics[width=9.72in]{img/k3c1-22} 
+{\centering \includegraphics{ambrose_dissertation_files/figure-latex/k3c1-22-1} 
 
 }
 
 \caption{Hill Isle in Graph Layout}\label{fig:k3c1-22}
 \end{figure}
 
-\subsection{Peaks}\label{peaks}
+\hypertarget{peaks}{%
+\subsection{Peaks}\label{peaks}}
 
 The KCC model reveals
 
-\subsection{Valleys}\label{valleys}
+\hypertarget{valleys}{%
+\subsection{Valleys}\label{valleys}}
 
+\hypertarget{do-reference-lists-describe-author-knowledge}{%
 \subsection{Do reference lists describe author
-knowledge?}\label{do-reference-lists-describe-author-knowledge}
+knowledge?}\label{do-reference-lists-describe-author-knowledge}}
 
 The peer review process can now be thought of as a process of auditing
 credentials. An author makes an opening bid with the submission of a
@@ -1261,21 +1790,334 @@ may also include what they do not know out of error, bragadoccio,
 carelessness, or fraud. Part of the work of reviewers will be to
 validate those claims to knowledge.
 
+\hypertarget{voc}{%
 \chapter{Vocabularies of Anthropology and Sociology,
-1888-1922}\label{voc}
+1888-1922}\label{voc}}
 
-\subsubsection*{Abstract}\label{abstract-3}
+\hypertarget{abstract-3}{%
+\subsubsection*{Abstract}\label{abstract-3}}
 
 
 Knowledge development of journals is measured as the
 change in topic prevalence over time.
 
-\subsubsection*{Keywords}\label{keywords-3}
+\hypertarget{keywords-3}{%
+\subsubsection*{Keywords}\label{keywords-3}}
 
 
-topic modeling
+sociology of knowledge, topic modeling, history of social
+science
 
-\section{Full-Text}\label{full-text}
+\hypertarget{kd}{%
+\section{Knowledge Development}\label{kd}}
+
+What were the ideas that predominated in the social sciences at their
+formation as professions in the postbellum United States? What was the
+course of their development over a generation of scholarship? In this
+study I will answer these questions inductively through a reading of the
+original journals in each discipline. Though the goal is substantive,
+the methodological challenges of consuming a large quantity of text will
+feature importantly in the story that unfolds. Along the way I will
+demonstrate the usefulness of the computational \emph{distant reading}
+that is being explored in the humanities and how it can be combined with
+traditional textual analysis for social science purposes. While
+controversial in humanistic circles that emphasize the primacy of the
+reader's novel interpretive work when consuming text, distant reading
+fits comfortably within a social science epistemology that aims to
+achieve an objective description of intellectual history Indeed,
+computational methods offer a useful backstop to the idiosyncrasy of a
+particular person's reading of history.
+
+Computational textual analysis promises to automate a particular slice
+of what hermeneutic methods accomplish. Hermeneutics claims that through
+historical methods it is possible to reconstruct the interpretive
+context of texts such that they can be understood in the same way that
+contemporary historical actors understood them. Establishing such
+context is a laudable yet arduous feat of historical research to uncover
+the social and intellectual milieu of a particular text. This is the
+gold standard approach, but one that restricts the field to specialists
+with the training and resources necessary for the undertaking.
+
+Computers cannot study history in this way. What they can do, however,
+is mine source material for limited kinds of contexts. The kind I am
+concerned with below are the \emph{historical vocabularies} that writers
+used to construct texts in historical time. Vocabularies are glyphs
+without grammar; they do not mean anything, but nothing meaningful can
+be said without them in the present or in the past. They are the
+mediated form of language, and in communicating with each other
+historical actors leave traces that survive perfectly in time so long as
+texts themselves survive.
+
+While computers cannot read meaning in texts, and can barely recognize
+it, they are almost as good as humans at recognizing the glyphs of
+texts, and vocabularies are nothing but glyphs. What computers lack in
+smarts, they make up in speed and memory. The quantitative scale of
+their recognition makes for a qualitative shift because vocabularies can
+be enumerated across immense corpora of texts. Immense, at least, by
+human standards as there are limits to even computer memory and speed.
+Yet such enumeration of texts into objective historical categories; this
+is a profound resource for the intellectual historian. That one could
+begin a reading with such context would be a transformative research
+tool. Vocabulary enumeration, by which I mean simply the counting and
+classifying of texts according to the vocabularies they contain, invites
+a population studies approach to intellectual history. Where
+sense-making is driven by comparisons, a reader's arbitrary combination
+of texts is guaranteed to lead to anachronism. But if we can know that
+texts are relevant to each other without knowing why, we have done some
+small amount of hermeneutic work by supplying texts as historically
+correct context to each other.
+
+And even going so far as abandoning the project of reading texts in a
+historically correct way, vocabulary enumeration can still lend
+objectivity to a novel construction, a productive anachronism, of
+textual meaning. Because vocabularies, the problems solved by computers,
+are mathematically, algorithmically, or stochastically determined, they
+may provide an immutable description of corpora that, like a map,
+enables individual and collective exploration within a common framework.
+Such maps may become the parameters of interpretive methods, which we
+may use to surface and control some of our subjectivity.
+
+This at least is the rationale for what follows. I begin with a
+discussion of intellectual history of two social sciences, anthropology
+and sociology, in the United States. I take a coarse view of national
+history as the history of wars because of their downstream effects on
+government activity and institutional investments. The first period is
+between the end of the American Revolution (1783) and the end of the
+American Civil War (1865) and is the national context for the origin of
+U.S. anthropology. The second period is after the Civil War until the
+end of World War I (1918) and is the context for the origin of U.S.
+sociology and of modern U.S. higher education generally. Wars of
+territorial expansion are waged regularly during both periods against
+native peoples and rival colonial empires, and social research was
+always recruited to solve attendant problems of population and to
+provide rationales for the relationships with and understandings of
+conquered or would-be conquered people.
+
+I use intellectual histories of anthropology to characterize the
+antebellum period, and the same for the postbellum period including
+sociology. The most important journals in each field date from the
+postbellum period, and the appearance of each is implicated in the
+project of professionalization for each discipline. The 1920s marked the
+end of war with the last of the militating American Indian tribes, and a
+reckoning with the darkest sides of industrialization laid bare by WWI.
+Social research had by this time completed a shift from colonial to
+industrial problems and enjoyed a golden decade of development as a
+profession, punctuated by the next great historical crisis in the Great
+Depression. With the 1920s begins the adolescence of social research,
+which is beyond the present scope. This study is of its childhood, which
+ends with the Great War. I however draw the study out until 1922 because
+it is the end of the public domain in U.S. copyright, to aid in the
+reproducibility of the analysis and so that all readers may recover the
+texts in question without difficulty.
+
+\hypertarget{kd-dq2}{%
+\section{Social Science Journals}\label{kd-dq2}}
+
+The journals within social science cover five different subdisciplines.
+
+\begin{table}[!htbp] \centering 
+  \caption{JSTOR Social Sciences Journal Counts} 
+  \label{tab:jclu-tab-sub} 
+\begin{tabular}{@{\extracolsep{5pt}} lrrrr} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Subdiscipline & N & Pct & Labeled & LPct \\ 
+\hline \\[-1.8ex] 
+Archaeology & 256 & 27.9 & 115 & 12.6 \\ 
+Political Science & 219 & 23.9 & 183 & 20 \\ 
+Education & 192 & 21 & 170 & 18.6 \\ 
+Sociology & 160 & 17.5 & 145 & 15.8 \\ 
+Anthropology & 46 & 5 & 89 & 9.7 \\ 
+Population Studies & 22 & 2.4 & 27 & 2.9 \\ 
+Geography & 18 & 2 & 32 & 3.5 \\ 
+Transportation Studies & 3 & 0.3 & 7 & 0.8 \\ 
+Total & 916 & 100 & 768 & 83.8 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+\begin{figure}
+
+{\centering \includegraphics{ambrose_dissertation_files/figure-latex/jstorm2fig-1} 
+
+}
+
+\caption{Periods in the Growth of the Number of Social Science Journals in the JSTOR Archive}\label{fig:jstorm2fig}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics{ambrose_dissertation_files/figure-latex/nces2phd-1} 
+
+}
+
+\caption{Decennial growth in number of PhD degrees conferred in the U.S.}\label{fig:nces2phd}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics{ambrose_dissertation_files/figure-latex/nces/jstorm-1} 
+
+}
+
+\caption{Number of PhDs conferred in the United States per Social Science Journal}\label{fig:nces/jstorm}
+\end{figure}
+
+This period represents one of stable growth, as the size of the field
+grows with the number of players on it. Between 1888 and 1922 there
+tended to be about seven new PhDs in the U.S. for every social science
+journal even as each population grew year over year. These growth
+patterns begin to diverge around 1920 as a decades long acceleration of
+personnel begins, relatively slowly between 1920 and 1960 at an average
+acceleration rate of 22 PhDs per journal per year, and then quite
+precipitously in the 1960s at an average acceleration rate of 121.
+
+\hypertarget{topics-ideas}{%
+\section{\texorpdfstring{Topics \normalfont{≟}
+Ideas}{Topics  Ideas}}\label{topics-ideas}}
+
+The strategy of the study occurs in four steps.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Sort text into categories of similar vocabulary.
+\item
+  Describe the vocabularies that define category membership.
+\item
+  Describe vocabulary prevalence across time and discipline.
+\item
+  Validate category contents by a traditional qualitative reading of
+  texts.
+\end{enumerate}
+
+I will spend considerable effort on solving the problem presented by
+step 1, as here everything depends on the computational methods
+employed. Steps 2 and 3 are straightforward given a successful
+mathematical model of texts. Step 4 is seldom attempted, and may be the
+hardest of all, because it is here that machine and human learning must
+be integrated. If I am successful, if through these steps I may
+operationalize the notion of cultural meaning or cultural logic as
+conformity to vocabularies, then I believe a new horizon of intellectual
+scholarship is possible. If on the other hand I find that
+machine-learned vocabularies do not correspond to human-learned
+understandings of the texts drawing on those vocabularies, then the
+discovery will be negative, that distant reading is not a scientific,
+historical, or hermeneutic method, but rather a toy at worst and a best
+new humanistic method of reading texts de novo.
+
+The mathematical tool I will rely on in step 1 is called topic modeling,
+which refers to a variety of computational approaches to text data that
+blur the distinction between qualitative and quantitative analysis. The
+topic model paints a lexicographic picture of texts, analogous to the
+demographic picture gained by a civil census survey of cities and towns.
+To a topic model, texts are merely collections of terms (usually words)
+that are counted to create the so-called ``bag of words'' description of
+a text. In the same way that a census reduces communities to counts of
+the names of people who live in them, topic modeling reduces texts to
+the frequency of word choices in texts, to their diction or vocabulary.
+Just as a census of people fails to capture the nuanced interactivity of
+human settlements found in their culture, politics, and economic
+activity, the topic model washes away the meanings and intentions behind
+the words that are enumerated.
+
+A population census would not be very helpful were it only a count of
+the names of respondents, and of course the really helpful data derive
+from the demographic and economic survey attached to the name. Text data
+do not usually come with such a collection of rich covariates, yet
+nevertheless topic models promise to discern helpful patterns from
+counts alone. The trick behind the estimation of a topic model is that
+it attempts to learn the demographic information (topics) without
+asking, by merely looking at how the names alone (terms) are distributed
+across geographies of interest (texts). If it can keep its promise, a
+topic model applied to census data might recover the cultural patterns
+latent in the distribution of names. It might, for instance, learn
+different groupings of names that in turn correspond to markers like
+age, race, national origin, or gender, so long as membership in those
+categories was related to geography. It might, for instance,
+successfully separate a category of Hmong names out from among the names
+of all people living in St.~Paul because the non-Hmong names appeared in
+other regions where no Hmong names appeared.
+
+To call the category of names ``Hmong'' requires an interpretation of
+the model, which by itself is just lists of names. This is the work of
+step 2, and requires a little bit of shoe leather by trying to make
+sense of what a list of names refers to. Here reading texts is like a
+census taker knocking on a door, and a topic model's latent analysis
+saves on this effort. Sometimes bringing domain knowledge to bear on the
+list itself will suggest a category label, but often choosing a small
+sample of texts as exemplars of the category. Still this requires much
+less shoe leather than a traditional qualitative analysis in which each
+text is studied directly. Of course the census is much more informative
+because it asks about demographic categories directly thereby avoiding
+the need for a latent analysis. In domains where rich covariates are not
+yet available or are prohibitively expensive to acquire, latent analysis
+provides promising clues of patterns that already exist. What is even
+more interesting, and something that might surprise even census
+analysts, is when latent categories do not correspond to known survey
+items. In either event the power of topic modeling for inductive
+analysis is to reveal structure in how names hang together that was
+hidden.
+
+Even without conducting the second labeling step, in step 3 it will
+already be possible from the output of the model to inspect the
+distribution of topics across available covariates, especially time.
+These are the patterns that will help validate the topic models against
+what is already known about intellectual history. For instance, the
+power of institutional and generational change may well be apparent in
+the historical distribution of topics. This step leads naturally into
+step 4 by suggesting anomalies that can only be explained by a closer
+look at the texts, the chore that the entire preceding analysis punts
+on. In step 4 we learn either that our understanding of history was
+wrong, or that our topic model was wrong, and there may be no method
+other than one's judgement to decide.
+
+In the next section, before we delve into the statistical and
+computational nuances of topic models, I will spend some time developing
+a few themes to help organize the blending of quantitative and
+qualitative methods invited by topic modeling in particular and
+computational text analysis generally.
+
+\hypertarget{kd-lit}{%
+\section{Prior Work}\label{kd-lit}}
+
+\hypertarget{information}{%
+\section{Information}\label{information}}
+
+Understanding differences in the ontological status of the ``topic''
+concept is a good way to begin to understand how this method of analysis
+is used by researchers.
+
+Analysts have conceptualized the use of topic models in very different
+ways. Some researchers treat topics as useful for a particular purpose
+and not as true descriptions of real phenomena. Topics as information
+enhances the ability to search for relevant documents or statistical
+trends in otherwise unwieldy corpora as a time-saving alternative to
+manually reading large collections. \citep{Boyd-Graber2017Applications}
+Empirical problems, used as demonstrations of statistical techniques,
+have included
+
+This is the ``needle and haystack'' approach favored by computer and
+information scientists who tend not to be interested in theoretical
+intepretations beyond the statistical definitions of topics.
+
+\hypertarget{meaning}{%
+\section{Meaning}\label{meaning}}
+
+Other researchers instead grant topics ontological status, and these can
+be divided into three types. Most ambitiously, topics may be treated as
+representing categories of thought. Latent semantic structure latent
+semantic structure \citep{WallachStatisticalTopicModels2011}
+
+\hypertarget{communication}{%
+\section{Communication}\label{communication}}
+
+representational style \citep{Grimmer2016Measuring} frame
+\citep{DiMaggio2013Exploiting}
+
+\hypertarget{full-text}{%
+\section{Full-Text}\label{full-text}}
 
 Computational text analysis requires that text corpora be transformed
 from a human to a machine readable format. Several efforts to digitize
@@ -1324,12 +2166,14 @@ store text digitally depends critically on the hard work of creating
 quality scans of journal archives. JSTOR has done a comendable job of
 this. Next we will describe what the JSTOR archive has to offer.
 
-\section{Data}\label{kd-dd}
+\hypertarget{kd-dd}{%
+\section{Data}\label{kd-dd}}
 
 Every record for every journal was downloaded manually, including front
 and back matter, articles, and book reviews.
 
-\section{Sampling}\label{kd-dp1}
+\hypertarget{kd-dp1}{%
+\section{Sampling}\label{kd-dp1}}
 
 \begin{table}[!htbp] \centering 
   \caption{Filtering due to Data Management} 
@@ -1349,7 +2193,8 @@ sampled & 1.84 & 1.56 & 1.17 & 1.43 & 0.62 & 4.95 & 20.86 \\
 \end{tabular} 
 \end{table}
 
-\section{Units of Analysis}\label{units-of-analysis}
+\hypertarget{units-of-analysis}{%
+\section{Units of Analysis}\label{units-of-analysis}}
 
 Conventionally researchers feed entire documents into the construction
 of term frequencies. This method treats any term in a document as being
@@ -1373,7 +2218,8 @@ as they make up more of the population of text. Thus a simple random
 sample will allow better descriptive statistics. I sampled at the
 paragraph level because.
 
-\section{Topics}\label{kd-dp2}
+\hypertarget{kd-dp2}{%
+\section{Topics}\label{kd-dp2}}
 
 The modeling objective is twofold, to sort text into categories of
 similarity, and to describe the qualitative content that defines the
@@ -1382,7 +2228,8 @@ cultural meaning or cultural logic as the rules of category
 classification. reduce expressions as instances of a latent category of
 expression.
 
-\subsection{How many topics?}\label{how-many-topics}
+\hypertarget{how-many-topics}{%
+\subsection{How many topics?}\label{how-many-topics}}
 
 \begin{figure}
 
@@ -1417,7 +2264,78 @@ sen & 0.0118 & 0.2304 & -0.5078 & 0.6471 & 0.4973 \\
 \caption{Significant Counts of K}\label{fig:mlk-tab}
 \end{figure}
 
-\section{Model selection}\label{model-selection}
+\hypertarget{model-selection}{%
+\section{Model selection}\label{model-selection}}
+
+\hypertarget{ten}{%
+\chapter{The Development of Intensive Referencing}\label{ten}}
+
+\hypertarget{abstract-4}{%
+\subsubsection*{Abstract}\label{abstract-4}}
+
+
+Early in the history of the U.S. social sciences, scholars
+tended to extend the space of references into new territories. After a
+transition point in the 1920s, they shifted toward an intensive pattern
+of citation where scholars routinely retraced well-trodden steps in the
+citation space. The transition coincides with the development of
+professional labor markets in the social sciences.
+
+\hypertarget{keywords-4}{%
+\subsubsection*{Keywords}\label{keywords-4}}
+
+
+poisson, permutation test, historical development,
+citation, bibliometry, history of social science
+
+\#\#intro The citation network of scholarship is a critical analytical
+tool in bibliometry; indeed the field was revolutionized by the advent
+of citation indexing. Nonetheless the concept has alternately been
+treated as an analytical device and as a characterization of the
+phenomenon, what I will call an ontology. These are very different
+approaches to citation networks. As analytical device, citation networks
+are instruments by which the researcher uncovers features of scholarship
+that were not visible without application of the network. For instance,
+a citation network may reveal a cluster indicating the presence of an
+invisible college. The invisible college is not itself a citation
+network; perhaps it is research partnership may be a local phenomenon
+explained by facts on the ground that have little to do with citations.
+When treated as an ontology, the researcher reifies the citation network
+as the real phenomenon; the network tends to explain itself. An article,
+in making a citation, creates a conduit allowing knowledge or influence
+to flow into it. It is via the citation that knowledge happens. The
+ontology may depend on how the citation network is constructed. In a
+knowledge flow network, citations are directed links, and sending and
+receiving articles have equal status as nodes. In a co-reference
+network, citations are nodes, and articles are links among those
+citations appearing in the articles' bibliographies. Because such a
+network is undirected there can be no ontology of knowledge flow. The
+citation network, however, is an historical development that privileges
+the professional aspect of the university. The citation network allows
+national and international relations to dominate local ones. It allows
+publication to dominate all other venues of intellectual production.
+
+\hypertarget{method-1}{%
+\section{method}\label{method-1}}
+
+For every year, find distribution of bibliography size. We will draw
+from this to show the effect of variation in bibliography lengths. We
+may already surmise that extreme values will create some instability.
+
+For every year, find edge weight distribution, including zeroes.
+
+Find size of total ``space'' in which edes might be laid down. Find
+total number of co-citations.
+
+Simulate simple poisson in that space.
+
+Compare to simulation of actually bibliographies in that space.
+
+Test hypothesis that there is a move from extensive to intensive
+development.
+
+\hypertarget{lit-review}{%
+\section{lit review}\label{lit-review}}
 
 \bibliography{references.bib}
 

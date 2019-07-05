@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="knowledge-of-the-u-s-social-sciences.html">
+<link rel="prev" href="voc.html">
+<link rel="next" href="bibliography.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -146,40 +146,44 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Knowledge of the U.S. Social Sciences</h1>
-<h4 class="author"><em>Brooks Ambrose</em></h4>
-<h4 class="date"><em>2019-07-05</em></h4>
+<div id="ten" class="section level1">
+<h1><span class="header-section-number">6</span> The Development of Intensive Referencing</h1>
+<div id="abstract-4" class="section level4 unnumbered">
+<h4>Abstract</h4>
+<p>Early in the history of the U.S. social sciences, scholars tended to extend the space of references into new territories. After a transition point in the 1920s, they shifted toward an intensive pattern of citation where scholars routinely retraced well-trodden steps in the citation space. The transition coincides with the development of professional labor markets in the social sciences.</p>
 </div>
-<div id="getting-started" class="section level1 unnumbered">
-<h1>Getting Started</h1>
-<p>Dear reader,</p>
-<p>Welcome! This study is available as a website, <a href="https://brooksambrose.github.io/portfolio" class="uri">https://brooksambrose.github.io/portfolio</a>, and as a PDF document downloadable from the website. Both are great ways to read the study. The PDF makes for a quicker read, while the website offers additional interactivity in figures and tables that will help you dive more deeply into the exhibits.</p>
-<div class="figure" style="text-align: center"><span id="fig:toolbar"></span>
-<img src="img/toolbar.gif" alt="Explore your options!"  />
-<p class="caption">
-Figure .: Explore your options!
-</p>
+<div id="keywords-4" class="section level4 unnumbered">
+<h4>Keywords</h4>
+<p>poisson, permutation test, historical development, citation, bibliometry, history of social science</p>
+<p>##intro
+The citation network of scholarship is a critical analytical tool in bibliometry; indeed the field was revolutionized by the advent of citation indexing.
+Nonetheless the concept has alternately been treated as an analytical device and as a characterization of the phenomenon, what I will call an ontology. These are very different approaches to citation networks. As analytical device, citation networks are instruments by which the researcher uncovers features of scholarship that were not visible without application of the network. For instance, a citation network may reveal a cluster indicating the presence of an invisible college. The invisible college is not itself a citation network; perhaps it is research partnership may be a local phenomenon explained by facts on the ground that have little to do with citations. When treated as an ontology, the researcher reifies the citation network as the real phenomenon; the network tends to explain itself. An article, in making a citation, creates a conduit allowing knowledge or influence to flow into it. It is via the citation that knowledge happens.
+The ontology may depend on how the citation network is constructed. In a knowledge flow network, citations are directed links, and sending and receiving articles have equal status as nodes. In a co-reference network, citations are nodes, and articles are links among those citations appearing in the articles’ bibliographies. Because such a network is undirected there can be no ontology of knowledge flow.
+The citation network, however, is an historical development that privileges the professional aspect of the university.
+The citation network allows national and international relations to dominate local ones. It allows publication to dominate all other venues of intellectual production.</p>
 </div>
-<p>At the top of the web page please notice a toolbar where you can:</p>
-<ul>
-<li>Show and hide the table of contents</li>
-<li>Search the document</li>
-<li>Adjust font and display settings</li>
-<li>View the underlying code at GitHub.com</li>
-<li>Download the PDF version</li>
-</ul>
-<p>I hope you enjoy the study, and please feel free to report bugs, comment, and collaborate at the issue tracker of the GitHub repository.</p>
-<p>Best,<br />
-Brooks</p>
+<div id="method-1" class="section level2">
+<h2><span class="header-section-number">6.1</span> method</h2>
+<p>For every year, find distribution of bibliography size.
+We will draw from this to show the effect of variation in bibliography lengths. We may already surmise that extreme values will create some instability.</p>
+<p>For every year, find edge weight distribution, including zeroes.</p>
+<p>Find size of total “space” in which edes might be laid down. Find total number of co-citations.</p>
+<p>Simulate simple poisson in that space.</p>
+<p>Compare to simulation of actually bibliographies in that space.</p>
+<p>Test hypothesis that there is a move from extensive to intensive development.</p>
+</div>
+<div id="lit-review" class="section level2">
+<h2><span class="header-section-number">6.2</span> lit review</h2>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="knowledge-of-the-u-s-social-sciences.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="voc.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bibliography.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -199,7 +203,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/brooksambrose/portfolio/blob/draft/index.Rmd",
+"link": "https://github.com/brooksambrose/portfolio/blob/draft/05.Rmd",
 "text": "Edit"
 },
 "download": ["ambrose_dissertation.pdf", "ambrose_dissertation.docx"],

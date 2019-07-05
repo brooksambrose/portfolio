@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Knowledge of the U.S. Social Sciences</title>
   <meta name="description" content="Knowledge of the U.S. Social Sciences">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
 
   <meta property="og:title" content="Knowledge of the U.S. Social Sciences" />
   <meta property="og:type" content="book" />
@@ -25,18 +25,17 @@
 <meta name="author" content="Brooks Ambrose">
 
 
-<meta name="date" content="2019-01-18">
+<meta name="date" content="2019-07-05">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="knowledge-of-the-u-s-social-sciences.html">
-<link rel="next" href="gen.html">
+<link rel="prev" href="abstracts.html">
+<link rel="next" href="sankey.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -48,15 +47,19 @@
 
 
 
-<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.8.0.9000/plotly.js"></script>
+<script src="libs/htmlwidgets-1.2/htmlwidgets.js"></script>
+<script src="libs/d3-4.5.0/d3.min.js"></script>
+<script src="libs/sankey-1/sankey.js"></script>
+<script src="libs/sankeyNetwork-binding-0.4/sankeyNetwork.js"></script>
 <script src="libs/typedarray-0.1/typedarray.min.js"></script>
 <link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
 <script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
 <link href="libs/plotly-htmlwidgets-css-1.41.3/plotly-htmlwidgets.css" rel="stylesheet" />
 <script src="libs/plotly-main-1.41.3/plotly-latest.min.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
 <link href="libs/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet" />
 <script src="libs/selectize-0.12.0/selectize.min.js"></script>
+<script src="libs/forceNetwork-binding-0.4/forceNetwork.js"></script>
 
 
 
@@ -78,34 +81,48 @@
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Getting Started</a></li>
 <li class="chapter" data-level="" data-path="knowledge-of-the-u-s-social-sciences.html"><a href="knowledge-of-the-u-s-social-sciences.html"><i class="fa fa-check"></i>Knowledge of the U.S. Social Sciences</a></li>
+<li class="chapter" data-level="" data-path="abstracts.html"><a href="abstracts.html"><i class="fa fa-check"></i>Abstracts</a></li>
 <li class="chapter" data-level="1" data-path="int.html"><a href="int.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="int.html"><a href="int.html#kd"><i class="fa fa-check"></i><b>1.1</b> Knowledge Development</a></li>
-<li class="chapter" data-level="1.2" data-path="int.html"><a href="int.html#topics-ideas"><i class="fa fa-check"></i><b>1.2</b> Topics ≟ Ideas</a></li>
-<li class="chapter" data-level="1.3" data-path="int.html"><a href="int.html#kd-lit"><i class="fa fa-check"></i><b>1.3</b> Prior Work</a></li>
-<li class="chapter" data-level="1.4" data-path="int.html"><a href="int.html#information"><i class="fa fa-check"></i><b>1.4</b> Information</a></li>
-<li class="chapter" data-level="1.5" data-path="int.html"><a href="int.html#meaning"><i class="fa fa-check"></i><b>1.5</b> Meaning</a></li>
-<li class="chapter" data-level="1.6" data-path="int.html"><a href="int.html#communication"><i class="fa fa-check"></i><b>1.6</b> Communication</a></li>
+<li class="chapter" data-level="1.1" data-path="int.html"><a href="int.html#genre-and-the-literature"><i class="fa fa-check"></i><b>1.1</b> Genre and the Literature</a></li>
+<li class="chapter" data-level="1.2" data-path="int.html"><a href="int.html#method"><i class="fa fa-check"></i><b>1.2</b> Method</a></li>
+<li class="chapter" data-level="1.3" data-path="int.html"><a href="int.html#data"><i class="fa fa-check"></i><b>1.3</b> Data</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="gen.html"><a href="gen.html"><i class="fa fa-check"></i><b>2</b> Social Science Genres Today</a><ul>
-<li class="chapter" data-level="2.1" data-path="gen.html"><a href="gen.html#kd-dq1"><i class="fa fa-check"></i><b>2.1</b> JSTOR Journals</a></li>
-<li class="chapter" data-level="2.2" data-path="gen.html"><a href="gen.html#network-mode-projection"><i class="fa fa-check"></i><b>2.2</b> Network Mode Projection</a></li>
-<li class="chapter" data-level="2.3" data-path="gen.html"><a href="gen.html#network-community-detection"><i class="fa fa-check"></i><b>2.3</b> Network Community Detection</a></li>
-<li class="chapter" data-level="2.4" data-path="gen.html"><a href="gen.html#network-visualization"><i class="fa fa-check"></i><b>2.4</b> Network Visualization</a></li>
-<li class="chapter" data-level="2.5" data-path="gen.html"><a href="gen.html#kd-dq2"><i class="fa fa-check"></i><b>2.5</b> Social Science Journals</a></li>
+<li class="chapter" data-level="2" data-path="sankey.html"><a href="sankey.html"><i class="fa fa-check"></i><b>2</b> sankey</a><ul>
+<li class="chapter" data-level="2.1" data-path="sankey.html"><a href="sankey.html#top-x-doc"><i class="fa fa-check"></i><b>2.1</b> top x doc</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="cit.html"><a href="cit.html"><i class="fa fa-check"></i><b>3</b> The Social Science Citation Landscape, 1900-1940</a><ul>
-<li class="chapter" data-level="3.1" data-path="cit.html"><a href="cit.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
-<li class="chapter" data-level="3.2" data-path="cit.html"><a href="cit.html#methods"><i class="fa fa-check"></i><b>3.2</b> Methods</a></li>
-<li class="chapter" data-level="3.3" data-path="cit.html"><a href="cit.html#data"><i class="fa fa-check"></i><b>3.3</b> Data</a></li>
-<li class="chapter" data-level="3.4" data-path="cit.html"><a href="cit.html#results"><i class="fa fa-check"></i><b>3.4</b> Results</a></li>
+<li class="chapter" data-level="3" data-path="gen.html"><a href="gen.html"><i class="fa fa-check"></i><b>3</b> Social Science Genres Today</a><ul>
+<li class="chapter" data-level="3.1" data-path="gen.html"><a href="gen.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="gen.html"><a href="gen.html#culture"><i class="fa fa-check"></i><b>3.2</b> Culture</a></li>
+<li class="chapter" data-level="3.3" data-path="gen.html"><a href="gen.html#genre-profession-and-cultural-morphodynamics"><i class="fa fa-check"></i><b>3.3</b> Genre, Profession, and Cultural Morphodynamics</a></li>
+<li class="chapter" data-level="3.4" data-path="gen.html"><a href="gen.html#kd-dq1"><i class="fa fa-check"></i><b>3.4</b> JSTOR Journals</a></li>
+<li class="chapter" data-level="3.5" data-path="gen.html"><a href="gen.html#network-mode-projection"><i class="fa fa-check"></i><b>3.5</b> Network Mode Projection</a></li>
+<li class="chapter" data-level="3.6" data-path="gen.html"><a href="gen.html#network-community-detection"><i class="fa fa-check"></i><b>3.6</b> Network Community Detection</a></li>
+<li class="chapter" data-level="3.7" data-path="gen.html"><a href="gen.html#network-visualization"><i class="fa fa-check"></i><b>3.7</b> Network Visualization</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="voc.html"><a href="voc.html"><i class="fa fa-check"></i><b>4</b> Vocabularies of Anthropology and Sociology, 1888-1922</a><ul>
-<li class="chapter" data-level="4.1" data-path="voc.html"><a href="voc.html#full-text"><i class="fa fa-check"></i><b>4.1</b> Full-Text</a></li>
-<li class="chapter" data-level="4.2" data-path="voc.html"><a href="voc.html#kd-dd"><i class="fa fa-check"></i><b>4.2</b> Data</a></li>
-<li class="chapter" data-level="4.3" data-path="voc.html"><a href="voc.html#kd-dp1"><i class="fa fa-check"></i><b>4.3</b> Sampling</a></li>
-<li class="chapter" data-level="4.4" data-path="voc.html"><a href="voc.html#units-of-analysis"><i class="fa fa-check"></i><b>4.4</b> Units of Analysis</a></li>
-<li class="chapter" data-level="4.5" data-path="voc.html"><a href="voc.html#kd-dp2"><i class="fa fa-check"></i><b>4.5</b> Topics</a></li>
-<li class="chapter" data-level="4.6" data-path="voc.html"><a href="voc.html#model-selection"><i class="fa fa-check"></i><b>4.6</b> Model selection</a></li>
+<li class="chapter" data-level="4" data-path="cit.html"><a href="cit.html"><i class="fa fa-check"></i><b>4</b> The Social Science Citation Landscape, 1900-1940</a><ul>
+<li class="chapter" data-level="4.1" data-path="cit.html"><a href="cit.html#introduction-2"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="cit.html"><a href="cit.html#methods"><i class="fa fa-check"></i><b>4.2</b> Methods</a></li>
+<li class="chapter" data-level="4.3" data-path="cit.html"><a href="cit.html#data-1"><i class="fa fa-check"></i><b>4.3</b> Data</a></li>
+<li class="chapter" data-level="4.4" data-path="cit.html"><a href="cit.html#results"><i class="fa fa-check"></i><b>4.4</b> Results</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="voc.html"><a href="voc.html"><i class="fa fa-check"></i><b>5</b> Vocabularies of Anthropology and Sociology, 1888-1922</a><ul>
+<li class="chapter" data-level="5.1" data-path="voc.html"><a href="voc.html#kd"><i class="fa fa-check"></i><b>5.1</b> Knowledge Development</a></li>
+<li class="chapter" data-level="5.2" data-path="voc.html"><a href="voc.html#kd-dq2"><i class="fa fa-check"></i><b>5.2</b> Social Science Journals</a></li>
+<li class="chapter" data-level="5.3" data-path="voc.html"><a href="voc.html#topics-ideas"><i class="fa fa-check"></i><b>5.3</b> Topics ≟ Ideas</a></li>
+<li class="chapter" data-level="5.4" data-path="voc.html"><a href="voc.html#kd-lit"><i class="fa fa-check"></i><b>5.4</b> Prior Work</a></li>
+<li class="chapter" data-level="5.5" data-path="voc.html"><a href="voc.html#information"><i class="fa fa-check"></i><b>5.5</b> Information</a></li>
+<li class="chapter" data-level="5.6" data-path="voc.html"><a href="voc.html#meaning"><i class="fa fa-check"></i><b>5.6</b> Meaning</a></li>
+<li class="chapter" data-level="5.7" data-path="voc.html"><a href="voc.html#communication"><i class="fa fa-check"></i><b>5.7</b> Communication</a></li>
+<li class="chapter" data-level="5.8" data-path="voc.html"><a href="voc.html#full-text"><i class="fa fa-check"></i><b>5.8</b> Full-Text</a></li>
+<li class="chapter" data-level="5.9" data-path="voc.html"><a href="voc.html#kd-dd"><i class="fa fa-check"></i><b>5.9</b> Data</a></li>
+<li class="chapter" data-level="5.10" data-path="voc.html"><a href="voc.html#kd-dp1"><i class="fa fa-check"></i><b>5.10</b> Sampling</a></li>
+<li class="chapter" data-level="5.11" data-path="voc.html"><a href="voc.html#units-of-analysis"><i class="fa fa-check"></i><b>5.11</b> Units of Analysis</a></li>
+<li class="chapter" data-level="5.12" data-path="voc.html"><a href="voc.html#kd-dp2"><i class="fa fa-check"></i><b>5.12</b> Topics</a></li>
+<li class="chapter" data-level="5.13" data-path="voc.html"><a href="voc.html#model-selection"><i class="fa fa-check"></i><b>5.13</b> Model selection</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ten.html"><a href="ten.html"><i class="fa fa-check"></i><b>6</b> The Development of Intensive Referencing</a><ul>
+<li class="chapter" data-level="6.1" data-path="ten.html"><a href="ten.html#method-1"><i class="fa fa-check"></i><b>6.1</b> method</a></li>
+<li class="chapter" data-level="6.2" data-path="ten.html"><a href="ten.html#lit-review"><i class="fa fa-check"></i><b>6.2</b> lit review</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="bibliography.html"><a href="bibliography.html"><i class="fa fa-check"></i>Bibliography</a></li>
 <li class="divider"></li>
@@ -137,73 +154,77 @@
 </div>
 <div id="keywords" class="section level4 unnumbered">
 <h4>Keywords</h4>
-<p>sociology of knowledge, topic modeling, history of social science</p>
+<p>(ref:key-int)</p>
 </div>
-<div id="kd" class="section level2">
-<h2><span class="header-section-number">1.1</span> Knowledge Development</h2>
-<p>What were the ideas that predominated in the social sciences at their formation as professions in the postbellum United States? What was the course of their development over a generation of scholarship? In this study I will answer these questions inductively through a reading of the original journals in each discipline. Though the goal is substantive, the methodological challenges of consuming a large quantity of text will feature importantly in the story that unfolds. Along the way I will demonstrate the usefulness of the computational <em>distant reading</em> that is being explored in the humanities and how it can be combined with traditional textual analysis for social science purposes. While controversial in humanistic circles that emphasize the primacy of the reader’s novel interpretive work when consuming text, distant reading fits comfortably within a social science epistemology that aims to achieve an objective description of intellectual history Indeed, computational methods offer a useful backstop to the idiosyncrasy of a particular person’s reading of history.</p>
-<p>Computational textual analysis promises to automate a particular slice of what hermeneutic methods accomplish. Hermeneutics claims that through historical methods it is possible to reconstruct the interpretive context of texts such that they can be understood in the same way that contemporary historical actors understood them. Establishing such context is a laudable yet arduous feat of historical research to uncover the social and intellectual milieu of a particular text. This is the gold standard approach, but one that restricts the field to specialists with the training and resources necessary for the undertaking.</p>
-<p>Computers cannot study history in this way. What they can do, however, is mine source material for limited kinds of contexts. The kind I am concerned with below are the <em>historical vocabularies</em> that writers used to construct texts in historical time. Vocabularies are glyphs without grammar; they do not mean anything, but nothing meaningful can be said without them in the present or in the past. They are the mediated form of language, and in communicating with each other historical actors leave traces that survive perfectly in time so long as texts themselves survive.</p>
-<p>While computers cannot read meaning in texts, and can barely recognize it, they are almost as good as humans at recognizing the glyphs of texts, and vocabularies are nothing but glyphs. What computers lack in smarts, they make up in speed and memory. The quantitative scale of their recognition makes for a qualitative shift because vocabularies can be enumerated across immense corpora of texts. Immense, at least, by human standards as there are limits to even computer memory and speed. Yet such enumeration of texts into objective historical categories; this is a profound resource for the intellectual historian. That one could begin a reading with such context would be a transformative research tool. Vocabulary enumeration, by which I mean simply the counting and classifying of texts according to the vocabularies they contain, invites a population studies approach to intellectual history. Where sense-making is driven by comparisons, a reader’s arbitrary combination of texts is guaranteed to lead to anachronism. But if we can know that texts are relevant to each other without knowing why, we have done some small amount of hermeneutic work by supplying texts as historically correct context to each other.</p>
-<p>And even going so far as abandoning the project of reading texts in a historically correct way, vocabulary enumeration can still lend objectivity to a novel construction, a productive anachronism, of textual meaning. Because vocabularies, the problems solved by computers, are mathematically, algorithmically, or stochastically determined, they may provide an immutable description of corpora that, like a map, enables individual and collective exploration within a common framework. Such maps may become the parameters of interpretive methods, which we may use to surface and control some of our subjectivity.</p>
-<p>This at least is the rationale for what follows. I begin with a discussion of intellectual history of two social sciences, anthropology and sociology, in the United States. I take a coarse view of national history as the history of wars because of their downstream effects on government activity and institutional investments. The first period is between the end of the American Revolution (1783) and the end of the American Civil War (1865) and is the national context for the origin of U.S. anthropology. The second period is after the Civil War until the end of World War I (1918) and is the context for the origin of U.S. sociology and of modern U.S. higher education generally. Wars of territorial expansion are waged regularly during both periods against native peoples and rival colonial empires, and social research was always recruited to solve attendant problems of population and to provide rationales for the relationships with and understandings of conquered or would-be conquered people.</p>
-<p>I use intellectual histories of anthropology to characterize the antebellum period, and the same for the postbellum period including sociology. The most important journals in each field date from the postbellum period, and the appearance of each is implicated in the project of professionalization for each discipline. The 1920s marked the end of war with the last of the militating American Indian tribes, and a reckoning with the darkest sides of industrialization laid bare by WWI. Social research had by this time completed a shift from colonial to industrial problems and enjoyed a golden decade of development as a profession, punctuated by the next great historical crisis in the Great Depression. With the 1920s begins the adolescence of social research, which is beyond the present scope. This study is of its childhood, which ends with the Great War. I however draw the study out until 1922 because it is the end of the public domain in U.S. copyright, to aid in the reproducibility of the analysis and so that all readers may recover the texts in question without difficulty.</p>
+<div id="genre-and-the-literature" class="section level2">
+<h2><span class="header-section-number">1.1</span> Genre and the Literature</h2>
+<p>Genre is a specialty concept in sociology, a ubiquitous one in the humanities, and a common sense word in popular parlance. Genre as a scholarly term is defined and used differently by different disciplines and among researchers in the same discipline. These varied uses of the term would make reviewing the literature on the topic of genre difficult, were it not for the discipline structure of the academy. The uses of the term genre are themselves systematically organized by discipline, and a disciple who is adequately trained will know the correct ways to use the term in her local context. To use genre as a disciplinary convention means to first identify your location in the disciplinary field, and then to accept the limitations on scope by excluding those treatments of the term that are extradisciplinary, that is, irrelevant. Disciplinary structure reduces the true cultural complexity of the meaning of genre to a restricted form, which in turn allows humble knowledge workers to engage upon a set of shared assumptions. Such simplicty begets new complexity as disciples spin out the consequences of their local use of ther term genre.</p>
+<p>In the sociology of culture, genre is a form of classification enacted by people in various social contexts. In the context of industrial capitalism, genre is an economic principle helping to organize supply and demand within markets for cultural products. There actors see genres among the borders between economic, social, and cultural uses, as a market category helping them acquire or produce content, as a card in proximate games of prestige, or as something to taste, to consume and enjoy directly. Less often genre is knowledge, a component of culture separate from taste, that is a factor in the formation of ideas and skills, whether these lead in turn to economic production or not. Genre’s meaning is context specific and variable across sociological subfields, though it is amplified in empiricist fashion by economy and society approaches that reduce genre to the act of classification itself, empiricist because of the empirical ease with which the classification or labeling actions are observed. Especially with Internet distribution systems, it becomes trivial for corporations to observe when a consumer labels their preferences while browing a content catalog; it is much harder to observe the ideas that consuming a particular piece of content sparks in the consumer.</p>
+<p>In a different discipline, far removed from sociology, disciples of cultural studies use the term much differently. To the humanist, genre is an ontological phenomenon, which is to say, genres are differentiated from each other by combinations of discrete features of signs and signifieds. Humanists are trained to establish these ontologies through methodological readings of texts and through cultivation of theories of genre types. These methods are at the same time empirical and interpretive, because in consuming objective texts the researcher actually observes the ideas that form in her own consciousness, and hope that others have a resonant experience. In any event, genres have much more substance to them for humanists than they do for sociologists. For sociologists of culture, genres are how people use genre labels, while for humanists, genres are knowledge.</p>
+<p>What then is genre to a sociologist of knowledge, and perhaps to a cultural sociologist? It is ontology as it is for the humanist, however it is not the ontology as represented to the researcher in the consumption of texts. It is the hopelessly unobservable distribution of ontologies appearing in a population of consumers objecting to similar texts (objecting in the etymological sense of throwing content in their own way, of compeling attention). The sociologist of knowledge accuses the sociologist of culture of reducing internalist concepts, thought and experience, to externalist ones, taste and preference. The sociologist of culture rejoinds, show me yours and I’ll show you mine, and the interlocuters spin around the axis defining the boundary between their subfields.</p>
+<p>Yet for all their differences, do these views of genres contradict, or are they complementary? Does genre as distribution serve the economic sociologists’s goals, or does a lack of ontological substance lead her astray? Does genre as knowledge remain hopelessly unverifiable, or are theoretical constructs necessary to achieve a correct interpretation of facts? Is everyone at the club listening to the same song hearing the same thing?</p>
+<p>To return to disciplines, answering such questions would put the researcher in an adisciplinary predicament, for it would mean eschewing the scope restrictions cherished by disciples. The challenges of a meta-disciplinary analysis are manifold and uncertain. One is as likely to grow her audience as to lose it altogether. She risks the deletantism of a jack-of-all-trades. What’s worse, she exposes herself to a dizzying scale of content to consider. If disciplines are indeed functional, then the meta-analysis that effaces disciplines risks being dysfunctional. The upside, however, is appealing. If the universe of meanings given to the term genre does contain complementary uses, a meta-analysis will allow one to consider the consequences of the now arbitrary segregation of a superior metaconcept across disciplinary boundaries. Both sides of the divide could be strengthened by a cultural exchange of their respective terms. The redundancy of parallel discovery can be avoided.</p>
+<p>Pathologies of disciplinarity can be diagnosed and treated. Disciplines are social substructures embedded in a larger society and culture. If disciplinarity is a kind of controlled ignorance exchanged for access to secret knowledge. The wayward uses of a term like genre are always lurking at the edges of the firelight defined by a particular disciplinary camp. Discipline as rigor instructs disciples to resist flirtations with the available complexity of the term. The essential tension is very rarely between what is known and unknown; rather it is more commonly between what is known “here” versus what we are conditioned to be willfully ignorant of “there”.</p>
+<p>In a motivation of some of the arguments to follow, I take a metadisciplinary approach, which is to cast as wide a net as possible on the term genre. Insodoing I hope to test the tacit cultural assumption that discipline-based decisions of relevance are valid, that is, that when we exclude arguments from other disciplines we remove distractions and focus on what is important. The alternative possibility is that we are wasting intellectual resources, because to exclude important work about our topic, even if it is codified in foreign terms, is to risk ignorance and redundancy.</p>
 </div>
-<div id="topics-ideas" class="section level2">
-<h2><span class="header-section-number">1.2</span> Topics ≟ Ideas</h2>
-<p>The strategy of the study occurs in four steps.</p>
+<div id="method" class="section level2">
+<h2><span class="header-section-number">1.2</span> Method</h2>
+<p>As I have said, the first consequence of eschewing disciplinary limitations is to bloat the size of the “literature” on genre, since no uses of the term would be excluded. An empirical approach to the standard academic convention of a literature review will help reign in the scale and complexity of the task. My aim, however, remains practical rather than scientific. The methods need to be good enough to yield results that offer something new above a traditional literature review relying on library search and disciplinary wisdom about what is important.</p>
+<div id="distant-sampling" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Distant sampling</h3>
+<p>The methodological premise of a metanalysis of genre is that the Gordian knot of global cultural complexity can be cut by stratified sampling. I use a large digital archive of texts, JSTOR, to define the cultural universe, and a simple term search of the keyword “genre” to define a sampling frame. I could then take a simple random sample of texts, analyze how each uses the term genre, develop a classification scheme, and enumerate the different uses of the term. Unfortunately, a small sample in a statistical sense may be larger than a poor researcher can handle. 1,000 texts is not large statistically, but it is huge from a content analysis perspective. What’s worse, 1,000 texts may still exclude, by random chance, small subcultures of the term. Stratification resolves this issue by delineating those subcultures so none would be left out.</p>
+<p>Alas, the JSTOR digital archive lacks subject labels at the article level, though it does include them for book chapters and for journals. While not foolish, inheriting a journal label to the articles included within it may be a coarse approximation if within-journal content variation exceeds between-journal variation. We can use text analytic classification methods to cluster articles directly and discover latent groups of articles, and insodoing we can have an independent standard to compare to the discipline labels given to journals. It is an open question whether such methods align with what we have discussed above as disciplinary and subdisciplinary groupings, for us whether regularities in vocabulary correspond to regularities in the meaning of the term genre. If they do not, then the study will only be a stop en route to a true census of the uses of the term genre, and the contribution will be to have interrogated the quality of the methods used, though this would be a small consolation indeed!</p>
+<p>The choice in computational text analysis (CTA) about how to represent texts as data hinges on whether word order is preserved. The older and more tested approach is to not preserve word order. The name given to this “bag of words” format reminds one of its inelegance. A bag of words is a frequency table for each document counting up the number of times particular words are used, a representation that effectively reduces a text to its vocabulary. It is the analyst’s crude operational decision to treat vocabularies as indicators of meaning, but social scientists conventionally insist on cross validation via qualitative analysis. While the ambitions of computaitonal text analysis may start with a replacement of, for instance, the standard literature review, the conventional distrust, at least in sociology, of mathematical models of text makes CTA more of a sampling method than an analytical method. The study will culminate in a reading of texts, albeit one that is different than traditional qualitative analysis because the CTA researcher welcomes the introduction of interpretive bias from an understanding of the mathematical model before, during, or after the texts are read. In the game of “choose your influence”, CTA is one choice while disciplinary wisdom is another.</p>
+<p>There are two types of classification methods in text analysis, direct document clustering and topic modeling. Direct document clustering treats the bag of words as a vector space and calculates distance or similarity metrics between documents, which are then clustered. In a topic model, the relationship between documents is mediated by an unobserved but latently modeled representation of their content; documents are similar because they are formed from the same topics.</p>
+<p>Whichever approach one takes, and both may be used, recall that the goal is to organize the texts into strata for the purpose of stratified sampling. We said that we wish to typify and enumerate the different uses of the term genre. By qualitative analysis, we could read every text in a simple random sample and come up with a theory of the use of genre in that text. The demerits of this approach are several <span class="citation">(c.f. Nelson <a href="#ref-Nelson2017Computational" role="doc-biblioref">2017</a>:5)</span>. It would take longer than we want even for too small a sample. We are not humanists and have not been trained in text analysis (this will hound us no matter what). Fatigue will set in, and accuracy and consistency will suffer. We may limit our set of theories to spare us the agony of complexity. It will be hard to reproduce our results. There may be path dependency with a different reading order producing different theories. On the upside, we would be more educated for it.</p>
+<p>Instead, we will stratify the sample, and it is in the configuration of the strata that much of the work will be done. The strata impose upon our interpretation of the texts the assumption of sameness.</p>
+</div>
+<div id="arms-length-reading" class="section level3">
+<h3><span class="header-section-number">1.2.2</span> Arms-length reading</h3>
+<p>The radical (and much maligned) distant reading approach taken by digital humanists is partially used here. While I employ a quantitative analysis of texts the goal is to not replace human reading with machine reading; knowledge, understanding, and the cultural logics of arguments are still only obtainable by reading primary texts, closely or not. What computational text analysis offers guidance in answering the question of what to read, and perhaps in what order to do so. Clearly this question is answered institutionally for scholars already in canon, curriculum, word of mouth, and reference services. The social patterns of these answers are topics for the sociology of knowledge and science and for the information sciences. Whatever they are, however, we assume them to be arbitrary reductions in the overwhelming complexity of published scholarship. The pious hope of the present exercise is to move in a less arbitrary direction in aswering the question of what to read.</p>
+<p>If distant reading is a criticsm of close reading then it has a big hill to climb especially among humanists who are trained to deal methodically with texts very carefully. In the social sciences a type of customary distant reading is that of ritual citations, those that have developed a meaning that may be oblique to their content or at odds with the intentions of the the original authors. A ritual citation is simply one that is cited but not read, but also one that is so often used that its socially acceptable usages are known from other secondary accounts.</p>
+</div>
+</div>
+<div id="data" class="section level2">
+<h2><span class="header-section-number">1.3</span> Data</h2>
+<p>We will use the JSTOR Data for Research service to download a corpus of texts for topic modeling. I take the following steps to develop a corpus:</p>
 <ol style="list-style-type: decimal">
-<li>Sort text into categories of similar vocabulary.</li>
-<li>Describe the vocabularies that define category membership.</li>
-<li>Describe vocabulary prevalence across time and discipline.</li>
-<li>Validate category contents by a traditional qualitative reading of texts.</li>
+<li>Search dfr.jstor.org using the query <code>(ta:genre OR ab:genre) AND la:eng</code> and requesting 1grams.</li>
+<li>To cull documents for which genre is not an important term, exclude documents containing the 1gram “genre” fewer than five times.</li>
+<li>Remove ngrams appearing fewer than three times, which often includes optical character recognition errors.</li>
+<li>Remove ngrams shorter than three characters and longer than 25 characters, again often OCR errors but also stopwords that will be removed anyway.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></li>
+<li>Compile baseline word counts for each document assuming that at this step the documents contain only valid terms, and no OCR errors.</li>
+<li>Remove SMART stopwords.</li>
+<li>Remove numbers.</li>
+<li>Remove punctuation, except intraword hyphens.</li>
+<li>Lemmatize or stem English words.</li>
+<li>Remove lemma with fewer than three characters.</li>
+<li>Aggregate 1grams defined by a single lemma and, for ease of interpretation, name the sum after the most common 1gram.</li>
+<li>Remove terms appearing in fewer than 20 documents.</li>
+<li>Remove documents that, after the above filters, have a word count of fewer than 500 words.</li>
 </ol>
-<p>I will spend considerable effort on solving the problem presented by step 1, as here everything depends on the computational methods employed. Steps 2 and 3 are straightforward given a successful mathematical model of texts. Step 4 is seldom attempted, and may be the hardest of all, because it is here that machine and human learning must be integrated. If I am successful, if through these steps I may operationalize the notion of cultural meaning or cultural logic as conformity to vocabularies, then I believe a new horizon of intellectual scholarship is possible. If on the other hand I find that machine-learned vocabularies do not correspond to human-learned understandings of the texts drawing on those vocabularies, then the discovery will be negative, that distant reading is not a scientific, historical, or hermeneutic method, but rather a toy at worst and a best new humanistic method of reading texts de novo.</p>
-<p>The mathematical tool I will rely on in step 1 is called topic modeling, which refers to a variety of computational approaches to text data that blur the distinction between qualitative and quantitative analysis. The topic model paints a lexicographic picture of texts, analogous to the demographic picture gained by a civil census survey of cities and towns. To a topic model, texts are merely collections of terms (usually words) that are counted to create the so-called “bag of words” description of a text. In the same way that a census reduces communities to counts of the names of people who live in them, topic modeling reduces texts to the frequency of word choices in texts, to their diction or vocabulary. Just as a census of people fails to capture the nuanced interactivity of human settlements found in their culture, politics, and economic activity, the topic model washes away the meanings and intentions behind the words that are enumerated.</p>
-<p>A population census would not be very helpful were it only a count of the names of respondents, and of course the really helpful data derive from the demographic and economic survey attached to the name. Text data do not usually come with such a collection of rich covariates, yet nevertheless topic models promise to discern helpful patterns from counts alone. The trick behind the estimation of a topic model is that it attempts to learn the demographic information (topics) without asking, by merely looking at how the names alone (terms) are distributed across geographies of interest (texts). If it can keep its promise, a topic model applied to census data might recover the cultural patterns latent in the distribution of names. It might, for instance, learn different groupings of names that in turn correspond to markers like age, race, national origin, or gender, so long as membership in those categories was related to geography. It might, for instance, successfully separate a category of Hmong names out from among the names of all people living in St. Paul because the non-Hmong names appeared in other regions where no Hmong names appeared.</p>
-<p>To call the category of names “Hmong” requires an interpretation of the model, which by itself is just lists of names. This is the work of step 2, and requires a little bit of shoe leather by trying to make sense of what a list of names refers to. Here reading texts is like a census taker knocking on a door, and a topic model’s latent analysis saves on this effort. Sometimes bringing domain knowledge to bear on the list itself will suggest a category label, but often choosing a small sample of texts as exemplars of the category. Still this requires much less shoe leather than a traditional qualitative analysis in which each text is studied directly. Of course the census is much more informative because it asks about demographic categories directly thereby avoiding the need for a latent analysis. In domains where rich covariates are not yet available or are prohibitively expensive to acquire, latent analysis provides promising clues of patterns that already exist. What is even more interesting, and something that might surprise even census analysts, is when latent categories do not correspond to known survey items. In either event the power of topic modeling for inductive analysis is to reveal structure in how names hang together that was hidden.</p>
-<p>Even without conducting the second labeling step, in step 3 it will already be possible from the output of the model to inspect the distribution of topics across available covariates, especially time. These are the patterns that will help validate the topic models against what is already known about intellectual history. For instance, the power of institutional and generational change may well be apparent in the historical distribution of topics. This step leads naturally into step 4 by suggesting anomalies that can only be explained by a closer look at the texts, the chore that the entire preceding analysis punts on. In step 4 we learn either that our understanding of history was wrong, or that our topic model was wrong, and there may be no method other than one’s judgement to decide.</p>
-<!-- Operationally, what I have called vocabularies are the columns of a term-topic table, which is one of the two matrices that constitute a topic model. To explain the contents of the bag-of-word, topics are proposed. Topics can be thought of as catelogs out of which words are ordered and placed into the shopping cart that is the document. Different catelogs, different word availabilities, will produce different documents. The final bit of inference that makes topic models so practically useful is the idea that documents may be composed of multiple topics. The surprising qualities of texts are explained to be how authors draw on regular and commonplace topics to say something different. -->
-<p>In the next section, before we delve into the statistical and computational nuances of topic models, I will spend some time developing a few themes to help organize the blending of quantitative and qualitative methods invited by topic modeling in particular and computational text analysis generally.</p>
-</div>
-<div id="kd-lit" class="section level2">
-<h2><span class="header-section-number">1.3</span> Prior Work</h2>
-</div>
-<div id="information" class="section level2">
-<h2><span class="header-section-number">1.4</span> Information</h2>
-<p>Understanding differences in the ontological status of the “topic” concept is a good way to begin to understand how this method of analysis is used by researchers.</p>
-<p>Analysts have conceptualized the use of topic models in very different ways. Some researchers treat topics as useful for a particular purpose and not as true descriptions of real phenomena. Topics as information enhances the ability to search for relevant documents or statistical trends in otherwise unwieldy corpora as a time-saving alternative to manually reading large collections. <span class="citation">(Boyd-Graber, Hu, and Mimno <a href="#ref-Boyd-Graber2017Applications">2017</a>)</span> Empirical problems, used as demonstrations of statistical techniques, have included</p>
-<p>This is the “needle and haystack” approach favored by computer and information scientists who tend not to be interested in theoretical intepretations beyond the statistical definitions of topics.</p>
-</div>
-<div id="meaning" class="section level2">
-<h2><span class="header-section-number">1.5</span> Meaning</h2>
-<p>Other researchers instead grant topics ontological status, and these can be divided into three types. Most ambitiously, topics may be treated as representing categories of thought. Latent semantic structure latent semantic structure <span class="citation">(<span class="citeproc-not-found" data-reference-id="WallachStatisticalTopicModels2011"><strong>???</strong></span>)</span></p>
-</div>
-<div id="communication" class="section level2">
-<h2><span class="header-section-number">1.6</span> Communication</h2>
-<p>representational style <span class="citation">(Grimmer <a href="#ref-Grimmer2016Measuring">2016</a>)</span> frame <span class="citation">(DiMaggio, Nag, and Blei <a href="#ref-DiMaggio2013Exploiting">2013</a>)</span></p>
-
+<p>The initial query returned ? articles from ? different journals, as well as ? book chapters. After the above processing steps, the sample was reduced to ?. It is fair to ask what was lost. While I do not carefully look at the content of the excluded documents, assuming they were not texts that made important use of the term genre, I do retain some information about what components of a text were lost of those documents that were not cut. This is a measure called idiosyncracy, which I will have cause to interpret later.</p>
 </div>
 </div>
 <h3>Bibliography</h3>
 <div id="refs" class="references">
-<div id="ref-Boyd-Graber2017Applications">
-<p>Boyd-Graber, Jordan, Yuening Hu, and David Mimno. 2017. “Applications of Topic Models.” <em>Foundations and Trends® in Information Retrieval</em> 11(2-3):143–296.</p>
+<div id="ref-Nelson2017Computational">
+<p>Nelson, Laura K. 2017. “Computational Grounded Theory: A Methodological Framework.” <em>Sociological Methods &amp; Research</em> 0049124117729703.</p>
 </div>
-<div id="ref-Grimmer2016Measuring">
-<p>Grimmer, Justin. 2016. “Measuring Representational Style in the House: The Tea Party, Obama, and Legislators’ Changing Expressed Priorities.” Pp. 225–45 in <em>Computational Social Science: Discovery and Prediction</em>, <em>Analytical Methods for Social Research</em>, edited by R. M. Alvarez. New York, NY: Cambridge University Press.</p>
 </div>
-<div id="ref-DiMaggio2013Exploiting">
-<p>DiMaggio, Paul, Manish Nag, and David Blei. 2013. “Exploiting Affinities Between Topic Modeling and the Sociological Perspective on Culture: Application to Newspaper Coverage of U.S. Government Arts Funding.” <em>Poetics</em> 41(6):570–606.</p>
-</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>The Freudian “id” is an unfortunate casualty of this step, as well as some footnotes, endnotes, and captions containing small text where word boundaries were not detected during OCR and a series of words was concatenated.<a href="int.html#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="knowledge-of-the-u-s-social-sciences.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="gen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="abstracts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="sankey.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -235,6 +256,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
