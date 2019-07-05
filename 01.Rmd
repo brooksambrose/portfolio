@@ -7,3 +7,333 @@
 #### Keywords {-}
 
 (ref:key-int)
+
+## Genre and the Literature
+
+Genre is a specialty concept in sociology, a ubiquitous one in the humanities, and a common sense word in popular parlance. Genre as a scholarly term is defined and used differently by different disciplines and among researchers in the same discipline. These varied uses of the term would make reviewing the literature on the topic of genre difficult, were it not for the discipline structure of the academy. The uses of the term genre are themselves systematically organized by discipline, and a disciple who is adequately trained will know the correct ways to use the term in her local context. To use genre as a disciplinary convention means to first identify your location in the disciplinary field, and then to accept the limitations on scope by excluding those treatments of the term that are extradisciplinary, that is,  irrelevant. Disciplinary structure reduces the true cultural complexity of the meaning of genre to a restricted form, which in turn allows humble knowledge workers to engage upon a set of shared assumptions. Such simplicty begets new complexity as disciples spin out the consequences of their local use of ther term genre.
+
+In the sociology of culture, genre is a form of classification enacted by people in various social contexts. In the context of industrial capitalism, genre is an economic principle helping to organize supply and demand within markets for cultural products. There actors see genres among the borders between economic, social, and cultural uses, as a market category helping them acquire or produce content, as a card in proximate games of prestige, or as something to taste, to consume and enjoy directly. Less often genre is knowledge, a component of culture separate from taste, that is a factor in the formation of ideas and skills, whether these lead in turn to economic production or not. Genre's meaning is context specific and variable across sociological subfields, though it is amplified in empiricist fashion by economy and society approaches that reduce genre to the act of classification itself, empiricist because of the empirical ease with which the classification or labeling actions are observed. Especially with Internet distribution systems, it becomes trivial for corporations to observe when a consumer labels their preferences while browing a content catalog; it is much harder to observe the ideas that consuming a particular piece of content sparks in the consumer.
+
+In a different discipline, far removed from sociology, disciples of cultural studies use the term much differently. To the humanist, genre is an ontological phenomenon, which is to say, genres are differentiated from each other by combinations of discrete features of signs and signifieds. Humanists are trained to establish these ontologies through methodological readings of texts and through cultivation of theories of genre types. These methods are at the same time empirical and interpretive, because in consuming objective texts the researcher actually observes the ideas that form in her own consciousness, and hope that others have a resonant experience. In any event, genres have much more substance to them for humanists than they do for sociologists. For sociologists of culture, genres are how people use genre labels, while for humanists, genres are knowledge.
+
+What then is genre to a sociologist of knowledge, and perhaps to a cultural sociologist? It is ontology as it is for the humanist, however it is not the ontology as represented to the researcher in the consumption of texts. It is the hopelessly unobservable distribution of ontologies appearing in a population of consumers objecting to similar texts (objecting in the etymological sense of throwing content in their own way, of compeling attention). The sociologist of knowledge accuses the sociologist of culture of reducing internalist concepts, thought and experience, to externalist ones, taste and preference. The sociologist of culture rejoinds, show me yours and I'll show you mine, and the interlocuters spin around the axis defining the boundary between their subfields.
+
+Yet for all their differences, do these views of genres contradict, or are they complementary? Does genre as distribution serve the economic sociologists's goals, or does a lack of ontological substance lead her astray? Does genre as knowledge remain hopelessly unverifiable, or are theoretical constructs necessary to achieve a correct interpretation of facts? Is everyone at the club listening to the same song hearing the same thing?
+
+To return to disciplines, answering such questions would put the researcher in an adisciplinary predicament, for it would mean eschewing the scope restrictions cherished by disciples. The challenges of a meta-disciplinary analysis are manifold and uncertain. One is as likely to grow her audience as to lose it altogether. She risks the deletantism of a jack-of-all-trades. What's worse, she exposes herself to a dizzying scale of content to consider. If disciplines are indeed functional, then the meta-analysis that effaces disciplines risks being dysfunctional. The upside, however, is appealing. If the universe of meanings given to the term genre does contain complementary uses, a meta-analysis will allow one to consider the consequences of the now arbitrary segregation of a superior metaconcept across disciplinary boundaries. Both sides of the divide could be strengthened by a cultural exchange of their respective terms. The redundancy of parallel discovery can be avoided.
+
+Pathologies of disciplinarity can be diagnosed and treated. Disciplines are social substructures embedded in a larger society and culture. If disciplinarity is a kind of controlled ignorance exchanged for access to secret knowledge. The wayward uses of a term like genre are always lurking at the edges of the firelight defined by a particular disciplinary camp. Discipline as rigor instructs disciples to resist flirtations with the available complexity of the term. The essential tension is very rarely between what is known and unknown; rather it is more commonly between what is known "here" versus what we are conditioned to be willfully ignorant of "there".
+
+In a motivation of some of the arguments to follow, I take a metadisciplinary approach, which is to cast as wide a net as possible on the term genre. Insodoing I hope to test the tacit cultural assumption that discipline-based decisions of relevance are valid, that is, that when we exclude arguments from other disciplines we remove distractions and focus on what is important. The alternative possibility is that we are wasting intellectual resources, because to exclude important work about our topic, even if it is codified in foreign terms, is to risk ignorance and redundancy.
+
+
+## Method
+
+As I have said, the first consequence of eschewing disciplinary limitations is to bloat the size of the "literature" on genre, since no uses of the term would be excluded. An empirical approach to the standard academic convention of a literature review will help reign in the scale and complexity of the task. My aim, however, remains practical rather than scientific. The methods need to be good enough to yield results that offer something new above a traditional literature review relying on library search and disciplinary wisdom about what is important.
+
+### Distant sampling
+
+The methodological premise of a metanalysis of genre is that the Gordian knot of global cultural complexity can be cut by stratified sampling. I use a large digital archive of texts, JSTOR, to define the cultural universe, and a simple term search of the keyword "genre" to define a sampling frame. I could then take a simple random sample of texts, analyze how each uses the term genre, develop a classification scheme, and enumerate the different uses of the term. Unfortunately, a small sample in a statistical sense may be larger than a poor researcher can handle. 1,000 texts is not large statistically, but it is huge from a content analysis perspective. What's worse, 1,000 texts may still exclude, by random chance, small subcultures of the term. Stratification resolves this issue by delineating those subcultures so none would be left out.
+
+Alas, the JSTOR digital archive lacks subject labels at the article level, though it does include them for book chapters and for journals. While not foolish, inheriting a journal label to the articles included within it may be a coarse approximation if within-journal content variation exceeds between-journal variation. We can use text analytic classification methods to cluster articles directly and discover latent groups of articles, and insodoing we can have an independent standard to compare to the discipline labels given to journals. It is an open question whether such methods align with what we have discussed above as disciplinary and subdisciplinary groupings, for us whether regularities in vocabulary correspond to regularities in the meaning of the term genre. If they do not, then the study will only be a stop en route to a true census of the uses of the term genre, and the contribution will be to have interrogated the quality of the methods used, though this would be a small consolation indeed!
+
+The choice in computational text analysis (CTA) about how to represent texts as data hinges on whether word order is preserved. The older and more tested approach is to not preserve word order. The name given to this "bag of words" format reminds one of its inelegance. A bag of words is a frequency table for each document counting up the number of times particular words are used, a representation that effectively reduces a text to its vocabulary. It is the analyst's crude operational decision to treat vocabularies as indicators of meaning, but social scientists conventionally insist on cross validation via qualitative analysis. While the ambitions of computaitonal text analysis may start with a replacement of, for instance, the standard literature review, the conventional distrust, at least in sociology, of mathematical models of text makes CTA more of a sampling method than an analytical method. The study will culminate in a reading of texts, albeit one that is different than traditional qualitative analysis because the CTA researcher welcomes the introduction of interpretive bias from an understanding of the mathematical model before, during, or after the texts are read. In the game of "choose your influence", CTA is one choice while disciplinary wisdom is another.
+
+There are two types of classification methods in text analysis, direct document clustering and topic modeling. Direct document clustering treats the bag of words as a vector space and calculates distance or similarity metrics between documents, which are then clustered. In a topic model, the relationship between documents is mediated by an unobserved but latently modeled representation of their content; documents are similar because they are formed from the same topics.
+
+Whichever approach one takes, and both may be used, recall that the goal is to organize the texts into strata for the purpose of stratified sampling. We said that we wish to typify and enumerate the different uses of the term genre. By qualitative analysis, we could read every text in a simple random sample and come up with a theory of the use of genre in that text. The demerits of this approach are several [c.f. @Nelson2017Computational\:5]. It would take longer than we want even for too small a sample. We are not humanists and have not been trained in text analysis (this will hound us no matter what). Fatigue will set in, and accuracy and consistency will suffer. We may limit our set of theories to spare us the agony of complexity. It will be hard to reproduce our results. There may be path dependency with a different reading order producing different theories. On the upside, we would be more educated for it.
+
+Instead, we will stratify the sample, and it is in the configuration of the strata that much of the work will be done. The strata impose upon our interpretation of the texts the assumption of sameness. 
+
+### Arms-length reading
+
+The radical (and much maligned) distant reading approach taken by digital humanists is partially used here. While I employ a quantitative analysis of texts the goal is to not replace human reading with machine reading; knowledge, understanding, and the cultural logics of arguments are still only obtainable by reading primary texts, closely or not. What computational text analysis offers guidance in answering the question of what to read, and perhaps in what order to do so. Clearly this question is answered institutionally for scholars already in canon, curriculum, word of mouth, and reference services. The social patterns of these answers are topics for the sociology of knowledge and science and for the information sciences. Whatever they are, however, we assume them to be arbitrary reductions in the overwhelming complexity of published scholarship. The pious hope of the present exercise is to move in a less arbitrary direction in aswering the question of what to read.
+
+If distant reading is a criticsm of close reading then it has a big hill to climb especially among humanists who are trained to deal methodically with texts very carefully. In the social sciences a type of customary distant reading is that of ritual citations, those that have developed a meaning that may be oblique to their content or at odds with the intentions of the the original authors. A ritual citation is simply one that is cited but not read, but also one that is so often used that its socially acceptable usages are known from other secondary accounts.
+
+## Data
+
+
+```{r}
+library(tm)
+library(stm)
+library(pbapply)
+library(corrplot)
+library(slam)
+library(igraph)
+library(networkD3)
+library(fpc)
+d<-'?'
+```
+
+
+```{r}
+f<-'d/p/jstordfr-genre.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  library(future)
+  plan(multiprocess)
+  library(tm)
+  
+  #dir('d',pattern = '\\.zip$',recursive = T,full.names = T)
+  zp<-'d/d/jstordfr/receipt-id-1228331-part-001.zip'
+  jst_preview_zip(zp)
+  import <- jst_define_import(
+    article = c(jst_get_article, jst_get_authors),
+    book = c(jst_get_book,jst_get_authors),
+    ngram1 = jst_get_ngram
+  )
+  jst_import_zip(zp,out_file='genre',out_path='d/d/jstordfr/genre',import_spec=import)
+  system.time(dfrg<-fread("d/d/jstordfr/genre/genre_ngram1_jst_get_ngram-1.csv"))
+  # get rid of docs containing genre fewer than 5 times
+  genprp<-dfrg['genre',on='ngram',round(prop.table(table(n))*100,5)]
+  setkey(dfrg,ngram,n)
+  cul<-dfrg[CJ(ngram='genre',n=1:4),file_name %>% unique]
+  setkey(dfrg,file_name)
+  dfrg<-dfrg[!.(cul)]
+  # get rid of 1 and 2 frequency words, must appear thrice or more in a document, also a lot of ocr errors
+  setkey(dfrg,n)
+  dfrg<-dfrg[!.(1:2)]
+  # get rid of 1 and 2 character words, and unrealistically long terms
+  dfrg[,nc:=nchar(ngram)]
+  setkey(dfrg,nc)
+  dfrg<-dfrg[!.(c(1:2,25:max(nc)))]
+  # assuming remaining glyphs are valid terms, compile word count
+  wc<-dfrg[,.(n=sum(n)),by=file_name]
+  mta<-list(gp=genprp,wc=wc)
+  save(mta,file='d/p/jstordfr-genre-mta.RData')
+  # process, stem
+  system.time(dfrg[,lemma:=ngram %>% removeWords(words = union(stopwords("en"),stopwords("SMART"))) %>% removeNumbers %>% stemDocument])
+  # drop empty lemma
+  dfrg<-dfrg[grep('[a-z]',lemma)]
+  # collapse lemma
+  voc<-dfrg[,.(n=sum(n)),by=.(lemma,ngram)][,.(com=ngram[which.max(n)],N=sum(n)),by=lemma]
+  dfrg<-dfrg[,.(n=sum(n)),by=.(file_name,lemma)]
+  dfrg[voc,on='lemma',com:=com]
+  # quick get rid of short lemma
+  voc[,nc:=nchar(lemma)] %>% setkey(nc)
+  voc<-voc[!.(1:2)]
+  voc[,table(N) %>% prop.table %>% head]
+  # sparsity, minimum number of docs (6 here)
+  # can be done with prepDocuments later
+  # setkey(voc,N)
+  # voc<-voc[!.(1:5)]
+  setkey(dfrg,lemma)
+  dfrg<-dfrg[voc$lemma]
+  save(dfrg,file=f)
+}
+rm(f)
+```
+
+
+We will use the JSTOR Data for Research service to download a corpus of texts for topic modeling. I take the following steps to develop a corpus:
+
+1. Search dfr.jstor.org using the query `(ta:genre OR ab:genre) AND la:eng` and requesting 1grams.
+1. To cull documents for which genre is not an important term, exclude documents containing the 1gram "genre" fewer than five times.
+1. Remove ngrams appearing fewer than three times, which often includes optical character recognition errors.
+1. Remove ngrams shorter than three characters and longer than 25 characters, again often OCR errors but also stopwords that will be removed anyway.^[The Freudian "id" is an unfortunate casualty of this step, as well as some footnotes, endnotes, and captions containing small text where word boundaries were not detected during OCR and a series of words was concatenated.]
+1. Compile baseline word counts for each document assuming that at this step the documents contain only valid terms, and no OCR errors.
+1. Remove SMART stopwords.
+1. Remove numbers.
+1. Remove punctuation, except intraword hyphens.
+1. Lemmatize or stem English words.
+1. Remove lemma with fewer than three characters.
+1. Aggregate 1grams defined by a single lemma and, for ease of interpretation, name the sum after the most common 1gram.
+1. Remove terms appearing in fewer than 20 documents.
+1. Remove documents that, after the above filters, have a word count of fewer than 500 words.
+
+
+The initial query returned `r d` articles from `r d` different journals, as well as `r d` book chapters. After the above processing steps, the sample was reduced to `r d`. It is fair to ask what was lost. While I do not carefully look at the content of the excluded documents, assuming they were not texts that made important use of the term genre, I do retain some information about what components of a text were lost of those documents that were not cut. This is a measure called idiosyncracy, which I will have cause to interpret later. 
+
+```{r}
+f<-'d/p/cull_dfrg.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  cull<-dfrg[.(dfrg['genr',on='lemma',file_name %>% unique]),on='file_name'][,.(gp=sum(n[lemma=='genr'])/sum(n)),by=file_name][,.(file_name,gp,c=pamk(log(gp),krange = 5)$pamobject$clustering)]
+  setkey(cull,file_name)
+  save(cull,file=f)
+}
+rm(f)
+cull[,hist(gp %>% log,breaks=50)]
+cull[,.(gp=min(gp)),by=c]$gp %>% {abline(v=log(.),col='blue')}
+```
+
+```{r}
+f<-'d/p/genre-stm.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  meta<-dfrg[,.(N=sum(n),gp=sum(n[lemma=='genr'])/sum(n)),by=file_name]
+  dfrg[,`:=`(file_name=factor(file_name),com=factor(com))]
+  setkey(dfrg,file_name,com)
+  stm<-dfrg[,readCorpus(simple_triplet_matrix(i=file_name %>% as.numeric,j=com %>% as.numeric,v=n,dimnames=list(d=levels(file_name),v=levels(com))),type='slam')]
+  stm<-prepDocuments(stm$documents,vocab=dfrg$com %>% levels,meta=meta,lower.thresh = 20)
+  # remove docs that were trimmed too deeply by above, must have 500 words remaining
+  cul<-stm$meta$file_name[sapply(stm$documents,function(x) sum(x[2,]))<500]
+  dfrg<-dfrg[!.(cul)]
+  dfrg[,`:=`(file_name=droplevels(file_name),com=droplevels(com))]
+  stm<-dfrg[,readCorpus(simple_triplet_matrix(i=file_name %>% as.numeric,j=com %>% as.numeric,v=n,dimnames=list(d=levels(file_name),v=levels(com))),type='slam')]
+  cat('\n')
+  stm<-prepDocuments(stm$documents,vocab=dfrg$com %>% levels,meta=meta,lower.thresh = 20)
+  save(stm,file=f)
+}
+rm(f)
+```
+
+```{r}
+f<-'lit/genre-mod.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  mod<-pblapply(2:10,FUN = function(k) 
+    stmbow2lda.f(stm,out.dir = 'lit',k = k,verbose = F,check.for.saved.output = F,save.to.disk = T) ,cl = 2)
+  save(mod,file=f)
+}
+rm(f)
+```
+
+# sankey
+
+Topic models require the analyst to choose the number of topics $K$. The approach we take to guiding this decision is not to expect one correct specification of K but rather to see it as a changing resolution. A K=2 model usefully bifurcates the sample and is not wrong because it is too restrictive. As K increases we expect the samples to continue to divide as new parameter spaces become available to partition the sample. While this is not strictly a hierarchical design, since each K model is fit independently, we should expect to see aspects of hierarchical topics as well as some degree of stability in the relationships among topics.
+
+Categorical Expectation Maximization is known to 
+
+## top x doc
+```{r}
+el<-lapply(mod,function(x) x$doc.top.theta * x$doc.length)
+for(i in 1:length(el)) dimnames(el[[i]])<-list(d=paste0('d',1:nrow(el[[i]])),t=paste0(i+1,'k',1:ncol(el[[i]])))
+th<-el %>% unlist %>% sample(1000) %>% {data.table(w=.,c=pamk(.)$pamobject$clustering)[,.(.N,m=mean(w),mn=min(w),mx=max(w)),by=c]}
+for(i in 1:length(el)) el[[i]][el[[i]]<=th$mx[which.min(th$m)]]<-0
+```
+
+```{r}
+bel<-list()
+for(i in 2:length(el)) {
+  y<-do.call(cbind,el[(i-1):i]) %>% crossprod(.)
+  y[lower.tri(y,T)]<-0
+  bel[[length(bel)+1]]<-as.simple_triplet_matrix(y) %>% {data.table(s=.$dimnames[[1]][.$i],r=.$dimnames[[2]][.$j],w=.$v)[sub('k.+','',s)!=sub('k.+','',r),.(s,r,weight=w)]}
+}
+bel<-rbindlist(bel)[,k:=tstrsplit(s,split='k',type.convert = T)[[1]]][,weight:=weight %>% prop.table %>% `*`(100),by=k][,k:=NULL]
+
+# cull a bit, actually better to do before cross prod
+# bel[,c:=pamk(weight,krange = 6:10)$pamobject$clustering]
+# bel<-bel[c!=bel[,.(w=mean(weight)),by=c][,which.min(w)]][,c:=NULL]
+# bel[,k:=tstrsplit(s,split='k',type.convert = T)[[1]]][,weight:=weight %>% prop.table %>% `*`(100),by=k][,k:=NULL]
+
+g<-graph_from_edgelist(bel[,!'weight'] %>% as.matrix)
+E(g)$weight<-bel[,weight]
+```
+
+```{r}
+nid<-merge(bel[,.(wp=prop.table(weight) %>% max),by=s],bel[,.(wp=prop.table(weight) %>% max),by=r],by.x = 's',by.y = 'r')[,k:=tstrsplit(s,split='k',type.convert = T)[[1]]][,c:=pamk(.SD)$pamobject$clustering,.SDcols=ec('wp.x,wp.y')] %>% setkey(s)
+nd3<-igraph_to_networkD3(g)
+nd3$nodes$group<-nid[.(nd3$nodes$name),c]
+nd3$nodes$group[is.na(nd3$nodes$group)]<-0
+nd3$nodes$group<-as.character(nd3$nodes$group)
+
+mkg<-function(x) ec(x,'\n') %>% strsplit(',') %>% do.call(rbind,.) %>% apply(2,match,nd3$nodes$name) %>% matrix(ncol=2) %>% `-`(1) %>% data.table %>% setnames(ec('source,target'))
+
+gr<-c(
+  '2k2,3k3'
+  ,
+  '2k2,3k1
+3k1,4k3'
+,
+'2k1,3k2
+3k2,4k4
+4k4,5k4'
+,
+'3k3,4k2
+4k2,5k2
+5k2,6k2
+6k2,7k2
+7k2,8k2
+8k2,9k2
+9k2,10k2'
+,
+'3k3,4k1
+4k1,5k1
+5k1,6k1
+6k1,7k1
+7k1,8k1
+8k1,9k1
+9k1,10k1'
+,
+'4k3,5k3
+5k3,6k3
+6k3,7k3
+7k3,8k3
+8k3,9k3
+9k3,10k3'
+,
+'4k3,5k5
+5k5,6k5
+6k5,7k5
+7k5,8k5
+8k5,9k5
+9k5,10k5'
+,
+'5k4,6k4
+6k4,7k4
+7k4,8k4
+8k4,9k4
+9k4,10k4'
+,
+'5k4,6k6
+6k6,7k6
+7k6,8k6
+8k6,9k6
+9k6,10k6'
+) 
+gs<- gr %>% lapply(mkg)
+nd3$links<-data.table(nd3$links)
+nd3$links[,group:='0']
+
+for(i in 1:length(gs)) nd3$links[gs[[i]],on=ec('source,target'),group:=as.character(i)]
+
+```
+
+```{r}
+sankeyNetwork(Links = nd3$links,Nodes = nd3$nodes,Source = 'source',Target = 'target',Value = 'value',NodeID = 'name',NodeGroup = 'group',LinkGroup = 'group',iterations = 5000,nodePadding = 0)
+```
+
+```{r}
+mem<-list()
+for(i in 1:length(gr)) {
+  mem[[i]]<-list()
+  for(j in gr[i] %>% strsplit(',|\n') %>% unlist) {
+    mem[[i]][[j]]<-strsplit(j,'k')[[1]] %>% as.numeric %>% {mod[[.[1]-1]]$doc.top.theta[,.[2]]} %>% order(decreasing=T)
+  }
+}
+rnk<-lapply(mem,lapply,function(x) data.table(d=x,r=length(x):1)) %>% lapply(rbindlist) %>% lapply(function(x) x[,.(r=sum(r)),by=d] %>% setorder(-r))
+```
+
+```{r}
+strspl<-function(str) {
+  x<-gregexpr('[a-z][A-Z]',str)[[1]]
+  if(x[1]==-1) return(str)
+  x<-c(1,x+1,nchar(str)+1)
+  r<-list()
+  for(i in 2:length(x)) r[[i-1]]<-substr(str,x[i-1],x[i]-1)
+  unlist(r)
+}
+
+jart<-fread(input = 'd/d/jstordfr/genre/genre_journal_article_jst_get_article-1.csv')
+jbok<-fread(input = 'd/d/jstordfr/genre/genre_book_chapter_jst_get_book-1.csv')[,discipline:=mapply(strspl,str=discipline,SIMPLIFY =F)]
+url<-rbindlist(list(jart[,.(file_name)],jbok[,.(file_name)]))[,.(file_name,url=paste0('www.jstor.org/stable/',sub('[a-z-]+-','',file_name) %>% sub('_','/',.)))]
+stm$meta[url,on='file_name',url:=url]
+
+
+```
+
+```{r qcv}
+withr::with_seed(
+  12345,{
+    sf<-4:9 %>% combn(2) %>% t %>% {data.table(.)[sample(1:.N)]}
+    for(i in 1:nrow(sf)) sf[i,] %>% unlist %>% {c(rnk[[.[1]]][1:25,sample(d,5)],rnk[[.[2]]][1:25,sample(d,5)])} %>% sample %>% stm$meta[.,.(lr='',url,file_name)] %>% write.table(file = paste0('d/p/jstordfr/genre/man',sprintf('%02d',i),'-',Sys.time() %>% as.integer,'.txt'),quote = F,sep = '\t',row.names = F,col.names = T)
+  }
+)
+```
+
