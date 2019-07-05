@@ -14,11 +14,17 @@ Genre is a both a phenomenon and an analytical approach, indeed, several analyti
 
 ### Taste
 
-Lizardo operationalizes genre preference data in network terms by "inducing a network of persons connected to the cultural genres they choose" [-@Lizardo2018mutual\:53], which allows him to analyze individual preferences within global contexts revealed in bimodal network patterns.
+Lizardo operationalizes genre preference data in network terms by "inducing a network of persons connected to the cultural genres they choose" [-@Lizardo2018mutual\:53]. This allows him to analyze individual preferences within a global context represented in bimodal network patterns. Multimodal networks, of which a bimodal network is the simplest type, are an analytical convention wherein at least two classes of items bear relations and in which a rule is imposed that such items may only be related to items of a different class. Insofar as the researcher cares about intraclass relationships she must understand them as mediated by one of the alternative classes.
 
-Multimodal networks are an analytical convention where there are at least two classes of items that bear relations and in which a rule is imposed that such items may only be related to items of a different class. Insofar as the researcher cares about intraclass relationships she must understand them as mediated by one of the alternative classes. The simplest multimodal network has two classes (see [@Shi2015Weaving] for examples of many more).
+This multimodal metric convention aligns with cultural capital theories of culture which treat the consumption of cultural objects as transactions out of knowledge relationships and into status ones. In a knowledge relationship cultural logics obtain, usually a principle of rightness like truth, beauty, or morality. Social relationships, on the other hand, are governed by different rules, e.g. those of commitments like love and enmity or loyalty and rivalry. The meaning of a cultural object is given by the interactions established around it, which are themselves conditioned by role expectations [@DiMaggio1987Classification\:445]. Cultural capital then is the type of relationship process where an actor tries to exchange knowledge for status as the basis for a relationship or at least to motivate a particular role interaction.
+
+This treatment of cultural capital differs from more strictly Bourdieusian approaches. Serino et al [-@Serino2017Bridging] do it differently.
+
+The simplest multimodal network has two classes (see [@Shi2015Weaving] for examples of many more).
 
 culture as a disembodied abstraction [@Lizardo2018mutual]
+
+>>  Genre classifications socialize the infrastructure costs of artistic production. [@DiMaggio1987Classification\:445]
 
 ### Structuralist
 
@@ -26,9 +32,11 @@ Genres are a feature of two kinds of cultural surplus. First, genres are not nec
 
 Such a proto genre allows two things. Alien material becomes obvious, perhaps dangerous, but not confusing as it can be safely cordoned off from what is real knowledge. Second and perhaps more interestingly, a proto genre precipitates cultural expansion by allowing some stories (ideas, skills, products) to be told differently. Such novelty maintains interest without exciting alienation. In those acts of deciding what makes sense (inclusion) and what is nonsense (exclusion) the rules of the genre begin to form.
 
-This simple structuralism is a functional understanding of genres, which though not a sensible analytical approach in contemporary sociology, forms the spine of the argument to follow. The effect of genres that we wish to focus on is their exclusion potential. When genres become multiple they cease to be about sense and nonsense and begin to be about relevance and irrelevance. They allow local action with a globalized culture by reducing local cultural complexity to a manageable level, and what is more important, they make normative and binding the particular pattern of exclusion. The genre classification of particular cultural objects must be done correctly or they will invite more or less predictable social backlash. In this way "personal genre" must be understood to be an oxymoron; a person may have tastes, her own rules of repulsion and attraction, but to the extent that these tastes abrogate genre conventions a person has difficult decisions to make about how she will field the forms of social regulations, and perhaps rewards, that she will incur in expressing those tastes.
+When genres become multiple they cease to be about sense and nonsense and begin to be about relevance and irrelevance. They allow local action with a globalized culture by reducing local cultural complexity to a manageable level, and what is more important, they make normative and binding the particular pattern of exclusion. The genre classification of particular cultural objects must be done correctly or they will invite more or less predictable social backlash. In this way "personal genre" must be understood to be an oxymoron; a person may have tastes, her own rules of repulsion and attraction, but to the extent that these tastes abrogate genre conventions a person has difficult decisions to make about how she will field the forms of social regulations, and perhaps rewards, that she will incur in expressing those tastes.
 
 This is not to say that socialized tastes, tastes that conform to genre convention, do not incure regulation and reward. Indeed we will see that one function of multigenre systems is to allow cultural industries to minimize exclusion and maximize conversions. In this sense the developmental model with which we began has a circular logic of scale; as genre systems grow and differentiate in the vain attempt to index the wild cultural content they hope to classify, industrial action lights upon this natural tendency and works to domesticate it. In working to exclude nothing, purveyors of culture demonstrate themselves to be tastelessly willing to hock something to anyone.
+
+This simple structuralism is a functional understanding of genres, which though not a sensible analytical approach in contemporary sociology, forms the spine of the argument to follow. The effect of genres that we wish to focus on is their exclusion potential. 
 
 ## Culture
 
