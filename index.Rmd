@@ -86,7 +86,7 @@ Brooks
 
 # Abstracts {-}
 
-`r tint<-'Introduction'`
+`r tint<-'Genre and the Literature'`
 
 ### `r tint` {-}
 
