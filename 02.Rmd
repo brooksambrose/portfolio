@@ -10,6 +10,8 @@
 
 ## Introduction
 
+> The science that everybody is...called upon to possess hardly deserves that name. It is not science; or at the very most it is the most common and general part of it. It is indeed limited to a few indispensable elements of knowledge which are only required of everyone because they are within everyone’s grasp. Science proper soars infinitely beyond this vulgar level. It includes not only what one would blush at not knowing, but all that it is possible to know. It presumes among those who are its adepts not only those average faculties possessed by all men, but special aptitudes. In consequence, since it is accessible only to an elite, it is not obligatory. Although something fine and useful, it is not so utterly indispensable that society categorically requires it. There is advantage in being equipped with it, but nothing immoral about not acquiring it. It is a field of activity open to everyone on their own initiative, but one which no one is compelled to enter. One is no more required to be a scientist than an artist. [@Durkheim1893division\:43]
+
 Genre is a both a phenomenon and an analytical approach, indeed, several analytical approaches. I critique a contemporary use of multimodal network analysis to study genre as measured in cultural object network data. I argue that standard rational choice approaches in the sociology of culture, the theory of consumer preferences or tastes, does not pass a prima facie test of validity as an accurate representation of the global properties of so-called cultural networks. The same data that are used to demonstrate taste theory better support an alternative knowledge based approach to culture.
 
 ### Taste
