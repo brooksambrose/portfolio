@@ -90,11 +90,11 @@ Brooks
 
 ### `r tint` {-}
 
-(ref:abs-int)
+(ref:abs-int) There are many different analytic approaches to the phenomenon of genre classification of cultural products. This study explores how the use of the term genre varies across a wide swath of humanities and social science publications. I use computational text analysis to classify articles in the JSTOR archive into groups of common vocabulary. I use these groups as strata for a sampling approach to content analysis of the "entire" corpus of literature using the term genre. Through a combination of machine distant reading and human close reading, I arrive at a theory of five genres of the term genre. In an argument for pandisciplinarity, I conclude with an analysis of the logical possibility of new metaconcepts of genre that satisfy the strictures of multiple genres.
 
 (ref:abs-int)
 
-(ref:key-int) 
+(ref:key-int) genre, disciplines, computational text analysis, topic modeling, content analysis, digital humanities, distant reading
 
 **Keywords**: (ref: key-int)
 
@@ -126,7 +126,7 @@ Brooks
 
 ### `r tvoc` {-}
 
-(ref:abs-voc) Knowledge development of journals is measured as the change in topic prevalence over time.
+(ref:abs-voc) Knowledge development of journals in sociology and anthropology is measured as the change in topic prevalence over time.
 
 (ref:abs-voc)
 
