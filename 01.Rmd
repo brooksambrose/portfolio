@@ -264,6 +264,7 @@ Topic models require the analyst to choose the number of topics $K$. The approac
 Categorical Expectation Maximization is known to 
 
 ## top x doc
+
 ```{r}
 el<-lapply(mod,function(x) x$doc.top.theta * x$doc.length)
 for(i in 1:length(el)) dimnames(el[[i]])<-list(d=paste0('d',1:nrow(el[[i]])),t=paste0(i+1,'k',1:ncol(el[[i]])))
@@ -299,24 +300,18 @@ nd3$nodes$group<-as.character(nd3$nodes$group)
 mkg<-function(x) ec(x,'\n') %>% strsplit(',') %>% do.call(rbind,.) %>% apply(2,match,nd3$nodes$name) %>% matrix(ncol=2) %>% `-`(1) %>% data.table %>% setnames(ec('source,target'))
 
 gr<-c(
-  '2k2,3k3'
-  ,
-  '2k2,3k1
-3k1,4k3'
+'2k2,3k2
+3k2,4k2'
 ,
-'2k1,3k2
-3k2,4k4
-4k4,5k4'
-,
-'3k3,4k2
-4k2,5k2
+'4k2,5k2
 5k2,6k2
 6k2,7k2
-7k2,8k2
-8k2,9k2
-9k2,10k2'
+7k2,8k2'
 ,
-'3k3,4k1
+'8k2,9k2
+9k2,10k6'
+,
+'3k1,4k1
 4k1,5k1
 5k1,6k1
 6k1,7k1
@@ -324,31 +319,38 @@ gr<-c(
 8k1,9k1
 9k1,10k1'
 ,
-'4k3,5k3
-5k3,6k3
-6k3,7k3
-7k3,8k3
+'3k3,4k3
+4k3,5k3'
+,
+'5k3,6k3
+6k3,7k3'
+,
+'7k3,8k3
 8k3,9k3
 9k3,10k3'
 ,
-'4k3,5k5
-5k5,6k5
+'5k5,6k5
 6k5,7k5
 7k5,8k5
 8k5,9k5
 9k5,10k5'
 ,
-'5k4,6k4
-6k4,7k4
+'7k7,8k8
+8k8,9k8
+9k8,10k8'
+,
+'4k4,5k4
+5k4,6k4'
+,
+'6k4,7k4
 7k4,8k4
 8k4,9k4
 9k4,10k4'
 ,
-'5k4,6k6
-6k6,7k6
+'6k6,7k6
 7k6,8k6
 8k6,9k6
-9k6,10k6'
+9k6,10k10'
 ) 
 gs<- gr %>% lapply(mkg)
 nd3$links<-data.table(nd3$links)
@@ -359,7 +361,7 @@ for(i in 1:length(gs)) nd3$links[gs[[i]],on=ec('source,target'),group:=as.charac
 ```
 
 ```{r,include=T,fig.cap='Sankey diagram of document overlap between topic models of increasing values of K.'}
-sankeyNetwork(Links = nd3$links,Nodes = nd3$nodes,Source = 'source',Target = 'target',Value = 'value',NodeID = 'name',NodeGroup = 'group',LinkGroup = 'group',iterations = 5000,nodePadding = 0)
+sankeyNetwork(Links = nd3$links,Nodes = nd3$nodes,Source = 'source',Target = 'target',Value = 'value',NodeID = 'name',NodeGroup = 'group',LinkGroup = 'group',nodePadding = 0)
 ```
 
 ```{r}
@@ -376,12 +378,10 @@ rnk<-lapply(mem,lapply,function(x) data.table(d=x,r=length(x):1)) %>% lapply(rbi
 ```{r}
 url<-rbindlist(list(jart[,.(file_name)],jbok[,.(file_name)]))[,.(file_name,url=paste0('www.jstor.org/stable/',sub('[a-z-]+-','',file_name) %>% sub('_','/',.)))]
 stm$meta[url,on='file_name',url:=url]
-
-
 ```
 
 ```{r qcv}
-withr::with_seed(
+if(F) withr::with_seed(
   12345,{
     sf<-4:9 %>% combn(2) %>% t %>% {data.table(.)[sample(1:.N)]}
     for(i in 1:nrow(sf)) sf[i,] %>% unlist %>% {c(rnk[[.[1]]][1:25,sample(d,5)],rnk[[.[2]]][1:25,sample(d,5)])} %>% sample %>% stm$meta[.,.(lr='',url,file_name)] %>% write.table(file = paste0('d/p/jstordfr/genre/man',sprintf('%02d',i),'-',Sys.time() %>% as.integer,'.txt'),quote = F,sep = '\t',row.names = F,col.names = T)
