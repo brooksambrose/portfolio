@@ -50,16 +50,17 @@ Pathologies of disciplinarity can be diagnosed and treated. Disciplines are soci
 
 In a motivation of some of the arguments to follow, I take a metadisciplinary approach, which is to cast as wide a net as possible on the term genre. In so doing I hope to test the tacit cultural assumption that discipline-based decisions of relevance are valid, that is, that when we exclude arguments from other disciplines we remove distractions and focus on what is important. The alternative possibility is that we are wasting intellectual resources, because to exclude important work about our topic, even if it is codified in foreign terms, is to risk ignorance and redundancy. The topic is genre and how disciplinary boundaries form such that people using the same word nonetheless cannot communicate effectively. They draw on different paradigms, which is to say the term is not really the same term. What I hope to do is uncover the knowledge contexts surrounding the terms, and map these contexts in a way that enumerates the various communities of discourse and theories constituting the term.
 
-As I have said, the first consequence of eschewing disciplinary limitations is to bloat the size of the "literature" on genre, since no uses of the term would be excluded. An empirical approach to the standard academic convention of a literature review will help reign in the scale and complexity of the task. My aim, however, remains practical rather than scientific. The methods need to be good enough to yield results that offer something new above a traditional literature review relying on library search and disciplinary wisdom about what is important. This is not because a scientific approach is undesirable, it is that it is not yet demanded of "the literature". Sociologists are not expected to take a sociological orientation toward the history of their fields. Rather the literature review serves the social purpose of taking a position in a field of cultural production. It is a listing of a roster of political support and rivalry, and an advertisement to attract a desired audience.
-
-To take an empirical approach to the literature review would be subversive were it not the first 
-
 ## Method
 
+As I have said, the first consequence of eschewing disciplinary limitations is to bloat the size of the "literature" on genre, since no uses of the term would be excluded. An empirical approach to the standard academic convention of a literature review will help reign in the scale and complexity of the task. My aim, however, remains practical rather than scientific. The methods need to be good enough to yield results that offer something new above a traditional literature review relying on library search and disciplinary wisdom about what is important. This is not because a scientific approach is undesirable, it is that it is not yet demanded of "the literature". Sociologists are not expected to take a sociological orientation toward the history of their fields. Rather the literature review serves the social purpose of taking a position in a field of cultural production. It is a listing of a roster of political support and rivalry, and an advertisement to attract a desired audience.
+
+To take an empirical approach to the literature review would be subversive were it not the first function of disciplinary genres to render atypical draws from the archive irrelevant. Disciplinary subfields, genres, are credentialed by secret sets of references, and most comers are held at the door. This in and of itself can be subersive of even more arbitrary club rules, namely those of educational pedigree, such that anyone willing to invest in a presentation of the genre definition will be granted access to the venues, if not the invisible colleges, of the subfield. To be admitted to the arena is no gaurantee of achievement within it, but it is a start. Nevertheless, the scale of the archive will always supply entropy enough to create a deterrent of flotsam and jetsam around subfields composed of projects and persons who either never cracked the code or who willfully eschewed it.
 
 ### Distant sampling
 
-The methodological premise of a meta-analysis of genre is that the Gordian knot of global cultural complexity can be cut by stratified sampling. I use a large digital archive of texts, JSTOR, to define the cultural universe, and a simple term search of the keyword "genre" to define a sampling frame. I could then take a simple random sample of texts, analyze how each uses the term genre, develop a classification scheme, and enumerate the different uses of the term. Unfortunately, a small sample in a statistical sense may be larger than a poor researcher can handle. 1,000 texts is not large statistically, but it is huge from a content analysis perspective. What's worse, 1,000 texts may still exclude, by random chance, small subcultures of the term. Stratification resolves this issue by delineating those subcultures so none would be left out.
+The research strategy here attempts to parry the entropic tendency of the archive by substituting human for machine limits. The time honored methodological premise of a meta-analysis of genre is that the Gordian knot of the global cultural complexity of the archive can be cut by stratified sampling. I use a large digital archive of texts, JSTOR, to represent the whole of the academic archive. Though clearly a toy representing only a fraction of all networked scholarly produce, JSTOR is large enough to easily surpass individual cognition and compel the equivalent types of complexity reduction facing any researcher approaching the real archive via their local university library portal.
+
+I use a simple term search of the keyword "genre" to define half of a sampling frame.^[TODO, I did not, but should take a random draw of the same size to serve as a control.] I could then take a simple random sample of texts, analyze how each uses the term genre, develop a classification scheme, and enumerate the different uses of the term. Unfortunately, a small sample in a statistical sense may be larger than a poor researcher can handle. 1,000 texts is not large statistically, but it is huge from a content analysis perspective. What's worse, 1,000 texts may still exclude, by random chance, small subcultures of the term. Stratification resolves this issue by delineating those subcultures so none would be left out.
 
 Alas, the JSTOR digital archive lacks subject labels at the article level, though it does include them for book chapters and for journals. While not foolish, inheriting a journal label to the articles included within it may be a coarse approximation if within-journal content variation exceeds between-journal variation. We can use text analytic classification methods to cluster articles directly and discover latent groups of articles, and in so doing we can have an independent standard to compare to the discipline labels given to journals. It is an open question whether such methods align with what we have discussed above as disciplinary and subdisciplinary groupings, for us whether regularities in vocabulary correspond to regularities in the meaning of the term genre. If they do not, then the study will only be a stop en route to a true census of the uses of the term genre, and the contribution will be to have interrogated the quality of the methods used, though this would be a small consolation indeed!
 
@@ -73,7 +74,7 @@ Instead, we will stratify the sample, and it is in the configuration of the stra
 
 ### Arms-length reading
 
-The radical (and often maligned) distant reading approach taken by digital humanists is being taken up with gusto by social scientists who are less skeptical of quantitative methods. Following Nelson [*@Nelson2017Computational] I employ a quantitative analysis of texts not replace human reading with machine reading but to support reproducibility in traditional qualitative content analysis. While CTA makes it possible to dispense with reading altogether, knowledge, understanding, and the cultural logics of arguments--especially their ontologies--are still only obtainable by reading primary texts, closely or not. The most radical interpretive CTA method would involve deep neural net supervised machine learning, which may be able to predict how a particular human reader would classify a text without their needing to read it, though this has never been demonstrated. What I gain from CTA is guidance in answering the question of what to read, and perhaps in what order to do so.
+The radical (and often maligned) distant reading approach taken by digital humanists is being taken up with gusto by social scientists who are less skeptical of quantitative methods. Following Nelson [-@Nelson2017Computational] I employ a quantitative analysis of texts not to replace human reading with machine reading but to support reproducibility in traditional qualitative content analysis. While CTA makes it possible to dispense with reading altogether, knowledge, understanding, and the cultural logics of arguments--especially their ontologies--are still only obtainable by reading primary texts, closely or not. The most radical interpretive CTA method would involve deep neural net supervised machine learning, which may be able to predict how a particular human reader would classify a text without their needing to read it, though this has never been demonstrated. What I gain from CTA is guidance in answering the question of what to read, and perhaps in what order to do so.
 
 As we know, the question of what to read is answered institutionally for scholars already by way of canon, curriculum, word of mouth, and digital reference term search services. These are their own forms of distant reading, because they each make obsolete the archaic image, true of figures like Weber, of a scholar buried in library stacks reading everything they come across (and so it has been said of Weber, forgetting nothing).^[What a scandal it would be if Weber's lionizers discovered that he had only read text indices! Surely they would bury such a fact. But the point would remain that even if a scholar were able to consumer an entire corpus, the sheer scale of contemporary publication is now beyond even a genius's capacity.] These contemporary shortcuts are historically arbitrary, but what is important is first that they serve the function of reducing the overwhelming cognitive complexity of published scholarship, and second structure that reduction in the same way for all scholars. An arbitrary reduction needs to be consistent to act as an infrastructure for subdisciplinary scholarship, otherwise scholars would find themselves located in different literatures.
 
@@ -105,7 +106,8 @@ strspl<-function(str) {
   for(i in 2:length(x)) r[[i-1]]<-substr(str,x[i-1],x[i]-1)
   unlist(r)
 }
-
+blanky<-theme(axis.text.y = element_blank(),axis.ticks.y = element_blank(),panel.grid.major.y = element_blank(),panel.grid.minor.y = element_blank())
+blankx<-theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),panel.grid.major.x = element_blank(),panel.grid.minor.x = element_blank())
 jart<-fread(input = 'd/d/jstordfr/genre/genre_journal_article_jst_get_article-1.csv')
 jbok<-fread(input = 'd/d/jstordfr/genre/genre_book_chapter_jst_get_book-1.csv')[,discipline:=mapply(strspl,str=discipline,SIMPLIFY =F)]
 ```
@@ -116,26 +118,22 @@ f<-'d/p/jstordfr-genre.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  library(future)
-  plan(multiprocess)
-  library(tm)
-  
-  #dir('d',pattern = '\\.zip$',recursive = T,full.names = T)
-  zp<-'d/d/jstordfr/receipt-id-1228331-part-001.zip'
-  jst_preview_zip(zp)
-  import <- jst_define_import(
-    article = c(jst_get_article, jst_get_authors),
-    book = c(jst_get_book,jst_get_authors),
-    ngram1 = jst_get_ngram
-  )
-  jst_import_zip(zp,out_file='genre',out_path='d/d/jstordfr/genre',import_spec=import)
+  if(F){ #only needs to be done once ever for a query
+    library(future)
+    plan(multiprocess)
+    library(tm)
+    library(jstor)
+    #dir('d',pattern = '\\.zip$',recursive = T,full.names = T)
+    zp<-'d/d/jstordfr/receipt-id-1232411-part-001.zip'
+    jst_preview_zip(zp)
+    import <- jst_define_import(
+      article = c(jst_get_article, jst_get_authors),
+      book = c(jst_get_book,jst_get_authors),
+      ngram1 = jst_get_ngram
+    )
+    jst_import_zip(zp,out_file='genre',out_path='d/d/jstordfr/genre',import_spec=import)
+  }
   system.time(dfrg<-fread("d/d/jstordfr/genre/genre_ngram1_jst_get_ngram-1.csv"))
-  # get rid of docs containing genre fewer than 5 times
-  genprp<-dfrg['genre',on='ngram',round(prop.table(table(n))*100,5)]
-  setkey(dfrg,ngram,n)
-  cul<-dfrg[CJ(ngram='genre',n=1:4),file_name %>% unique]
-  setkey(dfrg,file_name)
-  dfrg<-dfrg[!.(cul)]
   # get rid of 1 and 2 frequency words, must appear thrice or more in a document, also a lot of ocr errors
   setkey(dfrg,n)
   dfrg<-dfrg[!.(1:2)]
@@ -143,18 +141,30 @@ if(file.exists(f)){
   dfrg[,nc:=nchar(ngram)]
   setkey(dfrg,nc)
   dfrg<-dfrg[!.(c(1:2,25:max(nc)))]
-  # assuming remaining glyphs are valid terms, compile word count
-  wc<-dfrg[,.(n=sum(n)),by=file_name]
-  mta<-list(gp=genprp,wc=wc)
-  save(mta,file='d/p/jstordfr-genre-mta.RData')
   # process, stem
   system.time(dfrg[,lemma:=ngram %>% removeWords(words = union(stopwords("en"),stopwords("SMART"))) %>% removeNumbers %>% stemDocument])
+  # get rid of docs that did not actually have the term genre in them, were included because of a french abstract
+  setkey(dfrg,lemma)
+  genreset<-setdiff(dfrg['genr',ngram %>% removeNumbers %>% unique %>% sort],'genr')
+  cul<-dfrg['genr',file_name %>% unique]
+  setkey(dfrg,file_name)
+  dfrg<-dfrg[cul]
   # drop empty lemma
   dfrg<-dfrg[grep('[a-z]',lemma)]
   # collapse lemma
   voc<-dfrg[,.(n=sum(n)),by=.(lemma,ngram)][,.(com=ngram[which.max(n)],N=sum(n)),by=lemma]
   dfrg<-dfrg[,.(n=sum(n)),by=.(file_name,lemma)]
   dfrg[voc,on='lemma',com:=com]
+  # get rid of docs containing genre fewer than 5 times
+  setkey(dfrg,lemma,n)
+  dfrg['genr',n %>% table %>% prop.table %>% sort(T) %>% head]
+  cul<-dfrg[CJ(lemma='genr',n=1:4),file_name %>% unique]
+  setkey(dfrg,file_name)
+  dfrg<-dfrg[!.(cul)]
+  # get rid of lemma where all characters are the same
+  cul<-voc[sapply(lemma,function(x) strsplit(x %>% as.character,split = '')[[1]] %>% unique %>% length)==1,lemma]
+  setkey(voc,lemma)
+  voc<-voc[!.(cul)]
   # quick get rid of short lemma
   voc[,nc:=nchar(lemma)] %>% setkey(nc)
   voc<-voc[!.(1:2)]
@@ -164,17 +174,18 @@ if(file.exists(f)){
   # setkey(voc,N)
   # voc<-voc[!.(1:5)]
   setkey(dfrg,lemma)
-  dfrg<-dfrg[voc$lemma]
+  dfrg<-dfrg[voc$lemma][!is.na(file_name)]
+  attr(dfrg,'genreset')<-genreset
   save(dfrg,file=f)
 }
 rm(f)
 ```
 
 
-We will use the JSTOR Data for Research service to download a corpus of texts for topic modeling. I take the following steps to develop a corpus:
+We will use the JSTOR Data for Research service to download a bag-of-words text corpus for topic modeling. I take the following steps to develop a corpus:
 
-1. Search dfr.jstor.org using the query `(ta:genre OR ab:genre) AND la:eng` and requesting 1grams.
-1. To cull documents for which genre is not an important term, exclude documents containing the 1gram "genre" fewer than five times.
+1. Search dfr.jstor.org using the query `(ta:genr* OR ab:genr*) AND la:eng` and requesting 1grams.
+1. To cull documents for which genre is not an important term, exclude documents containing fewer than five variants of the term genre (1grams matching the regular expression `^genr`: `r attr(dfrg,'genreset') %>% nl`).
 1. Remove ngrams appearing fewer than three times, which often includes optical character recognition errors.
 1. Remove ngrams shorter than three characters and longer than 25 characters, again often OCR errors but also stopwords that will be removed anyway.^[The Freudian "id" is an unfortunate casualty of this step, as well as some footnotes, endnotes, and captions containing small text where word boundaries were not detected during OCR and a series of words was concatenated.]
 1. Compile baseline word counts for each document assuming that at this step the documents contain only valid terms, and no OCR errors.
@@ -187,47 +198,55 @@ We will use the JSTOR Data for Research service to download a corpus of texts fo
 1. Remove terms appearing in fewer than 20 documents.
 1. Remove documents that, after the above filters, have a word count of fewer than 500 words.
 
-
-The initial query returned `r d` articles from `r d` different journals, as well as `r d` book chapters. After the above processing steps, the sample was reduced to `r d`. It is fair to ask what was lost. While I do not carefully look at the content of the excluded documents, assuming they were not texts that made important use of the term genre, I do retain some information about what components of a text were lost of those documents that were not cut. This is a measure called idiosyncrasy, which I will have cause to interpret later. 
-
-```{r}
-f<-'d/p/cull_dfrg.RData'
-if(file.exists(f)){
-  load(f)
-} else {
-  cull<-dfrg[.(dfrg['genr',on='lemma',file_name %>% unique]),on='file_name'][,.(gp=sum(n[lemma=='genr'])/sum(n)),by=file_name][,.(file_name,gp,c=pamk(log(gp),krange = 5)$pamobject$clustering)]
-  setkey(cull,file_name)
-  save(cull,file=f)
-}
-rm(f)
-cull[,hist(gp %>% log,breaks=50)]
-cull[,.(gp=min(gp)),by=c]$gp %>% {abline(v=log(.),col='blue')}
-```
-
 ```{r}
 f<-'d/p/genre-stm.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  meta<-dfrg[,.(N=sum(n),gp=sum(n[lemma=='genr'])/sum(n)),by=file_name]
+  meta<-dfrg[,.(N=sum(n),g=n[lemma=='genr'],gp=sum(n[lemma=='genr'])/sum(n)),by=file_name]
   dfrg[,`:=`(file_name=factor(file_name),com=factor(com))]
   setkey(dfrg,file_name,com)
   stm<-dfrg[,readCorpus(simple_triplet_matrix(i=file_name %>% as.numeric,j=com %>% as.numeric,v=n,dimnames=list(d=levels(file_name),v=levels(com))),type='slam')]
   stm<-prepDocuments(stm$documents,vocab=dfrg$com %>% levels,meta=meta,lower.thresh = 20)
   # remove docs that were trimmed too deeply by above, must have 500 words remaining
-  cul<-stm$meta$file_name[sapply(stm$documents,function(x) sum(x[2,]))<500]
+  cul<-stm$meta[sapply(stm$documents,function(x) sum(x[2,]))<500,file_name]
   dfrg<-dfrg[!.(cul)]
   dfrg[,`:=`(file_name=droplevels(file_name),com=droplevels(com))]
+  meta<-dfrg[,.(N=sum(n),g=n[lemma=='genr'],gp=sum(n[lemma=='genr'])/sum(n)),by=file_name]
   stm<-dfrg[,readCorpus(simple_triplet_matrix(i=file_name %>% as.numeric,j=com %>% as.numeric,v=n,dimnames=list(d=levels(file_name),v=levels(com))),type='slam')]
   cat('\n')
   stm<-prepDocuments(stm$documents,vocab=dfrg$com %>% levels,meta=meta,lower.thresh = 20)
+  stm$meta[,n:=stm$documents %>% sapply(function(x) x[2,] %>% sum)][,idi:=1-n/N]
   save(stm,file=f)
 }
 rm(f)
 ```
 
+The initial query returned `r jart[,.N %>% nn]` articles from `r jart[,.N,by=journal_jcode][,.N %>% nn]` different journals, as well as `r jbok[,.N %>% nn]` book chapters from `r jbok[,.N,by=book_id][,.N %>% nn]` books. After the above processing steps, the sample was reduced to `r {nab<-stm$meta[,.N,by=file_name][,c(j=file_name %>% grepl('^jour',.) %>% sum,b=file_name %>% grepl('^book',.) %>% sum)];nab['j'] %>% nn}` articles and `r nab['b'] %>% nn` chapters, or `r nab %>% sum %>% nn` total texts.
+
+It is fair to ask what is lost during the pre-processing of texts. While I do not carefully look at the content of the excluded documents, assuming they were not texts that made important use of the term genre, I do retain some information about what components of a text were lost of those documents that were not cut. This is a measure called idiosyncrasy, or the proportion of terms in a document eliminated during pre-processing. I call it idiosyncracy because the pre-processing condition was that terms would be eliminated if they did not appear in at least twenty other texts. Texts that lost a large volume of words to this filter are drawing on a vocabulary that almost no other texts use. It would not be surprising if these were ethnographic or content analytic studies of non English materials.
+
+Figure \ref(fig:idi-hist) shows the right-skewed distribution of idiosyncracy. The median text lost about one tenth (`r stm$meta[,(100*median(idi)) %>% round(2)]` percent) of its words, while 90 percent of texts are within two tenths, and outliers begin at about three tenths as can be seen in the boxplot. The `r stm$meta[, sum(idi>.3) %>% nn]` (`r stm$meta[,(100*mean(idi>.3)) %>% round(2)]` percent) of texts above three tenths vary across a range as wide as the rest of the distribution.
+
+```{r idi-hist, include=T,fig.cap='Distribution of idiosyncracy, the proportion of document vocabularly dropped during pre-processing'}
+p1<-myth(ggplot(stm$meta,aes(y=idi))) + geom_boxplot(outlier.size = 3,outlier.alpha = 1,outlier.shape = '+') + coord_flip() + blanky
+p2<-myth(ggplot(stm$meta,aes(x=idi))) + geom_histogram(bins=50) + theme(axis.title.x = element_blank())
+egg::ggarrange(p2,p1, heights = c(3,1))
+```
+
+Figure \ref(fig:gp-hist) shows the logarithm of the count of the term genre as a proportion of the total term count of a text. This distribution is much more highly skewed but contains fewer outliers. In the median text a genre variant accounted for about `r stm$meta[,(1000*median(gp)) %>% round]` in 1,000 terms, while at the 90 percentile the rate is `r stm$meta[,quantile(gp,p=.9)*1000] %>% round` in 1,000. `r stm$meta[,sum(gp>.1) %>% nn]` texts (`r stm$meta[,(mean(gp>.1)*100) %>% round(2)]` percent) are outliers where one in ten or more words is a genre variant.
+
+```{r gp-hist, include=T,fig.cap='Distribution of $log_{10}$ of the count of the term "genre" as a proportion of all terms in a text'}
+p1<-ggplot(stm$meta,aes(y=gp)) + geom_boxplot(outlier.size = 3,outlier.alpha = 1,outlier.shape = '+') + scale_y_log10() + coord_flip() + theme_bw() + blanky 
+p2<-myth(ggplot(stm$meta,aes(x=gp))) + geom_histogram(bins=50) + scale_x_log10() + theme(axis.title.x = element_blank())
+egg::ggarrange(p2,p1, heights = c(3,1))
+```
+
+
+## Model
+
 ```{r}
-f<-'lit/genre-mod.RData'
+f<-'d/p/genre-mod.RData'
 if(file.exists(f)){
   load(f)
 } else {
