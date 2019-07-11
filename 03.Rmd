@@ -182,7 +182,7 @@ rm(f)
 kcc2tree$int
 ```
 
-Figure \ref(fig:kcc2tree) shows a KCC model of the social sciences in the first half of the twentieth century.
+Figure \@ref(fig:kcc2tree) shows a KCC model of the social sciences in the first half of the twentieth century.
 
 Disciplinarity and interdisciplinarity are revealed in a novel fashion in the KCC model. Disciplinarity is shown as a level of exclusion.
 
@@ -195,13 +195,13 @@ include_graphics('img/flat-isle.png')
 ```
 
 
-The most substantial flat isle <!-- k50c1-5 -->, the largest unenclosed and unenclosing circle in Figure \ref(fig:flat-isle), comes from four authors publishing in the same 1930 [issue](https://www.jstor.org/stable/i40084238) of *`r j9so('Z NATIONALOKON')`*. It includes 50 references the most prominent of which are Angell's 1926 *The Theory of International Prices* and Tugwell's 1924 *The Trends of Economics*. The structure of the group is provided entirely by an article by Robert Reisch <!-- https://www.jstor.org/stable/41792307 -->; the other three shared no references in common and Reisch's article, titled "The 'Deposit'-Myth In Banking Theory" and containing 108 references, is likely to have been written as an introduction to the journal on the basis of what had already been accepted for publication. 
+The most substantial flat isle <!-- k50c1-5 -->, the largest unenclosed and unenclosing circle in Figure \@ref(fig:flat-isle), comes from four authors publishing in the same 1930 [issue](https://www.jstor.org/stable/i40084238) of *`r j9so('Z NATIONALOKON')`*. It includes 50 references the most prominent of which are Angell's 1926 *The Theory of International Prices* and Tugwell's 1924 *The Trends of Economics*. The structure of the group is provided entirely by an article by Robert Reisch <!-- https://www.jstor.org/stable/41792307 -->; the other three shared no references in common and Reisch's article, titled "The 'Deposit'-Myth In Banking Theory" and containing 108 references, is likely to have been written as an introduction to the journal on the basis of what had already been accepted for publication. 
 
 Another flat isle of four articles has the exact same pattern, also from *`r j9so('Z NATIONALOKON')`* but from an [issue](https://www.jstor.org/stable/i40084262) in 1937, the article on the first page of the issue, titled "Theory Of Capital, Introduction" <!-- k16c1-47 --> by von Hayek and containing 25 references, includes subsections of the bibliographies of three other articles that do not themselves overlap. Normally the longer a bibliography the more likely it is that an article functions as a review linking other disparate bibliographies. That von Hayek's article has such a short bibliography and yet still links three otherwise separate articles confirms its derivative character.
 
 The following features then suggest when a flat isle represents an issue introduction. All articles are published in the same issue. The removal of the longest bibliography in the community yields a network of disconnected components each uniquely representing the remaining bibs. This longest bib is also either the first article in the issue or precedes the others in pagination. These characteristics suggest authorship internal to the editorial process itself. Later we will explore how the removal of such articles helps to reveal "bottom-up" structure by removing the editorial advantage of certain authors to bestow an ad hoc intellectual coherence on scholarship.
 
-Table \ref(tab:iss-int) enumerates issue introductions and shows how many are the structuring article in their community.
+Table \@ref(tab:iss-int) enumerates issue introductions and shows how many are the structuring article in their community.
 
 ```{r iss-int}
 # kcc level
