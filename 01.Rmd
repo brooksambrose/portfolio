@@ -22,7 +22,7 @@ So again, how do professional scholars know what (not) to read? What then are th
 
 In each program there then must be a hidden curriculum of higher quality. The argument of this study addresses the question of where such a curriculum could possibly come from. The provisional answer is that in the informal spaces of graduate programs knowledge of scholarly genre is learned from extracurricular engagement with professional conferences. It is in conference programs that the tacit rules of academic genre are learnable. These genres form the first parsing of the archive for neophytes. Indeed at the most generic level graduate students, if they are confident enough to locate themselves quickly enough, develop a taste for what not to read. If they can do so early on in their careers, they will be armed with the stereotypes necessary to stop reading the wrong and start reading the right material. While this is not enough certainly to make a cleric of a lay worshiper, it is a necessary first step.
 
-### Genre
+### Genres
 
 I take genre as a candidate explicans for the ability of scholars to know what to read and what to avoid from the cultural archive. A theory of genre will benefit from a review of the literature, yet to do so would catch me in the conundrum of performing the phenomenon I wish to explain. The genre structure of sociology should guide me to a definition of genre, a statement that already presumes an ontological difference and morphological relation between disciplines and genres, namely that scholarly genres are not equivalent to scholarly disciplines and that the former are located within the later. I will begin with an unstudied attempt to tease out the relation of discipline and genre before turning to a more rigourous, even empirical, treatment of genre as a term in American scholarship.
 
@@ -42,7 +42,7 @@ But this description of subdisciplinary differences really is just an example of
 
 Yet for all the differing treatments of genre mentioned above, do these views of really contradict, or are they in fact complementary? Does genre as distribution serve the economic sociologist's goals, or does a lack of ontological substance lead her astray? Does genre as knowledge remain hopelessly unverifiable, or are theoretical constructs necessary to achieve a correct interpretation of facts? Is everyone at the club listening to the same song hearing the same thing?
 
-## Discipline
+### Disciplines
 
 To return to disciplines, answering such questions would put the researcher in an adisciplinary predicament, for it would mean eschewing the scope restrictions cherished by disciples. The challenges of a meta-disciplinary analysis are manifold and uncertain. One is as likely to grow her audience as to lose it altogether. She risks the dilettantism of a jack-of-all-trades. What's worse, she exposes herself to a dizzying scale of content to consider. If disciplines are indeed functional, then the meta-analysis that effaces disciplines risks being dysfunctional. The upside, however, is appealing. If the universe of meanings given to the term genre does contain complementary uses, a meta-analysis will allow one to consider the consequences of the now arbitrary segregation of a superior metaconcept across disciplinary boundaries. Both sides of the divide could be strengthened by a cultural exchange of their respective terms. The redundancy of parallel discovery can be avoided.
 
@@ -86,6 +86,25 @@ Of course the cognitive limitation of how much any scholar can actually read and
 
 What's worse, or perhaps better, is that there is reason to believe that idiosyncrasy itself is an historically variable feature of disciplines. If institutional isomorphism has proceeded to some high level in contemporary disciplines, then the assumption that reading the bellwether texts is as good as reading the entire herd may hold. If this is true, however, it raises as many questions about the process of institutionalization in cultural production than it answers about the potential to learn truer versions of intellectual history.
 
+### Topic Models
+
+We have referred generically to computational text analysis, and now we can discuss the topic model as our technique of choice. There are many ways of estimating a topic model (e.g. the famous Latent Dirichlet Allocation or LDA estimator) but the model itself is simple. It is a latent variable model that decomposes a document-by-term matrix--in which every document is represented as a frequency distribution over every term appearing in the corpus--into two unobserved matrices:
+
+- a topic-by-term matrix, and
+- a document-by-topic matrix.
+
+Topics are directly represented by they topic-by-term matrix. A topic is a probability distribution over a vocabulary. To draw on a topic means to choose vocabulary as a random draw from this distribution, where words with higher probabilities will be chosen more often. In the case of genres we might imagine a topic about film and a topic about music. Some words may be important (highly probable), to both topics, such as the word "genre", while others would be distinct, such as the words "movie" (probable for film but improbable for music) and "band" (vice versa).
+
+Given topics as term distributions, a document can be represented not as a distribution over terms, but as a distribution over topics. The topic mediates the relationship between documents and terms. In order to generate diction for a document, all that need be understood is the ratio of topics out of which it is composed. This is sometimes explained as a generative mechanism; to ask what word will be chosen next in composing a document, one first samples from the document's own topic distribution to decide which topic the word will be drawn from, and given that topic, one then samples from the topic's word distribution to decide which word will be included in the document. A document's topic probabilities also create the expectation of how many words are attributed to eac topic. A document with topic probabilities .7 from music and .3 from film would be 70 percent about music and 30 percent about film, making for a parsimonious albeit reductive description of document content.
+
+It is important not to overinterpret a topic model. Topic models are sometimes called "generative" as if they explained how documents are written. Such a generative metaphor reveals the absurdity of a topic model as a representation of writing. Not to mention the fact that punctuation tends not to be represented (though it could be), the terms chosen would be in a random order incapable of making meaningful sentences. Hence it is best to avoid the generative metaphor as an explanation of texts. If topic models touch on the generation of real, meaningful documents, it is only a very limited sense. What the topic model really represents is how vocabularies are organized to condition an author's diction. A vocabulary can be thought of as an infrastructure of meaning more trivial than grammar or syntax. A topic is a simple list of words that is known or knowable across all authors in a field. Topics do not tell stories; authors tell stories in part by making diction choices that are conditioned by topics.
+
+From a sense or meaning making perspective topics are trivial; this is because so little is known about what an author says by knowing the topic or even the term distribution of a document. What topics are useful for, however, is the type of segmentation or cartography of a corpus. Topics are really a global feature, perhaps a cultural feature, of a corpus of texts that is itself meaningfully selected. If indeed a field of texts is oriented to common if not always overlapping vocabularies, then topics can represent this well.
+
+A topic model could be posited based on the domain knowledge of an expert, and this would be a form of estimation. The practical value of statistical topic modeling is that the unobserved topics can be induced, with a raft of assumptions, directly from the observed document-by-term matrix to arrive at a model with the features just described. An estimated topic model will contain several other parameters filling in assumptions necessary to make it possible to identify the unobservable topic probabilities in each of the two matrices of the model. For instance, the parameter commonly called alpha makes an assumption about how many topics tend to comprise each document. s
+
+[@DiMaggio2013Exploiting]
+
 ## Data
 
 ```{r}
@@ -108,10 +127,30 @@ strspl<-function(str) {
 }
 blanky<-theme(axis.text.y = element_blank(),axis.ticks.y = element_blank(),panel.grid.major.y = element_blank(),panel.grid.minor.y = element_blank())
 blankx<-theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),panel.grid.major.x = element_blank(),panel.grid.minor.x = element_blank())
-jart<-fread(input = 'd/d/jstordfr/genre/genre_journal_article_jst_get_article-1.csv')
-jbok<-fread(input = 'd/d/jstordfr/genre/genre_book_chapter_jst_get_book-1.csv')[,discipline:=mapply(strspl,str=discipline,SIMPLIFY =F)]
 ```
 
+```{r}
+f<-'d/p/jtabs.RData'
+if(file.exists(f)){
+  load(f)
+  attach(jtabs)
+  rm(jtabs)
+} else {
+  jtabs<-list(
+    jart=fread(input = 'd/d/jstordfr/genre/genre_journal_article_jst_get_article-1.csv')
+    ,jbok=fread(input = 'd/d/jstordfr/genre/genre_book_chapter_jst_get_book-1.csv')[,discipline:=mapply(strspl,str=discipline,SIMPLIFY =F)]
+    ,jauth=rbindlist(list(
+      fread(input='d/d/jstordfr/genre/genre_journal_article_jst_get_authors-1.csv')[,.(auth=list(data.table(first=given_name,last=surname)[,c('first','last'):=lapply(.SD,function(x) if(!any(grepl('[a-z]',x))) tools::toTitleCase(x %>% tolower) else x)])),by='file_name']
+      ,fread(input='d/d/jstordfr/genre/genre_book_chapter_jst_get_authors-1.csv')[,.(auth=list(data.table(first=given_name,last=surname)[,c('first','last'):=lapply(.SD,function(x) if(!any(grepl('[a-z]',x))) tools::toTitleCase(x %>% tolower) else x)])),by='file_name']
+    ))
+    ,url=rbindlist(list(jart[,.(file_name)],jbok[,.(file_name)]))[,.(file_name,url=paste0('www.jstor.org/stable/',sub('[a-z-]+-','',file_name) %>% sub('_','/',.)))]
+  )
+  save(jtabs,file=f)
+  attach(jtabs)
+  rm(jtabs)
+}
+rm(f)
+```
 
 ```{r}
 f<-'d/p/jstordfr-genre.RData'
@@ -188,6 +227,7 @@ We will use the JSTOR Data for Research service to download a bag-of-words text 
 1. To cull documents for which genre is not an important term, exclude documents containing fewer than five variants of the term genre (1grams matching the regular expression `^genr`: `r attr(dfrg,'genreset') %>% nl`).
 1. Remove ngrams appearing fewer than three times, which often includes optical character recognition errors.
 1. Remove ngrams shorter than three characters and longer than 25 characters, again often OCR errors but also stopwords that will be removed anyway.^[The Freudian "id" is an unfortunate casualty of this step, as well as some footnotes, endnotes, and captions containing small text where word boundaries were not detected during OCR and a series of words was concatenated.]
+1. Remove ngrams longer than three characters that are all the same letter, often OCR errors but sometimes real, as in Roman numerals.
 1. Compile baseline word counts for each document assuming that at this step the documents contain only valid terms, and no OCR errors.
 1. Remove SMART stopwords.
 1. Remove numbers.
@@ -213,10 +253,21 @@ if(file.exists(f)){
   dfrg<-dfrg[!.(cul)]
   dfrg[,`:=`(file_name=droplevels(file_name),com=droplevels(com))]
   meta<-dfrg[,.(N=sum(n),g=n[lemma=='genr'],gp=sum(n[lemma=='genr'])/sum(n)),by=file_name]
+  meta[jbok,on='file_name',`:=`(sotit=book_title,sosub=book_subtitle,so=book_id,year=pub_year,pag=as.integer(n_pages),lan=language,dis=discipline)]
+  meta[jart,on='file_name',`:=`(tit=article_title,so=journal_jcode,sotit=journal_title %>% sub(' / .+','',.),year=pub_year,pag=as.integer(last_page)-as.integer(first_page)+1,lan=language)]
+  meta[jauth,on='file_name',auth:=auth]
+  if(file.exists('d/q/jstorm.RData')) {
+    load('d/q/jstorm.RData')
+    meta[jstorm,on='so==title_id',dis:=list(discipline)]
+    rm(jstorm)
+  }
+  
+  
   stm<-dfrg[,readCorpus(simple_triplet_matrix(i=file_name %>% as.numeric,j=com %>% as.numeric,v=n,dimnames=list(d=levels(file_name),v=levels(com))),type='slam')]
   cat('\n')
   stm<-prepDocuments(stm$documents,vocab=dfrg$com %>% levels,meta=meta,lower.thresh = 20)
   stm$meta[,n:=stm$documents %>% sapply(function(x) x[2,] %>% sum)][,idi:=1-n/N]
+  stm$meta[url,on='file_name',url:=url]
   save(stm,file=f)
 }
 rm(f)
@@ -224,26 +275,27 @@ rm(f)
 
 The initial query returned `r jart[,.N %>% nn]` articles from `r jart[,.N,by=journal_jcode][,.N %>% nn]` different journals, as well as `r jbok[,.N %>% nn]` book chapters from `r jbok[,.N,by=book_id][,.N %>% nn]` books. After the above processing steps, the sample was reduced to `r {nab<-stm$meta[,.N,by=file_name][,c(j=file_name %>% grepl('^jour',.) %>% sum,b=file_name %>% grepl('^book',.) %>% sum)];nab['j'] %>% nn}` articles and `r nab['b'] %>% nn` chapters, or `r nab %>% sum %>% nn` total texts.
 
-It is fair to ask what is lost during the pre-processing of texts. While I do not carefully look at the content of the excluded documents, assuming they were not texts that made important use of the term genre, I do retain some information about what components of a text were lost of those documents that were not cut. This is a measure called idiosyncrasy, or the proportion of terms in a document eliminated during pre-processing. I call it idiosyncracy because the pre-processing condition was that terms would be eliminated if they did not appear in at least twenty other texts. Texts that lost a large volume of words to this filter are drawing on a vocabulary that almost no other texts use. It would not be surprising if these were ethnographic or content analytic studies of non English materials.
+It is fair to ask what is lost during the pre-processing of texts. Many are included in error due to JSTOR's internal translation of abstracts; where "genre" is the French translation of the English "kind" the text will be included even if the term genre does not actually appear in the English title or abstract. While I do not carefully look at the content of the excluded documents, assuming they were not texts that made important use of the term genre, I do retain some information about what components of a text were lost of those documents that were not cut. This is a measure called idiosyncrasy, or the proportion of terms in a document eliminated during pre-processing. I call it idiosyncracy because the pre-processing condition was that terms would be eliminated if they did not appear in at least 20 other texts. Texts that lost a large volume of words to this filter are drawing on a vocabulary that almost no other texts use. It would not be surprising if these were ethnographic or content analytic studies of non English materials.
 
-Figure \ref(fig:idi-hist) shows the right-skewed distribution of idiosyncracy. The median text lost about one tenth (`r stm$meta[,(100*median(idi)) %>% round(2)]` percent) of its words, while 90 percent of texts are within two tenths, and outliers begin at about three tenths as can be seen in the boxplot. The `r stm$meta[, sum(idi>.3) %>% nn]` (`r stm$meta[,(100*mean(idi>.3)) %>% round(2)]` percent) of texts above three tenths vary across a range as wide as the rest of the distribution.
+Figure \@ref(fig:idi-hist) shows the right-skewed distribution of idiosyncracy. The median text lost about one tenth (`r stm$meta[,(100*median(idi)) %>% round(2)]` percent) of its words, while 90 percent of texts are within two tenths, and outliers begin at about three tenths as can be seen in the boxplot. The `r stm$meta[, sum(idi>.3) %>% nn]` (`r stm$meta[,(100*mean(idi>.3)) %>% round(2)]` percent) of texts above three tenths vary across a range as wide as the rest of the distribution. The most idiosyncratic text, at `r stm$meta[,(max(idi)*100) %>% round(1)]` percent of its vocabulary lost, is `r stm$meta[which.max(idi),auth[[1]]$last %>% nl]`'s "`r stm$meta[which.max(idi),tit %>% tolower %>% tools::toTitleCase(.) %>% gsub('"+','\\*',.)]`".^[`r stm$meta[which.max(idi),url]`] The article, from the journal *`r stm$meta[which.max(idi),sotit]`*, is a single page introduction in English to 12 page essay reprinted in the original Hebrew. By page count alone we would expect the idiosycrasy to be 12/13 or `r round(12/13*100,1)` percent, which also illustrates how terms that are not in the Roman alphabet may be discarded as OCR errors even prior to the idiosyncracy measurement.
 
-```{r idi-hist, include=T,fig.cap='Distribution of idiosyncracy, the proportion of document vocabularly dropped during pre-processing'}
+```{r idi-hist, include=T,fig.cap='Distribution of idiosyncracy, the proportion of document vocabularly dropped during pre-processing. Pluses indicate outliers.'}
 p1<-myth(ggplot(stm$meta,aes(y=idi))) + geom_boxplot(outlier.size = 3,outlier.alpha = 1,outlier.shape = '+') + coord_flip() + blanky
 p2<-myth(ggplot(stm$meta,aes(x=idi))) + geom_histogram(bins=50) + theme(axis.title.x = element_blank())
 egg::ggarrange(p2,p1, heights = c(3,1))
 ```
 
-Figure \ref(fig:gp-hist) shows the logarithm of the count of the term genre as a proportion of the total term count of a text. This distribution is much more highly skewed but contains fewer outliers. In the median text a genre variant accounted for about `r stm$meta[,(1000*median(gp)) %>% round]` in 1,000 terms, while at the 90 percentile the rate is `r stm$meta[,quantile(gp,p=.9)*1000] %>% round` in 1,000. `r stm$meta[,sum(gp>.1) %>% nn]` texts (`r stm$meta[,(mean(gp>.1)*100) %>% round(2)]` percent) are outliers where one in ten or more words is a genre variant.
+Figure \@ref(fig:gp-hist) shows the logarithm of the count of the term genre as a proportion of the total term count of a text. This distribution is much more highly skewed but contains fewer outliers. In the median text a genre variant accounted for about `r stm$meta[,(1000*median(gp)) %>% round]` in 1,000 terms, while at the 90 percentile the rate is `r stm$meta[,quantile(gp,p=.9)*1000] %>% round` in 1,000. `r stm$meta[,sum(gp>.1) %>% nn]` texts (`r stm$meta[,(mean(gp>.1)*100) %>% round(2)]` percent) are outliers where one in ten or more words is a genre variant. The text with the largest genre proportion, at `r stm$meta[,(max(gp)*100) %>% round(1)]` percent of its words, is `r stm$meta[which.max(gp),auth[[1]]$last %>% nl]`'s "`r stm$meta[which.max(gp),tit %>% tolower %>% tools::toTitleCase(.)]`"^[`r stm$meta[which.max(gp),url]`] is a single page introduction in a special issue of *`stm$meta[which.max(gp),sotit]`* on genres. 
 
-```{r gp-hist, include=T,fig.cap='Distribution of $log_{10}$ of the count of the term "genre" as a proportion of all terms in a text'}
+```{r gp-hist, include=T,fig.cap='Distribution of $log_{10}$ of the count of the term "genre" as a proportion of all terms in a text. Pluses indicate outliers.'}
 p1<-ggplot(stm$meta,aes(y=gp)) + geom_boxplot(outlier.size = 3,outlier.alpha = 1,outlier.shape = '+') + scale_y_log10() + coord_flip() + theme_bw() + blanky 
 p2<-myth(ggplot(stm$meta,aes(x=gp))) + geom_histogram(bins=50) + scale_x_log10() + theme(axis.title.x = element_blank())
 egg::ggarrange(p2,p1, heights = c(3,1))
 ```
 
 
-## Model
+
+
 
 ```{r}
 f<-'d/p/genre-mod.RData'
@@ -300,7 +352,7 @@ nd3$nodes$group<-as.character(nd3$nodes$group)
 mkg<-function(x) ec(x,'\n') %>% strsplit(',') %>% do.call(rbind,.) %>% apply(2,match,nd3$nodes$name) %>% matrix(ncol=2) %>% `-`(1) %>% data.table %>% setnames(ec('source,target'))
 
 gr<-c(
-'2k2,3k2
+  '2k2,3k2
 3k2,4k2'
 ,
 '4k2,5k2
@@ -361,7 +413,7 @@ for(i in 1:length(gs)) nd3$links[gs[[i]],on=ec('source,target'),group:=as.charac
 ```
 
 ```{r,include=T,fig.cap='Sankey diagram of document overlap between topic models of increasing values of K.'}
-sankeyNetwork(Links = nd3$links,Nodes = nd3$nodes,Source = 'source',Target = 'target',Value = 'value',NodeID = 'name',NodeGroup = 'group',LinkGroup = 'group',nodePadding = 0)
+sankeyNetwork(Links = nd3$links,Nodes = nd3$nodes,Source = 'source',Target = 'target',Value = 'value',NodeID = 'name',NodeGroup = 'group',LinkGroup = 'group',nodePadding = 0,sinksRight = T,margin = rep(0,4) %>% as.list)
 ```
 
 ```{r}
@@ -373,11 +425,6 @@ for(i in 1:length(gr)) {
   }
 }
 rnk<-lapply(mem,lapply,function(x) data.table(d=x,r=length(x):1)) %>% lapply(rbindlist) %>% lapply(function(x) x[,.(r=sum(r)),by=d] %>% setorder(-r))
-```
-
-```{r}
-url<-rbindlist(list(jart[,.(file_name)],jbok[,.(file_name)]))[,.(file_name,url=paste0('www.jstor.org/stable/',sub('[a-z-]+-','',file_name) %>% sub('_','/',.)))]
-stm$meta[url,on='file_name',url:=url]
 ```
 
 ```{r qcv}
