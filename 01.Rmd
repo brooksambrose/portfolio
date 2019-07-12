@@ -26,7 +26,52 @@ In each program there then must be a hidden curriculum of higher quality. The ar
 
 I take genre as a candidate explicans for the ability of scholars to know what to read and what to avoid from the cultural archive. A theory of genre will benefit from a review of the literature, yet to do so would catch me in the conundrum of performing the phenomenon I wish to explain. The genre structure of sociology should guide me to a definition of genre, a statement that already presumes an ontological difference and morphological relation between disciplines and genres, namely that scholarly genres are not equivalent to scholarly disciplines and that the former are located within the later. I will begin with an unstudied attempt to tease out the relation of discipline and genre before turning to a more rigourous, even empirical, treatment of genre as a term in American scholarship.
 
-Genre is a loanword from French. The origin of the French-Latin word "genre" and the English-German word "kind" both mean membership by inheritance of innate class characteristics, archaically by presumptive blood descent within a family, race, or nation. In common English it is restricted to mean a broad category within art, music, literature, and some but not all other cultural fields (e.g. baseball is not a genre of sports). As a term in scholarship, genre may be an observable phenomenon, a conceptual component of a theory, or a conflation of the two. In the social sciences genre is a specialty concept as in sociology, while in the humanities it is ubiquitous especially in cultural studies. Academics define and use the differently between and within disciplines.
+```{r ttsgnr,include=T,fig.cap='Historical frequency of term "genre" from Google Ngrams English corpus. Segments connote a change in acceleration (second derivative).'}
+f<-'d/q/ttsgnr.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  ttsgnr<-gbng2tts.f(query = 'genre',out = 'd/q',ys = 1899,ye = 2005,cfso = T)
+  ttsgnr[,ec('d,g'):=tilit::ov2chpt.f(ttsgnr$Count,drv = 2,inc.ov = F)[,.(d,g)]]
+  save(ttsgnr,file=f)
+}
+rm(f)
+p1<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=Count,color=g,geom = 'line')) + theme(legend.position = "none",axis.title.x = element_blank()) + ylab('Count of "genre"') + geom_label(data=ttsgnr[g==2,.(x=min(Year),y=Count[which.min(Year)])],aes(x=x,y=y*2,label=x),inherit.aes = F)
+p2<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=d,color=g,geom = 'line')) + theme(legend.position = "none") + ylab('2nd Deriv.')
+egg::ggarrange(p1,p2, heights = c(3,1))
+#plt(p)
+```
+
+
+Genre is a loanword from French. The origin of the French-Latin word "genre" and the English-German word "kind" both mean membership by inheritance of innate class characteristics, archaically by presumptive blood descent within a family, race, or nation. In common English it is restricted to mean a broad category of art, especially literature and music, and some but not all other cultural fields (e.g. baseball is not a genre of sports). As a term in scholarship, genre may be an observable phenomenon, a conceptual component of a theory, or a conflation of the two. In the social sciences genre is a specialty concept as in sociology, while in the humanities it is ubiquitous especially in cultural studies. Academics define and use the term differently between and within disciplines.
+
+```{r genre-goog,include=T,fig.cap='Wordcloud of third term in 3gram beginning with "genre of". Source: Google Ngrams'}
+f<-'d/q/genre-goog.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  gnrgoog<-fread('d/q/genreof.txt',header = F) %>% unique %>% setnames(ec('ngram,year,nw,nv')) %>% .[,max(year) %>% cat]
+  gnrgoog<-gnrgoog[,.(n=sum(nw)),by=ngram] %>% setorder(-n)
+  gnrgoog<-gnrgoog[!grepl('_',ngram)]
+  gnrgoog[,ngram:=sub('^.+ ','',ngram)]
+  gnrgoog<-gnrgoog[,.(n=sum(n)),by=ngram] %>% setorder(-n)
+  gnrgoog<-gnrgoog[!grepl('[^a-z]',ngram)]
+  gnrgoog<-gnrgoog[!ngram%in%tm::stopwords()]
+  gnrgoog[,lemma:=tm::stemDocument(ngram)]
+  voc<-gnrgoog[,.(n=sum(n)),by=.(lemma,ngram)][,.(com=ngram[which.max(n)],N=sum(n)),by=lemma]
+  gnrgoog<-gnrgoog[,.(n=sum(n)),by=lemma]
+  gnrgoog[voc,on='lemma',com:=com]
+  save(gnrgoog,file=f)
+}
+rm(f)
+# op<-par('mar')
+# par(mar = rep(0, 4))
+#suppressWarnings(gnrgoog[,wordcloud::wordcloud(com,n, scale=c(3,.75),max.words=Inf, random.order=FALSE, rot.per=0,colors = viridis::viridis(100,direction = -1,option = 'D',end =.9),fixed.asp = F,family='HersheySerif')])
+# par(mar=op)
+gnrgoog[,wordcloud2::wordcloud2(.SD,size = .8,gridSize = 1,fontWeight = 'normal',rotateRatio = 0,color = viridis::viridis(max(n),direction = -1,option = 'E',end = .9)[n],shape='circle',shuffle = F,fontFamily = 'Times'),.SDcols=ec('com,n')]
+```
+
+Figure \@ref(fig:genre-goog) gives an indication of what things the term genre has been used to describe. It illustrates the frequency of terms appearing in the Google Books Ngram corpus as the third term in the trigrams beginning with "genre of" or "genres of". The size of the words is proportional to the total frequency of the trigram in the English corpus, which spans centuries from 1590 to 2008 [@Google]. The bias of the source--books--is clear in the outsized importance of "literature" and "writing" which are followed closely by "music". The next ten largest nouns are `r gnrgoog[1:17,com %>% setdiff(ec('writing,literature,music,popular,science,historical,literary')) %>% nl]`. Ranked within that series would be several adjectives as well: popular, science (fiction), historical, and literary. Only on 
 
 To impose a sociological gloss on the term, these varied uses of genre would make reviewing the literature on the topic difficult, were it not for the discipline structure of the academy. The uses of the term genre are themselves systematically organized by discipline, and a disciple who is adequately trained will know the correct ways to use the term in her local context. To use genre as a disciplinary convention means to first identify your location in the disciplinary field, and then to accept the limitations on scope by excluding those treatments of the term that are extradisciplinary, that is, irrelevant. Disciplinary structure reduces the true cultural complexity of the meaning of genre to a restricted form, which in turn allows humble knowledge workers to engage upon a set of shared assumptions. Such simplicity begets new complexity as disciples spin out the consequences of their local use of genre.
 
@@ -277,7 +322,7 @@ The initial query returned `r jart[,.N %>% nn]` articles from `r jart[,.N,by=jou
 
 It is fair to ask what is lost during the pre-processing of texts. Many are included in error due to JSTOR's internal translation of abstracts; where "genre" is the French translation of the English "kind" the text will be included even if the term genre does not actually appear in the English title or abstract. While I do not carefully look at the content of the excluded documents, assuming they were not texts that made important use of the term genre, I do retain some information about what components of a text were lost of those documents that were not cut. This is a measure called idiosyncrasy, or the proportion of terms in a document eliminated during pre-processing. I call it idiosyncracy because the pre-processing condition was that terms would be eliminated if they did not appear in at least 20 other texts. Texts that lost a large volume of words to this filter are drawing on a vocabulary that almost no other texts use. It would not be surprising if these were ethnographic or content analytic studies of non English materials.
 
-Figure \@ref(fig:idi-hist) shows the right-skewed distribution of idiosyncracy. The median text lost about one tenth (`r stm$meta[,(100*median(idi)) %>% round(2)]` percent) of its words, while 90 percent of texts are within two tenths, and outliers begin at about three tenths as can be seen in the boxplot. The `r stm$meta[, sum(idi>.3) %>% nn]` (`r stm$meta[,(100*mean(idi>.3)) %>% round(2)]` percent) of texts above three tenths vary across a range as wide as the rest of the distribution. The most idiosyncratic text, at `r stm$meta[,(max(idi)*100) %>% round(1)]` percent of its vocabulary lost, is `r stm$meta[which.max(idi),auth[[1]]$last %>% nl]`'s "`r stm$meta[which.max(idi),tit %>% tolower %>% tools::toTitleCase(.) %>% gsub('"+','\\*',.)]`".^[`r stm$meta[which.max(idi),url]`] The article, from the journal *`r stm$meta[which.max(idi),sotit]`*, is a single page introduction in English to 12 page essay reprinted in the original Hebrew. By page count alone we would expect the idiosycrasy to be 12/13 or `r round(12/13*100,1)` percent, which also illustrates how terms that are not in the Roman alphabet may be discarded as OCR errors even prior to the idiosyncracy measurement.
+Figure \@ref(fig:idi-hist) shows the right-skewed distribution of idiosyncracy. The median text lost about one tenth (`r stm$meta[,(100*median(idi)) %>% round(2)]` percent) of its words, while 90 percent of texts are within two tenths, and outliers begin at about three tenths as can be seen in the boxplot. The `r stm$meta[, sum(idi>.3) %>% nn]` (`r stm$meta[,(100*mean(idi>.3)) %>% round(2)]` percent of) texts above three tenths vary across a range as wide as the rest of the distribution. The most idiosyncratic text, at `r stm$meta[,(max(idi)*100) %>% round(1)]` percent of its vocabulary lost, is `r stm$meta[which.max(idi),auth[[1]]$last %>% nl]`'s "`r stm$meta[which.max(idi),tit %>% tolower %>% tools::toTitleCase(.) %>% gsub('"+','\\*',.)]`".^[`r stm$meta[which.max(idi),url]`] The article, from the journal *`r stm$meta[which.max(idi),sotit]`*, is a single page introduction in English to a 12 page essay reprinted in the original Hebrew. By page count alone we would expect the idiosycrasy to be 12/13 or `r round(12/13*100,1)` percent, which also illustrates how terms that are not in the Roman alphabet may be discarded as OCR errors even prior to the idiosyncracy measurement.
 
 ```{r idi-hist, include=T,fig.cap='Distribution of idiosyncracy, the proportion of document vocabularly dropped during pre-processing. Pluses indicate outliers.'}
 p1<-myth(ggplot(stm$meta,aes(y=idi))) + geom_boxplot(outlier.size = 3,outlier.alpha = 1,outlier.shape = '+') + coord_flip() + blanky
@@ -285,7 +330,7 @@ p2<-myth(ggplot(stm$meta,aes(x=idi))) + geom_histogram(bins=50) + theme(axis.tit
 egg::ggarrange(p2,p1, heights = c(3,1))
 ```
 
-Figure \@ref(fig:gp-hist) shows the logarithm of the count of the term genre as a proportion of the total term count of a text. This distribution is much more highly skewed but contains fewer outliers. In the median text a genre variant accounted for about `r stm$meta[,(1000*median(gp)) %>% round]` in 1,000 terms, while at the 90 percentile the rate is `r stm$meta[,quantile(gp,p=.9)*1000] %>% round` in 1,000. `r stm$meta[,sum(gp>.1) %>% nn]` texts (`r stm$meta[,(mean(gp>.1)*100) %>% round(2)]` percent) are outliers where one in ten or more words is a genre variant. The text with the largest genre proportion, at `r stm$meta[,(max(gp)*100) %>% round(1)]` percent of its words, is `r stm$meta[which.max(gp),auth[[1]]$last %>% nl]`'s "`r stm$meta[which.max(gp),tit %>% tolower %>% tools::toTitleCase(.)]`"^[`r stm$meta[which.max(gp),url]`] is a single page introduction in a special issue of *`stm$meta[which.max(gp),sotit]`* on genres. 
+Figure \@ref(fig:gp-hist) shows the logarithm of the count of the term genre as a proportion of the total term count of a text. This distribution is much more highly skewed but contains fewer outliers. In the median text a genre variant accounted for about `r stm$meta[,(1000*median(gp)) %>% round]` in 1,000 terms, while at the 90 percentile the rate is `r stm$meta[,quantile(gp,p=.9)*1000] %>% round` in 1,000. `r stm$meta[,sum(gp>.1) %>% nn]` texts (`r stm$meta[,(mean(gp>.1)*100) %>% round(2)]` percent) are outliers where one in ten or more words is a genre variant. The text with the largest genre proportion, at `r stm$meta[,(max(gp)*100) %>% round(1)]` percent of its words, is `r stm$meta[which.max(gp),auth[[1]]$last %>% nl]`'s "`r stm$meta[which.max(gp),tit %>% tolower %>% tools::toTitleCase(.)]`"^[`r stm$meta[which.max(gp),url]`] is a single page introduction in a special issue of *`r stm$meta[which.max(gp),sotit]`* on genres. 
 
 ```{r gp-hist, include=T,fig.cap='Distribution of $log_{10}$ of the count of the term "genre" as a proportion of all terms in a text. Pluses indicate outliers.'}
 p1<-ggplot(stm$meta,aes(y=gp)) + geom_boxplot(outlier.size = 3,outlier.alpha = 1,outlier.shape = '+') + scale_y_log10() + coord_flip() + theme_bw() + blanky 
