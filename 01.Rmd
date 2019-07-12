@@ -26,24 +26,38 @@ In each program there then must be a hidden curriculum of higher quality. The ar
 
 I take genre as a candidate explicans for the ability of scholars to know what to read and what to avoid from the cultural archive. A theory of genre will benefit from a review of the literature, yet to do so would catch me in the conundrum of performing the phenomenon I wish to explain. The genre structure of sociology should guide me to a definition of genre, a statement that already presumes an ontological difference and morphological relation between disciplines and genres, namely that scholarly genres are not equivalent to scholarly disciplines and that the former are located within the later. I will begin with an unstudied attempt to tease out the relation of discipline and genre before turning to a more rigourous, even empirical, treatment of genre as a term in American scholarship.
 
-```{r ttsgnr,include=T,fig.cap='Historical frequency of term "genre" from Google Ngrams English corpus. Segments connote a change in acceleration (second derivative).'}
+Genre is a loanword from French. The origin of the French-Latin word "genre" and the English-German word "kind" both mean membership by inheritance of innate class characteristics, archaically by presumptive blood descent within a family, race, or nation. In common English it is restricted to mean a broad category of art, especially literature and music, and some but not all other cultural fields (e.g. baseball is not a genre of sports). As a term in scholarship, genre may be an observable phenomenon, a conceptual component of a theory, or a conflation of the two. In the social sciences genre is a specialty concept as in sociology, while in the humanities it is ubiquitous especially in cultural studies. Academics define and use the term differently between and within disciplines.
+
+```{r ttsgnr-d}
 f<-'d/q/ttsgnr.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  ttsgnr<-gbng2tts.f(query = 'genre',out = 'd/q',ys = 1899,ye = 2005,cfso = T)
+  ttsgnr<-gbng2tts.f(query = 'genre',out = 'd/q',ys = 1899,ye = 2008,cfso = T)
   ttsgnr[,ec('d,g'):=tilit::ov2chpt.f(ttsgnr$Count,drv = 2,inc.ov = F)[,.(d,g)]]
+  ttsgnr[,ec('d2,g2'):=tilit::ov2chpt.f(ttsgnr$Frequency,drv = 2,inc.ov = F)[,.(d,g)]]
   save(ttsgnr,file=f)
 }
 rm(f)
-p1<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=Count,color=g,geom = 'line')) + theme(legend.position = "none",axis.title.x = element_blank()) + ylab('Count of "genre"') + geom_label(data=ttsgnr[g==2,.(x=min(Year),y=Count[which.min(Year)])],aes(x=x,y=y*2,label=x),inherit.aes = F)
-p2<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=d,color=g,geom = 'line')) + theme(legend.position = "none") + ylab('2nd Deriv.')
-egg::ggarrange(p1,p2, heights = c(3,1))
-#plt(p)
+annd<-ttsgnr[g==1,.(x=max(Year),y=Count[which.max(Year)])]
 ```
 
+Figure \@ref(fig:ttsgnr) shows the count of mentions of the term genre in the Google Books Ngram database for English terms. The trend exhibits the typical take-off in publishing in the second half of the twentieth century. I apply change point analysis, which detects significant differences in time series data [@Chen2012Parametric; @Killick2016changepoint], to the second difference of the trend, which is a measure of change in acceleration, to get clues as to whether the trend is a single process or whether there are inflection points. The first segment of the curve from `r ttsgnr[g==1,range(Year) %>% paste(collapse=' to ')]` indicates a period of positive acceleration or quickening of the growth trend, while the period from `r ttsgnr[g==2,range(Year) %>% paste(collapse=' to ')]` represents a period of slowing or negative acceleration. Like a projectile that is simultanously climbing and falling, `r annd$x` acts as launch point of precipitous yet unsustainable growth.
 
-Genre is a loanword from French. The origin of the French-Latin word "genre" and the English-German word "kind" both mean membership by inheritance of innate class characteristics, archaically by presumptive blood descent within a family, race, or nation. In common English it is restricted to mean a broad category of art, especially literature and music, and some but not all other cultural fields (e.g. baseball is not a genre of sports). As a term in scholarship, genre may be an observable phenomenon, a conceptual component of a theory, or a conflation of the two. In the social sciences genre is a specialty concept as in sociology, while in the humanities it is ubiquitous especially in cultural studies. Academics define and use the term differently between and within disciplines.
+```{r ttsgnr,include=T,fig.cap='Historical frequency of term "genre" from Google Ngrams English corpus. Segments connote a change in acceleration (second derivative).'}
+p1<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=Count,color=g,geom = 'line')) + theme(legend.position = "none",axis.title.x = element_blank()) + ylab('Count of "genre"') + geom_label(data=annd,aes(x=x,y=y,label=x),inherit.aes = F,nudge_x = ttsgnr$Year %>% range %>% diff %>% `*`(.05),nudge_y = ttsgnr$Count %>% range %>% diff %>% `*`(-.05))
+p2<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=d,color=g,geom = 'line')) + theme(legend.position = "none") + ylab('2nd Deriv.')
+egg::ggarrange(p1,p2, heights = c(3,1))
+```
+
+Figure \@ref(fig:ttsgnr2) shows a similar trend but using relative frequencies instead of absolute counts. Here "genre" is plotted as its share of all terms in the corpus. This trend exhibits no inflection point at `r annd$x` that is statistically significant, and visually the trend does appear the same on both sides. No other inflections points are detectable due likely to greater year over year variability in this series in the first half of the century, reducing confidence in any estimate of a change point. To interpret this difference in statistical significance between relative and absolute measures would indicate that interest in genre continued to grow even within a secular slow-down in the volume of texts that resembles the familiar S-shaped diffusion curve. Alternatively, on visual inspection of the relative curve it appears that indeed there is an inflection point, just one a decade later in `r ttsgnr[,Year[which.max(Frequency)]]`. After this point the relative frequency seems to drop rapidly, a change that would no doubt be picked up statistically after a few more years of data and one that may in fact be located a few years earlier than the peak suggests. Together these trends describe a career to the term genre that has been strong for a century and that may now be in decline.
+
+```{r ttsgnr2,include=T,fig.cap='Historical frequency of term "genre" from Google Ngrams English corpus. Segments connote a change in acceleration (second derivative).'}
+p1<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=Frequency,color=g2,geom = 'line')) + theme(legend.position = "none",axis.title.x = element_blank()) + ylab('Relative frequency of "genre"')
+p2<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=d,color=g2,geom = 'line')) + theme(legend.position = "none") + ylab('2nd Deriv.')
+egg::ggarrange(p1,p2, heights = c(3,1))
+```
+
 
 ```{r genre-goog,include=T,fig.cap='Wordcloud of third term in 3gram beginning with "genre of". Source: Google Ngrams'}
 f<-'d/q/genre-goog.RData'
