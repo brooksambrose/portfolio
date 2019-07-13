@@ -54,7 +54,7 @@ Figure \@ref(fig:ttsgnr2) shows a similar trend but using relative frequencies i
 
 ```{r ttsgnr2,include=T,fig.cap='Historical frequency of term "genre" from Google Ngrams English corpus. Segments connote a change in acceleration (second derivative).'}
 p1<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=Frequency,color=g2,geom = 'line')) + theme(legend.position = "none",axis.title.x = element_blank()) + ylab('Relative frequency of "genre"')
-p2<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=d,color=g2,geom = 'line')) + theme(legend.position = "none") + ylab('2nd Deriv.')
+p2<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=d2,color=g2,geom = 'line')) + theme(legend.position = "none") + ylab('2nd Deriv.')
 egg::ggarrange(p1,p2, heights = c(3,1))
 ```
 

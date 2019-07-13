@@ -9,7 +9,8 @@
 # return to start
 
 # run this once to have git store your password
-# git config --global credential.helper cache
+git config --global credential.helper cache
+git config --global credential.helper 'cache --timeout=3600'
 
 echo -e "User-agent: *\nDisallow: /" > _book/robots.txt \
 && cd _book && git add . && git status \
