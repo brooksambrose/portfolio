@@ -82,7 +82,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-07-12}
+    \date{2019-07-13}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -474,15 +474,6 @@ unstudied attempt to tease out the relation of discipline and genre
 before turning to a more rigourous, even empirical, treatment of genre
 as a term in American scholarship.
 
-\begin{figure}
-
-{\centering \includegraphics{ambrose_dissertation_files/figure-latex/ttsgnr-1} 
-
-}
-
-\caption{Historical frequency of term "genre" from Google Ngrams English corpus. Segments connote a change in acceleration (second derivative).}\label{fig:ttsgnr}
-\end{figure}
-
 Genre is a loanword from French. The origin of the French-Latin word
 ``genre'' and the English-German word ``kind'' both mean membership by
 inheritance of innate class characteristics, archaically by presumptive
@@ -495,6 +486,59 @@ two. In the social sciences genre is a specialty concept as in
 sociology, while in the humanities it is ubiquitous especially in
 cultural studies. Academics define and use the term differently between
 and within disciplines.
+
+Figure \ref{fig:ttsgnr} shows the count of mentions of the term genre in
+the Google Books Ngram database for English terms. The trend exhibits
+the typical take-off in publishing in the second half of the twentieth
+century. I apply change point analysis, which detects significant
+differences in time series data
+\citep{Chen2012Parametric, Killick2016changepoint}, to the second
+difference of the trend, which is a measure of change in acceleration,
+to get clues as to whether the trend is a single process or whether
+there are inflection points. The first segment of the curve from 1899 to
+1984 indicates a period of positive acceleration or quickening of the
+growth trend, while the period from 1985 to 2008 represents a period of
+slowing or negative acceleration. Like a projectile that is
+simultanously climbing and falling, 1984 acts as launch point of
+precipitous yet unsustainable growth.
+
+\begin{figure}
+
+{\centering \includegraphics{ambrose_dissertation_files/figure-latex/ttsgnr-1} 
+
+}
+
+\caption{Historical frequency of term "genre" from Google Ngrams English corpus. Segments connote a change in acceleration (second derivative).}\label{fig:ttsgnr}
+\end{figure}
+
+Figure \ref{fig:ttsgnr2} shows a similar trend but using relative
+frequencies instead of absolute counts. Here ``genre'' is plotted as its
+share of all terms in the corpus. This trend exhibits no inflection
+point at 1984 that is statistically significant, and visually the trend
+does appear the same on both sides. No other inflections points are
+detectable due likely to greater year over year variability in this
+series in the first half of the century, reducing confidence in any
+estimate of a change point. To interpret this difference in statistical
+significance between relative and absolute measures would indicate that
+interest in genre continued to grow even within a secular slow-down in
+the volume of texts that resembles the familiar S-shaped diffusion
+curve. Alternatively, on visual inspection of the relative curve it
+appears that indeed there is an inflection point, just one a decade
+later in 1996. After this point the relative frequency seems to drop
+rapidly, a change that would no doubt be picked up statistically after a
+few more years of data and one that may in fact be located a few years
+earlier than the peak suggests. Together these trends describe a career
+to the term genre that has been strong for a century and that may now be
+in decline.
+
+\begin{figure}
+
+{\centering \includegraphics{ambrose_dissertation_files/figure-latex/ttsgnr2-1} 
+
+}
+
+\caption{Historical frequency of term "genre" from Google Ngrams English corpus. Segments connote a change in acceleration (second derivative).}\label{fig:ttsgnr2}
+\end{figure}
 
 \begin{figure}
 
@@ -1625,7 +1669,7 @@ proportion of actual ties out of all possible ties. In Figure
 \ref{fig:mod-proj} an imbalance may be observed where the journal facet
 has many dense free floating or overlapping cliques and where the label
 network appears to be mostly made of isolated labels save for the few
-larger components. In the sampled network the journal facet is four
+larger components. In the sampled network the journal facet is eight
 times more dense than the label facet. In the case of our full network,
 the potential imbalance in degree distribution between facets happens to
 be offset by the population imbalance itself. The densities in the full
