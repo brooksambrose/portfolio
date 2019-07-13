@@ -208,7 +208,7 @@ Table \@ref(tab:iss-int) enumerates issue introductions and shows how many are t
 # number issues repped
 # if one, longest bib is first
 
-wok2dbl[CJ(unlist(id) %>% unique,ec('PY,J9,AU,TI,VL,IS,SN,BP,EP,PG'),sorted = F)] %>% dcast(id~field,value.var='val',fun.aggregate=list,fill=NA)
+wok2dbl[CJ(unlist(id) %>% unique,ec('PY,J9,AU,TI,VL,IS,SN,BP,EP,PG'),sorted = F)] %>% dcast(id~field,value.var='val',fun.aggregate=list,fill=NA) %>% kable(caption = 'Issue introductions')
 #need to merge CR to KCC
 
 # issue level
