@@ -8,6 +8,31 @@
 
 (ref:key-int)
 
+
+
+```{r}
+library(tm)
+library(stm)
+library(pbapply)
+library(corrplot)
+library(slam)
+library(igraph)
+library(networkD3)
+library(fpc)
+d<-'?'
+strspl<-function(str) {
+  x<-gregexpr('[a-z][A-Z]',str)[[1]]
+  if(x[1]==-1) return(str)
+  x<-c(1,x+1,nchar(str)+1)
+  r<-list()
+  for(i in 2:length(x)) r[[i-1]]<-substr(str,x[i-1],x[i]-1)
+  unlist(r)
+}
+blanky<-theme(axis.text.y = element_blank(),axis.ticks.y = element_blank(),panel.grid.major.y = element_blank(),panel.grid.minor.y = element_blank())
+blankx<-theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),panel.grid.major.x = element_blank(),panel.grid.minor.x = element_blank())
+```
+
+
 ## What to read?
 
 The question of what to read is simple to be sure, but in fields of scholarly consumption and production it is nonetheless fundamental. Scholarship is a creative profession where a stock of cultural knowledge forms a greater part of the infrastructure of production than in other fields. This is not to say that other occupations, especially manual ones, lack creativity. It is to say that in such fields knowledge has a limited infrastructure. Whereas the know-how of the brick layer is black boxed in her tools and technology and in the human capital she develops by experience and tacit social learning, for the scholar as bricoleur there exists in addition the distinctively overdeveloped feature of cultural archiving as a universal memory. Except perhaps in outstanding feats of primary research, contributions to scholarship are legitimate to the extent that they have used the archive correctly.
@@ -40,11 +65,12 @@ if(file.exists(f)){
 }
 rm(f)
 annd<-ttsgnr[g==1,.(x=max(Year),y=Count[which.max(Year)])]
+ttst<-ttsgnr[!1:2,.(d=mean(d),t=list(t.test(d))),by=g]
 ```
 
-Figure \@ref(fig:ttsgnr) shows the count of mentions of the term genre in the Google Books Ngram database for English terms. The trend exhibits the typical take-off in publishing in the second half of the twentieth century. I apply change point analysis, which detects significant differences in time series data [@Chen2012Parametric; @Killick2016changepoint], to the second difference of the trend, which is a measure of change in acceleration, to get clues as to whether the trend is a single process or whether there are inflection points. The first segment of the curve from `r ttsgnr[g==1,range(Year) %>% paste(collapse=' to ')]` indicates a period of positive acceleration or quickening of the growth trend, while the period from `r ttsgnr[g==2,range(Year) %>% paste(collapse=' to ')]` represents a period of slowing or negative acceleration. Like a projectile that is simultanously climbing and falling, `r annd$x` acts as launch point of precipitous yet unsustainable growth.
+Figure \@ref(fig:ttsgnr) shows the count of mentions of the term genre in the Google Books Ngram database for English terms [@Michel2011Quantitative]. The trend exhibits the typical take-off in publishing in the second half of the twentieth century. I apply change point analysis, which detects significant differences in time series data [@Matteson2013Nonparametric; @James2019ecp], to the second difference of the trend, a measure of acceleration, to get clues as to whether the trend is a single process or whether there are inflection points. The first segment of the curve from `r ttsgnr[g==1,range(Year) %>% paste(collapse=' to ')]` indicates a period of positive acceleration or quickening of the growth trend. On average in the first period the rate of change from one year to the next increased by a modest `r ttst[1,d %>% round(1)]` occurences a year. However, during the period from `r ttsgnr[g==2,range(Year) %>% paste(collapse=' to ')]` the rate of change, though always steep, began to decline by an average of `r ttst[2,d %>% round(1) %>% abs]` occurences a year. Like a projectile that is simultanously climbing and falling, `r annd$x` acts as launch point of precipitous yet unsustainable growth.
 
-```{r ttsgnr,include=T,fig.cap='Historical frequency of term "genre" from Google Ngrams English corpus. Segments connote a change in acceleration (second derivative).'}
+```{r ttsgnr,include=T,fig.cap='Absolute count of term "genre", 1901-2008. Segments correspond to significantly different second derivatives.'}
 p1<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=Count,color=g,geom = 'line')) + theme(legend.position = "none",axis.title.x = element_blank()) + ylab('Count of "genre"') + geom_label(data=annd,aes(x=x,y=y,label=x),inherit.aes = F,nudge_x = ttsgnr$Year %>% range %>% diff %>% `*`(.05),nudge_y = ttsgnr$Count %>% range %>% diff %>% `*`(-.05))
 p2<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=d,color=g,geom = 'line')) + theme(legend.position = "none") + ylab('2nd Deriv.')
 egg::ggarrange(p1,p2, heights = c(3,1))
@@ -52,14 +78,13 @@ egg::ggarrange(p1,p2, heights = c(3,1))
 
 Figure \@ref(fig:ttsgnr2) shows a similar trend but using relative frequencies instead of absolute counts. Here "genre" is plotted as its share of all terms in the corpus. This trend exhibits no inflection point at `r annd$x` that is statistically significant, and visually the trend does appear the same on both sides. No other inflections points are detectable due likely to greater year over year variability in this series in the first half of the century, reducing confidence in any estimate of a change point. To interpret this difference in statistical significance between relative and absolute measures would indicate that interest in genre continued to grow even within a secular slow-down in the volume of texts that resembles the familiar S-shaped diffusion curve. Alternatively, on visual inspection of the relative curve it appears that indeed there is an inflection point, just one a decade later in `r ttsgnr[,Year[which.max(Frequency)]]`. After this point the relative frequency seems to drop rapidly, a change that would no doubt be picked up statistically after a few more years of data and one that may in fact be located a few years earlier than the peak suggests. Together these trends describe a career to the term genre that has been strong for a century and that may now be in decline.
 
-```{r ttsgnr2,include=T,fig.cap='Historical frequency of term "genre" from Google Ngrams English corpus. Segments connote a change in acceleration (second derivative).'}
+```{r ttsgnr2,include=T,fig.cap='Relative frequency of term "genre", 1901-2008.'}
 p1<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=Frequency,color=g2,geom = 'line')) + theme(legend.position = "none",axis.title.x = element_blank()) + ylab('Relative frequency of "genre"')
 p2<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=d2,color=g2,geom = 'line')) + theme(legend.position = "none") + ylab('2nd Deriv.')
 egg::ggarrange(p1,p2, heights = c(3,1))
 ```
 
-
-```{r genre-goog,include=T,fig.cap='Wordcloud of third term in 3gram beginning with "genre of". Source: Google Ngrams'}
+```{r genre-goog-d}
 f<-'d/q/genre-goog.RData'
 if(file.exists(f)){
   load(f)
@@ -78,14 +103,26 @@ if(file.exists(f)){
   save(gnrgoog,file=f)
 }
 rm(f)
-# op<-par('mar')
-# par(mar = rep(0, 4))
-#suppressWarnings(gnrgoog[,wordcloud::wordcloud(com,n, scale=c(3,.75),max.words=Inf, random.order=FALSE, rot.per=0,colors = viridis::viridis(100,direction = -1,option = 'D',end =.9),fixed.asp = F,family='HersheySerif')])
-# par(mar=op)
-gnrgoog[,wordcloud2::wordcloud2(.SD,size = .8,gridSize = 1,fontWeight = 'normal',rotateRatio = 0,color = viridis::viridis(max(n),direction = -1,option = 'E',end = .9)[n],shape='circle',shuffle = F,fontFamily = 'Times'),.SDcols=ec('com,n')]
 ```
 
-Figure \@ref(fig:genre-goog) gives an indication of what things the term genre has been used to describe. It illustrates the frequency of terms appearing in the Google Books Ngram corpus as the third term in the trigrams beginning with "genre of" or "genres of". The size of the words is proportional to the total frequency of the trigram in the English corpus, which spans centuries from 1590 to 2008 [@Google]. The bias of the source--books--is clear in the outsized importance of "literature" and "writing" which are followed closely by "music". The next ten largest nouns are `r gnrgoog[1:17,com %>% setdiff(ec('writing,literature,music,popular,science,historical,literary')) %>% nl]`. Ranked within that series would be several adjectives as well: popular, science (fiction), historical, and literary. Only on 
+Figure \@ref(fig:genre-goog) gives an indication of what things the term genre has been used to describe. It illustrates the frequency of terms appearing in the Google Books Ngram corpus as the third term in the trigrams beginning with "genre of" or "genres of" [@2012Google]. The size of the words is proportional to the total frequency of the trigram in the English corpus, which spans centuries from 1590 to 2008. The bias of the source--books--is clear in the outsized importance of "literature" and "writing" which are followed closely by "music". The next ten largest nouns are `r gnrgoog[1:17,com %>% setdiff(ec('writing,literature,music,popular,science,historical,literary')) %>% nl]`. Ranked within that series would be several adjectives as well: popular, science (fiction), historical, and literary. Each of these terms refers to a field of concrete cultural products, with the exception of "discourse" which is more abstract.
+
+```{r genre-goog,include=T,fig.cap='Wordcloud of third term in 3gram beginning with "genre of".',screenshot.opts=list(delay = 5)}
+gnrgoog[,wordcloud2::wordcloud2(.SD,widgetsize = NULL,size = .85,gridSize = 1,fontWeight = 'normal',rotateRatio = 0,color = viridis::viridis(max(n),direction = -1,option = 'E',end = .9)[n],shape='circle',shuffle = F,fontFamily = 'Times'),.SDcols=ec('com,n')]
+```
+
+```{r gnrgoog-tab}
+f<-'d/q/gnrgoog1562998843.txt'
+if(file.exists(f)){
+  gootab<-fread(f)
+} else {
+  write.table(gnrgoog[,.(type=NA,com,n)],file = paste0('d/q/gnrgoog',Sys.time() %>% as.integer,'.txt'),quote = F,sep ='\t',na = '',row.names = F,col.names = T)
+}
+rm(f) 
+split(gootab[,i:=.I],by='type')
+```
+
+Most items toward the top of the list are less popular (to write about) art forms like television, dance, and theater. Toward the middle of the list begin to appear adaptations of the term from the cultural to the social context. These include practical fields like medicine and journalism, political areas like law, government, and crime, and social arenas like identity and protest.
 
 To impose a sociological gloss on the term, these varied uses of genre would make reviewing the literature on the topic difficult, were it not for the discipline structure of the academy. The uses of the term genre are themselves systematically organized by discipline, and a disciple who is adequately trained will know the correct ways to use the term in her local context. To use genre as a disciplinary convention means to first identify your location in the disciplinary field, and then to accept the limitations on scope by excluding those treatments of the term that are extradisciplinary, that is, irrelevant. Disciplinary structure reduces the true cultural complexity of the meaning of genre to a restricted form, which in turn allows humble knowledge workers to engage upon a set of shared assumptions. Such simplicity begets new complexity as disciples spin out the consequences of their local use of genre.
 
@@ -117,9 +154,9 @@ To take an empirical approach to the literature review would be subversive were 
 
 ### Distant sampling
 
-The research strategy here attempts to parry the entropic tendency of the archive by substituting human for machine limits. The time honored methodological premise of a meta-analysis of genre is that the Gordian knot of the global cultural complexity of the archive can be cut by stratified sampling. I use a large digital archive of texts, JSTOR, to represent the whole of the academic archive. Though clearly a toy representing only a fraction of all networked scholarly produce, JSTOR is large enough to easily surpass individual cognition and compel the equivalent types of complexity reduction facing any researcher approaching the real archive via their local university library portal.
+The research strategy here attempts to parry the entropic tendency of the archive by substituting human for machine limits. The methodological premise of a meta-analysis of genre is that the Gordian knot of the global cultural complexity of the archive can be cut by stratified sampling. I use a large digital archive of texts, JSTOR, to represent the whole of the academic archive. Though clearly a toy representing only a fraction of all networked scholarly produce, JSTOR is large enough to easily surpass individual cognition and compel the equivalent types of complexity reduction facing any researcher approaching the real archive via their local university library portal.
 
-I use a simple term search of the keyword "genre" to define half of a sampling frame.^[TODO, I did not, but should take a random draw of the same size to serve as a control.] I could then take a simple random sample of texts, analyze how each uses the term genre, develop a classification scheme, and enumerate the different uses of the term. Unfortunately, a small sample in a statistical sense may be larger than a poor researcher can handle. 1,000 texts is not large statistically, but it is huge from a content analysis perspective. What's worse, 1,000 texts may still exclude, by random chance, small subcultures of the term. Stratification resolves this issue by delineating those subcultures so none would be left out.
+I use a simple term search of the keyword "genre" to define half of a sampling frame.^[TODO, I did not, but should take a random draw of the same size to serve as a control.] I could then take a simple random sample of texts, analyze how each uses the term genre, develop a classification scheme, and enumerate the different uses of the term. Unfortunately, a small sample in a statistical sense may be larger than a poor researcher can handle. 1,000 texts is not large statistically, but it is huge from a content analysis perspective. What's worse, 1,000 texts may still exclude, by random chance, small subcultures of the term. Stratification within a more or less global sampling frame resolves this issue by delineating those subcultures so none would be left out.
 
 Alas, the JSTOR digital archive lacks subject labels at the article level, though it does include them for book chapters and for journals. While not foolish, inheriting a journal label to the articles included within it may be a coarse approximation if within-journal content variation exceeds between-journal variation. We can use text analytic classification methods to cluster articles directly and discover latent groups of articles, and in so doing we can have an independent standard to compare to the discipline labels given to journals. It is an open question whether such methods align with what we have discussed above as disciplinary and subdisciplinary groupings, for us whether regularities in vocabulary correspond to regularities in the meaning of the term genre. If they do not, then the study will only be a stop en route to a true census of the uses of the term genre, and the contribution will be to have interrogated the quality of the methods used, though this would be a small consolation indeed!
 
@@ -131,9 +168,9 @@ Whichever approach one takes, and both may be used, recall that the goal is to o
 
 Instead, we will stratify the sample, and it is in the configuration of the strata that much of the work will be done. The strata impose upon our interpretation of the texts the assumption of sameness. 
 
-### Arms-length reading
+### No cigar
 
-The radical (and often maligned) distant reading approach taken by digital humanists is being taken up with gusto by social scientists who are less skeptical of quantitative methods. Following Nelson [-@Nelson2017Computational] I employ a quantitative analysis of texts not to replace human reading with machine reading but to support reproducibility in traditional qualitative content analysis. While CTA makes it possible to dispense with reading altogether, knowledge, understanding, and the cultural logics of arguments--especially their ontologies--are still only obtainable by reading primary texts, closely or not. The most radical interpretive CTA method would involve deep neural net supervised machine learning, which may be able to predict how a particular human reader would classify a text without their needing to read it, though this has never been demonstrated. What I gain from CTA is guidance in answering the question of what to read, and perhaps in what order to do so.
+The popular yet maligned distant reading approach taken by digital humanists [e.g. @Moretti2005Graphs] is being taken up with gusto by social scientists who are less skeptical of quantitative methods [e.g. @DiMaggio2013Exploiting]. Following Nelson [-@Nelson2017Computational] I employ a quantitative analysis of texts not to replace human reading with machine reading but to support reproducibility in traditional qualitative content analysis. While CTA makes it possible to dispense with reading altogether, knowledge, understanding, and the cultural logics of arguments--especially their ontologies--are still only obtainable by reading primary texts, closely or not. The most radical interpretive CTA method would involve deep neural net supervised machine learning, which may be able to predict how a particular human reader would classify a text without their needing to read it, though this has never been demonstrated. What I gain from CTA is guidance in answering the question of what to read, and perhaps in what order to do so.
 
 As we know, the question of what to read is answered institutionally for scholars already by way of canon, curriculum, word of mouth, and digital reference term search services. These are their own forms of distant reading, because they each make obsolete the archaic image, true of figures like Weber, of a scholar buried in library stacks reading everything they come across (and so it has been said of Weber, forgetting nothing).^[What a scandal it would be if Weber's lionizers discovered that he had only read text indices! Surely they would bury such a fact. But the point would remain that even if a scholar were able to consumer an entire corpus, the sheer scale of contemporary publication is now beyond even a genius's capacity.] These contemporary shortcuts are historically arbitrary, but what is important is first that they serve the function of reducing the overwhelming cognitive complexity of published scholarship, and second structure that reduction in the same way for all scholars. An arbitrary reduction needs to be consistent to act as an infrastructure for subdisciplinary scholarship, otherwise scholars would find themselves located in different literatures.
 
@@ -141,7 +178,7 @@ If distant reading is a criticism of close reading then it has a big hill to cli
 
 What are the social patterns of the traditional literature review are topics for the sociology of knowledge and science and for the information sciences. This is not the task of the current study. What we take from the traditional approach is the consequences of excluding large segments of intellectual history. What CTA makes possible for the first time is a nonarbitrary, inclusive analysis of *all* content in a digitized corpus. It will not necessarily be a good analysis, but what it will lack in quality it will make up for in coverage. A CTA approach to the literature review will at least make clear what lacuna would be left by the traditional approach. They also reduce the potential idiosyncrasy of a particular author's literature review because, unlike a personal reading, a CTA model can be communicated precisely.
 
-Of course the cognitive limitation of how much any scholar can actually read and understand remains. There will be an exclusion mechanism no matter what, therefore a chief assumption of a CTA literature review is that corpus segmentation is both possible and that some reduced form of reading, some sampling procedure, can be said to be representative of the unread portion in each segment. If on the contrary no two snowflakes are alike, then the enterprise of knowing more than we have before is fraught, and CTA becomes yet another arbitrary reducer.
+Of course the cognitive limitation of how much any scholar can actually read and understand remains. There will be an exclusion mechanism no matter what, therefore a chief assumption of a CTA literature review is that corpus segmentation is both possible and that some reduced form of reading, some sampling procedure, can be said to be representative of the unread portion in each segment. These representative texts will be subjected to a close reading, but their interpretation will be generalized to unread documents. Hence I call this a "no cigar" approach to reading, as in "close but". If on the contrary to the assumption no two snowflakes are alike, then the enterprise of knowing more than we have before is fraught, and CTA becomes yet another arbitrary reducer.
 
 What's worse, or perhaps better, is that there is reason to believe that idiosyncrasy itself is an historically variable feature of disciplines. If institutional isomorphism has proceeded to some high level in contemporary disciplines, then the assumption that reading the bellwether texts is as good as reading the entire herd may hold. If this is true, however, it raises as many questions about the process of institutionalization in cultural production than it answers about the potential to learn truer versions of intellectual history.
 
@@ -160,33 +197,40 @@ It is important not to overinterpret a topic model. Topic models are sometimes c
 
 From a sense or meaning making perspective topics are trivial; this is because so little is known about what an author says by knowing the topic or even the term distribution of a document. What topics are useful for, however, is the type of segmentation or cartography of a corpus. Topics are really a global feature, perhaps a cultural feature, of a corpus of texts that is itself meaningfully selected. If indeed a field of texts is oriented to common if not always overlapping vocabularies, then topics can represent this well.
 
-A topic model could be posited based on the domain knowledge of an expert, and this would be a form of estimation. The practical value of statistical topic modeling is that the unobserved topics can be induced, with a raft of assumptions, directly from the observed document-by-term matrix to arrive at a model with the features just described. An estimated topic model will contain several other parameters filling in assumptions necessary to make it possible to identify the unobservable topic probabilities in each of the two matrices of the model. For instance, the parameter commonly called alpha makes an assumption about how many topics tend to comprise each document. s
+A topic model could be posited based on the domain knowledge of an expert, and this would be a form of estimation. The practical value of statistical topic modeling is that the unobserved topics can be induced, with a raft of statistical assumptions, directly from the observed document-by-term matrix to arrive at a model with the features just described. An estimated topic model will contain several other parameters filling in assumptions necessary to make it possible to identify the unobservable topic probabilities in each of the two matrices of the model. For instance, the parameter commonly called alpha makes an assumption about how many topics tend to comprise each document.
 
-[@DiMaggio2013Exploiting]
+### Bias
+
+Before documenting the data preparation below, it is important to keep in mind several sampling and modeling considerations that tend to be overlooked. First, idiosyncracy is assumed to be unmodelable. A flaw of traditional topic models is that, at one level, all documents are generic. Originality exists only in novel admixtures of vocabularies held in common. Vocabularies that are limited to trivially small sets of works, be they idiosyncracies of content or style, become sources of bias to topic model estimators. Because idiosyncratic vocabulary is be definition rare, it lacks both the mass of frequency and distribution aross documents to be reliably picked up as a topic. Indeed, if each document were expected to contain some idiosycracy, then the number of topics needed to catch all of the idiosycracy would be equal to the number of texts in the corpus. Each document would then be a combination its own idiosyncratic topic (of which it would account for 100 of topic content) and a distribution over other topics held in common. The real number of topics would then be $K+N$ where $N$ is the number of texts and practically always much greater than $K$. Researchers would balk at including such a large set of extraneous topics, while estimators would both be strained by the greater paramters space and would collide with hyperparamters designed to militate against estimating topics distributed only over a single document.
+
+The impracticality from a modeling perspective of representing idiosyncracy coincides with the undertheorized tendency among reseachers for extreme pruning of idiosyncracy during data preparation. A more parsimonious modeling solution would be to allow a single extra topic designed to catch all idiosyncracy. Yet this would tend to violate the assumptions behind construction of the other topics for two reasons, first because one topic would have significant distribution across all documents and second because terms within the topic would never be estimated together as they would really be a mixture of $N$ uncorrelated subtopics.
+
+Idiosyncracy tends to be pruned in a desire to limit the length of the vocabulary to bring it within the bounds of computational power and the chances of a successful paramater optimization. Depending on the task, however, the researcher may not be so concerned with performance, and may leave plenty of idiosyncracy in the sample. What then is the effect on the topic estimation of such idiosycracy, since the idiosyncracy must end up somewhere?
+
+First, there will be a tendency to muddy the content of common topics with the particular idiosyncracies of the documents that happen to draw on them. This in part explains the long, non-zero tails of topic by term distributions, which are usually filtered out during post-estimation and interpretation of the models. We would however expect them to corrupt the error structure of the topic they contaminate, leading to suboptimal estmates of the true terms in the topic.
+
+Second, the document proportion of the contaminated topic will be inflated in the contaminating document. After all, the idiosyncracy of the document was represented, erroneously, in the contaminated topic. Because of the lengh of the term vector it is not difficult to imagine the truly pathological case wherein the probability sum of the false portion of the topic is greater than that of the true portion. In this event, a document could be categorized within a topic due more to the false content than to the true content, especially if the idiosyncracy was placed in topics randomly. Contrary to the effect of random error in an explanatory variable in ordinary least squares linear regression, which is to bias the regression coefficient downward, in a topic model the effect will be to bias the topic probabilty of a document upward.
+
+@DiMaggio2013Exploiting represent a typical albeit conservative approach to topic modeling as distant reading. Their data preparation of a newspaper corpus about U.S. arts policy in the 1980s and 1990s resulted in 54,982 unique terms and 7,598 documents [-@DiMaggio2013Exploiting\:582]. This incredible dimensionality in the term vector, which eliminated only stopwords and a few hand-picked terms and did not stemming, represents a very conservative approach to term filtering admitting to no performance based truncation. They chose a model with 12 topics. Thus in a strict interpretation of their 12-topic model, we are to believe that the extreme idiosyncrasy of news, with all of its historical specificity, is contained in a noise or junk topic rather than creating bias on the estimation of the signal topics. With such a huge term mass to classify and so few topics in which to do it, it is incredible to think that the algorithm would alight on a junk topic rather than using that spot for a signal topic. It is plausible that the noise (and so offensive a term to those reporters trying to say something new!) is distributed across signal topics rather than being safely tossed in the dust bin. To wit, their choice of a low alpha parameter of 0.1, which assumes that each document is generated from relatively few topics, makes it even less likely that the estimator would spend precious parameter space on a noise rather than on a signal topic.
+
+@DiMaggio2013Exploiting- attempt to placate statistical cricitism by substituting quantitative, statistical forms of validation for qualitative cross validation of topics. This may be more treacherous than the authors admit. Their analytical approach is:
+
+1. Fit the topic model.
+1. Sort the topic by term vectors in decreasing order.
+    a. Split the fat head from the skinny tail.
+    a. Interpret the terms in the fat head.
+1. Sort the topic by document vectors in decreasing order.
+    a. Split the fat head from the skinny tail.
+    a. Classify those documents in the fat head according to 2.b.
+1. Interpret the documents according to 3.b.
+
+The sorting procedures are a typical low-hanging fruit use of the model. Even though the model is a much simpler ball of string than the original full text corpus, it is still a very complicated statistical equation with, in this case, 12 \* 54,982 + 12 \* 7,598 = `r nn(12 * 54982 + 12 * 7598)` estimated parameters. Sorting the term and document vectors allows the analyst to proceed from an intepretation of the strongest signals toward the weakest, stopping when the author feels satisfied that the research question is satisfactorily addressed. The assumption here is that the strongest statistical signals are unbiased, that when parameters are converted to ranks, and the ranks are converted to truncated lists of words and documents, that those lists are correct.
+
+The specter that I raised above applies to the document ranking more than to the term ranking. A formal feature of topic models is that each topic is composed of all terms in the corpus. Of course this is an artifact rather than an intention of the model, as the goal is to separate relevant from irrelevant terms in the constitution of topics. Similarly, all documents are distributions over all topics, but this is not (necessarily) the intention; again we expect an elbow in the sorted topic document vector in front of which are relevant and after which are irrelevant topics. Any concentration index, such as the Gini coefficient, calculated on the topic term and to a lesser extent the topic document vectors will show very high concentration, where most of the probability is owned by a few elements. 
+
+We can test for some of these expectations of bias. A document's topic assignment may be considered suspect if its term distribution from that topic derives from the low and long tail of the topic, rather than from the select high probabilty terms normally associated with the topic's meaning.
 
 ## Data
-
-```{r}
-library(tm)
-library(stm)
-library(pbapply)
-library(corrplot)
-library(slam)
-library(igraph)
-library(networkD3)
-library(fpc)
-d<-'?'
-strspl<-function(str) {
-  x<-gregexpr('[a-z][A-Z]',str)[[1]]
-  if(x[1]==-1) return(str)
-  x<-c(1,x+1,nchar(str)+1)
-  r<-list()
-  for(i in 2:length(x)) r[[i-1]]<-substr(str,x[i-1],x[i]-1)
-  unlist(r)
-}
-blanky<-theme(axis.text.y = element_blank(),axis.ticks.y = element_blank(),panel.grid.major.y = element_blank(),panel.grid.minor.y = element_blank())
-blankx<-theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),panel.grid.major.x = element_blank(),panel.grid.minor.x = element_blank())
-```
 
 ```{r}
 f<-'d/p/jtabs.RData'
@@ -344,7 +388,7 @@ p2<-myth(ggplot(stm$meta,aes(x=idi))) + geom_histogram(bins=50) + theme(axis.tit
 egg::ggarrange(p2,p1, heights = c(3,1))
 ```
 
-Figure \@ref(fig:gp-hist) shows the logarithm of the count of the term genre as a proportion of the total term count of a text. This distribution is much more highly skewed but contains fewer outliers. In the median text a genre variant accounted for about `r stm$meta[,(1000*median(gp)) %>% round]` in 1,000 terms, while at the 90 percentile the rate is `r stm$meta[,quantile(gp,p=.9)*1000] %>% round` in 1,000. `r stm$meta[,sum(gp>.1) %>% nn]` texts (`r stm$meta[,(mean(gp>.1)*100) %>% round(2)]` percent) are outliers where one in ten or more words is a genre variant. The text with the largest genre proportion, at `r stm$meta[,(max(gp)*100) %>% round(1)]` percent of its words, is `r stm$meta[which.max(gp),auth[[1]]$last %>% nl]`'s "`r stm$meta[which.max(gp),tit %>% tolower %>% tools::toTitleCase(.)]`"^[`r stm$meta[which.max(gp),url]`] is a single page introduction in a special issue of *`r stm$meta[which.max(gp),sotit]`* on genres. 
+Figure \@ref(fig:gp-hist) shows the logarithm of the count of the term genre as a proportion of the total term count of a text. This distribution is much more highly skewed but contains fewer outliers. In the median text a genre variant accounted for about `r stm$meta[,(1000*median(gp)) %>% round]` in 1,000 terms, while at the 90th percentile the rate is `r stm$meta[,quantile(gp,p=.9)*1000] %>% round` in 1,000. `r stm$meta[,sum(gp>.1) %>% nn]` texts (`r stm$meta[,(mean(gp>.1)*100) %>% round(2)]` percent) are outliers where one in ten or more words is a genre variant. The text with the largest genre proportion, at `r stm$meta[,(max(gp)*100) %>% round(1)]` percent of its words, is `r stm$meta[which.max(gp),auth[[1]]$last %>% nl]`'s "`r stm$meta[which.max(gp),tit %>% tolower %>% tools::toTitleCase(.)]`"^[`r stm$meta[which.max(gp),url]`], a single page introduction in a special issue of *`r stm$meta[which.max(gp),sotit]`* on genres. 
 
 ```{r gp-hist, include=T,fig.cap='Distribution of $log_{10}$ of the count of the term "genre" as a proportion of all terms in a text. Pluses indicate outliers.'}
 p1<-ggplot(stm$meta,aes(y=gp)) + geom_boxplot(outlier.size = 3,outlier.alpha = 1,outlier.shape = '+') + scale_y_log10() + coord_flip() + theme_bw() + blanky 
@@ -355,8 +399,7 @@ egg::ggarrange(p2,p1, heights = c(3,1))
 
 
 
-
-```{r}
+```{r genre-mod}
 f<-'d/p/genre-mod.RData'
 if(file.exists(f)){
   load(f)
@@ -368,13 +411,11 @@ if(file.exists(f)){
 rm(f)
 ```
 
-## sankey
+## Results
 
 Topic models require the analyst to choose the number of topics $K$. The approach we take to guiding this decision is not to expect one correct specification of K but rather to see it as a changing resolution. A K=2 model usefully bifurcates the sample and is not wrong because it is too restrictive. As K increases we expect the samples to continue to divide as new parameter spaces become available to partition the sample. While this is not strictly a hierarchical design, since each K model is fit independently, we should expect to see aspects of hierarchical topics as well as some degree of stability in the relationships among topics.
 
 Categorical Expectation Maximization is known to 
-
-## top x doc
 
 ```{r}
 el<-lapply(mod,function(x) x$doc.top.theta * x$doc.length)
@@ -486,12 +527,55 @@ for(i in 1:length(gr)) {
 rnk<-lapply(mem,lapply,function(x) data.table(d=x,r=length(x):1)) %>% lapply(rbindlist) %>% lapply(function(x) x[,.(r=sum(r)),by=d] %>% setorder(-r))
 ```
 
+```{r top-gini,include=T,fig.cap='Topic concentrations (TC) within documents by TC within terms. Circles proportional to term frequency explained by each topic'}
+data.frame(t=mod[[9]]$top.word.phi.beta %>% apply(1,ineq::Gini),d=mod[[9]]$doc.top.theta %>% apply(2,ineq::Gini)) %>% {myth(ggplot(data=.,aes(x=d,y=t))) +
+    ggplot2::annotate(geom='rect',xmin=.$d %>% median,ymin=.$t %>% median,xmax=.$d %>% range %>% max,ymax=.$t %>% range %>% max,fill='green',alpha=.1) +
+    ggplot2::annotate(geom='rect',xmax=.$d %>% median,ymax=.$t %>% median,xmin=.$d %>% range %>% max,ymin=.$t %>% range %>% min,fill='yellow',alpha=.1) +
+    ggplot2::annotate(geom='rect',xmax=.$d %>% median,ymin=.$t %>% median,xmin=.$d %>% range %>% min,ymax=.$t %>% range %>% max,fill='yellow',alpha=.1) +
+    ggplot2::annotate(geom='rect',xmin=.$d %>% median,ymin=.$t %>% median,xmax=.$d %>% range %>% min,ymax=.$t %>% range %>% min,fill='red',alpha=.1) +
+    xlab('TC documents (Gini)') + ylab('TC terms (Gini)') +
+    geom_point(size=sapply(mod[9],function(x) apply(t(x$top.word.phi.beta) * x$term.frequency,2,sum)) %>% lintran(c(5,20)),shape=1,color=rep('brown',10) %>% replace(c(1,4,5,6,10),'purple'),stroke=2) + scale_size_area() +
+    geom_text(label=1:nrow(.)) 
+  }
+```
+
+
+```{r elbow,include=T,fig.cap='Cumulative distribution of within topic term probabilities.'}
+h<-c(3,8,9,10)
+elb<-mod[[9]]$top.word.phi.beta[h,] %>% apply(1,sort,decreasing=T) %>% data.table %>% as.list
+for(i in 1:length(h)) elb[[i]]<-data.table(t=elb[[i]][1:200] %>% cumsum,T=(h)[i])[,i:=.I]
+elb<-rbindlist(elb)[,T:=factor(T)] %>% setkey(T)
+myth(ggplot(elb,aes(x=i,y=t,color=T))) + geom_line(size=1) + theme(legend.position = c(.98,.02),legend.justification = ec('right,bottom'))
+```
+
 ```{r qcv}
-if(F) withr::with_seed(
+if(T) withr::with_seed(
   12345,{
-    sf<-4:9 %>% combn(2) %>% t %>% {data.table(.)[sample(1:.N)]}
-    for(i in 1:nrow(sf)) sf[i,] %>% unlist %>% {c(rnk[[.[1]]][1:25,sample(d,5)],rnk[[.[2]]][1:25,sample(d,5)])} %>% sample %>% stm$meta[.,.(lr='',url,file_name)] %>% write.table(file = paste0('d/p/jstordfr/genre/man',sprintf('%02d',i),'-',Sys.time() %>% as.integer,'.txt'),quote = F,sep = '\t',row.names = F,col.names = T)
+    ti<-1:10
+    sz<-5
+    sf<-ti %>% combn(2) %>% t %>% {data.table(.)[sample(1:.N)]} %>% apply(1,sample) %>% t
+    rk<-mod[[9]]$doc.top.theta %>% apply(2,order,decreasing=T) %>% head((length(ti)-1)*sz) %>% apply(2,sample)
+    st<-Sys.time() %>% as.integer
+    wh<-list()
+    for(i in 1:nrow(sf)) {
+      x<-sf[i,] 
+      i1<-sf[1:i,] %>% factor(levels=ti) %>% table %>% {.[x[1]]}
+      i2<-sf[1:i,] %>% factor(levels=ti) %>% table %>% {.[x[2]]}
+      wh[[i]]<-data.table(rk[(sz*i1-sz+1):(sz*i1),x[1]],rk[(sz*i2-sz+1):(sz*i2),x[2]]) %>% setnames(as.character(sf[i,]))
+      wh[[i]] %>% unlist %>% sample %>% stm$meta[.,.(lr='',url,file_name)] %>% write.table(file = paste0('d/p/jstordfr/genre/man',sprintf('%02d',i),'-',st,'.txt'),quote = F,sep = '\t',row.names = F,col.names = T)
+      }
+    tiszsfstwh<-list(ti=ti,sz=sz,sf=sf,st=st,wh=wh)
+    save(tiszsfstwh,file=paste0('d/p/genre-topic-tiszsfstwh-',st,'.RData'))
   }
 )
+```
+
+```{r man-sort}
+man<-lapply(dir(pattern='1562748956',recursive = T),fread)
+```
+
+```{r genr-mod-viz,include=T,fig.cap='Topic Term Explorer, K=10', out.width='100%',screenshot.opts=list(delay = 2),}
+invisible(lda2viz.f(mod[[length(mod)]],out.dir = 'ldaviz',launch = F))
+knitr::include_url('https://mercury.dlab.berkeley.edu:2018',height='865px')
 ```
 
