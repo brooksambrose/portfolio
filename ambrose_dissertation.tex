@@ -82,7 +82,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-07-13}
+    \date{2019-07-15}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -488,19 +488,21 @@ cultural studies. Academics define and use the term differently between
 and within disciplines.
 
 Figure \ref{fig:ttsgnr} shows the count of mentions of the term genre in
-the Google Books Ngram database for English terms. The trend exhibits
-the typical take-off in publishing in the second half of the twentieth
-century. I apply change point analysis, which detects significant
-differences in time series data
-\citep{Chen2012Parametric, Killick2016changepoint}, to the second
-difference of the trend, which is a measure of change in acceleration,
-to get clues as to whether the trend is a single process or whether
-there are inflection points. The first segment of the curve from 1899 to
-1984 indicates a period of positive acceleration or quickening of the
-growth trend, while the period from 1985 to 2008 represents a period of
-slowing or negative acceleration. Like a projectile that is
-simultanously climbing and falling, 1984 acts as launch point of
-precipitous yet unsustainable growth.
+the Google Books Ngram database for English terms
+\citep{Michel2011Quantitative}. The trend exhibits the typical take-off
+in publishing in the second half of the twentieth century. I apply
+change point analysis, which detects significant differences in time
+series data \citep{Matteson2013Nonparametric, James2019ecp}, to the
+second difference of the trend, a measure of acceleration, to get clues
+as to whether the trend is a single process or whether there are
+inflection points. The first segment of the curve from 1899 to 1984
+indicates a period of positive acceleration or quickening of the growth
+trend. On average in the first period the rate of change from one year
+to the next increased by a modest 13.3 occurences a year. However,
+during the period from 1985 to 2008 the rate of change, though always
+steep, began to decline by an average of 238.3 occurences a year. Like a
+projectile that is simultanously climbing and falling, 1984 acts as
+launch point of precipitous yet unsustainable growth.
 
 \begin{figure}
 
@@ -508,7 +510,7 @@ precipitous yet unsustainable growth.
 
 }
 
-\caption{Historical frequency of term "genre" from Google Ngrams English corpus. Segments connote a change in acceleration (second derivative).}\label{fig:ttsgnr}
+\caption{Absolute count of term "genre", 1901-2008. Segments correspond to significantly different second derivatives.}\label{fig:ttsgnr}
 \end{figure}
 
 Figure \ref{fig:ttsgnr2} shows a similar trend but using relative
@@ -537,8 +539,23 @@ in decline.
 
 }
 
-\caption{Historical frequency of term "genre" from Google Ngrams English corpus. Segments connote a change in acceleration (second derivative).}\label{fig:ttsgnr2}
+\caption{Relative frequency of term "genre", 1901-2008.}\label{fig:ttsgnr2}
 \end{figure}
+
+Figure \ref{fig:genre-goog} gives an indication of what things the term
+genre has been used to describe. It illustrates the frequency of terms
+appearing in the Google Books Ngram corpus as the third term in the
+trigrams beginning with ``genre of'' or ``genres of''
+\citep{2012Google}. The size of the words is proportional to the total
+frequency of the trigram in the English corpus, which spans centuries
+from 1590 to 2008. The bias of the source--books--is clear in the
+outsized importance of ``literature'' and ``writing'' which are followed
+closely by ``music''. The next ten largest nouns are poetry, discourse,
+fiction, art, autobiography, painting, film, romance, folklore, and
+history. Ranked within that series would be several adjectives as well:
+popular, science (fiction), historical, and literary. Each of these
+terms refers to a field of concrete cultural products, with the
+exception of ``discourse'' which is more abstract.
 
 \begin{figure}
 
@@ -546,21 +563,15 @@ in decline.
 
 }
 
-\caption{Wordcloud of third term in 3gram beginning with "genre of". Source: Google Ngrams}\label{fig:genre-goog}
+\caption{Wordcloud of third term in 3gram beginning with "genre of".}\label{fig:genre-goog}
 \end{figure}
 
-Figure \ref{fig:genre-goog} gives an indication of what things the term
-genre has been used to describe. It illustrates the frequency of terms
-appearing in the Google Books Ngram corpus as the third term in the
-trigrams beginning with ``genre of'' or ``genres of''. The size of the
-words is proportional to the total frequency of the trigram in the
-English corpus, which spans centuries from 1590 to 2008 \citep{Google}.
-The bias of the source--books--is clear in the outsized importance of
-``literature'' and ``writing'' which are followed closely by ``music''.
-The next ten largest nouns are poetry, discourse, fiction, art,
-autobiography, painting, film, romance, folklore, and history. Ranked
-within that series would be several adjectives as well: popular, science
-(fiction), historical, and literary. Only on
+Most items toward the top of the list are less popular (to write about)
+art forms like television, dance, and theater. Toward the middle of the
+list begin to appear adaptations of the term from the cultural to the
+social context. These include practical fields like medicine and
+journalism, political areas like law, government, and crime, and social
+arenas like identity and protest.
 
 To impose a sociological gloss on the term, these varied uses of genre
 would make reviewing the literature on the topic difficult, were it not
@@ -729,15 +740,15 @@ either never cracked the code or who willfully eschewed it.
 \subsection{Distant sampling}\label{distant-sampling}}
 
 The research strategy here attempts to parry the entropic tendency of
-the archive by substituting human for machine limits. The time honored
-methodological premise of a meta-analysis of genre is that the Gordian
-knot of the global cultural complexity of the archive can be cut by
-stratified sampling. I use a large digital archive of texts, JSTOR, to
-represent the whole of the academic archive. Though clearly a toy
-representing only a fraction of all networked scholarly produce, JSTOR
-is large enough to easily surpass individual cognition and compel the
-equivalent types of complexity reduction facing any researcher
-approaching the real archive via their local university library portal.
+the archive by substituting human for machine limits. The methodological
+premise of a meta-analysis of genre is that the Gordian knot of the
+global cultural complexity of the archive can be cut by stratified
+sampling. I use a large digital archive of texts, JSTOR, to represent
+the whole of the academic archive. Though clearly a toy representing
+only a fraction of all networked scholarly produce, JSTOR is large
+enough to easily surpass individual cognition and compel the equivalent
+types of complexity reduction facing any researcher approaching the real
+archive via their local university library portal.
 
 I use a simple term search of the keyword ``genre'' to define half of a
 sampling frame.\footnote{TODO, I did not, but should take a random draw
@@ -748,8 +759,9 @@ Unfortunately, a small sample in a statistical sense may be larger than
 a poor researcher can handle. 1,000 texts is not large statistically,
 but it is huge from a content analysis perspective. What's worse, 1,000
 texts may still exclude, by random chance, small subcultures of the
-term. Stratification resolves this issue by delineating those
-subcultures so none would be left out.
+term. Stratification within a more or less global sampling frame
+resolves this issue by delineating those subcultures so none would be
+left out.
 
 Alas, the JSTOR digital archive lacks subject labels at the article
 level, though it does include them for book chapters and for journals.
@@ -814,12 +826,13 @@ Instead, we will stratify the sample, and it is in the configuration of
 the strata that much of the work will be done. The strata impose upon
 our interpretation of the texts the assumption of sameness.
 
-\hypertarget{arms-length-reading}{%
-\subsection{Arms-length reading}\label{arms-length-reading}}
+\hypertarget{no-cigar}{%
+\subsection{No cigar}\label{no-cigar}}
 
-The radical (and often maligned) distant reading approach taken by
-digital humanists is being taken up with gusto by social scientists who
-are less skeptical of quantitative methods. Following Nelson
+The popular yet maligned distant reading approach taken by digital
+humanists \citep[e.g.~][]{Moretti2005Graphs} is being taken up with
+gusto by social scientists who are less skeptical of quantitative
+methods \citep[e.g.~][]{DiMaggio2013Exploiting}. Following Nelson
 \citeyearpar{Nelson2017Computational} I employ a quantitative analysis
 of texts not to replace human reading with machine reading but to
 support reproducibility in traditional qualitative content analysis.
@@ -880,9 +893,13 @@ read and understand remains. There will be an exclusion mechanism no
 matter what, therefore a chief assumption of a CTA literature review is
 that corpus segmentation is both possible and that some reduced form of
 reading, some sampling procedure, can be said to be representative of
-the unread portion in each segment. If on the contrary no two snowflakes
-are alike, then the enterprise of knowing more than we have before is
-fraught, and CTA becomes yet another arbitrary reducer.
+the unread portion in each segment. These representative texts will be
+subjected to a close reading, but their interpretation will be
+generalized to unread documents. Hence I call this a ``no cigar''
+approach to reading, as in ``close but''. If on the contrary to the
+assumption no two snowflakes are alike, then the enterprise of knowing
+more than we have before is fraught, and CTA becomes yet another
+arbitrary reducer.
 
 What's worse, or perhaps better, is that there is reason to believe that
 idiosyncrasy itself is an historically variable feature of disciplines.
@@ -966,15 +983,169 @@ vocabularies, then topics can represent this well.
 A topic model could be posited based on the domain knowledge of an
 expert, and this would be a form of estimation. The practical value of
 statistical topic modeling is that the unobserved topics can be induced,
-with a raft of assumptions, directly from the observed document-by-term
-matrix to arrive at a model with the features just described. An
-estimated topic model will contain several other parameters filling in
-assumptions necessary to make it possible to identify the unobservable
-topic probabilities in each of the two matrices of the model. For
-instance, the parameter commonly called alpha makes an assumption about
-how many topics tend to comprise each document. s
+with a raft of statistical assumptions, directly from the observed
+document-by-term matrix to arrive at a model with the features just
+described. An estimated topic model will contain several other
+parameters filling in assumptions necessary to make it possible to
+identify the unobservable topic probabilities in each of the two
+matrices of the model. For instance, the parameter commonly called alpha
+makes an assumption about how many topics tend to comprise each
+document.
 
-\citep{DiMaggio2013Exploiting}
+\hypertarget{bias}{%
+\subsection{Bias}\label{bias}}
+
+Before documenting the data preparation below, it is important to keep
+in mind several sampling and modeling considerations that tend to be
+overlooked. First, idiosyncracy is assumed to be unmodelable. A flaw of
+traditional topic models is that, at one level, all documents are
+generic. Originality exists only in novel admixtures of vocabularies
+held in common. Vocabularies that are limited to trivially small sets of
+works, be they idiosyncracies of content or style, become sources of
+bias to topic model estimators. Because idiosyncratic vocabulary is be
+definition rare, it lacks both the mass of frequency and distribution
+aross documents to be reliably picked up as a topic. Indeed, if each
+document were expected to contain some idiosycracy, then the number of
+topics needed to catch all of the idiosycracy would be equal to the
+number of texts in the corpus. Each document would then be a combination
+its own idiosyncratic topic (of which it would account for 100 of topic
+content) and a distribution over other topics held in common. The real
+number of topics would then be \(K+N\) where \(N\) is the number of
+texts and practically always much greater than \(K\). Researchers would
+balk at including such a large set of extraneous topics, while
+estimators would both be strained by the greater paramters space and
+would collide with hyperparamters designed to militate against
+estimating topics distributed only over a single document.
+
+The impracticality from a modeling perspective of representing
+idiosyncracy coincides with the undertheorized tendency among reseachers
+for extreme pruning of idiosyncracy during data preparation. A more
+parsimonious modeling solution would be to allow a single extra topic
+designed to catch all idiosyncracy. Yet this would tend to violate the
+assumptions behind construction of the other topics for two reasons,
+first because one topic would have significant distribution across all
+documents and second because terms within the topic would never be
+estimated together as they would really be a mixture of \(N\)
+uncorrelated subtopics.
+
+Idiosyncracy tends to be pruned in a desire to limit the length of the
+vocabulary to bring it within the bounds of computational power and the
+chances of a successful paramater optimization. Depending on the task,
+however, the researcher may not be so concerned with performance, and
+may leave plenty of idiosyncracy in the sample. What then is the effect
+on the topic estimation of such idiosycracy, since the idiosyncracy must
+end up somewhere?
+
+First, there will be a tendency to muddy the content of common topics
+with the particular idiosyncracies of the documents that happen to draw
+on them. This in part explains the long, non-zero tails of topic by term
+distributions, which are usually filtered out during post-estimation and
+interpretation of the models. We would however expect them to corrupt
+the error structure of the topic they contaminate, leading to suboptimal
+estmates of the true terms in the topic.
+
+Second, the document proportion of the contaminated topic will be
+inflated in the contaminating document. After all, the idiosyncracy of
+the document was represented, erroneously, in the contaminated topic.
+Because of the lengh of the term vector it is not difficult to imagine
+the truly pathological case wherein the probability sum of the false
+portion of the topic is greater than that of the true portion. In this
+event, a document could be categorized within a topic due more to the
+false content than to the true content, especially if the idiosyncracy
+was placed in topics randomly. Contrary to the effect of random error in
+an explanatory variable in ordinary least squares linear regression,
+which is to bias the regression coefficient downward, in a topic model
+the effect will be to bias the topic probabilty of a document upward.
+
+\citet{DiMaggio2013Exploiting} represent a typical albeit conservative
+approach to topic modeling as distant reading. Their data preparation of
+a newspaper corpus about U.S. arts policy in the 1980s and 1990s
+resulted in 54,982 unique terms and 7,598 documents
+\citeyearpar[582]{DiMaggio2013Exploiting}. This incredible
+dimensionality in the term vector, which eliminated only stopwords and a
+few hand-picked terms and did not stemming, represents a very
+conservative approach to term filtering admitting to no performance
+based truncation. They chose a model with 12 topics. Thus in a strict
+interpretation of their 12-topic model, we are to believe that the
+extreme idiosyncrasy of news, with all of its historical specificity, is
+contained in a noise or junk topic rather than creating bias on the
+estimation of the signal topics. With such a huge term mass to classify
+and so few topics in which to do it, it is incredible to think that the
+algorithm would alight on a junk topic rather than using that spot for a
+signal topic. It is plausible that the noise (and so offensive a term to
+those reporters trying to say something new!) is distributed across
+signal topics rather than being safely tossed in the dust bin. To wit,
+their choice of a low alpha parameter of 0.1, which assumes that each
+document is generated from relatively few topics, makes it even less
+likely that the estimator would spend precious parameter space on a
+noise rather than on a signal topic.
+
+\citet{DiMaggio2013Exploiting}- attempt to placate statistical cricitism
+by substituting quantitative, statistical forms of validation for
+qualitative cross validation of topics. This may be more treacherous
+than the authors admit. Their analytical approach is:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Fit the topic model.
+\item
+  Sort the topic by term vectors in decreasing order.
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Split the fat head from the skinny tail.
+  \item
+    Interpret the terms in the fat head.
+  \end{enumerate}
+\item
+  Sort the topic by document vectors in decreasing order.
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Split the fat head from the skinny tail.
+  \item
+    Classify those documents in the fat head according to 2.b.
+  \end{enumerate}
+\item
+  Interpret the documents according to 3.b.
+\end{enumerate}
+
+The sorting procedures are a typical low-hanging fruit use of the model.
+Even though the model is a much simpler ball of string than the original
+full text corpus, it is still a very complicated statistical equation
+with, in this case, 12 * 54,982 + 12 * 7,598 = 750,960 estimated
+parameters. Sorting the term and document vectors allows the analyst to
+proceed from an intepretation of the strongest signals toward the
+weakest, stopping when the author feels satisfied that the research
+question is satisfactorily addressed. The assumption here is that the
+strongest statistical signals are unbiased, that when parameters are
+converted to ranks, and the ranks are converted to truncated lists of
+words and documents, that those lists are correct.
+
+The specter that I raised above applies to the document ranking more
+than to the term ranking. A formal feature of topic models is that each
+topic is composed of all terms in the corpus. Of course this is an
+artifact rather than an intention of the model, as the goal is to
+separate relevant from irrelevant terms in the constitution of topics.
+Similarly, all documents are distributions over all topics, but this is
+not (necessarily) the intention; again we expect an elbow in the sorted
+topic document vector in front of which are relevant and after which are
+irrelevant topics. Any concentration index, such as the Gini
+coefficient, calculated on the topic term and to a lesser extent the
+topic document vectors will show very high concentration, where most of
+the probability is owned by a few elements.
+
+We can test for some of these expectations of bias. A document's topic
+assignment may be considered suspect if its term distribution from that
+topic derives from the low and long tail of the topic, rather than from
+the select high probabilty terms normally associated with the topic's
+meaning.
 
 \hypertarget{data}{%
 \section{Data}\label{data}}
@@ -1080,12 +1251,12 @@ Figure \ref{fig:gp-hist} shows the logarithm of the count of the term
 genre as a proportion of the total term count of a text. This
 distribution is much more highly skewed but contains fewer outliers. In
 the median text a genre variant accounted for about 6 in 1,000 terms,
-while at the 90 percentile the rate is 27 in 1,000. 46 texts (0.73
+while at the 90th percentile the rate is 27 in 1,000. 46 texts (0.73
 percent) are outliers where one in ten or more words is a genre variant.
 The text with the largest genre proportion, at 35.7 percent of its
-words, is Welsh's ``Editorial: The Genre Revival''\footnote{www.jstor.org/stable/10.2307/43795866}
-is a single page introduction in a special issue of
-\emph{Literature/Film Quarterly} on genres.
+words, is Welsh's ``Editorial: The Genre Revival''\footnote{www.jstor.org/stable/10.2307/43795866},
+a single page introduction in a special issue of \emph{Literature/Film
+Quarterly} on genres.
 
 \begin{figure}
 
@@ -1096,8 +1267,8 @@ is a single page introduction in a special issue of
 \caption{Distribution of $log_{10}$ of the count of the term "genre" as a proportion of all terms in a text. Pluses indicate outliers.}\label{fig:gp-hist}
 \end{figure}
 
-\hypertarget{sankey}{%
-\section{sankey}\label{sankey}}
+\hypertarget{results}{%
+\section{Results}\label{results}}
 
 Topic models require the analyst to choose the number of topics \(K\).
 The approach we take to guiding this decision is not to expect one
@@ -1112,16 +1283,59 @@ relationships among topics.
 
 Categorical Expectation Maximization is known to
 
-\hypertarget{top-x-doc}{%
-\section{top x doc}\label{top-x-doc}}
-
 \begin{figure}
 
-{\centering \includegraphics{ambrose_dissertation_files/figure-latex/unnamed-chunk-9-1} 
+{\centering \includegraphics{ambrose_dissertation_files/figure-latex/unnamed-chunk-8-1} 
 
 }
 
-\caption{Sankey diagram of document overlap between topic models of increasing values of K.}\label{fig:unnamed-chunk-9}
+\caption{Sankey diagram of document overlap between topic models of increasing values of K.}\label{fig:unnamed-chunk-8}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics{ambrose_dissertation_files/figure-latex/top-gini-1} 
+
+}
+
+\caption{Topic concentrations (TC) within documents by TC within terms. Circles proportional to term frequency explained by each topic}\label{fig:top-gini}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics{ambrose_dissertation_files/figure-latex/elbow-1} 
+
+}
+
+\caption{Cumulative distribution of within topic term probabilities.}\label{fig:elbow}
+\end{figure}
+
+\begin{verbatim}
+Topic index maps to probability index like so:
+      viz
+ [1,]   9
+ [2,]   5
+ [3,]   8
+ [4,]   1
+ [5,]   4
+ [6,]   2
+ [7,]  10
+ [8,]   6
+ [9,]   3
+[10,]   7
+\end{verbatim}
+
+\begin{verbatim}
+Warning in dir.create(out.dir): 'ldaviz/viz' already exists
+\end{verbatim}
+
+\begin{figure}
+
+{\centering \href{https://mercury.dlab.berkeley.edu:2018}{\includegraphics[width=1\linewidth]{ambrose_dissertation_files/figure-latex/genr-mod-viz-1} }
+
+}
+
+\caption{Topic Term Explorer, K=10}\label{fig:genr-mod-viz}
 \end{figure}
 
 \hypertarget{gen}{%
@@ -1669,7 +1883,7 @@ proportion of actual ties out of all possible ties. In Figure
 \ref{fig:mod-proj} an imbalance may be observed where the journal facet
 has many dense free floating or overlapping cliques and where the label
 network appears to be mostly made of isolated labels save for the few
-larger components. In the sampled network the journal facet is five
+larger components. In the sampled network the journal facet is four
 times more dense than the label facet. In the case of our full network,
 the potential imbalance in degree distribution between facets happens to
 be offset by the population imbalance itself. The densities in the full
@@ -2170,8 +2384,8 @@ an article grows quadratically with the length of its reference list.
 \hypertarget{data-1}{%
 \section{Data}\label{data-1}}
 
-\hypertarget{results}{%
-\section{Results}\label{results}}
+\hypertarget{results-1}{%
+\section{Results}\label{results-1}}
 
 The structure of a large world as revealed by KCC can be explored in a
 bottom-up and top-down fashion. Bottom-up observes 3-clique communities

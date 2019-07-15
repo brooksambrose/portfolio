@@ -3,3 +3,6 @@ table{
   margin-right: auto;
   width: auto !important;
 }
+iframe {
+  border: none;
+}
