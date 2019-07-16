@@ -107,8 +107,8 @@ rm(f)
 
 Figure \@ref(fig:genre-goog) gives an indication of what things the term genre has been used to describe. It illustrates the frequency of terms appearing in the Google Books Ngram corpus as the third term in the trigrams beginning with "genre of" or "genres of" [@2012Google]. The size of the words is proportional to the total frequency of the trigram in the English corpus, which spans centuries from 1590 to 2008. The bias of the source--books--is clear in the outsized importance of "literature" and "writing" which are followed closely by "music". The next ten largest nouns are `r gnrgoog[1:17,com %>% setdiff(ec('writing,literature,music,popular,science,historical,literary')) %>% nl]`. Ranked within that series would be several adjectives as well: popular, science (fiction), historical, and literary. Each of these terms refers to a field of concrete cultural products, with the exception of "discourse" which is more abstract.
 
-```{r genre-goog,include=T,fig.cap='Wordcloud of third term in 3gram beginning with "genre of".',screenshot.opts=list(delay = 5)}
-gnrgoog[,wordcloud2::wordcloud2(.SD,widgetsize = NULL,size = .85,gridSize = 1,fontWeight = 'normal',rotateRatio = 0,color = viridis::viridis(max(n),direction = -1,option = 'E',end = .9)[n],shape='circle',shuffle = F,fontFamily = 'Times'),.SDcols=ec('com,n')]
+```{r genre-goog,include=T,fig.cap='Wordcloud of third term in 3gram beginning with "genre of".'}
+gnrgoog[,suppressWarnings(wordcloud2::wordcloud2(.SD,widgetsize = NULL,size = .85,gridSize = 1,fontWeight = 'normal',rotateRatio = 0,color = viridis::viridis(max(n),direction = -1,option = 'E',end = .9)[n],shape='circle',shuffle = F,fontFamily = 'Times')),.SDcols=ec('com,n')]
 ```
 
 ```{r gnrgoog-tab}
@@ -142,7 +142,7 @@ Yet for all the differing treatments of genre mentioned above, do these views of
 
 To return to disciplines, answering such questions would put the researcher in an adisciplinary predicament, for it would mean eschewing the scope restrictions cherished by disciples. The challenges of a meta-disciplinary analysis are manifold and uncertain. One is as likely to grow her audience as to lose it altogether. She risks the dilettantism of a jack-of-all-trades. What's worse, she exposes herself to a dizzying scale of content to consider. If disciplines are indeed functional, then the meta-analysis that effaces disciplines risks being dysfunctional. The upside, however, is appealing. If the universe of meanings given to the term genre does contain complementary uses, a meta-analysis will allow one to consider the consequences of the now arbitrary segregation of a superior metaconcept across disciplinary boundaries. Both sides of the divide could be strengthened by a cultural exchange of their respective terms. The redundancy of parallel discovery can be avoided.
 
-Pathologies of disciplinarity can be diagnosed and treated. Disciplines are social substructures embedded in a larger society and culture. If disciplinarity is a kind of controlled ignorance exchanged for access to secret knowledge. The wayward uses of a term like genre are always lurking at the edges of the firelight defined by a particular disciplinary camp. Discipline as rigor instructs disciples to resist flirtations with the available complexity of the term. The essential tension is very rarely between what is known and unknown; rather it is more commonly between what is known "here" versus what we are conditioned to be willfully ignorant of "there".
+Pathologies of disciplinarity can be diagnosed and treated. Disciplines are social substructures embedded in a larger society and culture. Disciplinarity is a kind of controlled ignorance exchanged for access to secret knowledge. The wayward uses of a term like genre are always lurking at the edges of the firelight defined by a particular disciplinary camp. Discipline as rigor instructs disciples to resist flirtations with the available complexity of the term. The essential tension is very rarely between what is known and unknown; rather it is more commonly between what is known "here" versus what we are conditioned to be willfully ignorant of "there".
 
 In a motivation of some of the arguments to follow, I take a metadisciplinary approach, which is to cast as wide a net as possible on the term genre. In so doing I hope to test the tacit cultural assumption that discipline-based decisions of relevance are valid, that is, that when we exclude arguments from other disciplines we remove distractions and focus on what is important. The alternative possibility is that we are wasting intellectual resources, because to exclude important work about our topic, even if it is codified in foreign terms, is to risk ignorance and redundancy. The topic is genre and how disciplinary boundaries form such that people using the same word nonetheless cannot communicate effectively. They draw on different paradigms, which is to say the term is not really the same term. What I hope to do is uncover the knowledge contexts surrounding the terms, and map these contexts in a way that enumerates the various communities of discourse and theories constituting the term.
 
@@ -199,7 +199,15 @@ From a sense or meaning making perspective topics are trivial; this is because s
 
 A topic model could be posited based on the domain knowledge of an expert, and this would be a form of estimation. The practical value of statistical topic modeling is that the unobserved topics can be induced, with a raft of statistical assumptions, directly from the observed document-by-term matrix to arrive at a model with the features just described. An estimated topic model will contain several other parameters filling in assumptions necessary to make it possible to identify the unobservable topic probabilities in each of the two matrices of the model. For instance, the parameter commonly called alpha makes an assumption about how many topics tend to comprise each document.
 
-### Bias
+#### Choosing K
+
+Finally, topic models require the analyst to choose the number of topics $K$. The approach we take to guiding this decision is not to expect one correct specification of K but rather to see it as a changing resolution. A K=2 model usefully bifurcates the sample and is not simply wrong because it is too restrictive. As K increases we expect the samples to continue to divide as new parameter spaces become available to partition the sample. While this is not strictly a hierarchical design, since each K model is fit independently, we should expect to see aspects of hierarchical topics as well as some degree of stability in the relationships among topics.
+
+Between model cross-validation means that document and term groupings should be relatively stable as K increases. The document overlaps between, say, a three topic model and a four topic model should not be random. By graphing the document overlaps between psuedo hierarchically organized models, it should be clear which topics are the most stable and which are constituted by chance. An ensemble approach would then recommend itself; if the content of a topic is stable across different specifications of K, within limits, then we should have even more confidence in that topic. Another interesting feature of this approach is that it shows when and how topics are able to appear given the parameter space constraints. We expect the most dominant topics, those that appear at low K and remain stable as K increases, to derive from the most semantically distinct documents. For sets of documents that are constituted by multiple true topics, we expect to see splitting of larger topics as the resolution increases to meet the real diversity. Hierarchy will reveal itself as topics with stronger topic signals subsume weaker ones until K reaches a point where there is enough space to separate them. On the other hand, in the classic tradeoff between variance and bias, where K overshoots the true number of topics, we expect to see random splitting and possibly "dust bin" effects where spare topics allow larger topics to prune their weaker term associations.
+
+Presumably K can be set so high as to approach the saturation point of a topic for each document. In this event topics that would otherwise appear in common may alter to represent the uncommon parts of a document, and the topic would merely reproduce the term distribution of a particular document. 
+
+#### Bias
 
 Before documenting the data preparation below, it is important to keep in mind several sampling and modeling considerations that tend to be overlooked. First, idiosyncracy is assumed to be unmodelable. A flaw of traditional topic models is that, at one level, all documents are generic. Originality exists only in novel admixtures of vocabularies held in common. Vocabularies that are limited to trivially small sets of works, be they idiosyncracies of content or style, become sources of bias to topic model estimators. Because idiosyncratic vocabulary is be definition rare, it lacks both the mass of frequency and distribution aross documents to be reliably picked up as a topic. Indeed, if each document were expected to contain some idiosycracy, then the number of topics needed to catch all of the idiosycracy would be equal to the number of texts in the corpus. Each document would then be a combination its own idiosyncratic topic (of which it would account for 100 of topic content) and a distribution over other topics held in common. The real number of topics would then be $K+N$ where $N$ is the number of texts and practically always much greater than $K$. Researchers would balk at including such a large set of extraneous topics, while estimators would both be strained by the greater paramters space and would collide with hyperparamters designed to militate against estimating topics distributed only over a single document.
 
@@ -230,9 +238,24 @@ The specter that I raised above applies to the document ranking more than to the
 
 We can test for some of these expectations of bias. A document's topic assignment may be considered suspect if its term distribution from that topic derives from the low and long tail of the topic, rather than from the select high probabilty terms normally associated with the topic's meaning.
 
+### Qualitative Cross Validation
+
+To be sure, topic model parameters may be biased by misspecification, and if we are being fair, by the gargantuan task we ask of them. In part because topic models, notwithstanding their decades of development, remain difficult to validate statistically, and in part because educated people scoff at the idea of machine reading, many researchers ultimately rely on qualitative interpretation to evaluate model quality. Goodness of fit means that topics pass a sniff test upon inspection. A list of a words either does or does not inspire a theory of meaningful content, and this theory either is or is not confirmed upon inspection of document with a highly ranked topic probabilty.
+
+The same scholars who promote qualitative cross validation (QCV) would presumably have bet on John Henry rather than the steam drill. The arguments against the machine, which excels only at recognition, is that it is a ham fisted intruder into the delicacies of sensemaking, semantics, and interpretation. Meaning operates very differently from information namely by bringing grounding to the response to information. One example of grounding is spreading activation, that when information is presented to the mind by sensation, the mind responds by representing not only a construct of the stimulus but also a network of constructs adjacent in memory to the stimulus. Humans always see more than what they perceive.
+
+Some advocates for the machine go so far as to claim that the topic model actually recovers this "semantic context" in that a large collection of terms defines the topic while only a sample of these terms will be observed in a particular document [@DiMaggio2013Exploiting\:578]. In this sense the topic model fills in missing information in the way that meaningful interpretation works. This notion rests on a very strong assumption, however, which is that information tacit in a particular case is explict in a different case, indeed a quorom of different cases, and that the cases overlap enough to become included under the same topic. This feature would seem to compete against the other feature of polysemy, that a term may appear in multiple topics each with a different context. How does the machine know that a particular term distribution (document) is a case of missing grounding within the same topic as another document, or is in fact a different topic with a different context?
+
+Of course the machine knows nothing other than how to maximize an objective function. It will select random solutions for max for them; indeed, it is the hyperparamter choices of the researcher that decide often decide which tendencies will win out. The question of whether or not a topic model detects polysemy is governed by the choice of the sigma prior, which controls topic correlations, where a constraint toward low topic correlations prohibits detection of polysemy. The current state of software discourages an understanding of how hyperparamter tuning relates to a particular research agenda, and this opacity to the method is a strong driver toward QCV.
+
+Cheap computing does make grid searching across hyperparameter settings possible, if not cost effective, but until this approach is usefully automated it is safe to assume that models will be misspecified in an unknown way, that the model is tuned in a particular arbitrary theoretical direction that is unknown to the researcher. Why would one believe that QCV would inoculate against the hidden bias imposed by the model? To be clear, a biased model is one that will present a vocabulary that *does not* represent the text accurately. In the conventional use of topic models, the researcher is eager to use the topic as a lens that both arranges documents into relevant subsets (a particular draw from the archive) and primes her interpretation of the documents content by a suggestive list of terms. We may enumerate a list of errors that are possible by this method:
+
+Continuous document by topic probabilities are interpreted categorically. Imagine an urchin shaped quality distribution A large portion of the sample is categorized in the sample.
+
+
 ## Data
 
-```{r}
+```{r jtabs}
 f<-'d/p/jtabs.RData'
 if(file.exists(f)){
   load(f)
@@ -255,7 +278,7 @@ if(file.exists(f)){
 rm(f)
 ```
 
-```{r}
+```{r dfrg}
 f<-'d/p/jstordfr-genre.RData'
 if(file.exists(f)){
   load(f)
@@ -317,6 +340,9 @@ if(file.exists(f)){
   # voc<-voc[!.(1:5)]
   setkey(dfrg,lemma)
   dfrg<-dfrg[voc$lemma][!is.na(file_name)]
+  # dedup exact content even if metadata is different (e.g. re-issues)
+  dup<-dfrg[,.(tst=list(unlist(.SD))),by=file_name,.SDcols=ec('lemma,n')] %>% {.[.$tst %>% duplicated,file_name]}
+  dfrg<-dfrg[!dup,on='file_name']
   attr(dfrg,'genreset')<-genreset
   save(dfrg,file=f)
 }
@@ -340,8 +366,9 @@ We will use the JSTOR Data for Research service to download a bag-of-words text 
 1. Aggregate 1grams defined by a single lemma and, for ease of interpretation, name the sum after the most common 1gram.
 1. Remove terms appearing in fewer than 20 documents.
 1. Remove documents that, after the above filters, have a word count of fewer than 500 words.
+1. Remove documents that are identical in content to another document even if metadata differ, i.e. reprints.
 
-```{r}
+```{r genre-stm}
 f<-'d/p/genre-stm.RData'
 if(file.exists(f)){
   load(f)
@@ -397,7 +424,9 @@ egg::ggarrange(p2,p1, heights = c(3,1))
 ```
 
 
+## Estimation
 
+I use the `stm` package in R to estimate a series of topic models from K=2 to K=10 [@Robertsstructuraltopicmodel2013; @Roberts2018stm].
 
 ```{r genre-mod}
 f<-'d/p/genre-mod.RData'
@@ -411,11 +440,9 @@ if(file.exists(f)){
 rm(f)
 ```
 
+
 ## Results
 
-Topic models require the analyst to choose the number of topics $K$. The approach we take to guiding this decision is not to expect one correct specification of K but rather to see it as a changing resolution. A K=2 model usefully bifurcates the sample and is not wrong because it is too restrictive. As K increases we expect the samples to continue to divide as new parameter spaces become available to partition the sample. While this is not strictly a hierarchical design, since each K model is fit independently, we should expect to see aspects of hierarchical topics as well as some degree of stability in the relationships among topics.
-
-Categorical Expectation Maximization is known to 
 
 ```{r}
 el<-lapply(mod,function(x) x$doc.top.theta * x$doc.length)
@@ -452,19 +479,20 @@ nd3$nodes$group<-as.character(nd3$nodes$group)
 mkg<-function(x) ec(x,'\n') %>% strsplit(',') %>% do.call(rbind,.) %>% apply(2,match,nd3$nodes$name) %>% matrix(ncol=2) %>% `-`(1) %>% data.table %>% setnames(ec('source,target'))
 
 gr<-c(
-  '2k2,3k2
-3k2,4k2'
-,
-'4k2,5k2
+'2k1,3k1
+3k1,4k1'
+,  
+'2k2,3k2
+3k2,4k2
+4k2,5k2
 5k2,6k2
 6k2,7k2
-7k2,8k2'
+7k2,8k2
+8k2,9k2
+9k2,10k2'
 ,
-'8k2,9k2
-9k2,10k6'
-,
-'3k1,4k1
-4k1,5k1
+'3k1,4k4
+4k4,5k1
 5k1,6k1
 6k1,7k1
 7k1,8k1
@@ -472,37 +500,28 @@ gr<-c(
 9k1,10k1'
 ,
 '3k3,4k3
-4k3,5k3'
+4k3,5k3
+'
 ,
-'5k3,6k3
-6k3,7k3'
-,
-'7k3,8k3
-8k3,9k3
+'8k3,9k3
 9k3,10k3'
 ,
-'5k5,6k5
-6k5,7k5
+'4k1,5k5
+5k5,6k5'
+,
+'6k5,7k5
 7k5,8k5
 8k5,9k5
 9k5,10k5'
 ,
-'7k7,8k8
-8k8,9k8
-9k8,10k8'
-,
-'4k4,5k4
-5k4,6k4'
-,
-'6k4,7k4
-7k4,8k4
-8k4,9k4
-9k4,10k4'
+'5k4,6k4
+6k4,7k4
+7k4,8k4'
 ,
 '6k6,7k6
 7k6,8k6
 8k6,9k6
-9k6,10k10'
+9k6,10k6'
 ) 
 gs<- gr %>% lapply(mkg)
 nd3$links<-data.table(nd3$links)
@@ -512,9 +531,18 @@ for(i in 1:length(gs)) nd3$links[gs[[i]],on=ec('source,target'),group:=as.charac
 
 ```
 
-```{r,include=T,fig.cap='Sankey diagram of document overlap between topic models of increasing values of K.'}
-sankeyNetwork(Links = nd3$links,Nodes = nd3$nodes,Source = 'source',Target = 'target',Value = 'value',NodeID = 'name',NodeGroup = 'group',LinkGroup = 'group',nodePadding = 0,sinksRight = T,margin = rep(0,4) %>% as.list)
+```{r sankey,include=T,fig.cap='Sankey diagram of document overlap between topic models of increasing values of K.',out.width='100%'}
+sn<-sankeyNetwork(
+  Links = nd3$links,Nodes = nd3$nodes,Source = 'source',Target = 'target',Value = 'value',NodeID = 'name',NodeGroup = 'group',LinkGroup = 'group'
+  ,nodePadding = 0,sinksRight = T
+  ,margin = rep(0,4) %>% as.list
+  ,iterations = 5000
+  )
+sn
+#alluvial::
+# include_graphics('img/genre-sankey.png')
 ```
+
 
 ```{r}
 mem<-list()
@@ -534,19 +562,33 @@ data.frame(t=mod[[9]]$top.word.phi.beta %>% apply(1,ineq::Gini),d=mod[[9]]$doc.t
     ggplot2::annotate(geom='rect',xmax=.$d %>% median,ymin=.$t %>% median,xmin=.$d %>% range %>% min,ymax=.$t %>% range %>% max,fill='yellow',alpha=.1) +
     ggplot2::annotate(geom='rect',xmin=.$d %>% median,ymin=.$t %>% median,xmax=.$d %>% range %>% min,ymax=.$t %>% range %>% min,fill='red',alpha=.1) +
     xlab('TC documents (Gini)') + ylab('TC terms (Gini)') +
-    geom_point(size=sapply(mod[9],function(x) apply(t(x$top.word.phi.beta) * x$term.frequency,2,sum)) %>% lintran(c(5,20)),shape=1,color=rep('brown',10) %>% replace(c(1,4,5,6,10),'purple'),stroke=2) + scale_size_area() +
+    geom_point(size=sapply(mod[9],function(x) apply(t(x$top.word.phi.beta) * x$term.frequency,2,sum)) %>% lintran(c(5,20)),shape=1,color=rep('black',10) %>% replace(c(1,2,3,5,6),'red'),stroke=2) + scale_size_area() +
     geom_text(label=1:nrow(.)) 
-  }
+}
 ```
 
 
-```{r elbow,include=T,fig.cap='Cumulative distribution of within topic term probabilities.'}
-h<-c(3,8,9,10)
+```{r elbow1,include=T,fig.cap='Cumulative distribution of within topic term probabilities.'}
+h<-c(1:10)
 elb<-mod[[9]]$top.word.phi.beta[h,] %>% apply(1,sort,decreasing=T) %>% data.table %>% as.list
-for(i in 1:length(h)) elb[[i]]<-data.table(t=elb[[i]][1:200] %>% cumsum,T=(h)[i])[,i:=.I]
+for(i in 1:length(h)) elb[[i]]<-data.table(t=elb[[i]] %>% cumsum,T=(h)[i])[,i:=.I]
 elb<-rbindlist(elb)[,T:=factor(T)] %>% setkey(T)
-myth(ggplot(elb,aes(x=i,y=t,color=T))) + geom_line(size=1) + theme(legend.position = c(.98,.02),legend.justification = ec('right,bottom'))
+p1<-myth(ggplot(elb[t<=.5],aes(x=i,y=t,color=T)),'Paired') + geom_line(size=1) + theme(legend.position = c(.98,.02),legend.justification = ec('right,bottom'))
+plt(p1)
 ```
+
+```{r elbow2,include=T,fig.cap='Cumulative distribution of within topic document probabilities.'}
+h<-c(1:10)
+elb<-mod[[9]]$doc.top.theta[,h] %>% t %>% apply(1,sort,decreasing=T) %>% data.table %>% as.list
+tst<-elb %>% unlist %>% sample(1000) %>% {data.table(t=.,g=pamk(.,krange = 2)$pamobject$clustering)} %>% {.[,.(m=summary(t) %>% list),by=g]$m} %>% do.call(rbind,.) %>% data.table
+tst<-tst[,min(`3rd Qu.`)]
+for(i in 1:length(h)) elb[[i]]<-data.table(t=elb[[i]] %>% {.[.>tst]} %>% cumsum  %>% `/`(mod[[9]]$documents %>% length)
+                                           ,T=(h)[i])[,i:=.I]
+elb<-rbindlist(elb)[,T:=factor(T)] %>% setkey(T)
+p1<-myth(ggplot(elb,aes(x=i,y=t,color=T)),'Paired') + geom_line(size=1) + theme(legend.position = c(.98,.02),legend.justification = ec('right,bottom'))
+plt(p1)
+```
+
 
 ```{r qcv}
 if(T) withr::with_seed(
@@ -563,7 +605,7 @@ if(T) withr::with_seed(
       i2<-sf[1:i,] %>% factor(levels=ti) %>% table %>% {.[x[2]]}
       wh[[i]]<-data.table(rk[(sz*i1-sz+1):(sz*i1),x[1]],rk[(sz*i2-sz+1):(sz*i2),x[2]]) %>% setnames(as.character(sf[i,]))
       wh[[i]] %>% unlist %>% sample %>% stm$meta[.,.(lr='',url,file_name)] %>% write.table(file = paste0('d/p/jstordfr/genre/man',sprintf('%02d',i),'-',st,'.txt'),quote = F,sep = '\t',row.names = F,col.names = T)
-      }
+    }
     tiszsfstwh<-list(ti=ti,sz=sz,sf=sf,st=st,wh=wh)
     save(tiszsfstwh,file=paste0('d/p/genre-topic-tiszsfstwh-',st,'.RData'))
   }
@@ -574,8 +616,21 @@ if(T) withr::with_seed(
 man<-lapply(dir(pattern='1562748956',recursive = T),fread)
 ```
 
-```{r genr-mod-viz,include=T,fig.cap='Topic Term Explorer, K=10', out.width='100%',screenshot.opts=list(delay = 2),}
+```{r genr-mod-viz,include=T,fig.cap='Topic Term Explorer, K=10', out.width='100%'}
 invisible(lda2viz.f(mod[[length(mod)]],out.dir = 'ldaviz',launch = F))
 knitr::include_url('https://mercury.dlab.berkeley.edu:2018',height='865px')
 ```
 
+```{r tsne-genre, include=T,fig.cap='The urchin'}
+f<-'d/p/tsne-genre.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  tsneg<-Rtsne::Rtsne(mod[[9]]$doc.top.theta,verbose=T)
+  save(tsneg,file=f)
+}
+rm(f)
+```
+
+
+## Discussion
