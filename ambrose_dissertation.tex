@@ -379,7 +379,7 @@ to the extent that they have used the archive correctly.
 This problem of using the archive, by which we mean all libraries and
 other organizations that help scholars find published work, is easily
 expressed by the question, ``what to read?'' Paradoxically, the
-overdevelopment of the archive promotes a functional imperative: to the
+over-development of the archive promotes a functional imperative: to the
 extent that more and more of scholarship is memorable, mechanisms must
 develop to forget large swaths of intellectual history. A person who
 studied a random draw from the archive, even a monumental one, would no
@@ -471,8 +471,8 @@ difference and morphological relation between disciplines and genres,
 namely that scholarly genres are not equivalent to scholarly disciplines
 and that the former are located within the later. I will begin with an
 unstudied attempt to tease out the relation of discipline and genre
-before turning to a more rigourous, even empirical, treatment of genre
-as a term in American scholarship.
+before turning to a more rigorous, even empirical, treatment of genre as
+a term in American scholarship.
 
 Genre is a loanword from French. The origin of the French-Latin word
 ``genre'' and the English-German word ``kind'' both mean membership by
@@ -498,10 +498,10 @@ as to whether the trend is a single process or whether there are
 inflection points. The first segment of the curve from 1899 to 1984
 indicates a period of positive acceleration or quickening of the growth
 trend. On average in the first period the rate of change from one year
-to the next increased by a modest 13.3 occurences a year. However,
+to the next increased by a modest 13.3 occurrences a year. However,
 during the period from 1985 to 2008 the rate of change, though always
-steep, began to decline by an average of 238.3 occurences a year. Like a
-projectile that is simultanously climbing and falling, 1984 acts as
+steep, began to decline by an average of 238.3 occurrences a year. Like
+a projectile that is simultaneously climbing and falling, 1984 acts as
 launch point of precipitous yet unsustainable growth.
 
 \begin{figure}
@@ -559,7 +559,7 @@ exception of ``discourse'' which is more abstract.
 
 \begin{figure}
 
-{\centering \includegraphics{ambrose_dissertation_files/figure-latex/genre-goog-1} 
+{\centering \includegraphics[width=8.4in]{img/genre-goog} 
 
 }
 
@@ -726,15 +726,16 @@ To take an empirical approach to the literature review would be
 subversive were it not the first function of disciplinary genres to
 render atypical draws from the archive irrelevant. Disciplinary
 subfields, genres, are credentialed by secret sets of references, and
-most comers are held at the door. This in and of itself can be subersive
-of even more arbitrary club rules, namely those of educational pedigree,
-such that anyone willing to invest in a presentation of the genre
-definition will be granted access to the venues, if not the invisible
-colleges, of the subfield. To be admitted to the arena is no gaurantee
-of achievement within it, but it is a start. Nevertheless, the scale of
-the archive will always supply entropy enough to create a deterrent of
-flotsam and jetsam around subfields composed of projects and persons who
-either never cracked the code or who willfully eschewed it.
+most comers are held at the door. This in and of itself can be
+subversive of even more arbitrary club rules, namely those of
+educational pedigree, such that anyone willing to invest in a
+presentation of the genre definition will be granted access to the
+venues, if not the invisible colleges, of the subfield. To be admitted
+to the arena is no guarantee of achievement within it, but it is a
+start. Nevertheless, the scale of the archive will always supply entropy
+enough to create a deterrent of flotsam and jetsam around subfields
+composed of projects and persons who either never cracked the code or
+who willfully eschewed it.
 
 \hypertarget{distant-sampling}{%
 \subsection{Distant sampling}\label{distant-sampling}}
@@ -950,7 +951,7 @@ distribution to decide which topic the word will be drawn from, and
 given that topic, one then samples from the topic's word distribution to
 decide which word will be included in the document. A document's topic
 probabilities also create the expectation of how many words are
-attributed to eac topic. A document with topic probabilities .7 from
+attributed to each topic. A document with topic probabilities .7 from
 music and .3 from film would be 70 percent about music and 30 percent
 about film, making for a parsimonious albeit reductive description of
 document content.
@@ -1009,7 +1010,7 @@ the relationships among topics.
 Between model cross-validation means that document and term groupings
 should be relatively stable as K increases. The document overlaps
 between, say, a three topic model and a four topic model should not be
-random. By graphing the document overlaps between psuedo hierarchically
+random. By graphing the document overlaps between pseudo hierarchically
 organized models, it should be clear which topics are the most stable
 and which are constituted by chance. An ensemble approach would then
 recommend itself; if the content of a topic is stable across different
@@ -1023,7 +1024,7 @@ constituted by multiple true topics, we expect to see splitting of
 larger topics as the resolution increases to meet the real diversity.
 Hierarchy will reveal itself as topics with stronger topic signals
 subsume weaker ones until K reaches a point where there is enough space
-to separate them. On the other hand, in the classic tradeoff between
+to separate them. On the other hand, in the classic trade-off between
 variance and bias, where K overshoots the true number of topics, we
 expect to see random splitting and possibly ``dust bin'' effects where
 spare topics allow larger topics to prune their weaker term
@@ -1040,65 +1041,65 @@ a particular document.
 
 Before documenting the data preparation below, it is important to keep
 in mind several sampling and modeling considerations that tend to be
-overlooked. First, idiosyncracy is assumed to be unmodelable. A flaw of
+overlooked. First, idiosyncrasy is assumed to be unmodelable. A flaw of
 traditional topic models is that, at one level, all documents are
 generic. Originality exists only in novel admixtures of vocabularies
 held in common. Vocabularies that are limited to trivially small sets of
-works, be they idiosyncracies of content or style, become sources of
+works, be they idiosyncrasies of content or style, become sources of
 bias to topic model estimators. Because idiosyncratic vocabulary is be
 definition rare, it lacks both the mass of frequency and distribution
-aross documents to be reliably picked up as a topic. Indeed, if each
-document were expected to contain some idiosycracy, then the number of
-topics needed to catch all of the idiosycracy would be equal to the
+across documents to be reliably picked up as a topic. Indeed, if each
+document were expected to contain some idiosyncrasy, then the number of
+topics needed to catch all of the idiosyncrasy would be equal to the
 number of texts in the corpus. Each document would then be a combination
 its own idiosyncratic topic (of which it would account for 100 of topic
 content) and a distribution over other topics held in common. The real
 number of topics would then be \(K+N\) where \(N\) is the number of
 texts and practically always much greater than \(K\). Researchers would
 balk at including such a large set of extraneous topics, while
-estimators would both be strained by the greater paramters space and
-would collide with hyperparamters designed to militate against
+estimators would both be strained by the greater parameters space and
+would collide with hyperparameters designed to militate against
 estimating topics distributed only over a single document.
 
 The impracticality from a modeling perspective of representing
-idiosyncracy coincides with the undertheorized tendency among reseachers
-for extreme pruning of idiosyncracy during data preparation. A more
-parsimonious modeling solution would be to allow a single extra topic
-designed to catch all idiosyncracy. Yet this would tend to violate the
-assumptions behind construction of the other topics for two reasons,
+idiosyncrasy coincides with the undertheorized tendency among
+researchers for extreme pruning of idiosyncrasy during data preparation.
+A more parsimonious modeling solution would be to allow a single extra
+topic designed to catch all idiosyncrasy. Yet this would tend to violate
+the assumptions behind construction of the other topics for two reasons,
 first because one topic would have significant distribution across all
 documents and second because terms within the topic would never be
 estimated together as they would really be a mixture of \(N\)
 uncorrelated subtopics.
 
-Idiosyncracy tends to be pruned in a desire to limit the length of the
+Idiosyncrasy tends to be pruned in a desire to limit the length of the
 vocabulary to bring it within the bounds of computational power and the
-chances of a successful paramater optimization. Depending on the task,
+chances of a successful parameter optimization. Depending on the task,
 however, the researcher may not be so concerned with performance, and
-may leave plenty of idiosyncracy in the sample. What then is the effect
-on the topic estimation of such idiosycracy, since the idiosyncracy must
-end up somewhere?
+may leave plenty of idiosyncrasy in the sample. What then is the effect
+on the topic estimation of such idiosyncrasy, since the idiosyncrasy
+must end up somewhere?
 
 First, there will be a tendency to muddy the content of common topics
-with the particular idiosyncracies of the documents that happen to draw
+with the particular idiosyncrasies of the documents that happen to draw
 on them. This in part explains the long, non-zero tails of topic by term
 distributions, which are usually filtered out during post-estimation and
 interpretation of the models. We would however expect them to corrupt
 the error structure of the topic they contaminate, leading to suboptimal
-estmates of the true terms in the topic.
+estimates of the true terms in the topic.
 
 Second, the document proportion of the contaminated topic will be
-inflated in the contaminating document. After all, the idiosyncracy of
+inflated in the contaminating document. After all, the idiosyncrasy of
 the document was represented, erroneously, in the contaminated topic.
-Because of the lengh of the term vector it is not difficult to imagine
+Because of the length of the term vector it is not difficult to imagine
 the truly pathological case wherein the probability sum of the false
 portion of the topic is greater than that of the true portion. In this
 event, a document could be categorized within a topic due more to the
-false content than to the true content, especially if the idiosyncracy
+false content than to the true content, especially if the idiosyncrasy
 was placed in topics randomly. Contrary to the effect of random error in
 an explanatory variable in ordinary least squares linear regression,
 which is to bias the regression coefficient downward, in a topic model
-the effect will be to bias the topic probabilty of a document upward.
+the effect will be to bias the topic probability of a document upward.
 
 \citet{DiMaggio2013Exploiting} represent a typical albeit conservative
 approach to topic modeling as distant reading. Their data preparation of
@@ -1123,7 +1124,7 @@ document is generated from relatively few topics, makes it even less
 likely that the estimator would spend precious parameter space on a
 noise rather than on a signal topic.
 
-\citet{DiMaggio2013Exploiting}- attempt to placate statistical cricitism
+\citet{DiMaggio2013Exploiting}- attempt to placate statistical criticism
 by substituting quantitative, statistical forms of validation for
 qualitative cross validation of topics. This may be more treacherous
 than the authors admit. Their analytical approach is:
@@ -1135,36 +1136,26 @@ than the authors admit. Their analytical approach is:
   Fit the topic model.
 \item
   Sort the topic by term vectors in decreasing order.
-\end{enumerate}
 
-\begin{enumerate}
-\def\labelenumi{\alph{enumi}.}
-\tightlist
-\item
-  Split the fat head from the skinny tail.
-\item
-  Interpret the terms in the fat head.
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Split the fat head from the skinny tail.
+  \item
+    Interpret the terms in the fat head.
+  \end{enumerate}
 \item
   Sort the topic by document vectors in decreasing order.
-\end{enumerate}
 
-\begin{enumerate}
-\def\labelenumi{\alph{enumi}.}
-\tightlist
-\item
-  Split the fat head from the skinny tail.
-\item
-  Classify those documents in the fat head according to 2.b.
-\end{enumerate}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    Split the fat head from the skinny tail.
+  \item
+    Classify those documents in the fat head according to 2.b.
+  \end{enumerate}
 \item
   Interpret the documents according to 3.b.
 \end{enumerate}
@@ -1174,7 +1165,7 @@ Even though the model is a much simpler ball of string than the original
 full text corpus, it is still a very complicated statistical equation
 with, in this case, 12 * 54,982 + 12 * 7,598 = 750,960 estimated
 parameters. Sorting the term and document vectors allows the analyst to
-proceed from an intepretation of the strongest signals toward the
+proceed from an interpretation of the strongest signals toward the
 weakest, stopping when the author feels satisfied that the research
 question is satisfactorily addressed. The assumption here is that the
 strongest statistical signals are unbiased, that when parameters are
@@ -1197,7 +1188,7 @@ the probability is owned by a few elements.
 We can test for some of these expectations of bias. A document's topic
 assignment may be considered suspect if its term distribution from that
 topic derives from the low and long tail of the topic, rather than from
-the select high probabilty terms normally associated with the topic's
+the select high probability terms normally associated with the topic's
 meaning.
 
 \hypertarget{qualitative-cross-validation}{%
@@ -1213,7 +1204,7 @@ rely on qualitative interpretation to evaluate model quality. Goodness
 of fit means that topics pass a sniff test upon inspection. A list of a
 words either does or does not inspire a theory of meaningful content,
 and this theory either is or is not confirmed upon inspection of
-document with a highly ranked topic probabilty.
+document with a highly ranked topic probability.
 
 The same scholars who promote qualitative cross validation (QCV) would
 presumably have bet on John Henry rather than the steam drill. The
@@ -1224,34 +1215,70 @@ information namely by bringing grounding to the response to information.
 One example of grounding is spreading activation, that when information
 is presented to the mind by sensation, the mind responds by representing
 not only a construct of the stimulus but also a network of constructs
-adjacent in memory to the stimulus. Humans always see more than what
-they perceive.
+adjacent in memory to the stimulus. Simply, humans see more than they
+perceive, but machines cannot.
 
-Some advocates for the machine go so far as to claim that the topic
-model actually recovers this ``semantic context'' in that a large
-collection of terms defines the topic while only a sample of these terms
-will be observed in a particular document
-\citep[578]{DiMaggio2013Exploiting}. In this sense the topic model fills
-in missing information in the way that meaningful interpretation works.
-This notion rests on a very strong assumption, however, which is that
-information tacit in a particular case is explict in a different case,
-indeed a quorom of different cases, and that the cases overlap enough to
-become included under the same topic. This feature would seem to compete
-against the other feature of polysemy, that a term may appear in
-multiple topics each with a different context. How does the machine know
-that a particular term distribution (document) is a case of missing
-grounding within the same topic as another document, or is in fact a
-different topic with a different context?
+This almost but not quite unfair to machines. In machine learning the
+analog to memory is mathematical model representation, and the analog to
+learning is Bayesian updating of old models with new data. A machine
+seeing new data with an old model can indeed see more than it perceives.
+At this moment in the era of computational social science, however,
+researchers train models for the first time on the data they wish to
+explain. It is theoretically possible to communicate and transport
+models from past to present researchers, however this is not done in
+practice for lack of infrastructure and more importantly because social
+scientists rarely study the same thing twice. Where data are ample it is
+possible to simulate a history of memory for the machine using hold out
+techniques where a model is trained on one sample of the data and
+applied to predict another sample. Where the goal is to maximize
+prediction, training and hold out samples are randomly selected. A
+different approach \citep[e.g.~][]{Nay2017Predicting} involves selecting
+training and hold out as a process in time. This is a closer
+approximation to human memory, as humans always approach the present
+only armed with a memory of the past.
+
+As clever as the time sorted hold out strategy is, it is unlikely to
+outperform a supervised approach to model validation wherein human
+judgement serve either as diagnostics or training materials for model
+fitting. Human culture is far too expansive to be modeled by a computer
+for no simpler reason than the data of human memory are always rapidly
+lost and what is retained is selected for arbitrary historical reasons.
+What makes the contest between John Henry and the steam drill
+interesting in the modern era is the social problem of cultural
+reproduction. Machines will outperform humans only where human history
+is made more accessible to machines than to humans, which may be a join
+function of the success of digital archiving coupled with the
+deterioration of human education.
+
+To return to the case of topic models, some advocates for the machine go
+so far as to claim that the topic model actually recovers semantic
+context \citep[578]{DiMaggio2013Exploiting}. Semantic context is a more
+specialized notion than memory, and it refers to the human capacity for
+reproducing common meaning. In language viewed through a topic model a
+large collection of terms defines the topic while only a sample of these
+terms will be observed in a particular document. In this sense the topic
+model fills in missing information in the way that meaningful
+interpretation works. This notion rests on a very strong assumption,
+however, which is that information tacit in a particular case is
+explicit in a different case, indeed a quorum of different cases, and
+that the cases overlap enough to become included under the same topic.
+This feature would seem to compete against the other feature of
+polysemy, that a term may appear in multiple topics each with a
+different context. How does the machine know that a particular term
+distribution (document) is a case of missing grounding within the same
+topic as another document, or is in fact a different topic with a
+different context?
 
 Of course the machine knows nothing other than how to maximize an
-objective function. It will select random solutions for max for them;
-indeed, it is the hyperparamter choices of the researcher that decide
-often decide which tendencies will win out. The question of whether or
-not a topic model detects polysemy is governed by the choice of the
+objective function. Estimators are designed to select random solutions
+and update them in the direction of better models. Indeed, it is the
+hyperparameter choices of the researcher that decide often decide which
+research approaches will win out. For example, the question of whether
+or not a topic model detects polysemy is governed by the choice of the
 sigma prior, which controls topic correlations, where a constraint
 toward low topic correlations prohibits detection of polysemy. The
 current state of software discourages an understanding of how
-hyperparamter tuning relates to a particular research agenda, and this
+hyperparameter tuning relates to a particular research agenda, and this
 opacity to the method is a strong driver toward QCV.
 
 Cheap computing does make grid searching across hyperparameter settings
@@ -1265,12 +1292,45 @@ that \emph{does not} represent the text accurately. In the conventional
 use of topic models, the researcher is eager to use the topic as a lens
 that both arranges documents into relevant subsets (a particular draw
 from the archive) and primes her interpretation of the documents content
-by a suggestive list of terms. We may enumerate a list of errors that
-are possible by this method:
+by a suggestive list of terms.
 
-Continuous document by topic probabilities are interpreted
-categorically. Imagine an urchin shaped quality distribution A large
-portion of the sample is categorized in the sample.
+The QVC error we are most concerned with occurs in the following
+scenario. Continuous document by topic probabilities are interpreted
+categorically according to an explicit or tacit threshold of
+classification. Explicitly, one could analyze the global decay of topic
+probabilities and attempt to find natural empirical separations at
+threshold values. More commonly, the tacit satisficing criterion is met
+as one walks down the ranked list of documents and eventually decides
+that they have understood the topic. The error arises in the
+within-class generalization where classification quality has degraded in
+a continuous fashion (and past the point reached by our satisficed
+reader) yet such errors have been effaced by the hard classification
+rule. In short, by understanding the bellwethers, the researcher only
+partially understands the corpus and indeed only further mystifies the
+poorly classified texts.
+
+It will help to visualize the statistical situation leading to this
+error. In the expected case of model misspecification, usually too few
+topics, we should also expect an urchin shaped quality distribution
+where on each topic spine are bellwether documents drawn out by their
+strong signal to be representative of the topic. As one descends the
+spine of each topic we will begin finding the poorly classified
+documents collected on the body of the urchin. These documents are
+representative of no topics, that is, equally representative of all or
+several topics. For a misspecified model, it is possible that a
+collection of these stragglers would be given a home in a model with an
+extra spine, that is, new parameter space for an extra topic. But
+without a topic to represent them, the analyst may make the mistake of a
+false generalization from bellwether to straggler documents. Such
+stragglers may even be halfway up the spine, assuring their
+classification but for the wrong reason: bellwether documents achieve
+their topic probability by virtue of words at the head of the sorted
+topic by term vector, whereas stragglers achieve their lesser but still
+above threshold topic probabilities from the meaningless long tail of
+the topic by term vector. This long tail, we must recall, contains terms
+that may have trivially small topic probabilities when considered
+separately, but because the term vector is so long their cumulative
+probability may rival that of the true segment of the vector.
 
 \hypertarget{data}{%
 \section{Data}\label{data}}
@@ -1334,12 +1394,66 @@ as well as 6,485 book chapters from 4,427 books. After the above
 processing steps, the sample was reduced to 3,547 articles and 2,797
 chapters, or 6,344 total texts.
 
-Table \ref{tab:genre-jsubj} enumerates the subject labels each text
-inherits from its parent book or journal. JSTOR categorizes the volume
-rather than each item of its contents, and volumes may bear multiple
-labels. To prevent double counting of texts bearing multiple labels,
-each label is given a weight that is the inverse of the number of labels
-given to the text.
+It is fair to ask what is lost during the pre-processing of texts. Many
+are included in error due to JSTOR's internal translation of abstracts;
+where ``genre'' is the French translation of the English ``kind'' the
+text will be included even if the term genre does not actually appear in
+the English title or abstract. While I do not carefully look at the
+content of the excluded documents, assuming they were not texts that
+made important use of the term genre, I do retain some information about
+what components of a text were lost of those documents that were not
+cut. This is a measure called idiosyncrasy, or the proportion of terms
+in a document eliminated during pre-processing. I call it idiosyncrasy
+because the pre-processing condition was that terms would be eliminated
+if they did not appear in at least 20 other texts. Texts that lost a
+large volume of words to this filter are drawing on a vocabulary that
+almost no other texts use. It would not be surprising if these were
+ethnographic or content analytic studies of non English materials.
+
+Figure \ref{fig:idi-hist} shows the right-skewed distribution of
+idiosyncrasy. The median text lost about one tenth (10.19 percent) of
+its words, while 90 percent of texts are within two tenths, and outliers
+begin at about three tenths as can be seen in the boxplot. The 153 (2.41
+percent of) texts above three tenths vary across a range as wide as the
+rest of the distribution. The most idiosyncratic text, at 60.4 percent
+of its vocabulary lost, is Pelli's ``The Revival of the Literary Genre
+of Religious Disputation in Hebrew Haskalah: Isaac Satanow's
+\emph{Divrei Rivot}''.\footnote{www.jstor.org/stable/10.2307/27909026}
+The article, from the journal \emph{Hebrew Studies}, is a single page
+introduction in English to a 12 page essay reprinted in the original
+Hebrew. By page count alone we would expect the idiosyncrasy to be 12/13
+or 92.3 percent, which also illustrates how terms that are not in the
+Roman alphabet may be discarded as OCR errors even prior to the
+idiosyncrasy measurement.
+
+\begin{figure}
+
+{\centering \includegraphics{ambrose_dissertation_files/figure-latex/idi-hist-1} 
+
+}
+
+\caption{Distribution of idiosyncracy, the proportion of document vocabularly dropped during pre-processing. Pluses indicate outliers.}\label{fig:idi-hist}
+\end{figure}
+
+Figure \ref{fig:gp-hist} shows the logarithm of the count of the term
+genre as a proportion of the total term count of a text. This
+distribution is much more highly skewed but contains fewer outliers. In
+the median text a genre variant accounted for about 6 in 1,000 terms,
+while at the 90th percentile the rate is 27 in 1,000. 44 texts (0.69
+percent) are outliers where one in ten or more words is a genre variant.
+The text with the largest genre proportion, at 35.7 percent of its
+words, is Welsh's ``Editorial: The Genre Revival''\footnote{www.jstor.org/stable/10.2307/43795866},
+a single page introduction in a special issue of \emph{Literature/Film
+Quarterly} on genres.
+
+\begin{figure}
+
+{\centering \includegraphics{ambrose_dissertation_files/figure-latex/gp-hist-1} 
+
+}
+
+\caption{Distribution of $log_{10}$ of the count of the term "genre" as a proportion of all terms in a text. Pluses indicate outliers.}\label{fig:gp-hist}
+\end{figure}
 
 \begin{table}[!htbp] \centering 
   \caption{Subject Distribution of Texts} 
@@ -1374,72 +1488,38 @@ Total & 100.02 & 100.01 &  &  \\
 \end{tabular} 
 \end{table}
 
-It is fair to ask what is lost during the pre-processing of texts. Many
-are included in error due to JSTOR's internal translation of abstracts;
-where ``genre'' is the French translation of the English ``kind'' the
-text will be included even if the term genre does not actually appear in
-the English title or abstract. While I do not carefully look at the
-content of the excluded documents, assuming they were not texts that
-made important use of the term genre, I do retain some information about
-what components of a text were lost of those documents that were not
-cut. This is a measure called idiosyncrasy, or the proportion of terms
-in a document eliminated during pre-processing. I call it idiosyncracy
-because the pre-processing condition was that terms would be eliminated
-if they did not appear in at least 20 other texts. Texts that lost a
-large volume of words to this filter are drawing on a vocabulary that
-almost no other texts use. It would not be surprising if these were
-ethnographic or content analytic studies of non English materials.
+Table \ref{tab:genre-jsubj} enumerates the subject labels each text
+inherits from its parent book or journal. JSTOR categorizes the volume
+rather than each item of its contents, and volumes may bear multiple
+labels. The count (N) of discrete labels as a percentage is listed first
+and the table is sorted by that figure. In addition, to prevent double
+counting of texts bearing multiple labels, each label is given a weight
+(W) that is the inverse of the number of labels given to the text. The
+top three, Language \& Literature, Humanities, and History, are the same
+in each case, while Sociology, Music, and Area Studies are ranked higher
+by weight than by count, an indication that Social Sciences frequently
+co-occurs with other labels and is therefore down-weighted. This makes
+sense as Social Sciences, like Humanities and Arts, is a meta subject.
 
-Figure \ref{fig:idi-hist} shows the right-skewed distribution of
-idiosyncracy. The median text lost about one tenth (10.19 percent) of
-its words, while 90 percent of texts are within two tenths, and outliers
-begin at about three tenths as can be seen in the boxplot. The 153 (2.41
-percent of) texts above three tenths vary across a range as wide as the
-rest of the distribution. The most idiosyncratic text, at 60.4 percent
-of its vocabulary lost, is Pelli's ``The Revival of the Literary Genre
-of Religious Disputation in Hebrew Haskalah: Isaac Satanow's
-\emph{Divrei Rivot}''.\footnote{www.jstor.org/stable/10.2307/27909026}
-The article, from the journal \emph{Hebrew Studies}, is a single page
-introduction in English to a 12 page essay reprinted in the original
-Hebrew. By page count alone we would expect the idiosycrasy to be 12/13
-or 92.3 percent, which also illustrates how terms that are not in the
-Roman alphabet may be discarded as OCR errors even prior to the
-idiosyncracy measurement.
-
-\begin{figure}
-
-{\centering \includegraphics{ambrose_dissertation_files/figure-latex/idi-hist-1} 
-
-}
-
-\caption{Distribution of idiosyncracy, the proportion of document vocabularly dropped during pre-processing. Pluses indicate outliers.}\label{fig:idi-hist}
-\end{figure}
-
-Figure \ref{fig:gp-hist} shows the logarithm of the count of the term
-genre as a proportion of the total term count of a text. This
-distribution is much more highly skewed but contains fewer outliers. In
-the median text a genre variant accounted for about 6 in 1,000 terms,
-while at the 90th percentile the rate is 27 in 1,000. 44 texts (0.69
-percent) are outliers where one in ten or more words is a genre variant.
-The text with the largest genre proportion, at 35.7 percent of its
-words, is Welsh's ``Editorial: The Genre Revival''\footnote{www.jstor.org/stable/10.2307/43795866},
-a single page introduction in a special issue of \emph{Literature/Film
-Quarterly} on genres.
-
-\begin{figure}
-
-{\centering \includegraphics{ambrose_dissertation_files/figure-latex/gp-hist-1} 
-
-}
-
-\caption{Distribution of $log_{10}$ of the count of the term "genre" as a proportion of all terms in a text. Pluses indicate outliers.}\label{fig:gp-hist}
-\end{figure}
+``Subject'' is the name given by JSTOR as a description of content, yet
+they also refer to ``discipline'', which is a description of
+conditioning social structures. This is not a mere mincing of words; the
+argument is that content and condition are related but not equivalent,
+that is, that \emph{some} cultural formations (topics) will span social
+boundaries. These rankings, especially the lopsided proportion allocated
+to Language \& Literature, provide expectations as to the number and
+content of topics, under the assumption that there is less within
+discipline than between discipline variation in vocabulary. Of course
+the goal is not to merely recover these discipline categories which are
+already given. Rather, the aim is to drill down to regularities of
+speech as indicators of a freely variable cultural dimension that is
+conditioned but not entirely controlled by social structure.
 
 \hypertarget{estimation}{%
 \section{Estimation}\label{estimation}}
 
-I use the \texttt{stm} package in R to estimate a series of topic models
-from K=2 to K=10
+I will I use the \texttt{stm} package in R to estimate a series of topic
+models from K=2 to K=10
 \citep{Robertsstructuraltopicmodel2013, Roberts2018stm}.
 
 \hypertarget{results}{%
