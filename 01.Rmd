@@ -225,11 +225,11 @@ Second, the document proportion of the contaminated topic will be inflated in th
 
 1. Fit the topic model.
 1. Sort the topic by term vectors in decreasing order.
-    a. Split the fat head from the skinny tail.
-    a. Interpret the terms in the fat head.
+a. Split the fat head from the skinny tail.
+a. Interpret the terms in the fat head.
 1. Sort the topic by document vectors in decreasing order.
-    a. Split the fat head from the skinny tail.
-    a. Classify those documents in the fat head according to 2.b.
+a. Split the fat head from the skinny tail.
+a. Classify those documents in the fat head according to 2.b.
 1. Interpret the documents according to 3.b.
 
 The sorting procedures are a typical low-hanging fruit use of the model. Even though the model is a much simpler ball of string than the original full text corpus, it is still a very complicated statistical equation with, in this case, 12 \* 54,982 + 12 \* 7,598 = `r nn(12 * 54982 + 12 * 7598)` estimated parameters. Sorting the term and document vectors allows the analyst to proceed from an intepretation of the strongest signals toward the weakest, stopping when the author feels satisfied that the research question is satisfactorily addressed. The assumption here is that the strongest statistical signals are unbiased, that when parameters are converted to ranks, and the ranks are converted to truncated lists of words and documents, that those lists are correct.
@@ -405,6 +405,23 @@ rm(f)
 
 The initial query returned `r jart[,.N %>% nn]` articles from `r jart[,.N,by=journal_jcode][,.N %>% nn]` different journals, as well as `r jbok[,.N %>% nn]` book chapters from `r jbok[,.N,by=book_id][,.N %>% nn]` books. After the above processing steps, the sample was reduced to `r {nab<-stm$meta[,.N,by=file_name][,c(j=file_name %>% grepl('^jour',.) %>% sum,b=file_name %>% grepl('^book',.) %>% sum)];nab['j'] %>% nn}` articles and `r nab['b'] %>% nn` chapters, or `r nab %>% sum %>% nn` total texts.
 
+Table \@ref(tab:genre-jsubj) enumerates the subject labels each text inherits from its parent book or journal. JSTOR categorizes the volume rather than each item of its contents, and volumes may bear multiple labels. To prevent double counting of texts bearing multiple labels, each label is given a weight that is the inverse of the number of labels given to the text.
+
+```{r genre-jsubj,include=T}
+sbj<-stm$meta[,.(dis=unlist(dis),W=1/length(unlist(dis))),by=file_name][!is.na(dis)]
+sbj<-merge(sbj[,.(W=sum(W)),by=dis][,W:=prop.table(W)*100],sbj[,.N,by=dis][,N:=prop.table(N)*100]) %>% setcolorder(ec('dis,N,W')) %>% setorder(-N)
+sbj[,`:=`(rN=order(N,decreasing = T),rW=order(W,decreasing = T))]
+sbj<-rbindlist(
+  list(
+    sbj[cumsum(N)<=90]
+    ,sbj[cumsum(N)>90,.(dis='Other',N=sum(N),W=sum(W),rN=NA,rW=NA)]
+    ,sbj[,.(dis='Total',N=sum(N %>% round(2)),W=sum(W %>% round(2)),rN=NA,rW=NA)]
+  )
+)[,.(dis,N=round(N,2),W=round(W,2),rN,rW)]
+sbj %>% set_colnames(ec('Subject,N %,W %,Rank N,Rank W')) %>% sg(tit='Subject Distribution of Texts',sum=F) # kable(col.names = ec('Subject,N %,W %,Rank N,Rank W'),caption = 'Subject Distribution of Texts')
+```
+
+
 It is fair to ask what is lost during the pre-processing of texts. Many are included in error due to JSTOR's internal translation of abstracts; where "genre" is the French translation of the English "kind" the text will be included even if the term genre does not actually appear in the English title or abstract. While I do not carefully look at the content of the excluded documents, assuming they were not texts that made important use of the term genre, I do retain some information about what components of a text were lost of those documents that were not cut. This is a measure called idiosyncrasy, or the proportion of terms in a document eliminated during pre-processing. I call it idiosyncracy because the pre-processing condition was that terms would be eliminated if they did not appear in at least 20 other texts. Texts that lost a large volume of words to this filter are drawing on a vocabulary that almost no other texts use. It would not be surprising if these were ethnographic or content analytic studies of non English materials.
 
 Figure \@ref(fig:idi-hist) shows the right-skewed distribution of idiosyncracy. The median text lost about one tenth (`r stm$meta[,(100*median(idi)) %>% round(2)]` percent) of its words, while 90 percent of texts are within two tenths, and outliers begin at about three tenths as can be seen in the boxplot. The `r stm$meta[, sum(idi>.3) %>% nn]` (`r stm$meta[,(100*mean(idi>.3)) %>% round(2)]` percent of) texts above three tenths vary across a range as wide as the rest of the distribution. The most idiosyncratic text, at `r stm$meta[,(max(idi)*100) %>% round(1)]` percent of its vocabulary lost, is `r stm$meta[which.max(idi),auth[[1]]$last %>% nl]`'s "`r stm$meta[which.max(idi),tit %>% tolower %>% tools::toTitleCase(.) %>% gsub('"+','\\*',.)]`".^[`r stm$meta[which.max(idi),url]`] The article, from the journal *`r stm$meta[which.max(idi),sotit]`*, is a single page introduction in English to a 12 page essay reprinted in the original Hebrew. By page count alone we would expect the idiosycrasy to be 12/13 or `r round(12/13*100,1)` percent, which also illustrates how terms that are not in the Roman alphabet may be discarded as OCR errors even prior to the idiosyncracy measurement.
@@ -441,7 +458,59 @@ rm(f)
 ```
 
 
+```{r qcv}
+if(F) withr::with_seed(
+  12345,{
+    ti<-1:10
+    sz<-5
+    sf<-ti %>% combn(2) %>% t %>% {data.table(.)[sample(1:.N)]} %>% apply(1,sample) %>% t
+    rk<-mod[[9]]$doc.top.theta %>% apply(2,order,decreasing=T) %>% head((length(ti)-1)*sz) %>% apply(2,sample)
+    st<-Sys.time() %>% as.integer
+    wh<-list()
+    for(i in 1:nrow(sf)) {
+      x<-sf[i,] 
+      i1<-sf[1:i,] %>% factor(levels=ti) %>% table %>% {.[x[1]]}
+      i2<-sf[1:i,] %>% factor(levels=ti) %>% table %>% {.[x[2]]}
+      wh[[i]]<-data.table(rk[(sz*i1-sz+1):(sz*i1),x[1]],rk[(sz*i2-sz+1):(sz*i2),x[2]]) %>% setnames(as.character(sf[i,]))
+      wh[[i]] %>% unlist %>% sample %>% stm$meta[.,.(lr='',url,file_name)] %>% write.table(file = paste0('d/p/jstordfr/genre/man',sprintf('%02d',i),'-',st,'.txt'),quote = F,sep = '\t',row.names = F,col.names = T)
+    }
+    f<-paste0('d/p/jstordfr/genre-notes-',st,'.txt')
+    if(!file.exists(f)) dir(recursive = T,pattern = paste0('man.+',st)) %>% sub('.+/','',.) %>% lapply(function(x) data.table(file=x,side=ec('l,r'),note=':')) %>% rbindlist %>% write.table(file = f,quote = F,sep = '\t',row.names = F,col.names = T,na = '')
+    tiszsfstwh<-list(ti=ti,sz=sz,sf=sf,st=st,wh=wh)
+    save(tiszsfstwh,file=paste0('d/p/genre-topic-tiszsfstwh-',st,'.RData'))
+  }
+)
+load('d/p/genre-topic-tiszsfstwh-1563337035.RData')
+```
+
+
 ## Results
+
+```{r qvc-r}
+man<-list()
+for(i in dir(recursive=T,pattern='man.+1563337035.txt')) {
+  j<-sub('.+man([0-9]+).+','\\1',i)
+  man[[j]]<-fread(i)[,man:=as.integer(j)]
+}
+not<-fread(dir(recursive=T,pattern='note.+1563337035.txt'))[,man:=sub('man([0-9]+).+','\\1',file) %>% as.integer]
+wh<-lapply(tiszsfstwh$wh,function(x) x %>% melt(measure.vars=1:2,value.name = 'file',variable.name='T') %>% .[,file_name:=stm$meta[file,file_name]] %>% .[,!'file']) 
+chi<-list()
+if(identical(length(man),length(wh))) for(i in 1:length(wh)){
+  chi[[i]]<-wh[[i]][man[[i]],on='file_name']
+}
+xt<-suppressWarnings(lapply(chi,function(x) chisq.test(factor(x$lr),factor(x$T))))
+xel<-lapply(xt,function(x) data.table(s=x$observed %>% colnames %>% .[1],r=x$observed %>% colnames %>% .[2],p=x$p.value)) %>% rbindlist %>% .[,ew:=p-(min(p))]
+```
+
+```{r,include=T,fig.cap='Topic confusion network. Tied topics contained at least two errors in blind manual sorting test. Untied topics were perfectly separated.'}
+xel[,{
+  g<-graph_from_edgelist(.SD %>% as.matrix,F)
+  edge_attr(g,'weight')<-ew
+  subgraph.edges(g,which(!!ew),delete.vertices = F) %>% {
+    plot(.,layout=withr::with_seed(3,layout_with_fr(.)),edge.width=5,vertex.size=30,vertex.label.font=2,vertex.label.color='white',vertex.color=degree(.) %>% factor %>% {viridis::viridis(1+length(levels(.)))[as.integer(.)]})
+  }
+},.SDcols=ec('s,r')]
+```
 
 
 ```{r}
@@ -479,7 +548,7 @@ nd3$nodes$group<-as.character(nd3$nodes$group)
 mkg<-function(x) ec(x,'\n') %>% strsplit(',') %>% do.call(rbind,.) %>% apply(2,match,nd3$nodes$name) %>% matrix(ncol=2) %>% `-`(1) %>% data.table %>% setnames(ec('source,target'))
 
 gr<-c(
-'2k1,3k1
+  '2k1,3k1
 3k1,4k1'
 ,  
 '2k2,3k2
@@ -537,10 +606,9 @@ sn<-sankeyNetwork(
   ,nodePadding = 0,sinksRight = T
   ,margin = rep(0,4) %>% as.list
   ,iterations = 5000
-  )
+)
 sn
-#alluvial::
-# include_graphics('img/genre-sankey.png')
+# if(latex|docx) include_graphics('img/genre-sankey.png') else sn
 ```
 
 
@@ -589,28 +657,6 @@ p1<-myth(ggplot(elb,aes(x=i,y=t,color=T)),'Paired') + geom_line(size=1) + theme(
 plt(p1)
 ```
 
-
-```{r qcv}
-if(T) withr::with_seed(
-  12345,{
-    ti<-1:10
-    sz<-5
-    sf<-ti %>% combn(2) %>% t %>% {data.table(.)[sample(1:.N)]} %>% apply(1,sample) %>% t
-    rk<-mod[[9]]$doc.top.theta %>% apply(2,order,decreasing=T) %>% head((length(ti)-1)*sz) %>% apply(2,sample)
-    st<-Sys.time() %>% as.integer
-    wh<-list()
-    for(i in 1:nrow(sf)) {
-      x<-sf[i,] 
-      i1<-sf[1:i,] %>% factor(levels=ti) %>% table %>% {.[x[1]]}
-      i2<-sf[1:i,] %>% factor(levels=ti) %>% table %>% {.[x[2]]}
-      wh[[i]]<-data.table(rk[(sz*i1-sz+1):(sz*i1),x[1]],rk[(sz*i2-sz+1):(sz*i2),x[2]]) %>% setnames(as.character(sf[i,]))
-      wh[[i]] %>% unlist %>% sample %>% stm$meta[.,.(lr='',url,file_name)] %>% write.table(file = paste0('d/p/jstordfr/genre/man',sprintf('%02d',i),'-',st,'.txt'),quote = F,sep = '\t',row.names = F,col.names = T)
-    }
-    tiszsfstwh<-list(ti=ti,sz=sz,sf=sf,st=st,wh=wh)
-    save(tiszsfstwh,file=paste0('d/p/genre-topic-tiszsfstwh-',st,'.RData'))
-  }
-)
-```
 
 ```{r man-sort}
 man<-lapply(dir(pattern='1562748956',recursive = T),fread)
