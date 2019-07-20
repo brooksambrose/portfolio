@@ -997,8 +997,8 @@ document.
 \subsubsection{Choosing K}\label{choosing-k}}
 
 Finally, topic models require the analyst to choose the number of topics
-\(K\). The approach we take to guiding this decision is not to expect
-one correct specification of K but rather to see it as a changing
+K. The approach we take to guiding this decision is not to expect one
+correct specification of K but rather to see it as a changing
 resolution. A K=2 model usefully bifurcates the sample and is not simply
 wrong because it is too restrictive. As K increases we expect the
 samples to continue to divide as new parameter spaces become available
@@ -1012,46 +1012,87 @@ should be relatively stable as K increases. The document overlaps
 between, say, a three topic model and a four topic model should not be
 random. By graphing the document overlaps between pseudo hierarchically
 organized models, it should be clear which topics are the most stable
-and which are constituted by chance. An ensemble approach would then
-recommend itself; if the content of a topic is stable across different
-specifications of K, within limits, then we should have even more
-confidence in that topic. Another interesting feature of this approach
-is that it shows when and how topics are able to appear given the
-parameter space constraints. We expect the most dominant topics, those
-that appear at low K and remain stable as K increases, to derive from
-the most semantically distinct documents. For sets of documents that are
-constituted by multiple true topics, we expect to see splitting of
-larger topics as the resolution increases to meet the real diversity.
-Hierarchy will reveal itself as topics with stronger topic signals
-subsume weaker ones until K reaches a point where there is enough space
-to separate them. On the other hand, in the classic trade-off between
-variance and bias, where K overshoots the true number of topics, we
-expect to see random splitting and possibly ``dust bin'' effects where
-spare topics allow larger topics to prune their weaker term
-associations.
-
-Presumably K can be set so high as to approach the saturation point of a
-topic for each document. In this event topics that would otherwise
-appear in common may alter to represent the uncommon parts of a
-document, and the topic would merely reproduce the term distribution of
-a particular document. Thus there is a transition from content in common
-to content idiosyncratic to groups of trivial size and to individual
-texts in the limiting case. The model is unable to ignore supposedly
-idiosyncratic content, and will thus find a way to classify it among
-topics in common, effectively distorting the term vector of those
-topics. There may be no objective point at which the content in common
-is neatly separable from the idiosyncratic content; indeed common
-content evolves only by idiosyncratic innovation. Our ensemble approach
-allows us to observing how particular content moves among topics as
-parameter space opens up.
+and which are constituted partly by chance or by spurious association.
+An ensemble approach would then recommend itself; if the content of a
+topic is stable across different specifications of K, within limits,
+then we should have even more confidence in that topic.
 
 When parameter space is limited the content with the strongest signal
 will come to define the topic, but the document by term vector will be
-contaminated with content that would be separated given more space. The
-content with the strongest signal will be ``FREX'' terms, terms that are
-both frequent and exclusive. Frequent means they have high counts in the
-overall corpus either due to occurence across many texts or to very
-large counts in a few texts. Exclusivity means they occur in
+contaminated with content that would be separated given more space. For
+sets of documents that are constituted by multiple true topics, we
+expect to see splitting of larger topics as the resolution increases to
+meet the real diversity. Hierarchy will reveal itself as topics with
+stronger topic signals subsume weaker ones until K reaches a point where
+there is enough space to separate them. On the other hand, in the
+classic trade-off between variance and bias, where K overshoots the true
+number of topics, we expect to see random splitting and possibly ``dust
+bin'' effects where spare topics allow larger topics to prune their
+weaker term associations.
+
+Another interesting feature of this approach is that it shows when and
+how topics are able to appear given the parameter space constraints. We
+expect the most dominant topics, those that appear at low K and remain
+stable as K increases, to derive from vocabularies that are both
+distinctive and used often. The content with the strongest signal will
+be ``FREX'' terms, terms that are both frequent and exclusive
+\citep{Bischof2012Summarizing}. Frequent means they have high counts in
+the overall corpus either due to occurence across many texts or to very
+large counts in a few texts. Exclusivity (or monosemy, the opposite of
+polysemy) means that terms co-occur with an invariable set of additional
+terms. Exclusivity is related to the notion of anchor words that are
+maximally exclusive, appearing in only one topic, but likely very
+infrequent.The exclusivity of terms relates to the separability of
+topics \citep{Arora2018Learning}, while the topic frequency of terms
+relates to the topic's contribution to explaining global corpus
+frequencies, that is, to maximizing an objective function during
+estimation.
+
+It should be possible to predict a priority for topic emergence as
+models increase parameter space for topics. First, we expect topic model
+estimators would be very tuned to picking out even a handful of texts
+written in a different language than the main corpus, as terms within
+those documents would be both frequent and exclusive. We should expect
+technical jargon to also send a strong signal for it's high exclusivity.
+Indeed, these special vocabularies are salient for both humans and
+machines for the same reason; they are easy to disassociate from the
+rest of the text. The priority, however, for the estimators will be to
+explain global term frequencies, so jargon will likely be behind
+frequent terms that appear across multiple topics, as in the case of
+polysemy or the more common case of simple language ambiguity. Trailing
+the pack and the last to emerge will be, as we have discussed,
+idiosyncracy.
+
+\begin{table}[!htbp] \centering 
+  \caption{Content variation across frequency and exclusivity} 
+  \label{tab:frex} 
+\begin{tabular}{@{\extracolsep{5pt}} lll} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+exclusivity & frequency &   \\ 
+\hline \\[-1.8ex] 
+  & low & high \\ 
+low & 4. idiosyncrasy & 2. polysemy/ambiguity \\ 
+high & 3. jargon & 1. foreign language \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
+Indeed we may never expect idiosycracy to emerge as its own topic except
+in the limiting case. Presumably K can be set so high as to approach the
+saturation point of a topic for each document. In this event topics that
+would otherwise appear in common may alter to represent the uncommon
+parts of a document, and the topic would merely reproduce the term
+distribution of a particular document. Thus there is a transition from
+content in common to content idiosyncratic to groups of trivial size and
+to individual texts in the limiting case. The model is unable to ignore
+supposedly idiosyncratic content, and will thus find a way to classify
+it among topics in common, effectively distorting the term vector of
+those topics. There may be no objective point at which the content in
+common is neatly separable from the idiosyncratic content; indeed common
+content evolves only by idiosyncratic innovation. Our ensemble approach
+allows us to observing how particular content moves among topics as
+parameter space opens up.
 
 \hypertarget{bias}{%
 \subsubsection{Bias}\label{bias}}
@@ -1086,8 +1127,8 @@ topic designed to catch all idiosyncrasy. Yet this would tend to violate
 the assumptions behind construction of the other topics for two reasons,
 first because one topic would have significant distribution across all
 documents and second because terms within the topic would never be
-estimated together as they would really be a mixture of \(N\)
-uncorrelated subtopics.
+estimated together as they would really be a mixture of N uncorrelated
+subtopics.
 
 Idiosyncrasy tends to be pruned in a desire to limit the length of the
 vocabulary to bring it within the bounds of computational power and the
@@ -1599,46 +1640,66 @@ approaches to validating topic quality mentioned above.
 \subsection{Blind QCV}\label{blind-qcv}}
 
 Contrary to the conventional approach of inspecting the topic by term
-matrix first, I performed a blind QCV test. This test allows me to
-interpret topic content from whole texts rather than from the decomposed
-topic by term matrix. This gives an opportunity to assess document
-classification quality prior to developing a bias about what topic
-contents mean.
+matrix first, I performed a blind QCV sorting test in which I tried to
+recover the model classification without prior knowledge of topic
+content. This test allows me to interpret topic content from whole texts
+rather than from the decomposed topic by term matrix and gives an
+opportunity to assess document classification quality prior to
+developing a bias about what topic contents mean.
 
-First for each topic I created a list 45 documents long to supply five
-comparison cases for each of the nine other topics. These lists were the
+For each topic I created a list with 45 documents to supply five
+comparison cases for each of the other nine topics. These lists were the
 conventional document by topic rankings sorted in decreasing order of
 topic probability. For each of the 45 unordered topic pairs I removed
 five articles at random from the document list of each topic and
-combined them to create a new set of ten containing documents from each
-topic. These ten document lists were then shuffled. The validation task
-was simply to inspect each document and attempt to recover the topic
-groupings, the logic being that well classified documents should be easy
-to sort and, conversely the harder the task the lower the classification
-quality. Note that each document appears only once within a particular
-topic's list, but that a document may appear twice or more if it is
-ranked in the top 45 documents of more than one topic. Each of the 45
-sorting tasks was completed as quickly as possible, which in practice
-meant skimming the first page of each document. If this was enough to
-suggest the correct groupings the task would be finished. If the status
-of some documents was unclear then a closer inspection of the text would
-be necessary. Never was a document read closely, however.
+combined them to create a new randomly shuffled set of ten containing
+documents from both topics. The validation task was simply to inspect
+each document and attempt to recover the topic groupings, the logic
+being that the better the document classification the easier the
+sorting. Difficulty was measured by the chi squared probability of the
+manual classifaction against the true classification. An additional
+metric of difficulty, the amount of time required to complete the task,
+was gathered as well but not used.
 
-An added benefit of this procedure is that it began to establish a
-theory of each topic by a direct inspection of bellwether texts.
+Each of the 45 sorting tasks was completed as quickly as possible, which
+in practice meant skimming the first page of each document. If this was
+enough to suggest the correct groupings the task would be finished. If
+the status of some documents was unclear then a closer inspection of the
+text would be necessary. Never was a document read closely, so topic
+content is still what can be gleaned from a cursory skimming of the
+text. Each document appeared only once within a particular topic's list
+to avoid the bias of knowing how a document had already been classified
+in a previous task. However, because a document could have appeared
+twice or more if it was ranked in the top 45 documents of more than one
+topic, some documents were seen twice. In these cases the bias would
+serve to confuse rather than clarify since the classification would be
+different between two instances of the same article.
 
 \begin{figure}
 
-{\centering \includegraphics{ambrose_dissertation_files/figure-latex/unnamed-chunk-2-1} 
+{\centering \includegraphics{ambrose_dissertation_files/figure-latex/man-con-1} 
 
 }
 
-\caption{Topic confusion network. Tied topics contained at least two errors in blind manual sorting test. Untied topics were perfectly separated.}\label{fig:unnamed-chunk-2}
+\caption{Topic confusion network. Tied topics contained at least two errors in blind manual sorting test. Untied topics were perfectly separated. Colors represent a topic's number of imperfect tests.}\label{fig:man-con}
 \end{figure}
 
-\begin{verbatim}
-NULL
-\end{verbatim}
+Among the 45 different sorting tasks only two outcomes were observed. 41
+tasks was performed perfectly (p = 0.0114), while in 4 tasks or one
+error was made, which is to say two documents were misclassified (p =
+0.2059). Figure \ref{fig:man-con} visualizes the pairwise outcomes as a
+confusion network. Topics that are disconnected were sorted perfectly,
+while topics that are connected were confused. The graph reveals some
+variation in topic confusion, as two were confused twice, four were
+confused once, and the remaining four were never confused.
+
+It is not actually clear whether topic confusion is a function of
+document misclassification or my lack of familiarity with topic content.
+An added benefit of this procedure is that it began to establish a
+theory of each topic by a direct inspection of bellwether texts, and
+this growing familiarity decreases the task difficulty over the course
+of the testing. In either event the results of this diagnostic provide a
+basis for understanding interpretive difficulties later.
 
 \hypertarget{k-descent}{%
 \subsection{K descent}\label{k-descent}}
