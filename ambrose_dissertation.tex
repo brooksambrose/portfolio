@@ -82,7 +82,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-07-19}
+    \date{2019-07-20}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -1034,7 +1034,24 @@ Presumably K can be set so high as to approach the saturation point of a
 topic for each document. In this event topics that would otherwise
 appear in common may alter to represent the uncommon parts of a
 document, and the topic would merely reproduce the term distribution of
-a particular document.
+a particular document. Thus there is a transition from content in common
+to content idiosyncratic to groups of trivial size and to individual
+texts in the limiting case. The model is unable to ignore supposedly
+idiosyncratic content, and will thus find a way to classify it among
+topics in common, effectively distorting the term vector of those
+topics. There may be no objective point at which the content in common
+is neatly separable from the idiosyncratic content; indeed common
+content evolves only by idiosyncratic innovation. Our ensemble approach
+allows us to observing how particular content moves among topics as
+parameter space opens up.
+
+When parameter space is limited the content with the strongest signal
+will come to define the topic, but the document by term vector will be
+contaminated with content that would be separated given more space. The
+content with the strongest signal will be ``FREX'' terms, terms that are
+both frequent and exclusive. Frequent means they have high counts in the
+overall corpus either due to occurence across many texts or to very
+large counts in a few texts. Exclusivity means they occur in
 
 \hypertarget{bias}{%
 \subsubsection{Bias}\label{bias}}
@@ -1209,7 +1226,7 @@ document with a highly ranked topic probability.
 The same scholars who promote qualitative cross validation (QCV) would
 presumably have bet on John Henry rather than the steam drill. The
 arguments against the machine, which excels only at recognition, is that
-it is a ham fisted intruder into the delicacies of sensemaking,
+it is a ham-fisted intruder into the delicacies of sensemaking,
 semantics, and interpretation. Meaning operates very differently from
 information namely by bringing grounding to the response to information.
 One example of grounding is spreading activation, that when information
@@ -1218,28 +1235,31 @@ not only a construct of the stimulus but also a network of constructs
 adjacent in memory to the stimulus. Simply, humans see more than they
 perceive, but machines cannot.
 
-This almost but not quite unfair to machines. In machine learning the
-analog to memory is mathematical model representation, and the analog to
-learning is Bayesian updating of old models with new data. A machine
-seeing new data with an old model can indeed see more than it perceives.
-At this moment in the era of computational social science, however,
-researchers train models for the first time on the data they wish to
-explain. It is theoretically possible to communicate and transport
-models from past to present researchers, however this is not done in
-practice for lack of infrastructure and more importantly because social
-scientists rarely study the same thing twice. Where data are ample it is
-possible to simulate a history of memory for the machine using hold out
-techniques where a model is trained on one sample of the data and
-applied to predict another sample. Where the goal is to maximize
-prediction, training and hold out samples are randomly selected. A
-different approach \citep[e.g.~][]{Nay2017Predicting} involves selecting
-training and hold out as a process in time. This is a closer
-approximation to human memory, as humans always approach the present
-only armed with a memory of the past.
+To permit an aside, that machines are dumb because they can only
+recognize information rather than interpret meaning is almost but not
+quite unfair to machines. In machine learning the analog to memory, be
+it treated as semantic grounding or anything else, is mathematical model
+representation, and the analog to learning is a Bayesian updating of old
+models with new data. A machine seeing new data with an old model can
+indeed see more than it perceives. At this moment in the era of
+computational social science, however, researchers train models for the
+first time on the data they wish to explain. It is theoretically
+possible to communicate and transport models from past to present
+researchers, however this is not done in practice for lack of
+infrastructure and more importantly because social scientists rarely
+study the same thing twice. Where data are ample it is possible to
+simulate a history of memory for the machine using hold out techniques
+where a model is trained on one sample of the data and applied to
+predict another sample. Where the goal is to maximize prediction,
+training and hold out samples are randomly selected. A different
+approach \citep[e.g.~][]{Nay2017Predicting} involves selecting training
+and hold out as a process in time. This is a closer approximation to
+human memory, as humans always approach the present only armed with a
+memory of the past.
 
 As clever as the time sorted hold out strategy is, it is unlikely to
 outperform a supervised approach to model validation wherein human
-judgement serve either as diagnostics or training materials for model
+judgements serve either as diagnostics or training materials for model
 fitting. Human culture is far too expansive to be modeled by a computer
 for no simpler reason than the data of human memory are always rapidly
 lost and what is retained is selected for arbitrary historical reasons.
@@ -1294,20 +1314,21 @@ that both arranges documents into relevant subsets (a particular draw
 from the archive) and primes her interpretation of the documents content
 by a suggestive list of terms.
 
-The QVC error we are most concerned with occurs in the following
-scenario. Continuous document by topic probabilities are interpreted
-categorically according to an explicit or tacit threshold of
-classification. Explicitly, one could analyze the global decay of topic
-probabilities and attempt to find natural empirical separations at
-threshold values. More commonly, the tacit satisficing criterion is met
-as one walks down the ranked list of documents and eventually decides
-that they have understood the topic. The error arises in the
-within-class generalization where classification quality has degraded in
-a continuous fashion (and past the point reached by our satisficed
-reader) yet such errors have been effaced by the hard classification
-rule. In short, by understanding the bellwethers, the researcher only
-partially understands the corpus and indeed only further mystifies the
-poorly classified texts.
+We wish to keep two forms of QVC error in mind.
+
+The first is classification error. Continuous document by topic
+probabilities are interpreted categorically according to an explicit or
+tacit threshold of classification. Explicitly, one could analyze the
+global decay of topic probabilities and attempt to find natural
+empirical separations at threshold values. More commonly, the tacit
+satisficing criterion is met as one walks down the ranked list of
+documents and eventually decides that they have understood the topic.
+The error arises in the within-class generalization where classification
+quality has degraded in a continuous fashion (and past the point reached
+by our satisficed reader) yet such errors have been effaced by the hard
+classification rule. In short, by understanding the bellwethers, the
+researcher only partially understands the corpus and indeed only further
+mystifies the poorly classified stragglers. The
 
 It will help to visualize the statistical situation leading to this
 error. In the expected case of model misspecification, usually too few
@@ -1329,8 +1350,52 @@ topic by term vector, whereas stragglers achieve their lesser but still
 above threshold topic probabilities from the meaningless long tail of
 the topic by term vector. This long tail, we must recall, contains terms
 that may have trivially small topic probabilities when considered
-separately, but because the term vector is so long their cumulative
-probability may rival that of the true segment of the vector.
+separately, but when considered together, because the term vector is so
+long, their cumulative probability of the false segment of the vector
+may rival in classification power that of the true segment
+
+The second is confirmation bias. Readers tend to skim and scan documents
+more quickly and less carefully when they are told what they are about
+ahead of time. It is natural for researchers to want to examine the
+document by term vectors of the topics in order to understand the
+results of the model and apply the findings to solve research problems.
+These lists may be very evocative of theoretical assumptions and
+practical expectations about the corpus, which has not normally been
+read ahead of time. Theories of the meaning of the term lists are very
+likely to establish confirmation bias in the reading of the texts. This
+means that documents that have been classified by a satisficing or
+threshold rule will be read differently with a theory of the topic mind
+than they would have otherwise. Confirmation bias means that the analyst
+will have a tendency to focus on content that appears to conform to the
+topic theory while discounting content that contradicts it. Sometimes
+this will be warranted; after all, a feature of the model is the ability
+to classify documents into multiple topics. In the pathological case,
+however, the meaning of the document will be distorted to fit the theory
+of the topic. A model that causes the reader to misread a document is
+certainly not helpful, and the pull of confirmation bias tends to be
+strong even when one is aware of it.
+
+Fortunately we may adjust our research strategy to avoid each of these
+errors. First, to ameliorate the effects of misclassification, a simple
+concentration metric such as the Gini coefficient applied to the vector
+will help discriminate between documents classified strongly into only a
+few topics (highly concentrated probabilities) from documents that are
+classified weakly into all (that is none) of the topics (unconcentrated
+probabilites). To assess a particular topic classification it should be
+possible to decompose the portion of a document's text that is estimated
+to derive from a particular topic. That portion can then be scored
+according to its weighted average rank of the terms actually contained
+in the document, with poorly classified texts having lower scores. The
+utility of this quality scoring is to shine a light on the yet to be
+correctly classified texts, which may give an indication of when it is
+warranted to increase the parameter space of the model, and which may
+substantively reveal the less dominant (perhaps dominated) vocabularies.
+
+Second, it is a simple enough procedure to forestall interpretation of
+the topic by term vectors until after a direct inspection of documents
+grouped by their topic classification. Indeed, this may promote a more
+accurate theory of the topic since terms will be interpreted within
+context.
 
 \hypertarget{data}{%
 \section{Data}\label{data}}
@@ -1522,8 +1587,45 @@ I will I use the \texttt{stm} package in R to estimate a series of topic
 models from K=2 to K=10
 \citep{Robertsstructuraltopicmodel2013, Roberts2018stm}.
 
-\hypertarget{results}{%
-\section{Results}\label{results}}
+\hypertarget{diagnostics}{%
+\section{Diagnostics}\label{diagnostics}}
+
+Having fit nine models sequentially from K = 2 to K = 10, we alight on
+the final as the focal model given that we assume that at ten topics we
+have still underspecified K. In this section I implement several
+approaches to validating topic quality mentioned above.
+
+\hypertarget{blind-qcv}{%
+\subsection{Blind QCV}\label{blind-qcv}}
+
+Contrary to the conventional approach of inspecting the topic by term
+matrix first, I performed a blind QCV test. This test allows me to
+interpret topic content from whole texts rather than from the decomposed
+topic by term matrix. This gives an opportunity to assess document
+classification quality prior to developing a bias about what topic
+contents mean.
+
+First for each topic I created a list 45 documents long to supply five
+comparison cases for each of the nine other topics. These lists were the
+conventional document by topic rankings sorted in decreasing order of
+topic probability. For each of the 45 unordered topic pairs I removed
+five articles at random from the document list of each topic and
+combined them to create a new set of ten containing documents from each
+topic. These ten document lists were then shuffled. The validation task
+was simply to inspect each document and attempt to recover the topic
+groupings, the logic being that well classified documents should be easy
+to sort and, conversely the harder the task the lower the classification
+quality. Note that each document appears only once within a particular
+topic's list, but that a document may appear twice or more if it is
+ranked in the top 45 documents of more than one topic. Each of the 45
+sorting tasks was completed as quickly as possible, which in practice
+meant skimming the first page of each document. If this was enough to
+suggest the correct groupings the task would be finished. If the status
+of some documents was unclear then a closer inspection of the text would
+be necessary. Never was a document read closely, however.
+
+An added benefit of this procedure is that it began to establish a
+theory of each topic by a direct inspection of bellwether texts.
 
 \begin{figure}
 
@@ -1538,6 +1640,9 @@ models from K=2 to K=10
 NULL
 \end{verbatim}
 
+\hypertarget{k-descent}{%
+\subsection{K descent}\label{k-descent}}
+
 \begin{figure}
 
 {\centering \includegraphics[width=1\linewidth]{ambrose_dissertation_files/figure-latex/sankey-1} 
@@ -1546,6 +1651,9 @@ NULL
 
 \caption{Sankey diagram of document overlap between topic models of increasing values of K.}\label{fig:sankey}
 \end{figure}
+
+\hypertarget{concentration}{%
+\subsection{Concentration}\label{concentration}}
 
 \begin{figure}
 
@@ -1573,6 +1681,9 @@ NULL
 
 \caption{Cumulative distribution of within topic document probabilities.}\label{fig:elbow2}
 \end{figure}
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
 
 \begin{verbatim}
 Topic index maps to probability index like so:
