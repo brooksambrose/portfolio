@@ -205,7 +205,9 @@ Finally, topic models require the analyst to choose the number of topics $K$. Th
 
 Between model cross-validation means that document and term groupings should be relatively stable as K increases. The document overlaps between, say, a three topic model and a four topic model should not be random. By graphing the document overlaps between pseudo hierarchically organized models, it should be clear which topics are the most stable and which are constituted by chance. An ensemble approach would then recommend itself; if the content of a topic is stable across different specifications of K, within limits, then we should have even more confidence in that topic. Another interesting feature of this approach is that it shows when and how topics are able to appear given the parameter space constraints. We expect the most dominant topics, those that appear at low K and remain stable as K increases, to derive from the most semantically distinct documents. For sets of documents that are constituted by multiple true topics, we expect to see splitting of larger topics as the resolution increases to meet the real diversity. Hierarchy will reveal itself as topics with stronger topic signals subsume weaker ones until K reaches a point where there is enough space to separate them. On the other hand, in the classic trade-off between variance and bias, where K overshoots the true number of topics, we expect to see random splitting and possibly "dust bin" effects where spare topics allow larger topics to prune their weaker term associations.
 
-Presumably K can be set so high as to approach the saturation point of a topic for each document. In this event topics that would otherwise appear in common may alter to represent the uncommon parts of a document, and the topic would merely reproduce the term distribution of a particular document. 
+Presumably K can be set so high as to approach the saturation point of a topic for each document. In this event topics that would otherwise appear in common may alter to represent the uncommon parts of a document, and the topic would merely reproduce the term distribution of a particular document. Thus there is a transition from content in common to content idiosyncratic to groups of trivial size and to individual texts in the limiting case. The model is unable to ignore supposedly idiosyncratic content, and will thus find a way to classify it among topics in common, effectively distorting the term vector of those topics. There may be no objective point at which the content in common is neatly separable from the idiosyncratic content; indeed common content evolves only by idiosyncratic innovation. Our ensemble approach allows us to observing how particular content moves among topics as parameter space opens up.
+
+When parameter space is limited the content with the strongest signal will come to define the topic, but the document by term vector will be contaminated with content that would be separated given more space. The content with the strongest signal will be "FREX" terms, terms that are both frequent and exclusive. Frequent means they have high counts in the overall corpus either due to occurence across many texts or to very large counts in a few texts. Exclusivity means they occur in 
 
 #### Bias
 
@@ -242,11 +244,11 @@ We can test for some of these expectations of bias. A document's topic assignmen
 
 To be sure, topic model parameters may be biased by misspecification, and if we are being fair, by the gargantuan task we ask of them. In part because topic models, notwithstanding their decades of development, remain difficult to validate statistically, and in part because educated people scoff at the idea of machine reading, many researchers ultimately rely on qualitative interpretation to evaluate model quality. Goodness of fit means that topics pass a sniff test upon inspection. A list of a words either does or does not inspire a theory of meaningful content, and this theory either is or is not confirmed upon inspection of document with a highly ranked topic probability.
 
-The same scholars who promote qualitative cross validation (QCV) would presumably have bet on John Henry rather than the steam drill. The arguments against the machine, which excels only at recognition, is that it is a ham fisted intruder into the delicacies of sensemaking, semantics, and interpretation. Meaning operates very differently from information namely by bringing grounding to the response to information. One example of grounding is spreading activation, that when information is presented to the mind by sensation, the mind responds by representing not only a construct of the stimulus but also a network of constructs adjacent in memory to the stimulus. Simply, humans see more than they perceive, but machines cannot.
+The same scholars who promote qualitative cross validation (QCV) would presumably have bet on John Henry rather than the steam drill. The arguments against the machine, which excels only at recognition, is that it is a ham-fisted intruder into the delicacies of sensemaking, semantics, and interpretation. Meaning operates very differently from information namely by bringing grounding to the response to information. One example of grounding is spreading activation, that when information is presented to the mind by sensation, the mind responds by representing not only a construct of the stimulus but also a network of constructs adjacent in memory to the stimulus. Simply, humans see more than they perceive, but machines cannot.
 
-This almost but not quite unfair to machines. In machine learning the analog to memory is mathematical model representation, and the analog to learning is Bayesian updating of old models with new data. A machine seeing new data with an old model can indeed see more than it perceives. At this moment in the era of computational social science, however, researchers train models for the first time on the data they wish to explain. It is theoretically possible to communicate and transport models from past to present researchers, however this is not done in practice for lack of infrastructure and more importantly because social scientists rarely study the same thing twice. Where data are ample it is possible to simulate a history of memory for the machine using hold out techniques where a model is trained on one sample of the data and applied to predict another sample. Where the goal is to maximize prediction, training and hold out samples are randomly selected. A different approach [e.g. @Nay2017Predicting] involves selecting training and hold out as a process in time. This is a closer approximation to human memory, as humans always approach the present only armed with a memory of the past. 
+To permit an aside, that machines are dumb because they can only recognize information rather than interpret meaning is almost but not quite unfair to machines. In machine learning the analog to memory, be it treated as semantic grounding or anything else, is mathematical model representation, and the analog to learning is a Bayesian updating of old models with new data. A machine seeing new data with an old model can indeed see more than it perceives. At this moment in the era of computational social science, however, researchers train models for the first time on the data they wish to explain. It is theoretically possible to communicate and transport models from past to present researchers, however this is not done in practice for lack of infrastructure and more importantly because social scientists rarely study the same thing twice. Where data are ample it is possible to simulate a history of memory for the machine using hold out techniques where a model is trained on one sample of the data and applied to predict another sample. Where the goal is to maximize prediction, training and hold out samples are randomly selected. A different approach [e.g. @Nay2017Predicting] involves selecting training and hold out as a process in time. This is a closer approximation to human memory, as humans always approach the present only armed with a memory of the past. 
 
-As clever as the time sorted hold out strategy is, it is unlikely to outperform a supervised approach to model validation wherein human judgement serve either as diagnostics or training materials for model fitting. Human culture is far too expansive to be modeled by a computer for no simpler reason than the data of human memory are always rapidly lost and what is retained is selected for arbitrary historical reasons. What makes the contest between John Henry and the steam drill interesting in the modern era is the social problem of cultural reproduction. Machines will outperform humans only where human history is made more accessible to machines than to humans, which may be a join function of the success of digital archiving coupled with the deterioration of human education.
+As clever as the time sorted hold out strategy is, it is unlikely to outperform a supervised approach to model validation wherein human judgements serve either as diagnostics or training materials for model fitting. Human culture is far too expansive to be modeled by a computer for no simpler reason than the data of human memory are always rapidly lost and what is retained is selected for arbitrary historical reasons. What makes the contest between John Henry and the steam drill interesting in the modern era is the social problem of cultural reproduction. Machines will outperform humans only where human history is made more accessible to machines than to humans, which may be a join function of the success of digital archiving coupled with the deterioration of human education.
 
 To return to the case of topic models, some advocates for the machine go so far as to claim that the topic model actually recovers semantic context [@DiMaggio2013Exploiting\:578]. Semantic context is a more specialized notion than memory, and it refers to the human capacity for reproducing common meaning. In language viewed through a topic model a large collection of terms defines the topic while only a sample of these terms will be observed in a particular document. In this sense the topic model fills in missing information in the way that meaningful interpretation works. This notion rests on a very strong assumption, however, which is that information tacit in a particular case is explicit in a different case, indeed a quorum of different cases, and that the cases overlap enough to become included under the same topic. This feature would seem to compete against the other feature of polysemy, that a term may appear in multiple topics each with a different context. How does the machine know that a particular term distribution (document) is a case of missing grounding within the same topic as another document, or is in fact a different topic with a different context?
 
@@ -254,10 +256,17 @@ Of course the machine knows nothing other than how to maximize an objective func
 
 Cheap computing does make grid searching across hyperparameter settings possible, if not cost effective, but until this approach is usefully automated it is safe to assume that models will be misspecified in an unknown way, that the model is tuned in a particular arbitrary theoretical direction that is unknown to the researcher. Why would one believe that QCV would inoculate against the hidden bias imposed by the model? To be clear, a biased model is one that will present a vocabulary that *does not* represent the text accurately. In the conventional use of topic models, the researcher is eager to use the topic as a lens that both arranges documents into relevant subsets (a particular draw from the archive) and primes her interpretation of the documents content by a suggestive list of terms.
 
-The QVC error we are most concerned with occurs in the following scenario. Continuous document by topic probabilities are interpreted categorically according to an explicit or tacit threshold of classification. Explicitly, one could analyze the global decay of topic probabilities and attempt to find natural empirical separations at threshold values. More commonly, the tacit satisficing criterion is met as one walks down the ranked list of documents and eventually decides that they have understood the topic. The error arises in the within-class generalization where classification quality has degraded in a continuous fashion (and past the point reached by our satisficed reader) yet such errors have been effaced by the hard classification rule. In short, by understanding the bellwethers, the researcher only partially understands the corpus and indeed only further mystifies the poorly classified texts.
+We wish to keep two forms of QVC error in mind.
 
-It will help to visualize the statistical situation leading to this error. In the expected case of model misspecification, usually too few topics, we should also expect an urchin shaped quality distribution where on each topic spine are bellwether documents drawn out by their strong signal to be representative of the topic. As one descends the spine of each topic we will begin finding the poorly classified documents collected on the body of the urchin. These documents are representative of no topics, that is, equally representative of all or several topics. For a misspecified model, it is possible that a collection of these stragglers would be given a home in a model with an extra spine, that is, new parameter space for an extra topic.  But without a topic to represent them, the analyst may make the mistake of a false generalization from bellwether to straggler documents. Such stragglers may even be halfway up the spine, assuring their classification but for the wrong reason: bellwether documents achieve their topic probability by virtue of words at the head of the sorted topic by term vector, whereas stragglers achieve their lesser but still above threshold topic probabilities from the meaningless long tail of the topic by term vector. This long tail, we must recall, contains terms that may have trivially small topic probabilities when considered separately, but because the term vector is so long their cumulative probability may rival that of the true segment of the vector.
+The first is classification error. Continuous document by topic probabilities are interpreted categorically according to an explicit or tacit threshold of classification. Explicitly, one could analyze the global decay of topic probabilities and attempt to find natural empirical separations at threshold values. More commonly, the tacit satisficing criterion is met as one walks down the ranked list of documents and eventually decides that they have understood the topic. The error arises in the within-class generalization where classification quality has degraded in a continuous fashion (and past the point reached by our satisficed reader) yet such errors have been effaced by the hard classification rule. In short, by understanding the bellwethers, the researcher only partially understands the corpus and indeed only further mystifies the poorly classified stragglers. The 
 
+It will help to visualize the statistical situation leading to this error. In the expected case of model misspecification, usually too few topics, we should also expect an urchin shaped quality distribution where on each topic spine are bellwether documents drawn out by their strong signal to be representative of the topic. As one descends the spine of each topic we will begin finding the poorly classified documents collected on the body of the urchin. These documents are representative of no topics, that is, equally representative of all or several topics. For a misspecified model, it is possible that a collection of these stragglers would be given a home in a model with an extra spine, that is, new parameter space for an extra topic.  But without a topic to represent them, the analyst may make the mistake of a false generalization from bellwether to straggler documents. Such stragglers may even be halfway up the spine, assuring their classification but for the wrong reason: bellwether documents achieve their topic probability by virtue of words at the head of the sorted topic by term vector, whereas stragglers achieve their lesser but still above threshold topic probabilities from the meaningless long tail of the topic by term vector. This long tail, we must recall, contains terms that may have trivially small topic probabilities when considered separately, but when considered together, because the term vector is so long, their cumulative probability of the false segment of the vector may rival in classification power that of the true segment
+
+The second is confirmation bias. Readers tend to skim and scan documents more quickly and less carefully when they are told what they are about ahead of time. It is natural for researchers to want to examine the document by term vectors of the topics in order to understand the results of the model and apply the findings to solve research problems. These lists may be very evocative of theoretical assumptions and practical expectations about the corpus, which has not normally been read ahead of time. Theories of the meaning of the term lists are very likely to establish confirmation bias in the reading of the texts. This means that documents that have been classified by a satisficing or threshold rule will be read differently with a theory of the topic mind than they would have otherwise. Confirmation bias means that the analyst will have a tendency to focus on content that appears to conform to the topic theory while discounting content that contradicts it. Sometimes this will be warranted; after all, a feature of the model is the ability to classify documents into multiple topics. In the pathological case, however, the meaning of the document will be distorted to fit the theory of the topic. A model that causes the reader to misread a document is certainly not helpful, and the pull of confirmation bias tends to be strong even when one is aware of it.
+
+Fortunately we may adjust our research strategy to avoid each of these errors. First, to ameliorate the effects of misclassification, a simple concentration metric such as the Gini coefficient applied to the vector will help discriminate between documents classified strongly into only a few topics (highly concentrated probabilities) from documents that are classified weakly into all (that is none) of the topics (unconcentrated probabilites). To assess a particular topic classification it should be possible to decompose the portion of a document's text that is estimated to derive from a particular topic. That portion can then be scored according to its weighted average rank of the terms actually contained in the document, with poorly classified texts having lower scores. The utility of this quality scoring is to shine a light on the yet to be correctly classified texts, which may give an indication of when it is warranted to increase the parameter space of the model, and which may substantively reveal the less dominant (perhaps dominated) vocabularies.
+
+Second, it is a simple enough procedure to forestall interpretation of the topic by term vectors until after a direct inspection of documents grouped by their topic classification. Indeed, this may promote a more accurate theory of the topic since terms will be interpreted within context.
 
 ## Data
 
@@ -449,7 +458,7 @@ Table \@ref(tab:genre-jsubj) enumerates the subject labels each text inherits fr
 
 ## Estimation
 
-I will   I use the `stm` package in R to estimate a series of topic models from K=2 to K=10 [@Robertsstructuraltopicmodel2013; @Roberts2018stm].
+I will I use the `stm` package in R to estimate a series of topic models from K=2 to K=10 [@Robertsstructuraltopicmodel2013; @Roberts2018stm].
 
 ```{r genre-mod}
 f<-'d/p/genre-mod.RData'
@@ -490,9 +499,19 @@ load('d/p/genre-topic-tiszsfstwh-1563337035.RData')
 ```
 
 
-## Results
+## Diagnostics
 
-```{r qvc-r}
+Having fit nine models sequentially from K = 2 to K = 10, we alight on the final as the focal model given that we assume that at ten topics we have still underspecified K. In this section I implement several approaches to validating topic quality mentioned above.
+
+### Blind QCV
+
+Contrary to the conventional approach of inspecting the topic by term matrix first, I performed a blind QCV test. This test allows me to interpret topic content from whole texts rather than from the decomposed topic by term matrix. This gives an opportunity to assess document classification quality prior to developing a bias about what topic contents mean.
+
+First for each topic I created a list 45 documents long to supply five comparison cases for each of the nine other topics. These lists were the conventional document by topic rankings sorted in decreasing order of topic probability. For each of the 45 unordered topic pairs I removed five articles at random from the document list of each topic and combined them to create a new set of ten containing documents from each topic. These ten document lists were then shuffled. The validation task was simply to inspect each document and attempt to recover the topic groupings, the logic being that well classified documents should be easy to sort and, conversely the harder the task the lower the classification quality. Note that each document appears only once within a particular topic's list, but that a document may appear twice or more if it is ranked in the top 45 documents of more than one topic. Each of the 45 sorting tasks was completed as quickly as possible, which in practice meant skimming the first page of each document. If this was enough to suggest the correct groupings the task would be finished. If the status of some documents was unclear then a closer inspection of the text would be necessary. Never was a document read closely, however.
+
+An added benefit of this procedure is that it began to establish a theory of each topic by a direct inspection of bellwether texts.
+
+```{r qcv-r}
 man<-list()
 for(i in dir(recursive=T,pattern='man.+1563337035.txt')) {
   j<-sub('.+man([0-9]+).+','\\1',i)
@@ -518,15 +537,16 @@ xel[,{
 },.SDcols=ec('s,r')]
 ```
 
+### K descent
 
-```{r}
+```{r snk-el}
 el<-lapply(mod,function(x) x$doc.top.theta * x$doc.length)
 for(i in 1:length(el)) dimnames(el[[i]])<-list(d=paste0('d',1:nrow(el[[i]])),t=paste0(i+1,'k',1:ncol(el[[i]])))
 th<-el %>% unlist %>% sample(1000) %>% {data.table(w=.,c=pamk(.)$pamobject$clustering)[,.(.N,m=mean(w),mn=min(w),mx=max(w)),by=c]}
 for(i in 1:length(el)) el[[i]][el[[i]]<=th$mx[which.min(th$m)]]<-0
 ```
 
-```{r}
+```{r snk-graph}
 bel<-list()
 for(i in 2:length(el)) {
   y<-do.call(cbind,el[(i-1):i]) %>% crossprod(.)
@@ -544,7 +564,7 @@ g<-graph_from_edgelist(bel[,!'weight'] %>% as.matrix)
 E(g)$weight<-bel[,weight]
 ```
 
-```{r}
+```{r snk-group}
 nid<-merge(bel[,.(wp=prop.table(weight) %>% max),by=s],bel[,.(wp=prop.table(weight) %>% max),by=r],by.x = 's',by.y = 'r')[,k:=tstrsplit(s,split='k',type.convert = T)[[1]]][,c:=pamk(.SD)$pamobject$clustering,.SDcols=ec('wp.x,wp.y')] %>% setkey(s)
 nd3<-igraph_to_networkD3(g)
 nd3$nodes$group<-nid[.(nd3$nodes$name),c]
@@ -616,8 +636,7 @@ sn<-sankeyNetwork(
 if(docx) include_graphics('img/genre-sankey.png') else sn
 ```
 
-
-```{r}
+```{r snk-rnk}
 mem<-list()
 for(i in 1:length(gr)) {
   mem[[i]]<-list()
@@ -627,6 +646,8 @@ for(i in 1:length(gr)) {
 }
 rnk<-lapply(mem,lapply,function(x) data.table(d=x,r=length(x):1)) %>% lapply(rbindlist) %>% lapply(function(x) x[,.(r=sum(r)),by=d] %>% setorder(-r))
 ```
+
+### Concentration
 
 ```{r top-gini,include=T,fig.cap='Topic concentrations (TC) within documents by TC within terms. Circles proportional to term frequency explained by each topic'}
 data.frame(t=mod[[9]]$top.word.phi.beta %>% apply(1,ineq::Gini),d=mod[[9]]$doc.top.theta %>% apply(2,ineq::Gini)) %>% {myth(ggplot(data=.,aes(x=d,y=t))) +
@@ -639,7 +660,6 @@ data.frame(t=mod[[9]]$top.word.phi.beta %>% apply(1,ineq::Gini),d=mod[[9]]$doc.t
     geom_text(label=1:nrow(.)) 
 }
 ```
-
 
 ```{r elbow1,include=T,fig.cap='Cumulative distribution of within topic term probabilities.'}
 h<-c(1:10)
@@ -662,6 +682,7 @@ p1<-myth(ggplot(elb,aes(x=i,y=t,color=T)),'Paired') + geom_line(size=1) + theme(
 plt(p1)
 ```
 
+## Results
 
 ```{r man-sort}
 man<-lapply(dir(pattern='1562748956',recursive = T),fread)
