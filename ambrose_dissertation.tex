@@ -82,7 +82,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-07-20}
+    \date{2019-07-23}
 
 \usepackage{booktabs}
 \usepackage{longtable}
@@ -856,7 +856,7 @@ everything they come across (and so it has been said of Weber,
 forgetting nothing).\footnote{What a scandal it would be if Weber's
   lionizers discovered that he had only read text indices! Surely they
   would bury such a fact. But the point would remain that even if a
-  scholar were able to consumer an entire corpus, the sheer scale of
+  scholar were able to consume an entire corpus, the sheer scale of
   contemporary publication is now beyond even a genius's capacity.}
 These contemporary shortcuts are historically arbitrary, but what is
 important is first that they serve the function of reducing the
@@ -874,6 +874,10 @@ developed a meaning that may be oblique to their content or at odds with
 the intentions of the the original authors. A ritual citation is simply
 one that is cited but not read, but also one that is so often used that
 its socially acceptable usages are known from other secondary accounts.
+For all the lack of due diligence in the use of ritual citations, their
+socially understood meanings are better than the thoroughly perfunctory
+citation, those included because they were returned by a digital
+reference service and never read by anyone.
 
 What are the social patterns of the traditional literature review are
 topics for the sociology of knowledge and science and for the
@@ -902,13 +906,13 @@ assumption no two snowflakes are alike, then the enterprise of knowing
 more than we have before is fraught, and CTA becomes yet another
 arbitrary reducer.
 
-What's worse, or perhaps better, is that there is reason to believe that
-idiosyncrasy itself is an historically variable feature of disciplines.
-If institutional isomorphism has proceeded to some high level in
-contemporary disciplines, then the assumption that reading the
+What is worse, or perhaps better, is that there is reason to believe
+that idiosyncrasy itself is an historically variable feature of
+disciplines. If institutional isomorphism has proceeded to some high
+level in contemporary disciplines, then the assumption that reading the
 bellwether texts is as good as reading the entire herd may hold. If this
 is true, however, it raises as many questions about the process of
-institutionalization in cultural production than it answers about the
+institutionalization in cultural production as it answers about the
 potential to learn truer versions of intellectual history.
 
 \hypertarget{topic-models}{%
@@ -952,9 +956,9 @@ given that topic, one then samples from the topic's word distribution to
 decide which word will be included in the document. A document's topic
 probabilities also create the expectation of how many words are
 attributed to each topic. A document with topic probabilities .7 from
-music and .3 from film would be 70 percent about music and 30 percent
-about film, making for a parsimonious albeit reductive description of
-document content.
+music and .3 from film would be expected to be 70 percent about music
+and 30 percent about film, making for a parsimonious albeit reductive
+description of document content.
 
 It is important not to overinterpret a topic model. Topic models are
 sometimes called ``generative'' as if they explained how documents are
@@ -964,22 +968,23 @@ punctuation tends not to be represented (though it could be), the terms
 chosen would be in a random order incapable of making meaningful
 sentences. Hence it is best to avoid the generative metaphor as an
 explanation of texts. If topic models touch on the generation of real,
-meaningful documents, it is only a very limited sense. What the topic
+meaningful documents, it is only in a very limited sense. What the topic
 model really represents is how vocabularies are organized to condition
 an author's diction. A vocabulary can be thought of as an infrastructure
-of meaning more trivial than grammar or syntax. A topic is a simple list
-of words that is known or knowable across all authors in a field. Topics
-do not tell stories; authors tell stories in part by making diction
-choices that are conditioned by topics.
+of meaning more trivial than grammar or syntax and much more trivial
+than concepts or ideas. A topic is a simple list of words that is known
+or knowable across all authors in a field. Topics do not tell stories;
+authors tell stories in part by making diction choices that are
+conditioned by topics.
 
 From a sense or meaning making perspective topics are trivial; this is
 because so little is known about what an author says by knowing the
 topic or even the term distribution of a document. What topics are
-useful for, however, is the type of segmentation or cartography of a
-corpus. Topics are really a global feature, perhaps a cultural feature,
-of a corpus of texts that is itself meaningfully selected. If indeed a
-field of texts is oriented to common if not always overlapping
-vocabularies, then topics can represent this well.
+useful for, however, is the segmentation or cartography of a corpus.
+Topics are really a global feature, perhaps a cultural feature, of a
+corpus of texts that is itself meaningfully selected. If indeed a field
+of texts is oriented to common if not always overlapping vocabularies,
+then topics can represent this well.
 
 A topic model could be posited based on the domain knowledge of an
 expert, and this would be a form of estimation. The practical value of
@@ -991,7 +996,14 @@ parameters filling in assumptions necessary to make it possible to
 identify the unobservable topic probabilities in each of the two
 matrices of the model. For instance, the parameter commonly called alpha
 makes an assumption about how many topics tend to comprise each
-document.
+document. Alpha values close to zero make it very likely that documents
+are composed of only one topic, while an alpha value greater than one
+increase the chance that a document will be decomposed into several
+topics. Alpha equal to one creates no tendency, so concentrated and
+diffuse mixtures are all equally likely to occur. It would behoove a
+researcher to make an informed decision about this parameter, yet
+software often sets an arbitrary default that the user may or may not be
+fully aware of.
 
 \hypertarget{choosing-k}{%
 \subsubsection{Choosing K}\label{choosing-k}}
@@ -1091,8 +1103,23 @@ it among topics in common, effectively distorting the term vector of
 those topics. There may be no objective point at which the content in
 common is neatly separable from the idiosyncratic content; indeed common
 content evolves only by idiosyncratic innovation. Our ensemble approach
-allows us to observing how particular content moves among topics as
+allows us to observe how particular content moves among topics as
 parameter space opens up.
+
+Finally, there are sparse model estimation techniques that may
+ameliorate some of the considerations above. Sparse models, such as
+those using the L1 or LASSO constraint, bias parameters downward and
+thus may set trivial regression coefficients nearer to zero. Such an
+approach may well fail to represent idiosyncracy at all, which is either
+a benefit or a hazard. Such a biased model would, by effacing the
+idiosyncratic portions, yield topics representing only the common
+portions of documents. This avoids what we have termed contamination at
+the cost of losing information that we may care about. Thus for sparse
+model techniques to be used responsibly document residuals would need to
+be calculated to help recover the unmodeled portions of the texts. The
+model diagnostics we explore below attempt to separate model parameters
+into common and idiosyncratic elements, the difference being whether the
+idiosyncrasy is located in the topic model or in the residuals.
 
 \hypertarget{bias}{%
 \subsubsection{Bias}\label{bias}}
@@ -1532,6 +1559,11 @@ or 92.3 percent, which also illustrates how terms that are not in the
 Roman alphabet may be discarded as OCR errors even prior to the
 idiosyncrasy measurement.
 
+\begin{verbatim}
+Scale for 'y' is already present. Adding another scale for 'y', which
+will replace the existing scale.
+\end{verbatim}
+
 \begin{figure}
 
 {\centering \includegraphics{ambrose_dissertation_files/figure-latex/idi-hist-1} 
@@ -1551,6 +1583,10 @@ The text with the largest genre proportion, at 35.7 percent of its
 words, is Welsh's ``Editorial: The Genre Revival''\footnote{www.jstor.org/stable/10.2307/43795866},
 a single page introduction in a special issue of \emph{Literature/Film
 Quarterly} on genres.
+
+\begin{verbatim}
+Warning: Removed 1 rows containing missing values (geom_bar).
+\end{verbatim}
 
 \begin{figure}
 
@@ -1625,8 +1661,116 @@ conditioned but not entirely controlled by social structure.
 \section{Estimation}\label{estimation}}
 
 I will I use the \texttt{stm} package in R to estimate a series of topic
-models from K=2 to K=10
-\citep{Robertsstructuraltopicmodel2013, Roberts2018stm}.
+models \citep{Robertsstructuraltopicmodel2013, Roberts2018stm}. The
+structural topic model (STM) is a variation on the correlated topic
+model (CTM) that allows for direct estimation of how covariates affect
+topic formation. The CTM was an early modification of the initial latent
+dirichilet allocation (LDA) estimator, which tended to create topics
+that were statistically independent of each other and which therefore
+made it difficult to model documents as composed of multiple topics, a
+feature which has become central to the usefuleness of topic models for
+applied research \citep{Blei2007correlated}. It will be helpful to
+understand the complexity of the CTM before complicating it further,
+thus for the sake of simplicity we use the \texttt{stm} package to fit
+CTMs without leveraging the additional feature of covariate modeling.
+
+To briefly explain the difference, the STM builds on the CTM by modeling
+the effect of document level covariates on topics in two different ways.
+First, covariates may affect topic prevalence. For example, including a
+dummy variable for the JSTOR discipline label Social Science interacted
+across all topic by document probabilities would provide a parameter
+measuring the degree to which social science texts contribute terms more
+or less frequently to that topic than do non social science texts. For
+example, a binary category between social sciences and humanities
+interacted with a topic about music might show that social science texts
+are ten percent less prevalent in the music topic than are humanities
+texts. Second, covariates may affect topic content. Here the terms of a
+document inherit the covariate assigned to their document of origin. A
+social science dummy interacted across all topic by term probabilities
+provides a parameter measuring the degree to which a term of a
+particular covariate origin is more or less likely to contribute to a
+topic. In practice, content models help construct two different term
+rankings for the same topic, two because estimation on the high
+dimensional term vector space is intractable for all but the simplest
+binary covariate. In the same social science versus humanities binary,
+the content model would show how the vocabulary of social science texts
+differs from the vocabulary of humanities texts when talking about the
+same topic, music. In a subsequent chapter we will find occasion to use
+these more powerful features of the STM.
+
+Because there are so many parameters CTM models are difficult to
+estimate, but the core approach is the familiar maximum likelihood
+framework. Estimators attempt to discover the parameters for the
+unobserved portions of the model that are most likely given the observed
+portions, the document by term counts. The estimator used in the stm
+package is a version of expectation maximization (EM) in which some
+parameters of the model are set arbitrarily, for instance randomly, in
+order to reduce the likelihood function to something tractable that can
+be maximized. The outcomes to each step of this expectation (guessing)
+and maximization (solving) procedure are then fed into another
+interation. In practice each step of guessing leads to a smaller change
+in the parameters, and the model is said to have converged when the
+changes fall below a predetermined threshold.
+
+The parameter space of topic models is far too complex to be able to
+write solveable likelihood equations and even for EM estimators to guess
+at them with consistent and accurate results, so topic models frequently
+include a raft of simplifying hyperparameters to reduce the
+dimensionality of the problem. It is not within the present scope to
+discuss these hyperparameters unless they are exogenous and can be set
+in ways that are practically meaningful for applied research problems.
+We have already discussed two of these, the alpha and sigma priors,
+which let us control the level of mixture of topics within documents and
+the correlation of topics respectively. We trust that others that are
+endogenous to model estimation lead to sensible results.
+
+Hyperparameters aside, it is also necessary to initialize the
+substantive parameters of the model for the first EM step. The choice of
+model initialization is substantively meaningful and under the user's
+control in the stm package. For example, the CTM model may be
+initialized with the values of an LDA model where topics are
+uncorrelated; in this situation EM would step the topic by document
+probabilities toward a more correlated outcome in which certain topics
+appear together frequently, if this model is more likely given the data.
+The initalization we will use is called spectral initialization, which
+is related to the concept of anchor words discussed above. A spectral
+model considers only the square term by term matrix where each column
+and row refers to the number of times a particular word co-occurs within
+any document with every other word in the vocabulary. A dimensionality
+reduction technique such as principle component analysis or matrix
+factorization can be used to represent each term in a number of
+dimensions equal to the desired number of topics. This can in turn be
+used to initialize the topic by term matrix of the model. Finally, the
+usually much simpler topic by document matrix can converge quickly using
+EM on the basis of the good guess supplied by the spectral model.
+
+Because the vocabulary vector tends to be very long it is not trivial
+even for spectral methods to reduce the term by term matrix to the
+number of topics without additional assumptions.
+\citet{Arora2018Learning} have shown that assuming the existence of
+anchor words makes the decomposition fast and efficient while retaining
+the feature of a single determinate solution
+\citep{Roberts2016Navigating}. An anchor word is one whose probability
+is one for one topic and zero for all others. In the space of the
+solution the anchor words become the farthest corners of the
+multidimensional cloud of terms, and a convex hull drawn through them
+will contain all other terms. If the anchors are treated as singularly
+representing their entire topic, the position of every other term can be
+represented as a linear combination of the positions of all the anchors.
+The linear weights of the anchors then become the topic probabilities of
+the words, such that the closer a term is to an anchor the higher its
+probability from the anchor's topic and the lower the probability for
+all other anchors' topics. An anchor for each topic must be annointed so
+that its vector can be set to the assumed maximum sparsity, and the
+criterion for doing so is to find words with the above mentioned maximum
+frequency and exclusivity, words that always appear only given a
+particular set of other words. Even if the anchor word assumption is not
+strictly valid, using an anchor based spectral initialization in
+combination with the EM estimator may relax the assumption and
+distribute the c
+
+For now, we will focus on the consequences of the choice of the number
+of topics K. We fit nine models in sequence from K = 2 to K = 10.
 
 \hypertarget{diagnostics}{%
 \section{Diagnostics}\label{diagnostics}}
@@ -1635,6 +1779,20 @@ Having fit nine models sequentially from K = 2 to K = 10, we alight on
 the final as the focal model given that we assume that at ten topics we
 have still underspecified K. In this section I implement several
 approaches to validating topic quality mentioned above.
+
+\begin{verbatim}
+Scale for 'colour' is already present. Adding another scale for
+'colour', which will replace the existing scale.
+\end{verbatim}
+
+\begin{figure}
+
+{\centering \includegraphics{ambrose_dissertation_files/figure-latex/logit-theta-1} 
+
+}
+
+\caption{As K increases so does separation among junk (lower mode), weak (central mode), and strong (upper mode) topic by document probabilities.}\label{fig:logit-theta}
+\end{figure}
 
 \hypertarget{blind-qcv}{%
 \subsection{Blind QCV}\label{blind-qcv}}
@@ -1704,6 +1862,29 @@ basis for understanding interpretive difficulties later.
 \hypertarget{k-descent}{%
 \subsection{K descent}\label{k-descent}}
 
+All topic models are mixture models in that they treat the observed
+document by term frequencies as the outcome of multiple topics mixing
+together in different proportions within documents. Whereas the flat
+approach treats documents as mixtures, a hierarchical topic model treats
+topics as mixtures as well. Here topics are mixtures of ancestor nodes
+in a tree network of topics. A hierarchical model would, for instance,
+obviate the procedure of removing common language syntax words such as
+articles and prepositions because it could represent these as a root
+node of all topics, indicating that all vocabularies appear in a partial
+mixture of a language's basic syntax. A flat model retaining syntax
+would burden the estimator with learning that syntax terms should be
+distributed evenly across all topics. More substantively, a hierarchical
+model applied to scholarship may help pick out fields that have various
+empirical studies that are nonetheless united by common theory terms or
+argumentative style words. Because substance in its detail can easily
+swamp framing terminology by sheer frequency, flat topic model
+estimators will tend to rends apart fields where novelty is a virtue and
+classify them by their minutia rather than by their themes.
+
+Models and software for hierarchical models have been developed
+\citep{Teh2006Hierarchical, Roberts2015pkg}, but they are not yet in
+common use by social scientists. Here
+
 \begin{figure}
 
 {\centering \includegraphics[width=1\linewidth]{ambrose_dissertation_files/figure-latex/sankey-1} 
@@ -1727,6 +1908,15 @@ basis for understanding interpretive difficulties later.
 
 \begin{figure}
 
+{\centering \includegraphics{ambrose_dissertation_files/figure-latex/doc-gini-1} 
+
+}
+
+\caption{Concentration of topic probabilities within A. documents and B. terms}\label{fig:doc-gini}
+\end{figure}
+
+\begin{figure}
+
 {\centering \includegraphics{ambrose_dissertation_files/figure-latex/elbow1-1} 
 
 }
@@ -1742,6 +1932,9 @@ basis for understanding interpretive difficulties later.
 
 \caption{Cumulative distribution of within topic document probabilities.}\label{fig:elbow2}
 \end{figure}
+
+\hypertarget{close-reading}{%
+\section{Close Reading}\label{close-reading}}
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
