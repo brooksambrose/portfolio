@@ -172,15 +172,15 @@ Instead, we will stratify the sample, and it is in the configuration of the stra
 
 The popular yet maligned distant reading approach taken by digital humanists [e.g. @Moretti2005Graphs] is being taken up with gusto by social scientists who are less skeptical of quantitative methods [e.g. @DiMaggio2013Exploiting]. Following Nelson [-@Nelson2017Computational] I employ a quantitative analysis of texts not to replace human reading with machine reading but to support reproducibility in traditional qualitative content analysis. While CTA makes it possible to dispense with reading altogether, knowledge, understanding, and the cultural logics of arguments--especially their ontologies--are still only obtainable by reading primary texts, closely or not. The most radical interpretive CTA method would involve deep neural net supervised machine learning, which may be able to predict how a particular human reader would classify a text without their needing to read it, though this has never been demonstrated. What I gain from CTA is guidance in answering the question of what to read, and perhaps in what order to do so.
 
-As we know, the question of what to read is answered institutionally for scholars already by way of canon, curriculum, word of mouth, and digital reference term search services. These are their own forms of distant reading, because they each make obsolete the archaic image, true of figures like Weber, of a scholar buried in library stacks reading everything they come across (and so it has been said of Weber, forgetting nothing).^[What a scandal it would be if Weber's lionizers discovered that he had only read text indices! Surely they would bury such a fact. But the point would remain that even if a scholar were able to consumer an entire corpus, the sheer scale of contemporary publication is now beyond even a genius's capacity.] These contemporary shortcuts are historically arbitrary, but what is important is first that they serve the function of reducing the overwhelming cognitive complexity of published scholarship, and second structure that reduction in the same way for all scholars. An arbitrary reduction needs to be consistent to act as an infrastructure for subdisciplinary scholarship, otherwise scholars would find themselves located in different literatures.
+As we know, the question of what to read is answered institutionally for scholars already by way of canon, curriculum, word of mouth, and digital reference term search services. These are their own forms of distant reading, because they each make obsolete the archaic image, true of figures like Weber, of a scholar buried in library stacks reading everything they come across (and so it has been said of Weber, forgetting nothing).^[What a scandal it would be if Weber's lionizers discovered that he had only read text indices! Surely they would bury such a fact. But the point would remain that even if a scholar were able to consume an entire corpus, the sheer scale of contemporary publication is now beyond even a genius's capacity.] These contemporary shortcuts are historically arbitrary, but what is important is first that they serve the function of reducing the overwhelming cognitive complexity of published scholarship, and second structure that reduction in the same way for all scholars. An arbitrary reduction needs to be consistent to act as an infrastructure for subdisciplinary scholarship, otherwise scholars would find themselves located in different literatures.
 
-If distant reading is a criticism of close reading then it has a big hill to climb especially among humanists who are trained to deal methodically with texts very carefully. In the social sciences a type of customary distant reading is that of ritual citations, those that have developed a meaning that may be oblique to their content or at odds with the intentions of the the original authors. A ritual citation is simply one that is cited but not read, but also one that is so often used that its socially acceptable usages are known from other secondary accounts.
+If distant reading is a criticism of close reading then it has a big hill to climb especially among humanists who are trained to deal methodically with texts very carefully. In the social sciences a type of customary distant reading is that of ritual citations, those that have developed a meaning that may be oblique to their content or at odds with the intentions of the the original authors. A ritual citation is simply one that is cited but not read, but also one that is so often used that its socially acceptable usages are known from other secondary accounts. For all the lack of due diligence in the use of ritual citations, their socially understood meanings are better than the thoroughly perfunctory citation, those included because they were returned by a digital reference service and never read by anyone.
 
 What are the social patterns of the traditional literature review are topics for the sociology of knowledge and science and for the information sciences. This is not the task of the current study. What we take from the traditional approach is the consequences of excluding large segments of intellectual history. What CTA makes possible for the first time is a nonarbitrary, inclusive analysis of *all* content in a digitized corpus. It will not necessarily be a good analysis, but what it will lack in quality it will make up for in coverage. A CTA approach to the literature review will at least make clear what lacuna would be left by the traditional approach. They also reduce the potential idiosyncrasy of a particular author's literature review because, unlike a personal reading, a CTA model can be communicated precisely.
 
 Of course the cognitive limitation of how much any scholar can actually read and understand remains. There will be an exclusion mechanism no matter what, therefore a chief assumption of a CTA literature review is that corpus segmentation is both possible and that some reduced form of reading, some sampling procedure, can be said to be representative of the unread portion in each segment. These representative texts will be subjected to a close reading, but their interpretation will be generalized to unread documents. Hence I call this a "no cigar" approach to reading, as in "close but". If on the contrary to the assumption no two snowflakes are alike, then the enterprise of knowing more than we have before is fraught, and CTA becomes yet another arbitrary reducer.
 
-What's worse, or perhaps better, is that there is reason to believe that idiosyncrasy itself is an historically variable feature of disciplines. If institutional isomorphism has proceeded to some high level in contemporary disciplines, then the assumption that reading the bellwether texts is as good as reading the entire herd may hold. If this is true, however, it raises as many questions about the process of institutionalization in cultural production than it answers about the potential to learn truer versions of intellectual history.
+What is worse, or perhaps better, is that there is reason to believe that idiosyncrasy itself is an historically variable feature of disciplines. If institutional isomorphism has proceeded to some high level in contemporary disciplines, then the assumption that reading the bellwether texts is as good as reading the entire herd may hold. If this is true, however, it raises as many questions about the process of institutionalization in cultural production as it answers about the potential to learn truer versions of intellectual history.
 
 ### Topic Models
 
@@ -191,13 +191,13 @@ We have referred generically to computational text analysis, and now we can disc
 
 Topics are directly represented by they topic-by-term matrix. A topic is a probability distribution over a vocabulary. To draw on a topic means to choose vocabulary as a random draw from this distribution, where words with higher probabilities will be chosen more often. In the case of genres we might imagine a topic about film and a topic about music. Some words may be important (highly probable), to both topics, such as the word "genre", while others would be distinct, such as the words "movie" (probable for film but improbable for music) and "band" (vice versa).
 
-Given topics as term distributions, a document can be represented not as a distribution over terms, but as a distribution over topics. The topic mediates the relationship between documents and terms. In order to generate diction for a document, all that need be understood is the ratio of topics out of which it is composed. This is sometimes explained as a generative mechanism; to ask what word will be chosen next in composing a document, one first samples from the document's own topic distribution to decide which topic the word will be drawn from, and given that topic, one then samples from the topic's word distribution to decide which word will be included in the document. A document's topic probabilities also create the expectation of how many words are attributed to each topic. A document with topic probabilities .7 from music and .3 from film would be 70 percent about music and 30 percent about film, making for a parsimonious albeit reductive description of document content.
+Given topics as term distributions, a document can be represented not as a distribution over terms, but as a distribution over topics. The topic mediates the relationship between documents and terms. In order to generate diction for a document, all that need be understood is the ratio of topics out of which it is composed. This is sometimes explained as a generative mechanism; to ask what word will be chosen next in composing a document, one first samples from the document's own topic distribution to decide which topic the word will be drawn from, and given that topic, one then samples from the topic's word distribution to decide which word will be included in the document. A document's topic probabilities also create the expectation of how many words are attributed to each topic. A document with topic probabilities .7 from music and .3 from film would be expected to be 70 percent about music and 30 percent about film, making for a parsimonious albeit reductive description of document content.
 
-It is important not to overinterpret a topic model. Topic models are sometimes called "generative" as if they explained how documents are written. Such a generative metaphor reveals the absurdity of a topic model as a representation of writing. Not to mention the fact that punctuation tends not to be represented (though it could be), the terms chosen would be in a random order incapable of making meaningful sentences. Hence it is best to avoid the generative metaphor as an explanation of texts. If topic models touch on the generation of real, meaningful documents, it is only a very limited sense. What the topic model really represents is how vocabularies are organized to condition an author's diction. A vocabulary can be thought of as an infrastructure of meaning more trivial than grammar or syntax. A topic is a simple list of words that is known or knowable across all authors in a field. Topics do not tell stories; authors tell stories in part by making diction choices that are conditioned by topics.
+It is important not to overinterpret a topic model. Topic models are sometimes called "generative" as if they explained how documents are written. Such a generative metaphor reveals the absurdity of a topic model as a representation of writing. Not to mention the fact that punctuation tends not to be represented (though it could be), the terms chosen would be in a random order incapable of making meaningful sentences. Hence it is best to avoid the generative metaphor as an explanation of texts. If topic models touch on the generation of real, meaningful documents, it is only in a very limited sense. What the topic model really represents is how vocabularies are organized to condition an author's diction. A vocabulary can be thought of as an infrastructure of meaning more trivial than grammar or syntax and much more trivial than concepts or ideas. A topic is a simple list of words that is known or knowable across all authors in a field. Topics do not tell stories; authors tell stories in part by making diction choices that are conditioned by topics.
 
-From a sense or meaning making perspective topics are trivial; this is because so little is known about what an author says by knowing the topic or even the term distribution of a document. What topics are useful for, however, is the type of segmentation or cartography of a corpus. Topics are really a global feature, perhaps a cultural feature, of a corpus of texts that is itself meaningfully selected. If indeed a field of texts is oriented to common if not always overlapping vocabularies, then topics can represent this well.
+From a sense or meaning making perspective topics are trivial; this is because so little is known about what an author says by knowing the topic or even the term distribution of a document. What topics are useful for, however, is the segmentation or cartography of a corpus. Topics are really a global feature, perhaps a cultural feature, of a corpus of texts that is itself meaningfully selected. If indeed a field of texts is oriented to common if not always overlapping vocabularies, then topics can represent this well.
 
-A topic model could be posited based on the domain knowledge of an expert, and this would be a form of estimation. The practical value of statistical topic modeling is that the unobserved topics can be induced, with a raft of statistical assumptions, directly from the observed document-by-term matrix to arrive at a model with the features just described. An estimated topic model will contain several other parameters filling in assumptions necessary to make it possible to identify the unobservable topic probabilities in each of the two matrices of the model. For instance, the parameter commonly called alpha makes an assumption about how many topics tend to comprise each document.
+A topic model could be posited based on the domain knowledge of an expert, and this would be a form of estimation. The practical value of statistical topic modeling is that the unobserved topics can be induced, with a raft of statistical assumptions, directly from the observed document-by-term matrix to arrive at a model with the features just described. An estimated topic model will contain several other parameters filling in assumptions necessary to make it possible to identify the unobservable topic probabilities in each of the two matrices of the model. For instance, the parameter commonly called alpha makes an assumption about how many topics tend to comprise each document. Alpha values close to zero make it very likely that documents are composed of only one topic, while an alpha value greater than one increase the chance that a document will be decomposed into several topics. Alpha equal to one creates no tendency, so concentrated and diffuse mixtures are all equally likely to occur. It would behoove a researcher to make an informed decision about this parameter, yet software often sets an arbitrary default that the user may or may not be fully aware of. 
 
 #### Choosing K
 
@@ -217,7 +217,9 @@ if(docx) knitr::include_graphics('img/frex.png') else sg(frex,tit = 'Content var
 ```
 
 
-Indeed we may never expect idiosycracy to emerge as its own topic except in the limiting case. Presumably K can be set so high as to approach the saturation point of a topic for each document. In this event topics that would otherwise appear in common may alter to represent the uncommon parts of a document, and the topic would merely reproduce the term distribution of a particular document. Thus there is a transition from content in common to content idiosyncratic to groups of trivial size and to individual texts in the limiting case. The model is unable to ignore supposedly idiosyncratic content, and will thus find a way to classify it among topics in common, effectively distorting the term vector of those topics. There may be no objective point at which the content in common is neatly separable from the idiosyncratic content; indeed common content evolves only by idiosyncratic innovation. Our ensemble approach allows us to observing how particular content moves among topics as parameter space opens up.
+Indeed we may never expect idiosycracy to emerge as its own topic except in the limiting case. Presumably K can be set so high as to approach the saturation point of a topic for each document. In this event topics that would otherwise appear in common may alter to represent the uncommon parts of a document, and the topic would merely reproduce the term distribution of a particular document. Thus there is a transition from content in common to content idiosyncratic to groups of trivial size and to individual texts in the limiting case. The model is unable to ignore supposedly idiosyncratic content, and will thus find a way to classify it among topics in common, effectively distorting the term vector of those topics. There may be no objective point at which the content in common is neatly separable from the idiosyncratic content; indeed common content evolves only by idiosyncratic innovation. Our ensemble approach allows us to observe how particular content moves among topics as parameter space opens up.
+
+Finally, there are sparse model estimation techniques that may ameliorate some of the considerations above. Sparse models, such as those using the L1 or LASSO constraint, bias parameters downward and thus may set trivial regression coefficients nearer to zero. Such an approach may well fail to represent idiosyncracy at all, which is either a benefit or a hazard. Such a biased model would, by effacing the idiosyncratic portions, yield topics representing only the common portions of documents. This avoids what we have termed contamination at the cost of losing information that we may care about. Thus for sparse model techniques to be used responsibly document residuals would need to be calculated to help recover the unmodeled portions of the texts. The model diagnostics we explore below attempt to separate model parameters into common and idiosyncratic elements, the difference being whether the idiosyncrasy is located in the topic model or in the residuals.
 
 #### Bias
 
@@ -435,16 +437,16 @@ It is fair to ask what is lost during the pre-processing of texts. Many are incl
 Figure \@ref(fig:idi-hist) shows the right-skewed distribution of idiosyncrasy. The median text lost about one tenth (`r stm$meta[,(100*median(idi)) %>% round(2)]` percent) of its words, while 90 percent of texts are within two tenths, and outliers begin at about three tenths as can be seen in the boxplot. The `r stm$meta[, sum(idi>.3) %>% nn]` (`r stm$meta[,(100*mean(idi>.3)) %>% round(2)]` percent of) texts above three tenths vary across a range as wide as the rest of the distribution. The most idiosyncratic text, at `r stm$meta[,(max(idi)*100) %>% round(1)]` percent of its vocabulary lost, is `r stm$meta[which.max(idi),auth[[1]]$last %>% nl]`'s "`r stm$meta[which.max(idi),tit %>% tolower %>% tools::toTitleCase(.) %>% gsub('"+','\\*',.)]`".^[`r stm$meta[which.max(idi),url]`] The article, from the journal *`r stm$meta[which.max(idi),sotit]`*, is a single page introduction in English to a 12 page essay reprinted in the original Hebrew. By page count alone we would expect the idiosyncrasy to be 12/13 or `r round(12/13*100,1)` percent, which also illustrates how terms that are not in the Roman alphabet may be discarded as OCR errors even prior to the idiosyncrasy measurement.
 
 ```{r idi-hist, include=T,fig.cap='Distribution of idiosyncracy, the proportion of document vocabularly dropped during pre-processing. Pluses indicate outliers.'}
-p1<-myth(ggplot(stm$meta,aes(y=idi))) + geom_boxplot(outlier.size = 3,outlier.alpha = 1,outlier.shape = '+') + coord_flip() + blanky
-p2<-myth(ggplot(stm$meta,aes(x=idi))) + geom_histogram(bins=50) + theme(axis.title.x = element_blank())
+p1<-myth(ggplot(stm$meta,aes(y=idi))) + geom_boxplot(outlier.size = 3,outlier.alpha = 1,outlier.shape = '+') + coord_flip() + blanky + ylim(stm$meta$idi %>% range)
+p2<-myth(ggplot(stm$meta,aes(x=idi))) + geom_histogram(binwidth=.02,color='white') + theme(axis.title.x = element_blank())+ xlim(stm$meta$idi %>% range)
 egg::ggarrange(p2,p1, heights = c(3,1))
 ```
 
 Figure \@ref(fig:gp-hist) shows the logarithm of the count of the term genre as a proportion of the total term count of a text. This distribution is much more highly skewed but contains fewer outliers. In the median text a genre variant accounted for about `r stm$meta[,(1000*median(gp)) %>% round]` in 1,000 terms, while at the 90th percentile the rate is `r stm$meta[,quantile(gp,p=.9)*1000] %>% round` in 1,000. `r stm$meta[,sum(gp>.1) %>% nn]` texts (`r stm$meta[,(mean(gp>.1)*100) %>% round(2)]` percent) are outliers where one in ten or more words is a genre variant. The text with the largest genre proportion, at `r stm$meta[,(max(gp)*100) %>% round(1)]` percent of its words, is `r stm$meta[which.max(gp),auth[[1]]$last %>% nl]`'s "`r stm$meta[which.max(gp),tit %>% tolower %>% tools::toTitleCase(.)]`"^[`r stm$meta[which.max(gp),url]`], a single page introduction in a special issue of *`r stm$meta[which.max(gp),sotit]`* on genres. 
 
 ```{r gp-hist, include=T,fig.cap='Distribution of $log_{10}$ of the count of the term "genre" as a proportion of all terms in a text. Pluses indicate outliers.'}
-p1<-ggplot(stm$meta,aes(y=gp)) + geom_boxplot(outlier.size = 3,outlier.alpha = 1,outlier.shape = '+') + scale_y_log10() + coord_flip() + theme_bw() + blanky 
-p2<-myth(ggplot(stm$meta,aes(x=gp))) + geom_histogram(bins=50) + scale_x_log10() + theme(axis.title.x = element_blank())
+p1<-ggplot(stm$meta,aes(y=gp)) + geom_boxplot(outlier.size = 3,outlier.alpha = 1,outlier.shape = '+') + scale_y_log10(limits=range(stm$meta$gp)) + coord_flip() + theme_bw() + blanky
+p2<-myth(ggplot(stm$meta,aes(x=gp))) + geom_histogram(bins=25,color='white') + scale_x_log10(limits=range(stm$meta$gp)) + theme(axis.title.x = element_blank())
 egg::ggarrange(p2,p1, heights = c(3,1))
 ```
 
@@ -468,7 +470,19 @@ Table \@ref(tab:genre-jsubj) enumerates the subject labels each text inherits fr
 
 ## Estimation
 
-I will I use the `stm` package in R to estimate a series of topic models from K=2 to K=10 [@Robertsstructuraltopicmodel2013; @Roberts2018stm].
+I will I use the `stm` package in R to estimate a series of topic models [@Robertsstructuraltopicmodel2013; @Roberts2018stm]. The structural topic model (STM) is a variation on the correlated topic model (CTM) that allows for direct estimation of how covariates affect topic formation. The CTM was an early modification of the initial latent dirichilet allocation (LDA) estimator, which tended to create topics that were statistically independent of each other and which therefore made it difficult to model documents as composed of multiple topics, a feature which has become central to the usefuleness of topic models for applied research [@Blei2007correlated]. It will be helpful to understand the complexity of the CTM before complicating it further, thus for the sake of simplicity we use the `stm` package to fit CTMs without leveraging the additional feature of covariate modeling. 
+
+To briefly explain the difference, the STM builds on the CTM by modeling the effect of document level covariates on topics in two different ways. First, covariates may affect topic prevalence. For example, including a dummy variable for the JSTOR discipline label Social Science interacted across all topic by document probabilities would provide a parameter measuring the degree to which social science texts contribute terms more or less frequently to that topic than do non social science texts. For example, a binary category between social sciences and humanities interacted with a topic about music might show that social science texts are ten percent less prevalent in the music topic than are humanities texts. Second, covariates may affect topic content. Here the terms of a document inherit the covariate assigned to their document of origin. A social science dummy interacted across all topic by term probabilities provides a parameter measuring the degree to which a term of a particular covariate origin is more or less likely to contribute to a topic. In practice, content models help construct two different term rankings for the same topic, two because estimation on the high dimensional term vector space is intractable for all but the simplest binary covariate. In the same social science versus humanities binary, the content model would show how the vocabulary of social science texts differs from the vocabulary of humanities texts when talking about the same topic, music. In a subsequent chapter we will find occasion to use these more powerful features of the STM.
+
+Because there are so many parameters CTM models are difficult to estimate, but the core approach is the familiar maximum likelihood framework. Estimators attempt to discover the parameters for the unobserved portions of the model that are most likely given the observed portions, the document by term counts. The estimator used in the stm package is a version of expectation maximization (EM) in which some parameters of the model are set arbitrarily, for instance randomly, in order to reduce the likelihood function to something tractable that can be maximized. The outcomes to each step of this expectation (guessing) and maximization (solving) procedure are then fed into another interation. In practice each step of guessing leads to a smaller change in the parameters, and the model is said to have converged when the changes fall below a predetermined threshold.
+
+The parameter space of topic models is far too complex to be able to write solveable likelihood equations and even for EM estimators to guess at them with consistent and accurate results, so topic models frequently include a raft of simplifying hyperparameters to reduce the dimensionality of the problem. It is not within the present scope to discuss these hyperparameters unless they are exogenous and can be set in ways that are practically meaningful for applied research problems. We have already discussed two of these, the alpha and sigma priors, which let us control the level of mixture of topics within documents and the correlation of topics respectively. We trust that others that are endogenous to model estimation lead to sensible results.
+
+Hyperparameters aside, it is also necessary to initialize the substantive parameters of the model for the first EM step. The choice of model initialization is substantively meaningful and under the user's control in the stm package. For example, the CTM model may be initialized with the values of an LDA model where topics are uncorrelated; in this situation EM would step the topic by document probabilities toward a more correlated outcome in which certain topics appear together frequently, if this model is more likely given the data. The initalization we will use is called spectral initialization, which is related to the concept of anchor words discussed above. A spectral model considers only the square term by term matrix where each column and row refers to the number of times a particular word co-occurs within any document with every other word in the vocabulary. A dimensionality reduction technique such as principle component analysis or matrix factorization can be used to represent each term in a number of dimensions equal to the desired number of topics. This can in turn be used to initialize the topic by term matrix of the model. Finally, the usually much simpler topic by document matrix can converge quickly using EM on the basis of the good guess supplied by the spectral model.
+
+Because the vocabulary vector tends to be very long it is not trivial even for spectral methods to reduce the term by term matrix to the number of topics without additional assumptions. @Arora2018Learning have shown that assuming the existence of anchor words makes the decomposition fast and efficient while retaining the feature of a single determinate solution [@Roberts2016Navigating]. An anchor word is one whose probability is one for one topic and zero for all others. In the space of the solution the anchor words become the farthest corners of the multidimensional cloud of terms, and a convex hull drawn through them will contain all other terms. If the anchors are treated as singularly representing their entire topic, the position of every other term can be represented as a linear combination of the positions of all the anchors. The linear weights of the anchors then become the topic probabilities of the words, such that the closer a term is to an anchor the higher its probability from the anchor's topic and the lower the probability for all other anchors' topics. An anchor for each topic must be annointed so that its vector can be set to the assumed maximum sparsity, and the criterion for doing so is to find words with the above mentioned maximum frequency and exclusivity, words that always appear only given a particular set of other words. Even if the anchor word assumption is not strictly valid, using an anchor based spectral initialization in combination with the EM estimator may relax the assumption and distribute the c
+
+For now, we will focus on the consequences of the choice of the number of topics K. We fit nine models in sequence from K = 2 to K = 10.
 
 ```{r genre-mod}
 f<-'d/p/genre-mod.RData'
@@ -511,7 +525,25 @@ load('d/p/genre-topic-tiszsfstwh-1563337035.RData')
 
 ## Diagnostics
 
+```{r tst}
+tst<-mod[[9]]$doc.top.theta %>% boot::logit(.) %>% as.vector %>% density %>% {y<-.$y %>% diff %>% `>`(0) %>% {which(diff(.)==1)}+2;.$x[y[.$y[y] %>% which.max]]} %>% boot::inv.logit(.)
+```
+
+
 Having fit nine models sequentially from K = 2 to K = 10, we alight on the final as the focal model given that we assume that at ten topics we have still underspecified K. In this section I implement several approaches to validating topic quality mentioned above.
+
+```{r check-residual}
+if(F) ckr<-pbapply::pbapply(mod,function(x) stm::checkResiduals(x$model,x$documents))
+```
+
+<!--The largest beta values are very small.-->
+
+```{r logit-theta,include=T,fig.cap='As K increases so does separation among junk (lower mode), weak (central mode), and strong (upper mode) topic by document probabilities.'}
+lgth<-list()
+for(i in 1:length(mod)) lgth[[as.character(i+1)]]<-data.table(th=mod[[i]]$model$theta %>% as.vector,K=i+1)
+lgth<-rbindlist(lgth)[,K:=factor(K)][,logith:=th %>% boot::logit(.)]
+myth(ggplot(data=lgth,aes(x=logith,color=K)) + geom_density()) + viridis::scale_color_viridis(discrete = T,end = .9) + xlab('logit(theta)') + geom_vline(xintercept = boot::logit(tst),color='red')
+```
 
 ### Blind QCV
 
@@ -557,33 +589,61 @@ It is not actually clear whether topic confusion is a function of document miscl
 
 ### K descent
 
+All topic models are mixture models in that they treat the observed document by term frequencies as the outcome of multiple topics mixing together in different proportions within documents. Whereas the flat approach treats documents as mixtures, a hierarchical topic model treats topics as mixtures as well. Here topics are mixtures of ancestor nodes in a tree network of topics. A hierarchical model would, for instance, obviate the procedure of removing common language syntax words such as articles and prepositions because it could represent these as a root node of all topics, indicating that all vocabularies appear in a partial mixture of a language's basic syntax. A flat model retaining syntax would burden the estimator with learning that syntax terms should be distributed evenly across all topics. More substantively, a hierarchical model applied to scholarship may help pick out fields that have various empirical studies that are nonetheless united by common theory terms or argumentative style words. Because substance in its detail can easily swamp framing terminology by sheer frequency, flat topic model estimators will tend to rends apart fields where novelty is a virtue and classify them by their minutia rather than by their themes.
+
+Models and software for hierarchical models have been developed [@Teh2006Hierarchical; @Roberts2015pkg], but they are not yet in common use by social scientists. Here
+
 ```{r snk-el}
-el<-lapply(mod,function(x) x$doc.top.theta * x$doc.length)
-for(i in 1:length(el)) dimnames(el[[i]])<-list(d=paste0('d',1:nrow(el[[i]])),t=paste0(i+1,'k',1:ncol(el[[i]])))
-th<-el %>% unlist %>% sample(1000) %>% {data.table(w=.,c=pamk(.)$pamobject$clustering)[,.(.N,m=mean(w),mn=min(w),mx=max(w)),by=c]}
-for(i in 1:length(el)) el[[i]][el[[i]]<=th$mx[which.min(th$m)]]<-0
+# el<-lapply(mod,function(x) x$doc.top.theta * x$doc.length)
+# for(i in 1:length(el)) dimnames(el[[i]])<-list(d=paste0('d',1:nrow(el[[i]])),t=paste0(i+1,'k',1:ncol(el[[i]])))
+# th<-el %>% unlist %>% sample(1000) %>% {data.table(w=.,c=pamk(.)$pamobject$clustering)[,.(.N,m=mean(w),mn=min(w),mx=max(w)),by=c]}
+# for(i in 1:length(el)) el[[i]][el[[i]]<=th$mx[which.min(th$m)]]<-0
+
+el<-lapply(mod,function(x) x$doc.top.theta %>% melt %>% data.table %>% setnames(ec('d,t,p')))
+for(i in 1:length(el)) el[[i]][,t:=paste0(i+1,'k',t)]
+bel<-list()
+for(i in 2:length(el)) {
+  bel[[length(bel)+1]]<-merge(el[[i-1]],el[[i]],by='d',allow.cartesian = T)[,.(d,t.x,t.y,jp=p.x*p.y)]
+}
+bel<-rbindlist(bel)[,.(jps=sum(jp)),by=.(t.x,t.y)]
+withr::with_seed(12345,th<-bel[,jps %>% {data.table(w=.,c=pamk(.,krange = 5)$pamobject$clustering)[,.(.N,m=mean(w),mn=min(w),mx=max(w)),by=c]}] %>% setorder(m))
+#bel<-bel[jps>th$mx[which.min(th$m)]]
 ```
 
 ```{r snk-graph}
-bel<-list()
-for(i in 2:length(el)) {
-  y<-do.call(cbind,el[(i-1):i]) %>% crossprod(.)
-  y[lower.tri(y,T)]<-0
-  bel[[length(bel)+1]]<-as.simple_triplet_matrix(y) %>% {data.table(s=.$dimnames[[1]][.$i],r=.$dimnames[[2]][.$j],w=.$v)[sub('k.+','',s)!=sub('k.+','',r),.(s,r,weight=w)]}
-}
-bel<-rbindlist(bel)[,k:=tstrsplit(s,split='k',type.convert = T)[[1]]][,weight:=weight %>% prop.table %>% `*`(100),by=k][,k:=NULL]
+# bel<-list()
+# for(i in 2:length(el)) {
+  # y<-do.call(cbind,el[(i-1):i]) %>% crossprod(.)
+  # y[lower.tri(y,T)]<-0
+  # bel[[length(bel)+1]]<-as.simple_triplet_matrix(y) %>% {data.table(s=.$dimnames[[1]][.$i],r=.$dimnames[[2]][.$j],w=.$v)[sub('k.+','',s)!=sub('k.+','',r),.(s,r,weight=w)]}
+# }
+# bel<-rbindlist(bel)[,k:=tstrsplit(s,split='k',type.convert = T)[[1]]][,weight:=weight %>% prop.table %>% `*`(100),by=k][,k:=NULL]
 
 # cull a bit, actually better to do before cross prod
 # bel[,c:=pamk(weight,krange = 6:10)$pamobject$clustering]
 # bel<-bel[c!=bel[,.(w=mean(weight)),by=c][,which.min(w)]][,c:=NULL]
-# bel[,k:=tstrsplit(s,split='k',type.convert = T)[[1]]][,weight:=weight %>% prop.table %>% `*`(100),by=k][,k:=NULL]
-
+bel %>% setnames(ec('s,r,weight'))
+#bel[,k:=tstrsplit(s,split='k',type.convert = T)[[1]]][,weight:=weight %>% prop.table %>% `*`(100),by=k][,k:=NULL]
 g<-graph_from_edgelist(bel[,!'weight'] %>% as.matrix)
 E(g)$weight<-bel[,weight]
 ```
 
 ```{r snk-group}
-nid<-merge(bel[,.(wp=prop.table(weight) %>% max),by=s],bel[,.(wp=prop.table(weight) %>% max),by=r],by.x = 's',by.y = 'r')[,k:=tstrsplit(s,split='k',type.convert = T)[[1]]][,c:=pamk(.SD)$pamobject$clustering,.SDcols=ec('wp.x,wp.y')] %>% setkey(s)
+withr::with_seed(
+  12345
+  ,nid<-merge(
+  bel[,.(
+    wp1=weight %>% prop.table %>% {sort(.,T)[1]}
+    ,wp2=weight %>% prop.table %>% unique %>% {sort(.,T)[2]}
+    ,wp3=weight %>% prop.table %>% unique %>% {sort(.,T)[3]}
+    ),by=s]
+  ,bel[,.(
+    wp1=weight %>% prop.table %>% {sort(.,T)[1]}
+    ,wp2=weight %>% prop.table %>% unique %>% {sort(.,T)[2]}
+    ,wp3=weight %>% prop.table %>% unique %>% {sort(.,T)[3]}
+    ),by=r]
+  ,by.x = 's',by.y = 'r')[,k:=tstrsplit(s,split='k',type.convert = T)[[1]]][,c:=pamk(.SD,krange=3)$pamobject$clustering,.SDcols=ec('wp1.x,wp1.y,wp2.x,wp2.y,wp3.x,wp3.y')] %>% setkey(s)
+)
 nd3<-igraph_to_networkD3(g)
 nd3$nodes$group<-nid[.(nd3$nodes$name),c]
 nd3$nodes$group[is.na(nd3$nodes$group)]<-0
@@ -613,11 +673,7 @@ gr<-c(
 9k1,10k1'
 ,
 '3k3,4k3
-4k3,5k3
-'
-,
-'8k3,9k3
-9k3,10k3'
+4k3,5k3'
 ,
 '4k1,5k5
 5k5,6k5'
@@ -635,20 +691,45 @@ gr<-c(
 7k6,8k6
 8k6,9k6
 9k6,10k6'
+,
+'7k3,8k8
+8k8,9k8'
+,
+'5k3,6k3
+6k3,7k3'
+,
+'8k4,9k4
+9k4,10k4'
 ) 
 gs<- gr %>% lapply(mkg)
 nd3$links<-data.table(nd3$links)
 nd3$links[,group:='0']
 
 for(i in 1:length(gs)) nd3$links[gs[[i]],on=ec('source,target'),group:=as.character(i)]
-
+nd3$nodes$group %<>% sapply(
+  function(x) switch(x
+                     ,'0'='0'
+                     ,'1'='11' # purple, one2many
+                     ,'2'='5' # dark green strong one2one
+                     ,'3'='9' # orange many2one
+                     ,'4'='4' # light green weak one2one
+                     ,'5'='7' # red many2many
+                     ))
+ nd3$nodes<-data.table(nd3$nodes)
+# nd3$nodes[,group:=factor(group,levels=group %>% unique %>% sort(T)) %>% {as.integer(.)-1} %>%  as.character]
+if(nd3$links$group %>% unique %>% {length(.)>12}) warning(paste(nd3$links$group %>% unique %>% length,'is too many link groups'))
 ```
 
 ```{r sankey,include=T,fig.cap='Sankey diagram of document overlap between topic models of increasing values of K.',out.width='100%'}
+nd3$links %>% setorder(-value)
+nd3$links[,group:='0'][,group:=group %>% replace(1:2,c('3','6')),by=source]
+nd3$links %>% setorder(value)
+nd3$nodes[,group:='4']
 sn<-sankeyNetwork(
   Links = nd3$links,Nodes = nd3$nodes,Source = 'source',Target = 'target',Value = 'value',NodeID = 'name',NodeGroup = 'group',LinkGroup = 'group'
   ,nodePadding = 0,sinksRight = T
   ,margin = rep(0,4) %>% as.list
+  ,colourScale = c(gray(.95,0),RColorBrewer::brewer.pal(12, 'Paired')) %>% {paste0('d3.scaleOrdinal() .domain(["',paste(seq(length(.)),collapse='", "'),'"]) .range(["',paste(.,collapse='", "'),'"])',collapse='')}
   ,iterations = 5000
 )
 if(docx) include_graphics('img/genre-sankey.png') else sn
@@ -679,20 +760,29 @@ data.frame(t=mod[[9]]$top.word.phi.beta %>% apply(1,ineq::Gini),d=mod[[9]]$doc.t
 }
 ```
 
+```{r doc-gini,include=T,fig.cap='Concentration of topic probabilities within A. documents and B. terms'}
+gdt<-rbindlist(list(
+  mod[[9]]$model$theta %>% apply(1,ineq::Gini) %>% data.table(gini=.,item='doc')
+,mod[[9]]$model$beta$logbeta[[1]] %>% apply(2,function(x) x %>% exp %>% ineq::Gini(.)) %>% data.table(gini=.,item='term')
+))[,item:=factor(item)]
+myth(ggplot(data=gdt,aes(gini,stat(density)))) + geom_histogram(aes(gini,stat(density)),color='white',binwidth=.02)  + facet_wrap('item',ncol=1) + theme(legend.position = 'none')
+```
+
+
 ```{r elbow1,include=T,fig.cap='Cumulative distribution of within topic term probabilities.'}
 h<-c(1:10)
 elb<-mod[[9]]$top.word.phi.beta[h,] %>% apply(1,sort,decreasing=T) %>% data.table %>% as.list
 for(i in 1:length(h)) elb[[i]]<-data.table(t=elb[[i]] %>% cumsum,T=(h)[i])[,i:=.I]
 elb<-rbindlist(elb)[,T:=factor(T)] %>% setkey(T)
 p1<-myth(ggplot(elb[t<=.5],aes(x=i,y=t,color=T)),'Paired') + geom_line(size=1) + theme(legend.position = c(.98,.02),legend.justification = ec('right,bottom'))
-plt(p1)
+plt(p1) %>% plotly::style(visible="legendonly", traces = c(1,3,4,7,8,9))
 ```
 
 ```{r elbow2,include=T,fig.cap='Cumulative distribution of within topic document probabilities.'}
 h<-c(1:10)
 elb<-mod[[9]]$doc.top.theta[,h] %>% t %>% apply(1,sort,decreasing=T) %>% data.table %>% as.list
-tst<-elb %>% unlist %>% sample(1000) %>% {data.table(t=.,g=pamk(.,krange = 2)$pamobject$clustering)} %>% {.[,.(m=summary(t) %>% list),by=g]$m} %>% do.call(rbind,.) %>% data.table
-tst<-tst[,min(`3rd Qu.`)]
+# tst<-elb %>% unlist %>% sample(1000) %>% {data.table(t=.,g=fpc::pamk(boot::logit(.),krange = 2)$pamobject$clustering)} %>% {.[,.(m=summary(t) %>% list),by=g]$m} %>% do.call(rbind,.) %>% data.table
+# tst<-tst[,max(`Min.`)]
 for(i in 1:length(h)) elb[[i]]<-data.table(t=elb[[i]] %>% {.[.>tst]} %>% cumsum  %>% `/`(mod[[9]]$documents %>% length)
                                            ,T=(h)[i])[,i:=.I]
 elb<-rbindlist(elb)[,T:=factor(T)] %>% setkey(T)
@@ -700,7 +790,21 @@ p1<-myth(ggplot(elb,aes(x=i,y=t,color=T)),'Paired') + geom_line(size=1) + theme(
 plt(p1)
 ```
 
+## Reading Strata
+
+```{r samples}
+mod[[9]]
+```
+
+
 ## Results
+
+```{r prob-anc}
+aw<-mod[[9]]$top.word.phi.beta %>% apply(2,ineq::Gini) %>% order(decreasing = T) %>% head(1000) %>% {data.table(w=mod[[9]]$vocab[.],k=apply(mod[[9]]$top.word.phi.beta[,.],2,which.max))} %>% .[,.(w=list(w %>% head(6))),keyby=k]
+aw[,p:=mod[[9]]$vocab[mod[[9]]$top.word.phi.beta %>% apply(1,which.max) %>% head(10)]]
+sg(aw,tit='Most likely and most exclusive (anchorlike) terms')
+```
+
 
 ```{r man-sort}
 man<-lapply(dir(pattern='1562748956',recursive = T),fread)
