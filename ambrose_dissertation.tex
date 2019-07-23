@@ -1661,10 +1661,10 @@ conditioned but not entirely controlled by social structure.
 \section{Estimation}\label{estimation}}
 
 I will I use the \texttt{stm} package in R to estimate a series of topic
-models \citep{Robertsstructuraltopicmodel2013, Roberts2018stm}. The
-structural topic model (STM) is a variation on the correlated topic
-model (CTM) that allows for direct estimation of how covariates affect
-topic formation. The CTM was an early modification of the initial latent
+models \citep{Roberts2013structural, Roberts2018stm}. The structural
+topic model (STM) is a variation on the correlated topic model (CTM)
+that allows for direct estimation of how covariates affect topic
+formation. The CTM was an early modification of the initial latent
 dirichilet allocation (LDA) estimator, which tended to create topics
 that were statistically independent of each other and which therefore
 made it difficult to model documents as composed of multiple topics, a
@@ -1843,11 +1843,11 @@ different between two instances of the same article.
 \end{figure}
 
 Among the 45 different sorting tasks only two outcomes were observed. 41
-tasks was performed perfectly (p = 0.0114), while in 4 tasks or one
-error was made, which is to say two documents were misclassified (p =
-0.2059). Figure \ref{fig:man-con} visualizes the pairwise outcomes as a
-confusion network. Topics that are disconnected were sorted perfectly,
-while topics that are connected were confused. The graph reveals some
+tasks was performed perfectly (p = 0.0114), while in 4 tasks one error
+was made, which is to say two documents were misclassified (p = 0.2059).
+Figure \ref{fig:man-con} visualizes the pairwise outcomes as a confusion
+network. Topics that are disconnected were sorted perfectly, while
+topics that are connected were confused. The graph reveals some
 variation in topic confusion, as two were confused twice, four were
 confused once, and the remaining four were never confused.
 
@@ -1859,8 +1859,8 @@ this growing familiarity decreases the task difficulty over the course
 of the testing. In either event the results of this diagnostic provide a
 basis for understanding interpretive difficulties later.
 
-\hypertarget{k-descent}{%
-\subsection{K descent}\label{k-descent}}
+\hypertarget{topic-descent}{%
+\subsection{Topic descent}\label{topic-descent}}
 
 All topic models are mixture models in that they treat the observed
 document by term frequencies as the outcome of multiple topics mixing
@@ -1883,7 +1883,11 @@ classify them by their minutia rather than by their themes.
 
 Models and software for hierarchical models have been developed
 \citep{Teh2006Hierarchical, Roberts2015pkg}, but they are not yet in
-common use by social scientists. Here
+common use by social scientists. Here we use a psuedo hierarchical model
+in which we fit separate models at increasing levels of K, then we do
+postestimation to measure the document level overlap among topics
+between adjacent levels of K. We refer to this as topic decent, and it
+shows how document classification evolves as K increases.
 
 \begin{figure}
 
@@ -1933,11 +1937,50 @@ common use by social scientists. Here
 \caption{Cumulative distribution of within topic document probabilities.}\label{fig:elbow2}
 \end{figure}
 
-\hypertarget{close-reading}{%
-\section{Close Reading}\label{close-reading}}
+\hypertarget{reading-strata}{%
+\section{Reading Strata}\label{reading-strata}}
+
+\begin{verbatim}
+.
+   1    2    3    4 
+2618 2409  703  614 
+\end{verbatim}
+
+\begin{center}\includegraphics{ambrose_dissertation_files/figure-latex/clusters-1} \end{center}
+
+\begin{figure}
+
+{\centering \includegraphics[width=9.22in]{img/clusters2} 
+
+}
+
+\caption{Topic by document probabilities within communities}\label{fig:clusters2}
+\end{figure}
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
+
+\begin{table}[!htbp] \centering 
+  \caption{Most likely and most exclusive (anchorlike) terms} 
+  \label{tab:prob-anc} 
+\begin{tabular}{@{\extracolsep{5pt}} lrr} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+k & p & w \\ 
+\hline \\[-1.8ex] 
+1 & genre & ncte, ablex, bazerman, berkenkotter, classroom, curricular \\ 
+2 & god & werden, aramaic, atque, auch, bakr, callimachus \\ 
+3 & chinese & bao, bai, beijing, bodhisattva, buddha, buddhist \\ 
+4 & fiction & aldiss, asimov, cyberpunk, darko, douglass, dystopia \\ 
+5 & film & kubrick, zombie, blockbuster, bordwell, bros, cinema \\ 
+6 & music & accordion, balinese, chord, drummers, ethnomusicology, fiddle \\ 
+7 & women & archie, aunque, heteronormative, homoerotic, incestuous, lesbian \\ 
+8 & les & nous, questo, ainsi, altro, aussi, autre \\ 
+9 & genre & hegel, kantian, menippean, schlegel, simplified, gadamer \\ 
+10 & century & scottish, antwerp, booksellers, hogarth, netherlandish, pieter \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
 
 \begin{verbatim}
 Topic index maps to probability index like so:
