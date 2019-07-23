@@ -470,7 +470,7 @@ Table \@ref(tab:genre-jsubj) enumerates the subject labels each text inherits fr
 
 ## Estimation
 
-I will I use the `stm` package in R to estimate a series of topic models [@Robertsstructuraltopicmodel2013; @Roberts2018stm]. The structural topic model (STM) is a variation on the correlated topic model (CTM) that allows for direct estimation of how covariates affect topic formation. The CTM was an early modification of the initial latent dirichilet allocation (LDA) estimator, which tended to create topics that were statistically independent of each other and which therefore made it difficult to model documents as composed of multiple topics, a feature which has become central to the usefuleness of topic models for applied research [@Blei2007correlated]. It will be helpful to understand the complexity of the CTM before complicating it further, thus for the sake of simplicity we use the `stm` package to fit CTMs without leveraging the additional feature of covariate modeling. 
+I will I use the `stm` package in R to estimate a series of topic models [@Roberts2013structural; @Roberts2018stm]. The structural topic model (STM) is a variation on the correlated topic model (CTM) that allows for direct estimation of how covariates affect topic formation. The CTM was an early modification of the initial latent dirichilet allocation (LDA) estimator, which tended to create topics that were statistically independent of each other and which therefore made it difficult to model documents as composed of multiple topics, a feature which has become central to the usefuleness of topic models for applied research [@Blei2007correlated]. It will be helpful to understand the complexity of the CTM before complicating it further, thus for the sake of simplicity we use the `stm` package to fit CTMs without leveraging the additional feature of covariate modeling. 
 
 To briefly explain the difference, the STM builds on the CTM by modeling the effect of document level covariates on topics in two different ways. First, covariates may affect topic prevalence. For example, including a dummy variable for the JSTOR discipline label Social Science interacted across all topic by document probabilities would provide a parameter measuring the degree to which social science texts contribute terms more or less frequently to that topic than do non social science texts. For example, a binary category between social sciences and humanities interacted with a topic about music might show that social science texts are ten percent less prevalent in the music topic than are humanities texts. Second, covariates may affect topic content. Here the terms of a document inherit the covariate assigned to their document of origin. A social science dummy interacted across all topic by term probabilities provides a parameter measuring the degree to which a term of a particular covariate origin is more or less likely to contribute to a topic. In practice, content models help construct two different term rankings for the same topic, two because estimation on the high dimensional term vector space is intractable for all but the simplest binary covariate. In the same social science versus humanities binary, the content model would show how the vocabulary of social science texts differs from the vocabulary of humanities texts when talking about the same topic, music. In a subsequent chapter we will find occasion to use these more powerful features of the STM.
 
@@ -583,15 +583,15 @@ xg<-xel[,{
 dxg<-degree(xg) %>% table %>% rev
 ```
 
-Among the 45 different sorting tasks only two outcomes were observed. `r table(xel$p)[1]` tasks was performed perfectly (p = `r min(xel$p) %>% round(4)`), while in `r table(xel$p)[2]` tasks or one error was made, which is to say two documents were misclassified (p = `r max(xel$p) %>% round(4)`). Figure \@ref(fig:man-con) visualizes the pairwise outcomes as a confusion network. Topics that are disconnected were sorted perfectly, while topics that are connected were confused. The graph reveals some variation in topic confusion, as `r dxg[1] %>% nn` were confused twice, `r dxg[2] %>% nn` were confused once, and the remaining `r dxg[3] %>% nn` were never confused.
+Among the 45 different sorting tasks only two outcomes were observed. `r table(xel$p)[1]` tasks was performed perfectly (p = `r min(xel$p) %>% round(4)`), while in `r table(xel$p)[2]` tasks one error was made, which is to say two documents were misclassified (p = `r max(xel$p) %>% round(4)`). Figure \@ref(fig:man-con) visualizes the pairwise outcomes as a confusion network. Topics that are disconnected were sorted perfectly, while topics that are connected were confused. The graph reveals some variation in topic confusion, as `r dxg[1] %>% nn` were confused twice, `r dxg[2] %>% nn` were confused once, and the remaining `r dxg[3] %>% nn` were never confused.
 
 It is not actually clear whether topic confusion is a function of document misclassification or my lack of familiarity with topic content. An added benefit of this procedure is that it began to establish a theory of each topic by a direct inspection of bellwether texts, and this growing familiarity decreases the task difficulty over the course of the testing. In either event the results of this diagnostic provide a basis for understanding interpretive difficulties later.
 
-### K descent
+### Topic descent
 
 All topic models are mixture models in that they treat the observed document by term frequencies as the outcome of multiple topics mixing together in different proportions within documents. Whereas the flat approach treats documents as mixtures, a hierarchical topic model treats topics as mixtures as well. Here topics are mixtures of ancestor nodes in a tree network of topics. A hierarchical model would, for instance, obviate the procedure of removing common language syntax words such as articles and prepositions because it could represent these as a root node of all topics, indicating that all vocabularies appear in a partial mixture of a language's basic syntax. A flat model retaining syntax would burden the estimator with learning that syntax terms should be distributed evenly across all topics. More substantively, a hierarchical model applied to scholarship may help pick out fields that have various empirical studies that are nonetheless united by common theory terms or argumentative style words. Because substance in its detail can easily swamp framing terminology by sheer frequency, flat topic model estimators will tend to rends apart fields where novelty is a virtue and classify them by their minutia rather than by their themes.
 
-Models and software for hierarchical models have been developed [@Teh2006Hierarchical; @Roberts2015pkg], but they are not yet in common use by social scientists. Here
+Models and software for hierarchical models have been developed [@Teh2006Hierarchical; @Roberts2015pkg], but they are not yet in common use by social scientists. Here we use a psuedo hierarchical model in which we fit separate models at increasing levels of K, then we do postestimation to measure the document level overlap among topics between adjacent levels of K. We refer to this as topic decent, and it shows how document classification evolves as K increases.
 
 ```{r snk-el}
 # el<-lapply(mod,function(x) x$doc.top.theta * x$doc.length)
@@ -732,7 +732,7 @@ sn<-sankeyNetwork(
   ,colourScale = c(gray(.95,0),RColorBrewer::brewer.pal(12, 'Paired')) %>% {paste0('d3.scaleOrdinal() .domain(["',paste(seq(length(.)),collapse='", "'),'"]) .range(["',paste(.,collapse='", "'),'"])',collapse='')}
   ,iterations = 5000
 )
-if(docx) include_graphics('img/genre-sankey.png') else sn
+if(docx|latex) include_graphics('img/genre-sankey.png') else sn
 ```
 
 ```{r snk-rnk}
@@ -792,16 +792,50 @@ plt(p1)
 
 ## Reading Strata
 
-```{r samples}
-mod[[9]]
+```{r clusters,include=T}
+f<-'d/p/dclc-genre.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  dclc<-mod[[9]]$doc.top.theta %>% tcrossprod %>% graph_from_adjacency_matrix(mode='upper',diag=F,weighted=T) %>% cluster_louvain
+  save(dclc,file=f)
+}
+rm(f)
+cld<-mod[[9]]$doc.top.theta %>% data.table(.,lc=dclc$membership) %>% melt(id.vars='lc') %>% setnames(ec('lc,k,p'))
+cl<-cld[,.(`%`=(mean(p) %>% `*`(100) %>% round(1))),by=.(lc,k)] %>% setorder(lc,-`%`)
+dclc$membership %>% table
+cl %>% DT::datatable(.,caption = 'Average topic proportions within communities',filter = 'top')
+```
+
+```{r clusters2,include=T,fig.cap='Topic by document probabilities within communities'}
+f<-'d/b/clusters2.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  bk<-c(.01,.1,.5,.9,.99)
+  p1<-plt(
+    myth(ggplot(data=cld),'Paired') +
+      stat_bin(aes(x=boot::logit(p),color=k,stat(density)),geom='step',position='identity',binwidth=.5) +
+      facet_wrap('lc') + 
+      scale_x_continuous(breaks = boot::logit(bk),labels = bk %>% format(digits=2,scientific=F,trim = T)) +
+      theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  )
+  for(i in 1:length(p1$x$data)) {
+    p1$x$data[[i]]$legendgroup %<>% sub('[^0-9]+([0-9]+).*','\\1',.)
+    if(grepl('\\(',p1$x$data[[i]]$name)) p1$x$data[[i]]$showlegend<-F else p1$x$data[[i]]$name %<>% sub('V','',.)
+  }
+  save(p1,file=f)
+}
+rm(f)
+if(docx|latex) knitr::include_graphics('img/clusters2.png') else p1 %>% plotly::style(visible="legendonly", traces = setdiff(1:60,matrix(1:60,nrow=6)[,c(2,4,10)]))
 ```
 
 
 ## Results
 
-```{r prob-anc}
-aw<-mod[[9]]$top.word.phi.beta %>% apply(2,ineq::Gini) %>% order(decreasing = T) %>% head(1000) %>% {data.table(w=mod[[9]]$vocab[.],k=apply(mod[[9]]$top.word.phi.beta[,.],2,which.max))} %>% .[,.(w=list(w %>% head(6))),keyby=k]
-aw[,p:=mod[[9]]$vocab[mod[[9]]$top.word.phi.beta %>% apply(1,which.max) %>% head(10)]]
+```{r prob-anc,include=T}
+aw<-mod[[9]]$top.word.phi.beta %>% apply(2,ineq::Gini) %>% order(decreasing = T) %>% head(1000) %>% {data.table(w=mod[[9]]$vocab[.],k=apply(mod[[9]]$top.word.phi.beta[,.],2,which.max))} %>% .[,.(w=w %>% head(6) %>% paste(collapse=', ')),keyby=k]
+aw[,p:=mod[[9]]$vocab[mod[[9]]$top.word.phi.beta %>% apply(1,which.max) %>% head(10)]] %>% setcolorder(ec('k,p,w'))
 sg(aw,tit='Most likely and most exclusive (anchorlike) terms')
 ```
 
