@@ -30,6 +30,9 @@ strspl<-function(str) {
 }
 blanky<-theme(axis.text.y = element_blank(),axis.ticks.y = element_blank(),panel.grid.major.y = element_blank(),panel.grid.minor.y = element_blank())
 blankx<-theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),panel.grid.major.x = element_blank(),panel.grid.minor.x = element_blank())
+whwh<-function(meta,ix){
+  sprintf('%s\'s \"%s\"',meta[ix,auth[[1]]$last %>% nl],meta[ix,ifelse(is.na(tit),sotit,tit) %>% tolower %>% tools::toTitleCase(.)])
+}
 ```
 
 
@@ -39,13 +42,15 @@ The question of what to read is simple to be sure, but in fields of scholarly co
 
 This problem of using the archive, by which we mean all libraries and other organizations that help scholars find published work, is easily expressed by the question, "what to read?" Paradoxically, the over-development of the archive promotes a functional imperative: to the extent that more and more of scholarship is memorable, mechanisms must develop to forget large swaths of intellectual history. A person who studied a random draw from the archive, even a monumental one, would no doubt qualify as an educated person. Professionally, however, they would have answered the question in a tragically wrong way. From the perspective of other scholars, there are right and wrong choices about what to read. Because it is so easy to access scholarly memory, the operative question really becomes "what not to read?"
 
-Though Internet search and self-publishing services, especially video and image based ones, are creating archive-like infrastructure for all occupations, even manual ones, the functions are different. Contemporary Internet repositories provide knowledge as factors of production to anyone who queries them, but many do not purport to be archives in the sense that a historical record of cultural produce is preserved for posterity. They are much more concerned with access to contemporaneous than to historical material, and indeed the particular configuration of the contemporary that sells the most ads ahead of search results. True historical archives of the Internet, such as the Internet Archive or Common Crawl, are not used by the public. Indeed why would they be; they expose the dizzying complexity of the history of the Internet, which, even in only its contemporaneous facet is already overwhelming. The Internet searcher tends to be satisficing, and the search companies have refined their ranking of results to meet their users' search budgets efficiently.
+Though Internet search and self-publishing services, especially video and image based ones, are creating archive-like infrastructure for all occupations, even manual ones, the functions are different. Contemporary Internet repositories provide knowledge as factors of production to anyone who queries them, but many do not purport to be archives in the sense that a historical record of cultural products is preserved for posterity. They are much more concerned with access to contemporaneous than to historical material, and indeed the particular configuration of the contemporary that sells the most ads ahead of search results. True historical archives of the Internet, such as the Internet Archive or Common Crawl, are not used by the public. Indeed why would they be; they expose the dizzying complexity of the history of the Internet, which, even in only its contemporaneous facet is already overwhelming. The Internet searcher tends to be satisficing, and the search companies have refined their ranking of results to meet their users' search budgets efficiently.
 
-Thus Internet search services perform the function of complexity reduction in their own arbitrary way. They do this without the scholarly paradox of memory, which is that in the university system great pains are made to remember everything just so that the correct material may be forgotten. In the cynical view of professions, scholarship is the encryption of memory by secret sets. A lay seeker approaches the academic archive and at great cost of attention plumbs its depths for enlightenment. Tragically, the archive's complexity dooms her to check out a curriculum so hopelessly tacky that it will only certify her lay status. To be professional is to know what are the tasteful combinations of resources. To be a successful professional is to never have wasted time tasting the bad fruit. Librarians much prefer to help undergraduates because they lack taste. They gifted scholars with access to an immortal memory, and looking the horse in the mouth scholars made rules to protect themselves from the responsibilities of using most of it. In this way a taste for scholarship is the axis sorting the field between education and profession.
+Thus Internet search services perform the function of complexity reduction in their own arbitrary way. They do this without the scholarly paradox of memory, which is that in the university system great pains are made to remember everything just so that the correct material may be forgotten. In the cynical view of professions, scholarship is the encryption of memory by secret sets. A lay seeker approaches the academic archive and at great cost of attention plumbs its depths for enlightenment. Tragically, the archive's complexity dooms her to check out a curriculum so hopelessly tacky that it will only certify her lay status. To be professional is to trade in status, to know what are the tasteful combinations of resources. To be a successful professional is to never have wasted time tasting forbidden fruit.
 
-So again, how do professional scholars know what (not) to read? What then are the structures that lead scholars new and old to answer the question correctly? How does one know what are the lucrative curricula that can be developed from the archive? There are several formal and informal structures that facilitate and compel scholars to make the same choices about what to read. An obvious one is the supposed normative isomorphism of graduate program syllabi, yet it is a common concern that the quality of these are variable. Universities tend to grant great autonomy to professors in writing syllabi, who in the course of their professional travails may not be given opportunities to read what they want. In being forced to carve out time with subordinates, faculty are caught between personal indulgence and a more or less strongly felt fiduciary responsibility to set students on the correct path. If we have less than perfect faith in the strength of educational ethics among faculty, then we should expect that among graduate syllabi are many lists of what not to read. Students who trust too much in the formal curriculum may be lead astray, and even without trust, they may still be left ignorant of where to invest their labor.
+Yet the truly tragic figures are the archivists themselves who are stretched between the opposing poles of profession and education. Librarians much prefer to help undergraduates who lack taste and therefore welcome guides who will lead them through the grandeur of the archive. They gifted scholars with access to an immortal memory, and looking the horse in the mouth scholars made rules to protect themselves from the responsibilities of using most of it. Paradoxically, in taking the burden of memory off of the shoulders of scholars, thereby freeing them of the pain of legacy suffered by other artists [@Lang1988Recognition], librarians created a maze of knowledge in which clergy could trap laity. In this way a taste for scholarship is the axis sorting the field between people who profess (declare publicly) and people who educate (lead out).
 
-In each program there then must be a hidden curriculum of higher quality. The argument of this study addresses the question of where such a curriculum could possibly come from. The provisional answer is that in the informal spaces of graduate programs knowledge of scholarly genre is learned from extracurricular engagement with professional conferences. It is in conference programs that the tacit rules of academic genre are learnable. These genres form the first parsing of the archive for neophytes. Indeed at the most generic level graduate students, if they are confident enough to locate themselves quickly enough, develop a taste for what not to read. If they can do so early on in their careers, they will be armed with the stereotypes necessary to stop reading the wrong and start reading the right material. While this is not enough certainly to make a cleric of a lay worshiper, it is a necessary first step.
+So again, how do professional scholars know what (not) to read? What then are the structures that lead scholars new and old to answer the question correctly? How does one know what are the lucrative curricula that can be developed from the archive? There are several formal and informal structures that facilitate and compel scholars to make the same choices about what to read. An obvious one is the supposed normative isomorphism of graduate program syllabi, which act like maps to navigate the maze of the archive. Yet it is a common concern that the quality of syllabi are variable. Universities tend to grant great autonomy to professors in writing syllabi, who in the course of their professional travails may not be given opportunities to read what they want. In being forced to carve out time with subordinates, faculty are caught between personal indulgence and a more or less strongly felt fiduciary responsibility to set students on the correct path. If we have less than perfect faith in the strength of educational ethics among faculty, then we should expect that among graduate syllabi are many lists of what not to read. Students who trust too much in the formal curriculum may be lead astray, and even without trust, they may still be left ignorant of where to invest their labor.
+
+In each program there then must be a hidden curriculum, a map of higher quality. The argument of this study addresses the question of where such a curriculum could possibly come from. The provisional answer is that in the informal spaces of graduate programs knowledge of *scholarly genre* is learned from extracurricular engagement with professional conferences. It is in conference programs that the tacit rules of academic genre are learnable. These genres form the first parsing of the archive for neophytes. Indeed at the most generic level graduate students, if they are confident enough to locate themselves quickly enough, develop a taste for what not to read. Genre as the foundation for a taste for scholarship serves to restrict a student's wandering to a delineable sector of the maze. If they can develop this proto-taste early enough in their careers, they will be armed with the stereotypes necessary to stop reading the wrong and start reading the right material. While this is not enough certainly to make clergy of laity, it is the first step.
 
 ### Genres
 
@@ -136,13 +141,15 @@ As we have said, the meaning of genre for a sociologist of culture is economisti
 
 But this description of subdisciplinary differences really is just an example of a structural theory of genre that is within scope for the sociologist of knowledge and beyond it for the sociologist of culture, due to their epistemological differences. If genres are ontological, then they deeply structure a person's experience of reality. Ontologies form basic perceptual categories, and people with different ontologies of an object experience different things even if oriented to the same objective phenomenon. A ontological theory of genre would, for example, attempt to explain differences in taste as differences in phenomenological perception, whereas a taste theory of genre treats consumption behavior as revealing preferences whose downstream consequences are then explored.
 
-Yet for all the differing treatments of genre mentioned above, do these views of really contradict, or are they in fact complementary? Does genre as distribution serve the economic sociologist's goals, or does a lack of ontological substance lead her astray? Does genre as knowledge remain hopelessly unverifiable, or are theoretical constructs necessary to achieve a correct interpretation of facts? Is everyone at the club listening to the same song hearing the same thing?
+Yet for all the differing treatments of genre mentioned above, do these views really contradict, or are they in fact complementary? Does genre as distribution serve the economic sociologist's goals, or does a lack of ontological substance lead her astray? Does genre as knowledge remain hopelessly unverifiable, or are theoretical constructs necessary to achieve a correct interpretation of facts? Is everyone at the club listening to the same song hearing the same thing?
 
 ### Disciplines
 
 To return to disciplines, answering such questions would put the researcher in an adisciplinary predicament, for it would mean eschewing the scope restrictions cherished by disciples. The challenges of a meta-disciplinary analysis are manifold and uncertain. One is as likely to grow her audience as to lose it altogether. She risks the dilettantism of a jack-of-all-trades. What's worse, she exposes herself to a dizzying scale of content to consider. If disciplines are indeed functional, then the meta-analysis that effaces disciplines risks being dysfunctional. The upside, however, is appealing. If the universe of meanings given to the term genre does contain complementary uses, a meta-analysis will allow one to consider the consequences of the now arbitrary segregation of a superior metaconcept across disciplinary boundaries. Both sides of the divide could be strengthened by a cultural exchange of their respective terms. The redundancy of parallel discovery can be avoided.
 
 Pathologies of disciplinarity can be diagnosed and treated. Disciplines are social substructures embedded in a larger society and culture. Disciplinarity is a kind of controlled ignorance exchanged for access to secret knowledge. The wayward uses of a term like genre are always lurking at the edges of the firelight defined by a particular disciplinary camp. Discipline as rigor instructs disciples to resist flirtations with the available complexity of the term. The essential tension is very rarely between what is known and unknown; rather it is more commonly between what is known "here" versus what we are conditioned to be willfully ignorant of "there".
+
+This definition of discipline is isomorphic with that of genre, in that disciplines are another form of categorical decision making, just at a higher level. Disciplines are supergenres that reflect the nesting of categories. What may distinguish them in a more serious way is the institutional underpinning of the category. If genres are formed by the categorical thinking of disciples, disciplines are formed by the categorical thinking of patrons, the powerful actors like university administrators, state legislators, and grantmakers who manage the economic foundation of scholarly careers, as well as the elite disciples who interface with these stakeholders. Where genre labels are inscribed onto cultural products, texts, discipline labels are inscribed onto cultural infrastructure like funding lines, buildings, and personnel themselves.
 
 In a motivation of some of the arguments to follow, I take a metadisciplinary approach, which is to cast as wide a net as possible on the term genre. In so doing I hope to test the tacit cultural assumption that discipline-based decisions of relevance are valid, that is, that when we exclude arguments from other disciplines we remove distractions and focus on what is important. The alternative possibility is that we are wasting intellectual resources, because to exclude important work about our topic, even if it is codified in foreign terms, is to risk ignorance and redundancy. The topic is genre and how disciplinary boundaries form such that people using the same word nonetheless cannot communicate effectively. They draw on different paradigms, which is to say the term is not really the same term. What I hope to do is uncover the knowledge contexts surrounding the terms, and map these contexts in a way that enumerates the various communities of discourse and theories constituting the term.
 
@@ -158,7 +165,7 @@ The research strategy here attempts to parry the entropic tendency of the archiv
 
 I use a simple term search of the keyword "genre" to define half of a sampling frame.^[TODO, I did not, but should take a random draw of the same size to serve as a control.] I could then take a simple random sample of texts, analyze how each uses the term genre, develop a classification scheme, and enumerate the different uses of the term. Unfortunately, a small sample in a statistical sense may be larger than a poor researcher can handle. 1,000 texts is not large statistically, but it is huge from a content analysis perspective. What's worse, 1,000 texts may still exclude, by random chance, small subcultures of the term. Stratification within a more or less global sampling frame resolves this issue by delineating those subcultures so none would be left out.
 
-Alas, the JSTOR digital archive lacks subject labels at the article level, though it does include them for book chapters and for journals. While not foolish, inheriting a journal label to the articles included within it may be a coarse approximation if within-journal content variation exceeds between-journal variation. We can use text analytic classification methods to cluster articles directly and discover latent groups of articles, and in so doing we can have an independent standard to compare to the discipline labels given to journals. It is an open question whether such methods align with what we have discussed above as disciplinary and subdisciplinary groupings, for us whether regularities in vocabulary correspond to regularities in the meaning of the term genre. If they do not, then the study will only be a stop en route to a true census of the uses of the term genre, and the contribution will be to have interrogated the quality of the methods used, though this would be a small consolation indeed!
+Alas, the JSTOR digital archive lacks subject labels at the article level, though it does include them for book chapters and for journals. While not foolish, inheriting a journal label to the articles included within it may be a coarse approximation if within-journal content variation exceeds between-journal variation. We can use text analytic classification methods to cluster articles directly and discover latent groups of articles, and in so doing we can have an independent standard to compare to the discipline labels given to journals. It is an open question whether such methods align with what we have discussed above as disciplinary and subdisciplinary groupings, for us whether regularities in vocabulary correspond to regularities in the meaning of the term genre. If they do not, then the study will only be a stop en route to a true census of the uses of the term genre, and the contribution will be to have interrogated the quality of the methods used, though this would be a small consolation indeed! Even so, for a new method to claim to be able to improve on conventional wisdom, I behoove myself to proceed methodically.
 
 The choice in computational text analysis (CTA) about how to represent texts as data hinges on whether word order is preserved. The older and more tested approach is to not preserve word order. The name given to this "bag of words" format reminds one of its inelegance. A bag of words is a frequency table for each document counting up the number of times particular words are used, a representation that effectively reduces a text to its vocabulary. It is the analyst's crude operational decision to treat vocabularies as indicators of meaning, but social scientists conventionally insist on cross validation via qualitative analysis. While the ambitions of computational text analysis may start with a replacement of, for instance, the standard literature review, the conventional distrust, at least in sociology, of mathematical models of text makes CTA more of a sampling method than an analytic method. The study will culminate in a reading of texts, albeit one that is different than traditional qualitative analysis because the CTA researcher welcomes the introduction of interpretive bias from an understanding of the mathematical model before, during, or after the texts are read. In the game of "choose your influence", CTA is one choice while disciplinary wisdom is another.
 
@@ -191,13 +198,15 @@ We have referred generically to computational text analysis, and now we can disc
 
 Topics are directly represented by they topic-by-term matrix. A topic is a probability distribution over a vocabulary. To draw on a topic means to choose vocabulary as a random draw from this distribution, where words with higher probabilities will be chosen more often. In the case of genres we might imagine a topic about film and a topic about music. Some words may be important (highly probable), to both topics, such as the word "genre", while others would be distinct, such as the words "movie" (probable for film but improbable for music) and "band" (vice versa).
 
+Note the usual distributional bait-and-switch of categorical statistical analysis, where observed count data are operationalized as the outcomes of unobserved probabilities. The probabilities are what will be estimated, not the counts. The importance of this will be explored in the sections on estimation and diagnostics, but suffice to say that the differences between probabilities and counts encapsulate most of the difficulties applied researchers encounter when using topic models. 
+
 Given topics as term distributions, a document can be represented not as a distribution over terms, but as a distribution over topics. The topic mediates the relationship between documents and terms. In order to generate diction for a document, all that need be understood is the ratio of topics out of which it is composed. This is sometimes explained as a generative mechanism; to ask what word will be chosen next in composing a document, one first samples from the document's own topic distribution to decide which topic the word will be drawn from, and given that topic, one then samples from the topic's word distribution to decide which word will be included in the document. A document's topic probabilities also create the expectation of how many words are attributed to each topic. A document with topic probabilities .7 from music and .3 from film would be expected to be 70 percent about music and 30 percent about film, making for a parsimonious albeit reductive description of document content.
 
 It is important not to overinterpret a topic model. Topic models are sometimes called "generative" as if they explained how documents are written. Such a generative metaphor reveals the absurdity of a topic model as a representation of writing. Not to mention the fact that punctuation tends not to be represented (though it could be), the terms chosen would be in a random order incapable of making meaningful sentences. Hence it is best to avoid the generative metaphor as an explanation of texts. If topic models touch on the generation of real, meaningful documents, it is only in a very limited sense. What the topic model really represents is how vocabularies are organized to condition an author's diction. A vocabulary can be thought of as an infrastructure of meaning more trivial than grammar or syntax and much more trivial than concepts or ideas. A topic is a simple list of words that is known or knowable across all authors in a field. Topics do not tell stories; authors tell stories in part by making diction choices that are conditioned by topics.
 
 From a sense or meaning making perspective topics are trivial; this is because so little is known about what an author says by knowing the topic or even the term distribution of a document. What topics are useful for, however, is the segmentation or cartography of a corpus. Topics are really a global feature, perhaps a cultural feature, of a corpus of texts that is itself meaningfully selected. If indeed a field of texts is oriented to common if not always overlapping vocabularies, then topics can represent this well.
 
-A topic model could be posited based on the domain knowledge of an expert, and this would be a form of estimation. The practical value of statistical topic modeling is that the unobserved topics can be induced, with a raft of statistical assumptions, directly from the observed document-by-term matrix to arrive at a model with the features just described. An estimated topic model will contain several other parameters filling in assumptions necessary to make it possible to identify the unobservable topic probabilities in each of the two matrices of the model. For instance, the parameter commonly called alpha makes an assumption about how many topics tend to comprise each document. Alpha values close to zero make it very likely that documents are composed of only one topic, while an alpha value greater than one increase the chance that a document will be decomposed into several topics. Alpha equal to one creates no tendency, so concentrated and diffuse mixtures are all equally likely to occur. It would behoove a researcher to make an informed decision about this parameter, yet software often sets an arbitrary default that the user may or may not be fully aware of. 
+A topic model could be posited based on the domain knowledge of an expert, and this would be a form of estimation. The practical value of statistical topic modeling is that the unobserved topics can be induced, with a raft of statistical assumptions, directly from the observed document-by-term matrix to arrive at a model with the features just described. An estimated topic model will contain several other parameters filling in assumptions necessary to make it possible to identify the unobservable topic probabilities in each of the two matrices of the model. For instance, the concentration parameter commonly called alpha makes an assumption about how many topics tend to comprise each document. Alpha values close to zero make it very likely that documents are composed of only one topic, while an alpha value greater than one increase the chance that a document will be decomposed into several topics. Alpha equal to one creates no tendency, so concentrated and diffuse mixtures are all equally likely to occur. It would behoove a researcher to make an informed decision about this parameter, yet software often sets an arbitrary default that the user may or may not be fully aware of. 
 
 #### Choosing K
 
@@ -211,15 +220,24 @@ Another interesting feature of this approach is that it shows when and how topic
 
 It should be possible to predict a priority for topic emergence as models increase parameter space for topics. First, we expect topic model estimators would be very tuned to picking out even a handful of texts written in a different language than the main corpus, as terms within those documents would be both frequent and exclusive. We should expect technical jargon to also send a strong signal for it's high exclusivity. Indeed, these special vocabularies are salient for both humans and machines for the same reason; they are easy to disassociate from the rest of the text. The priority, however, for the estimators will be to explain global term frequencies, so jargon will likely be behind frequent terms that appear across multiple topics, as in the case of polysemy or the more common case of simple language ambiguity. Trailing the pack and the last to emerge will be, as we have discussed, idiosyncracy.
 
+Lets remind ourselves of what badness means, because a bad model in a statistical sense may very well be the correct model for the analytical purpose of the researcher. A human reader with an interpretive goal in mind can be quite apt at scanning text content and ignoring what she finds to be irrelevant. Some of this seeming irrelevance has to do with the syntactic structure of language, while others a reader knows by experience to be elements of style and rhetoric in their field. The interpretive goal is like a flashlight that darkens much more content than it illuminates.
+
+While human readers tend to make sense of only small portions of texts, the machine is not so lucky as to have the human capacity for selective ignorance. The topic model estimator sees and makes sense of everything at once. This is sometimes at cross purposes to the researcher's hope of complexity reduction, because in interpreting the model rather than the text she will be told by the model that something is important even if she would have easily ignored the same context in the natural setting. A topic model that is both correctly specified and accurately fit on a large corpus will likely have dozens or even hundreds of topics. Such a variegated classification scheme is likely to contain some topics that a reader would consider to be redundant, for instance, because they are about the same thing yet differ for an irrelevant stylistic vocabulary. Many others will simply be irrelevant to her research agenda. The task of sorting through the topics is supposed to be easier than sorting through the original texts, yet the researcher is sure to find many inscrutable lists of FREX terms in a that can only be understood with reference to classified articles.
+
+In this case that a correct model of vocabularly clustering is actually too complicated to be helpful, the correct research decision may be to deliberately underspecify the model. We can imagine the real topics as guests standing in a line of priority, and the model is like a wedding with a limited number of tables. The guests with the strongest relations among them sit at the first table, the next strongest at the second and so on until all of the tables are full. In their munificence the happy couple still lets the remaining guests in, and what can they do but pull up a chair at the tables where perhaps they already know one of the more honored guests. However, if an additional table, or several, were to be found, the crashers could look among themselves for close relationships, even perhaps peeling away a priority guest, to form a separate group. Prior to there being room, that group would be unrecognizably distributed among several tables. The group would not exist, but the individuals would, and they would find a seat somewhere.
+
+Just as the arrival of wedding crashers at the tables does not alter the identity of the core group that constituted them to begin with, a model where K is set too low will serve to highlight those vocabularies that send the strongest signals, even if the tails of these topic distributions are contaminated by unidentified topics. From a frequency and exclusivity standpoint the unidentified topics are the less important ones. Smaller and less distinct groups will be occluded in an underspecified model, and whether these are substantively important is a theoretical decision.
+
+
 ```{r frex,include=T}
 frex<-cbind(exclusivity=ec(' ,low,high'),frequency=ec('low,4. idiosyncrasy,3. jargon'),' '=ec('high,2. polysemy/ambiguity,1. foreign language'))
-if(docx) knitr::include_graphics('img/frex.png') else sg(frex,tit = 'Content variation across frequency and exclusivity',new.col.align = 'lll' )
+if(docx) knitr::include_graphics('img/frex.png') else sg(frex,tit = 'Content priority across frequency and exclusivity',new.col.align = 'lll' )
 ```
 
 
 Indeed we may never expect idiosycracy to emerge as its own topic except in the limiting case. Presumably K can be set so high as to approach the saturation point of a topic for each document. In this event topics that would otherwise appear in common may alter to represent the uncommon parts of a document, and the topic would merely reproduce the term distribution of a particular document. Thus there is a transition from content in common to content idiosyncratic to groups of trivial size and to individual texts in the limiting case. The model is unable to ignore supposedly idiosyncratic content, and will thus find a way to classify it among topics in common, effectively distorting the term vector of those topics. There may be no objective point at which the content in common is neatly separable from the idiosyncratic content; indeed common content evolves only by idiosyncratic innovation. Our ensemble approach allows us to observe how particular content moves among topics as parameter space opens up.
 
-Finally, there are sparse model estimation techniques that may ameliorate some of the considerations above. Sparse models, such as those using the L1 or LASSO constraint, bias parameters downward and thus may set trivial regression coefficients nearer to zero. Such an approach may well fail to represent idiosyncracy at all, which is either a benefit or a hazard. Such a biased model would, by effacing the idiosyncratic portions, yield topics representing only the common portions of documents. This avoids what we have termed contamination at the cost of losing information that we may care about. Thus for sparse model techniques to be used responsibly document residuals would need to be calculated to help recover the unmodeled portions of the texts. The model diagnostics we explore below attempt to separate model parameters into common and idiosyncratic elements, the difference being whether the idiosyncrasy is located in the topic model or in the residuals.
+Finally, there may be hope that sparse model estimation techniques would ameliorate some of the considerations above. Sparse models, such as those using the L1 or LASSO constraint, bias parameters downward and thus may set trivial regression coefficients nearer to zero. Such an approach may well fail to represent idiosyncracy at all, which is either a benefit or a hazard. Such a biased model would, by effacing the idiosyncratic portions, yield topics representing only the common portions of documents. This avoids what we have termed contamination at the cost of losing information that we may care about. Thus for sparse model techniques to be used responsibly document residuals would need to be calculated to help recover the unmodeled portions of the texts. The model diagnostics we explore below attempt to separate model parameters into common and idiosyncratic elements, the difference being whether the idiosyncrasy is located in the topic model or in the residuals.
 
 #### Bias
 
@@ -258,13 +276,13 @@ To be sure, topic model parameters may be biased by misspecification, and if we 
 
 The same scholars who promote qualitative cross validation (QCV) would presumably have bet on John Henry rather than the steam drill. The arguments against the machine, which excels only at recognition, is that it is a ham-fisted intruder into the delicacies of sensemaking, semantics, and interpretation. Meaning operates very differently from information namely by bringing grounding to the response to information. One example of grounding is spreading activation, that when information is presented to the mind by sensation, the mind responds by representing not only a construct of the stimulus but also a network of constructs adjacent in memory to the stimulus. Simply, humans see more than they perceive, but machines cannot.
 
-To permit an aside, that machines are dumb because they can only recognize information rather than interpret meaning is almost but not quite unfair to machines. In machine learning the analog to memory, be it treated as semantic grounding or anything else, is mathematical model representation, and the analog to learning is a Bayesian updating of old models with new data. A machine seeing new data with an old model can indeed see more than it perceives. At this moment in the era of computational social science, however, researchers train models for the first time on the data they wish to explain. It is theoretically possible to communicate and transport models from past to present researchers, however this is not done in practice for lack of infrastructure and more importantly because social scientists rarely study the same thing twice. Where data are ample it is possible to simulate a history of memory for the machine using hold out techniques where a model is trained on one sample of the data and applied to predict another sample. Where the goal is to maximize prediction, training and hold out samples are randomly selected. A different approach [e.g. @Nay2017Predicting] involves selecting training and hold out as a process in time. This is a closer approximation to human memory, as humans always approach the present only armed with a memory of the past. 
+That machines are dumb because they recognize rather than interpret is not entirely fair. In machine learning the analog to memory, be it treated as semantic grounding or anything else, is mathematical model representation, and the analog to learning is a Bayesian updating of old models with new data. A machine seeing new data with an old model can indeed see more than it perceives. At this moment in the era of computational social science, however, researchers train models for the first time on the data they wish to explain. It is theoretically possible to communicate and transport models from past to present researchers, however this is not done in practice for lack of infrastructure and more importantly because social scientists rarely study the same thing twice. Where data are ample it is possible to simulate a history of memory for the machine using hold out techniques where a model is trained on one sample of the data and applied to predict another sample. Where the goal is to maximize prediction, training and hold out samples are randomly selected. A different approach [e.g. @Nay2017Predicting] involves selecting training and hold out as a process in time. This is a closer approximation to human memory, as humans always approach the present only armed with a memory of the past. In this sense a time ordered model training process may create the same kind of errors on new data that a social institution would.
 
 As clever as the time sorted hold out strategy is, it is unlikely to outperform a supervised approach to model validation wherein human judgements serve either as diagnostics or training materials for model fitting. Human culture is far too expansive to be modeled by a computer for no simpler reason than the data of human memory are always rapidly lost and what is retained is selected for arbitrary historical reasons. What makes the contest between John Henry and the steam drill interesting in the modern era is the social problem of cultural reproduction. Machines will outperform humans only where human history is made more accessible to machines than to humans, which may be a join function of the success of digital archiving coupled with the deterioration of human education.
 
-To return to the case of topic models, some advocates for the machine go so far as to claim that the topic model actually recovers semantic context [@DiMaggio2013Exploiting\:578]. Semantic context is a more specialized notion than memory, and it refers to the human capacity for reproducing common meaning. In language viewed through a topic model a large collection of terms defines the topic while only a sample of these terms will be observed in a particular document. In this sense the topic model fills in missing information in the way that meaningful interpretation works. This notion rests on a very strong assumption, however, which is that information tacit in a particular case is explicit in a different case, indeed a quorum of different cases, and that the cases overlap enough to become included under the same topic. This feature would seem to compete against the other feature of polysemy, that a term may appear in multiple topics each with a different context. How does the machine know that a particular term distribution (document) is a case of missing grounding within the same topic as another document, or is in fact a different topic with a different context?
+In the case of topic models, some advocates for the machine go so far as to claim that the topic model actually recovers semantic context [@DiMaggio2013Exploiting\:578] or what we have called grounding. Semantic context is a more specialized notion than memory, and it refers to the human capacity for reproducing common meaning. In language viewed through a topic model a large collection of terms defines the topic while only a sample of these terms will be observed in a particular document. In this sense the topic model fills in missing information in the way that meaningful interpretation does. This notion rests on a very strong assumption, however, which is that information tacit in a particular case is explicit in a different case, indeed a quorum of different cases, and that the cases overlap enough to become included under the same topic. With big variation in document length topic models may take grounding, which is properly a community resource, arbitrarily from the longer documents within a corpus thus giving them undue influence over sensemaking. In real sociocultural interaction, a large, exogenous influx of novel term associations would not determine meaning at the margin. Real meaning has legitimacy enforced by interested actors, such that deviant term associations are negatively sanctioned. Topic models only learn from cultural expression and are ignorant of social processes that condition expression. If novel terms are associated in one text with a core of common terms found in many texts, they too will be added to the topic. This is a corruption of the grounding that would not occur in real life.
 
-Of course the machine knows nothing other than how to maximize an objective function. Estimators are designed to select random solutions and update them in the direction of better models. Indeed, it is the hyperparameter choices of the researcher that decide often decide which research approaches will win out. For example, the question of whether or not a topic model detects polysemy is governed by the choice of the sigma prior, which controls topic correlations, where a constraint toward low topic correlations prohibits detection of polysemy. The current state of software discourages an understanding of how hyperparameter tuning relates to a particular research agenda, and this opacity to the method is a strong driver toward QCV.
+The estimation of grounding would seem to compete against the other feature of polysemy, that a term may appear in multiple topics each with a different context. How does the machine know that a particular term distribution (document) is a case of missing grounding within the same topic as another document, or is in fact a different topic with a different context? Of course the machine knows nothing other than how to maximize an objective function. Estimators are designed to start from a more or less arbitrary guess and update parameters in the direction of models that are more likely given the data. Indeed, it is the hyperparameter choices of the researcher that often decide which research approaches will win out. For example, the question of whether or not a topic model detects polysemy is governed by the choice of the sigma prior, which controls topic correlations, where a constraint toward low topic correlations prohibits detection of polysemy. The current state of software discourages an understanding of how hyperparameter tuning relates to a particular research agenda, and this opacity to the method is a strong driver toward QCV.
 
 Cheap computing does make grid searching across hyperparameter settings possible, if not cost effective, but until this approach is usefully automated it is safe to assume that models will be misspecified in an unknown way, that the model is tuned in a particular arbitrary theoretical direction that is unknown to the researcher. Why would one believe that QCV would inoculate against the hidden bias imposed by the model? To be clear, a biased model is one that will present a vocabulary that *does not* represent the text accurately. In the conventional use of topic models, the researcher is eager to use the topic as a lens that both arranges documents into relevant subsets (a particular draw from the archive) and primes her interpretation of the documents content by a suggestive list of terms.
 
@@ -377,7 +395,7 @@ rm(f)
 ```
 
 
-We will use the JSTOR Data for Research service to download a bag-of-words text corpus for topic modeling. I take the following steps to develop a corpus:
+The JSTOR Data for Research service allows researchers to download non-consumable versions of full text in very large samples up to 25,000 documents. We will use the JSTOR Data for Research service to download a bag-of-words text corpus for topic modeling. I take the following steps to develop a corpus:
 
 1. Search dfr.jstor.org using the query `(ta:genr* OR ab:genr*) AND la:eng` and requesting 1grams.
 1. To cull documents for which genre is not an important term, exclude documents containing fewer than five variants of the term genre (1grams matching the regular expression `^genr`: `r attr(dfrg,'genreset') %>% nl`).
@@ -434,7 +452,7 @@ The initial query returned `r jart[,.N %>% nn]` articles from `r jart[,.N,by=jou
 
 It is fair to ask what is lost during the pre-processing of texts. Many are included in error due to JSTOR's internal translation of abstracts; where "genre" is the French translation of the English "kind" the text will be included even if the term genre does not actually appear in the English title or abstract. While I do not carefully look at the content of the excluded documents, assuming they were not texts that made important use of the term genre, I do retain some information about what components of a text were lost of those documents that were not cut. This is a measure called idiosyncrasy, or the proportion of terms in a document eliminated during pre-processing. I call it idiosyncrasy because the pre-processing condition was that terms would be eliminated if they did not appear in at least 20 other texts. Texts that lost a large volume of words to this filter are drawing on a vocabulary that almost no other texts use. It would not be surprising if these were ethnographic or content analytic studies of non English materials.
 
-Figure \@ref(fig:idi-hist) shows the right-skewed distribution of idiosyncrasy. The median text lost about one tenth (`r stm$meta[,(100*median(idi)) %>% round(2)]` percent) of its words, while 90 percent of texts are within two tenths, and outliers begin at about three tenths as can be seen in the boxplot. The `r stm$meta[, sum(idi>.3) %>% nn]` (`r stm$meta[,(100*mean(idi>.3)) %>% round(2)]` percent of) texts above three tenths vary across a range as wide as the rest of the distribution. The most idiosyncratic text, at `r stm$meta[,(max(idi)*100) %>% round(1)]` percent of its vocabulary lost, is `r stm$meta[which.max(idi),auth[[1]]$last %>% nl]`'s "`r stm$meta[which.max(idi),tit %>% tolower %>% tools::toTitleCase(.) %>% gsub('"+','\\*',.)]`".^[`r stm$meta[which.max(idi),url]`] The article, from the journal *`r stm$meta[which.max(idi),sotit]`*, is a single page introduction in English to a 12 page essay reprinted in the original Hebrew. By page count alone we would expect the idiosyncrasy to be 12/13 or `r round(12/13*100,1)` percent, which also illustrates how terms that are not in the Roman alphabet may be discarded as OCR errors even prior to the idiosyncrasy measurement.
+Figure \@ref(fig:idi-hist) shows the right-skewed distribution of idiosyncrasy. The median text lost about one tenth (`r stm$meta[,(100*median(idi)) %>% round(2)]` percent) of its words, while 90 percent of texts are within two tenths, and outliers begin at about three tenths as can be seen in the boxplot. The `r stm$meta[, sum(idi>.3) %>% nn]` (`r stm$meta[,(100*mean(idi>.3)) %>% round(2)]` percent of) texts above three tenths vary across a range as wide as the rest of the distribution. The most idiosyncratic text, at `r stm$meta[,(max(idi)*100) %>% round(1)]` percent of its vocabulary lost, is `r whwh(stm$meta,stm$meta[,which.max(gp)])`.^[`r stm$meta[which.max(idi),url]`] The article, from the journal *`r stm$meta[which.max(idi),sotit]`*, is a single page introduction in English to a 12 page essay reprinted in the original Hebrew. By page count alone we would expect the idiosyncrasy to be 12/13 or `r round(12/13*100,1)` percent, which also illustrates how terms that are not in the Roman alphabet may be discarded as OCR errors even prior to the idiosyncrasy measurement.
 
 ```{r idi-hist, include=T,fig.cap='Distribution of idiosyncracy, the proportion of document vocabularly dropped during pre-processing. Pluses indicate outliers.'}
 p1<-myth(ggplot(stm$meta,aes(y=idi))) + geom_boxplot(outlier.size = 3,outlier.alpha = 1,outlier.shape = '+') + coord_flip() + blanky + ylim(stm$meta$idi %>% range)
@@ -482,20 +500,28 @@ Hyperparameters aside, it is also necessary to initialize the substantive parame
 
 Because the vocabulary vector tends to be very long it is not trivial even for spectral methods to reduce the term by term matrix to the number of topics without additional assumptions. @Arora2018Learning have shown that assuming the existence of anchor words makes the decomposition fast and efficient while retaining the feature of a single determinate solution [@Roberts2016Navigating]. An anchor word is one whose probability is one for one topic and zero for all others. In the space of the solution the anchor words become the farthest corners of the multidimensional cloud of terms, and a convex hull drawn through them will contain all other terms. If the anchors are treated as singularly representing their entire topic, the position of every other term can be represented as a linear combination of the positions of all the anchors. The linear weights of the anchors then become the topic probabilities of the words, such that the closer a term is to an anchor the higher its probability from the anchor's topic and the lower the probability for all other anchors' topics. An anchor for each topic must be annointed so that its vector can be set to the assumed maximum sparsity, and the criterion for doing so is to find words with the above mentioned maximum frequency and exclusivity, words that always appear only given a particular set of other words. Even if the anchor word assumption is not strictly valid, using an anchor based spectral initialization in combination with the EM estimator may relax the assumption and distribute the c
 
-For now, we will focus on the consequences of the choice of the number of topics K. We fit nine models in sequence from K = 2 to K = 10.
+Above we commented that sparse model techniques like L1 regularization could help clarify topics by setting more coefficients to zero. Such techniques create biased models in that they are less likely given the data, but the hope is that in the case of topic models it is the irrelevant terms of a topic or topics of a document that will be biased downward, in essence making regularization a kind of filter on the idiosyncratic portions of the corpus. Unfortunately, this may not actually be the desired effect of regularization. Sparse model techniques tend to bias downward the coefficients of terms that are highly correlated with other terms that themselves have a stronger association with the outcome. By assigning the portion of variance explained that overlaps among correlated predictors to the stronger term, it resolves an intractable ambiguity in an arbitrary way. In this situation L1 regularization may, in the topic by term matrix, occlude important and relevant terms rather than prune irrelevant ones, such as idiosyncractic or suppressed topic terms. This may actually make it harder to interpret topics without helping resolve topic corruption.
+
+In the document by topic matrix L1 regularization may be more helpful by leading to topic concentration, which creates an effect similar to setting the alpha concentration parameter of the dirichilet distribution in LDA below one. Like a short blanket that cannot keep the head and feet warm at once, regularization may also offset the goal of modeling topic correlation introduced by the CTM. There is no statistical guide out of this morass. The impractical solution is to fit models under multiple assumptions and compare the results by QCV. For a model that is as complicated to interpret as the topic model, this would be a steep climb for most researchers. The normal remedy is liberal use of George Box's assertion that "all [models] are wrong" [@DiMaggio2013Exploiting\:582], which may not satisfy those hoping that topic models can shed light on the more easily occluded corners of intellectual history.
+
+Notwithstanding the deep inventory of research decisions we have mentioned, will begin with the conventional hyperparameter assumption of the number of topics K. We fit nine models in sequence from K = 2 to K = 10 in order to use the development of topics through the K space as context for the interpretation of the focal ten topic model. We set the sigma prior to zero to allow for the free estimation of document by topic correlations, which can be set as high as one to mitigate the CTM. We use spectral initialization, which we recall relies on the anchor words assumption to facilitate a determinate solution the topic by term matrix that is then updated to find a more likely within document topic mixture. In spectral initialization there is no alpha concentration parameter as in LDA, and because we do not use L1 regularization we create no preference during estimation for sparse, concentrated document by topic distributions. These choices favor a less biased and more saturated model.
 
 ```{r genre-mod}
 f<-'d/p/genre-mod.RData'
 if(file.exists(f)){
   load(f)
 } else {
-  mod<-pblapply(2:10,FUN = function(k) 
-    stmbow2lda.f(stm,out.dir = 'lit',k = k,verbose = F,check.for.saved.output = F,save.to.disk = T) ,cl = 2)
+  withr::with_seed(
+    12345,
+    mod<-pbapply::pblapply(10:2,FUN = function(k) 
+      stmbow2lda.f(stm,out.dir = 'lit',k = k,verbose = F,check.for.saved.output = F,save.to.disk = T,alpha=1,sig.pri = 0) ,cl = 3) %>% rev
+  )
   save(mod,file=f)
 }
 rm(f)
 ```
 
+To set up QCV prior to model inspection, we use the document by topic matrix of the focal ten topic model to establish a sampling frame for the creation of test comparisons. These comparisons are designed to establish the presumptive substantive validity of the head of the document by topic probabilities without consideration of pathologies arising from tail-based classification errors. In these "sniff tests", which are explained in greater detail below, I ask myself to recover model classifications of documents by inspecting selected documents without prior knowledge of topic by term content. While this is an admittedly seat-of-the-pants goodness of fit test, if I cannot make sense of topic separation then there is a more serious problem with the core deliverable of the topic model. Passing these tests is a necessary check before getting into more subtle model interpretation concerns.
 
 ```{r qcv}
 if(F) withr::with_seed(
@@ -525,67 +551,288 @@ load('d/p/genre-topic-tiszsfstwh-1563337035.RData')
 
 ## Diagnostics
 
-```{r tst}
-tst<-mod[[9]]$doc.top.theta %>% boot::logit(.) %>% as.vector %>% density %>% {y<-.$y %>% diff %>% `>`(0) %>% {which(diff(.)==1)}+2;.$x[y[.$y[y] %>% which.max]]} %>% boot::inv.logit(.)
+Having fit nine models sequentially from K = 2 to K = 10, we alight on the final as the focal model given that we assume that at ten topics we have still underspecified K. In this section I implement the several approaches to validating topic quality mentioned above. Some diagnostics use measures calculated on the first eight models to contextualize the ninth, while others are perfomed only on the focal model. These are necessary guides to interpreting topic models as a form of analysis whose final results are almost gauranteed to be misspecified. Diagnostic procedures help to avoid mistakes in interpreting a bad model. If all models are bad, then it behooves us to always interpret model results in the context of diagnostics.
+
+### Ghost probability
+
+Ghost probabilities are terms that are expected to be but are not actually present in a document. These occur because documents draw on only partially overlapping vocabularies; those parts of the vocabulary that do not overlap will still be assigned to the topic and will be present only in some documents. These may well include idiosyncratic terms, in which case they represent a bad fit. If they are taken as valid then they imply that if a document were to be written again, or to continue to be written, then eventually these terms would show up. Indeed we expect the proportion of ghost terms to be higher the shorter the document, even when the topic in which it is classified is well behaved. In the spreading activation theory briefly mentioned above, to the extent that topics can be thought of as a meaningful grounding that helps to control both the generation and interpretation of texts, then it is possible that the reading of a document containing only a portion of the topic will elicit or bring close to the mind terms that are not actually present. If the grounding is expected to be corrupted, for instance with the idiosyncracies of very long documents, then ghost terms are a source of bias. So ghost terms are either a feature or a bug depending on how the topic model is itself reified.
+
+```{r ghost, include=F,fig.cap='Sum of document proportion of terms predicted to be present but are actually mssing. Pluses indicate outliers.'}
+f<-'d/p/genre-ghost.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  ghst<-pbapply::pblapply(1:length(mod[[9]]$documents), function(i) {
+    ix<-mod[[9]]$documents[[i]][1,]
+    (mod[[9]]$doc.top.theta[i,]*mod[[9]]$top.word.phi.beta) %>% {data.table(ix=i,k=1:10,liv=.[,ix] %>% apply(1,sum),ded=.[,-ix] %>% apply(1,sum))}
+  },cl = 6) %>% rbindlist
+  save(ghst,file=f)
+}
+rm(f)
+ghsta<-ghst[,.(ded=sum(ded)),by=ix][,n:=mod[[9]]$doc.length]
+#ghsta %>% {
+ # p1<-myth(ggplot(.,aes(y=ded))) + geom_boxplot(outlier.size = 3,outlier.alpha = 1,outlier.shape = '+') + coord_flip() + blanky + ylim(.$ded %>% range)
+#p2<-myth(ggplot(.,aes(x=ded))) + geom_histogram(binwidth=.02,color='white',na.rm = T) + theme(axis.title.x = element_blank())+ xlim(.$ded %>% range)
+# egg::ggarrange(p2,p1, heights = c(3,1))
+#}
+stm$meta[,ghst:=ghsta$ded]
+```
+
+The sum of ghost term probabilities by document ranges from only a few (`r ghsta[,min(ded)*100] %>% round` percent) to almost all (`r ghsta[,max(ded)*100] %>% round` percent) of the words predicted to be in a text. The mean and median are `r ghsta[,mean(ded)*100] %>% round` percent and the distribution is very close to being normally distributed notwithstanding its bounding between zero and one. Figure \@ref(fig:ghostN) shows that, predictably, the proportion of ghost terms is strongly associated with document length. Predicting the log-odds of the probability makes for a better fit for the smallest documents (as illustrated), but for the sake of simplicity in the bulk of documents between 100 and 1,000 words in length, the association of the untransformed probability with the $log_{10}$ of document length is linear, with a ten percent increase in length associated with a one-third (`r ghsta[between(n,100,1000),lm(ded~log10(n))]$coef[2] %>% exp %>% {1-.} %>% round(3)`) decline in the ghost probability.
+
+In a topic model every document is predicted to be a distribution across the entire corpus. The fewer the number of words in the text, the more it will be predicted to contain words not appearing in the original. From the model perspective a small text, like any small sample, will be expected to have high variance across multiple draws. This implies that the particular instantiation of the text is arbitrary. Another way to say this is that the grounding of smaller texts is much more important than for larger texts, since there are many more blanks to be filled in. The uncertainty around small texts from a statistical perspective inverts the usual sense that a reader has that a smaller portion of text is easier, not harder, to understand, or from the writer's perspective, that brevity is the soul of wit. Of course such ease would derive from the quality of the reader's own grounding; short texts never seen before may be difficult for both human and machine alike to classify because they lack the length to disambiguate the proper grounding. In any event readers using a topic model to understand short texts should question whether the model's best guess is indeed the proper semantic context for interpretation.
+
+```{r ghostN,include=T,fig.cap='Ghost probabilities, the sum of document proportion of terms predicted to be present but are actually missing, by document length. Ghost probabilities are on log-odds scale, and document length is on $log_{10}$ scale. The blue line is a linear fit on transformed data.',dev='png'}
+f<-'d/b/genre-ghostN.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  p2<-ghsta %>% {myth(ggplot(data=.,aes(y=ded,x=n)))+geom_point(alpha=.1) + ylab('p') + xlab('n')} %>% ggExtra::ggMarginal(type='histogram',color='white')
+  p1<-ghsta %>% {myth(ggplot(data=.,aes(y=ded,x=n)))+geom_point(alpha=.1) +
+     # geom_smooth(method='gam',formula=y ~ s(x, bs = "cs")) +
+      geom_smooth(aes(x=n,y=ded),method='lm',color='blue') +
+      scale_x_continuous(trans='log10') + scale_y_continuous(trans='logit') + ylab('logit scale') + xlab('log10 scale')} %>% ggExtra::ggMarginal(type='histogram',color='white')
+  p<-list(p1=p1,p2=p2)
+  save(p,file=f)
+}
+rm(f)
+# dumb: https://github.com/daattali/ggExtra/issues/89
+gridExtra::grid.arrange(p$p2,p$p1)
+```
+
+```{r residual}
+f<-'d/p/genre-residual.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  res<-pbapply::pblapply(1:length(mod[[9]]$documents), function(i) {
+    ix<-mod[[9]]$documents[[i]][1,]
+    o<-rep(0,length(mod[[9]]$vocab))
+    o[ix]<-mod[[9]]$documents[[i]][2,]
+    o %<>% prop.table
+    o<-o-(mod[[9]]$doc.top.theta[i,]%*%mod[[9]]$top.word.phi.beta)
+    sum(o^2)
+  },cl = 6) %>% unlist
+  save(res,file=f)
+}
+rm(f)
+stm$meta[,res:=res]
+stm$meta[,mK:=factor(mod[[9]]$doc.top.theta %>% apply(1,which.max))]
+```
+
+```{r Taddy,eval=F}
+# it's a bust!
+# tres.f<-function (mod,docs, tol = 0.00) 
+# {
+#   beta <- lapply(mod$beta$logbeta, exp)
+#   theta <- mod$theta
+#   index <- mod$settings$covariates$betaindex
+#   K <- mod$settings$dim$K
+#   n <- length(docs)
+#   phat <- mod$settings$dim$V
+#   #d <- n * (K - 1) + K * (phat - 1)
+#   doc.resid <- function(doc, theta, beta) {
+#     q <- theta %*% beta
+#     m <- sum(doc[2, ])
+#     Nhat <- sum(q * m > tol)
+#     x <- rep(0, ncol(beta))
+#     x[doc[1, ]] <- doc[2, ]
+#     out <- sum((x^2 - 2 * x * q * m)/(m * q * (1 - q))) + 
+#       sum(m * q/(1 - q))
+# out
+# }
+#   result <- list()
+#   pbapply::pblapply(1:n,function(i) {
+#     doc.resid(docs[[i]], theta[i, ], beta[[index[i]]])
+#   },cl=6) %>% unlist
+#   # D <- sum(unlist(result))
+#   # df <- Nhat - phat - d
+#   # sig2 <- D/df
+#   # rho <- suppressWarnings(pchisq(D, df = df, lower.tail = FALSE))
+#   # D <- list(dispersion = sig2, pvalue = rho, df = df)
+#   # return(D)
+# }
+# tres<-tres.f(mod[[9]]$model,mod[[9]]$documents)
+```
+
+A document's ghost probability is related to the notion of residuals that would help assess overall model goodness of fit. A document's per term residual can be calculated as the observed minus the predicted document term probability, a document's overall residual the sum of the squares of the same. These residuals differ from the ghost probabilities in that they also include the gap in prediction for the terms that do appear in the original. Either can be used for diagnostic purposes. The ghost probabilities draw attention to more absurd prediction errors, while the residuals are more statistically precise. Table \@ref(tab:Kghost) shows the results of two separate linear regressions which help to rank topics according to each of these goodness of fit measures while controlling for the powerful effect of document length, as well as the other topics. In each, the higher the ranking the more documents within a topic are affected by poor fit. The results are not consistent between the fit measures. For the ghost probabilities model, the more a document is composed from topics 8, 2, 3, 5, and 1 the more likely it is to be predicted to contain terms it does not actually contain, while documents composed from topics 4, 9 and 6 are more likely to have their terms accurately predicted. For the residuals model, only topic 1 is expected to have a poorer fit, while drawing from topics 7, 4, 9, and 8 are all expected to improve document fit. The only topics for which the direction of effect is in agreement between the models is topic 1 contributing to bad fit, topics 4 and 9 contributing to good fit, and topic 10 being neutral.
+
+```{r Kghost,include=T}
+lmdg<-lm(scale(boot::logit(ghst))~log10(n)+T1+T2+T3+T4+T5+T6+T7+T8+T9+T10,data.table(stm$meta,boot::logit(mod[[9]]$doc.top.theta)) %>% {setnames(.,names(.) %>% sub('V','T',.))})
+lmdr<-lm(scale(res)~log10(n)+T1+T2+T3+T4+T5+T6+T7+T8+T9+T10,data.table(stm$meta,boot::logit(mod[[9]]$doc.top.theta)) %>% {setnames(.,names(.) %>% sub('V','T',.))})
+og<-coef(lmdg)[-(1:2)] %>% order(decreasing=T)
+or<-coef(lmdr)[-(1:2)] %>% order(decreasing=T)
+krank<-1:10 %>% {data.table(ghst=.[og],res=.[or])}
+sg(data.table('Rank'=ec('First,Second,Third,Fourth,Fifth,Sixth,Seventh,Eighth,Ninth,Tenth'),'A. Topic'=paste0(1:10,ifelse(coef(summary(lmdg))[-(1:2),'Pr(>|t|)']<.001,'','†'))[og],'Ghost p Coef.'=coef(lmdg)[-(1:2)] %>% sort(T)%>% format(scientific=F,digits=2),'B. Topic'=paste0(1:10,ifelse(coef(summary(lmdr))[-(1:2),'Pr(>|t|)']<.001,'','†'))[or],'Residual Coef.'=coef(lmdr)[-(1:2)] %>% sort(T)%>% format(scientific=F,digits=1)),tit='Logit of document by topic probability predicting A. logit of ghost probability or B. residual, controlling for log10 of document length',notes=c('† not significant at p < .001','Outcomes normalized to make ceofficents comparable.'))
 ```
 
 
-Having fit nine models sequentially from K = 2 to K = 10, we alight on the final as the focal model given that we assume that at ten topics we have still underspecified K. In this section I implement several approaches to validating topic quality mentioned above.
 
-```{r check-residual}
-if(F) ckr<-pbapply::pbapply(mod,function(x) stm::checkResiduals(x$model,x$documents))
-```
 
-<!--The largest beta values are very small.-->
+<!-- ### Document residuals -->
 
-```{r logit-theta,include=T,fig.cap='As K increases so does separation among junk (lower mode), weak (central mode), and strong (upper mode) topic by document probabilities.'}
+<!-- ```{r check-residual,eval=F} -->
+<!-- f<-'d/q/ckr.RData' -->
+<!-- if(file.exists(f)){ -->
+<!--   load(f) -->
+<!-- } else { -->
+<!--   ckr<-pbapply::pblapply(mod,function(x) stm::checkResiduals(x$model,x$documents)) %>% do.call(rbind,.) %>% data.table(.,k=2:10) -->
+<!--   save(ckr,file=f) -->
+<!-- } -->
+<!-- rm(f) -->
+<!-- plot(y=ckr,x=1:length(ckr)) -->
+
+<!-- x<-pbapply::pblapply(mod[1],function(x) { -->
+
+<!--   dtm<-x$doc.top.theta %*% x$top.word.phi.beta -->
+<!--   dtm[dtm<tst]<-0 -->
+<!--   dtm<-as.simple_sparse_array() -->
+<!-- }) -->
+
+<!-- ``` -->
+
+### Junk threshhold
+
+<!--Turns out they are set small enough that they don't matter--><!--One artifact of estimating probabilities is that zero coefficients--documents that do not draw on a topic at all and the ubiquitous case of documents using only a small portion of the global vocabulary--cannot be estimated due to the use of a link function like the logarithm that are undefined at zero. Zero coefficients, which again should be very common, are instead estimated to be vanishingly small. Notwithstanding their small size, in a model with so many coefficients they can in the aggregate sum to a nontrivial portion of the probability estimate for the topic in the term dimension. For the document in the topic dimension this is not necessarily a concern as there are comparatively few topics; however we expect that long documents may indirectly have inflated topic probabilities due to the presence of many terms that would fall in this junk portion of the topic vector. On the other hand, a topic that is relatively more saddled with junk terms may appear to be less concentrated across documents than it really is.--> 
+
+A junk term is one that is common but unconcentrated or evenly classified across all topics. This is the model's way of saying that it belongs nowhere, which is to say everywhere. If such a term is truly evenly distributed across topics and documents then the biases would balance out. However we do not expect language to work this way; what is more common is that junk terms are parts of suppressed topics, which would emerge at a higher K, and that these topics are concentrated in regions of the corpus. If this is true, they will bias upward fitted topics that are correlated with the suppressed topic. If the suppressed topic stood in a hierarchical relationship to one topic this would not be a concern because in effect the child topic could be considered to be partially constitutive of the parent topic at a lower resolution of K. However in the expected case of more freely variable topics, unfitted topics will bias upwards the topics with which they are correlated.
+
+```{r logit-theta,include=F,fig.cap='As K increases so does separation among junk (lower mode), weak (central mode), and strong (upper mode) topic by document probabilities, logit scale'}
+  bk<-c(.01,.1,.5,.9,.99)
+
 lgth<-list()
 for(i in 1:length(mod)) lgth[[as.character(i+1)]]<-data.table(th=mod[[i]]$model$theta %>% as.vector,K=i+1)
-lgth<-rbindlist(lgth)[,K:=factor(K)][,logith:=th %>% boot::logit(.)]
-myth(ggplot(data=lgth,aes(x=logith,color=K)) + geom_density()) + viridis::scale_color_viridis(discrete = T,end = .9) + xlab('logit(theta)') + geom_vline(xintercept = boot::logit(tst),color='red')
+lgth<-rbindlist(lgth)[,K:=factor(K)][,logith:=th]
+ggplot(data=lgth,aes(x=logith,color=K)) + geom_density() +
+  viridis::scale_color_viridis(discrete = T,end = .9) +
+  scale_x_continuous(breaks = bk
+                     #,labels = bk %>% format(digits=2,scientific=F,trim = T)
+                     ,trans = 'logit') + theme_bw() + xlab('topic by document probability') + theme(panel.grid.minor = element_blank())
+#+ geom_vline(xintercept = boot::logit(tst),color='red')
 ```
 
-### Blind QCV
+Normally we expect a term that is taken up by one or a few topics to be set to zero in the other topics. In order to prevent the estimation of negative probability values, the quantity estimated is a transformation of the probability that approaches but cannot meet or pass a zero limit. In the STM model this transformation is the logarithm which is infinite when transforming a probability of zero. When these estimates are exponentiated to recover their associated probability, they will be vanishingly small, and some may even be returned as zero due to machine limits on the representation of small numbers. These psuedo zero coefficients are no practical bother as they are not big enough to sum, even in large numbers, to a significant probability. A psuedo zero coefficient will be a large negative number on the logarithm scale, whereas a junk coefficient, a small but nontrivial probability, will be a smaller negative number.
 
-Contrary to the conventional approach of inspecting the topic by term matrix first, I performed a blind QCV sorting test in which I tried to recover the model classification without prior knowledge of topic content. This test allows me to interpret topic content from whole texts rather than from the decomposed topic by term matrix and gives an opportunity to assess document classification quality prior to developing a bias about what topic contents mean.
 
-For each topic I created a list with 45 documents to supply five comparison cases for each of the other nine topics. These lists were the conventional document by topic rankings sorted in decreasing order of topic probability. For each of the 45 unordered topic pairs I removed five articles at random from the document list of each topic and combined them to create a new randomly shuffled set of ten containing documents from both topics. The validation task was simply to inspect each document and attempt to recover the topic groupings, the logic being that the better the document classification the easier the sorting. Difficulty was measured by the chi squared probability of the manual classifaction against the true classification. An additional metric of difficulty, the amount of time required to complete the task, was gathered as well but not used.
+```{r}
+ith<-500
+gct<-1-(ith/(stm$vocab %>% length))
+```
 
-Each of the 45 sorting tasks was completed as quickly as possible, which in practice meant skimming the first page of each document. If this was enough to suggest the correct groupings the task would be finished. If the status of some documents was unclear then a closer inspection of the text would be necessary. Never was a document read closely, so topic content is still what can be gleaned from a cursory skimming of the text. Each document appeared only once within a particular topic's list to avoid the bias of knowing how a document had already been classified in a previous task. However, because a document could have appeared twice or more if it was ranked in the top 45 documents of more than one topic, some documents were seen twice. In these cases the bias would serve to confuse rather than clarify since the classification would be different between two instances of the same article.
+Some back of the envelope calculations can illustrate the pitfalls of junk terms. For argument's sake we can suppose a problematic junk coefficient to be a function of the length of the global vocabulary vector such that the bias it might introduce to a topic would appear in a summation of some large portion of the global vector. Substantively, a topic ought to be characterized by several dozen or perhaps a few hundred terms, and because this is a feature of language and cognition we would expect it to be invariant to the size of the global vocabulary. However, as the global vocabularly grows the effect of junk terms as a source of bias increases. In our case we retained `r stm$vocab %>% length %>% nn` terms in the global vocabularly vector. If conservatively we say that a topic is described by as many as `r ith` terms, then the unused portion of the global vector would be 1 - (`r ith` / `r stm$vocab %>% length %>% nn`) or `r round(gct*100)` percent of it.
 
-```{r qcv-r}
-man<-list()
-for(i in dir(recursive=T,pattern='man.+1563337035.txt')) {
-  j<-sub('.+man([0-9]+).+','\\1',i)
-  man[[j]]<-fread(i)[,man:=as.integer(j)]
+Now we can consider how large a bias would need to be to be problematic. A bias of five percent or a proportion of 0.05 could be more than enough to for instance change a within-document topic ranking. What then is the sum of the lower tail probabilities (LTP), less than the`r round(gct*100)`th percentile, of each of the topic by term vectors in our K = 10 model? Table \@ref(tab:k10tail) shows that the lower tail of the distribution ranges from one quarter to one third of the total topic probability. These are hardly insignificant portions of the classificatory power of the topics, but in order for the junk vector to bias a particular document's topic classification it would need to contain a large number of these terms, the largest of these lower tail terms being on the order of four hundreths of a percent. In the especially problematic case it would also not contain terms in the head of the distribution.
+
+```{r k10tail,include=T}
+ktl<-data.table(mod[[9]]$top.word.phi.beta %>% t) %>% setnames(1:10 %>% as.character) %>% {suppressWarnings(melt(.,variable.name='k',value.name='p'))} %>% {.[,.(p=sort(p,T)[-(1:ith)]),by=k][,.(LTP=sum(p),'Max.'=max(p)),by=k][,lapply(.SD,format,digits=3),.SDcols=ec('LTP,Max.')][,k:=1:10]} %>% setcolorder(c(3,1,2)) %>% setorder(-LTP) 
+krank[,ktl:=ktl$k]
+sg(ktl,tit=sprintf('Sum of topic by term probabilities below %sth percentile.',round(gct*100)))
+```
+
+```{r k10headtail}
+tht<-apply(mod[[9]]$top.word.phi.beta,1,order,decreasing=T)
+f<-'d/p/genre-dht.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  dht<-pbapply::pblapply(1:length(mod[[9]]$documents), function(i) {
+    wrk<-(mod[[9]]$doc.top.theta[i,]*mod[[9]]$top.word.phi.beta) %>% t 
+    data.table(rbind(sapply(1:ncol(wrk),function(j) sum(wrk[,j][tht[,j]][-(1:ith)]))))
+  },cl = 6)
+  dht<-rbindlist(dht) %>% setnames(1:10 %>% as.character)
+  save(dht,file=f)
 }
-not<-fread(dir(recursive=T,pattern='note.+1563337035.txt'))[,man:=sub('man([0-9]+).+','\\1',file) %>% as.integer]
-wh<-lapply(tiszsfstwh$wh,function(x) x %>% melt(measure.vars=1:2,value.name = 'file',variable.name='T') %>% .[,file_name:=stm$meta[file,file_name]] %>% .[,!'file']) 
-chi<-list()
-if(identical(length(man),length(wh))) for(i in 1:length(wh)){
-  chi[[i]]<-wh[[i]][man[[i]],on='file_name']
+rm(f)
+spr<-dht %>% unlist %>% {withr::with_seed(12345,sample(.,3000))} %>% {data.table(ltp=.,c=pamk(log10(.),2)$pamobject$clustering)}
+spr<-spr[,.(s=ltp %>% summary %>% list),by=c][,do.call(rbind,s)] %>% {mean(max(.[,'Min.']),min(.[,'Max.']))}
+dhta<-suppressWarnings(melt(dht,variable.name = 'K',value.name='ltp')) %>%
+  {rbindlist(list(copy(.)[,K:='all'],.))}
+wsta<-dht %>% apply(1,sum) %>% order(decreasing=T)
+wst<-wsta[1]
+```
+
+Table \@ref(tab:worstdoc) illustrates the LTP problem for a document that we expect to be poorly classified, that is, that has a large portion of its explained words deriving from a topic's lower tail. The document in question, a chapter from `r whwh(stm$meta,wst)`, is derived entirely from topic 2, which we may surmise is about religion.^[`r stm$meta[wst,url]`] Here nearly a third of the terms explained by topic two come from the lower tail. If we assume that these terms are representative of topics other than religion, then we must conclude that the topic assignment of this document is biased dramatically upward, that rather than being 100 percent about religion, it is in fact 66 percent about religion, and the remainder is unexplained. In this case the corrected estimate does not alter the topic ranking since there is no topic mixture to confuse.
+
+
+```{r worstdoc,include=T}
+tldt<-function(mod,ix,meta) {
+  if(length(ix)>1) stop('Feed one index (one table) at a time')
+mod %>% {cbind(.$doc.top.theta[ix,],.$doc.top.theta[ix,]*.$doc.length[ix],(dht[ix,] %>% t))} %>% {data.table(.,.[,2]*.[,3],.[,2]*(1-.[,3]))} %>% round(3) %>% format(scientific=F,nsmall=3,digits=1)%>% data.table(t=1:10,.) %>% setnames(ec('Topic,Topic Proportion,N Terms Explained,LTP,N from Lower Tail,N from Upper Tail')) %>% setorder(-'N Terms Explained')  %>% sg(tit=sprintf('Lower tail diagnostic for %s',whwh(meta,ix)))
 }
-xt<-suppressWarnings(lapply(chi,function(x) chisq.test(factor(x$lr),factor(x$T))))
-xel<-lapply(xt,function(x) data.table(s=x$observed %>% colnames %>% .[1],r=x$observed %>% colnames %>% .[2],p=x$p.value)) %>% rbindlist %>% .[,ew:=p-(min(p))]
+tldt(mod[[9]],wst,stm$meta)
 ```
 
+If the terms in the lower tail are on the contrary about religion, then the document may in fact be correctly classified. Figure \@ref(fig:worstterms) shows the lower tail terms from topic 2 that are actually present in the text alongside those that are expected to be but are note present. When sorted by the expected proportion, most of the terms do not appear to be highly relevant to religion, though some--like bishop, ritual, homilies, and hell--certainly are. When sorting by those terms that are actually in the text--such as Levi, eschatological, and messiah--the religious meaning is much more clear. These results suggest that the `r ith` term threshhold may be too low for this topic, that it has a very long list of relevant vocabulary. It is interesting to note that the term ranking by original document frequency is more suggestive of religious content, while the predicted frequency, of messiah for instance, actually dilutes the term ranking. This is an indication of imperfect fit, as a term like messiah was predicted to be less important to the text than it actually is.
 
-```{r man-con,include=T,fig.cap='Topic confusion network. Tied topics contained at least two errors in blind manual sorting test. Untied topics were perfectly separated. Colors represent a topic\'s number of imperfect tests.'}
-xg<-xel[,{
-  g<-graph_from_edgelist(.SD %>% as.matrix,F)
-  edge_attr(g,'weight')<-ew
-  g<-subgraph.edges(g,which(!!ew),delete.vertices = F)
-  g %>% {
-    plot(.,layout=withr::with_seed(3,layout_with_fr(.)),edge.width=5,vertex.size=30,vertex.label.font=2,vertex.label.color='white',vertex.color=degree(.) %>% factor %>% {viridis::viridis(1+length(levels(.)))[as.integer(.)]})
-  g
-  }
-},.SDcols=ec('s,r')]
-dxg<-degree(xg) %>% table %>% rev
+```{r worstterms,include=T,fig.cap=sprintf('Terms from %s that are expected to derive from topic 2',whwh(stm$meta,wst))}
+wrk<-(mod[[9]]$doc.top.theta[wst,]*mod[[9]]$top.word.phi.beta)
+all<-wrk[,stm$documents[[wst]][1,]] %>% sum
+wrk<-wrk[2,tht[-(1:ith),2]]
+wrk<-mod[[9]]$documents[wst][[1]] %>% t %>% data.table %>% setnames(ec('v,f')) %>% .[.(tht[-(1:ith),2]),on='v'] %>% data.table(.,p=wrk) %>%  setorder(-f,na.last = T)
+wrk[,v:=stm$vocab[v]] #[,ec('p,fp'):=lapply(.SD,round,scientific=T,digits=3),.SDcols=ec('p,fp')]
+wrk[is.na(f),f:=0]
+wrk[,fp:=f*p] %>% setorder(-p)
+wrk[1:max(which(!!f))] %>% DT::datatable(filter = 'top',colnames = ec('Term,Frequency,Expected Topic Proportion,Expected Topic Frequency'),rownames = F) %>% DT::formatSignif(3:4,3)
 ```
 
-Among the 45 different sorting tasks only two outcomes were observed. `r table(xel$p)[1]` tasks was performed perfectly (p = `r min(xel$p) %>% round(4)`), while in `r table(xel$p)[2]` tasks one error was made, which is to say two documents were misclassified (p = `r max(xel$p) %>% round(4)`). Figure \@ref(fig:man-con) visualizes the pairwise outcomes as a confusion network. Topics that are disconnected were sorted perfectly, while topics that are connected were confused. The graph reveals some variation in topic confusion, as `r dxg[1] %>% nn` were confused twice, `r dxg[2] %>% nn` were confused once, and the remaining `r dxg[3] %>% nn` were never confused.
+<!-- Recall that we calculated that terms from the lower tail of topic 2 accounted for `r wrk[,sum(p)*100] %>% round(1)` percent of this text. What is troubling, however, is that the LTP of the terms that are actually in this text add up to only `r wrk[!is.na(f),sum(p)*100] %>% round(1)` percent. This means that three in ten terms responsible for this document's classification are not actually in the document. -->
 
-It is not actually clear whether topic confusion is a function of document misclassification or my lack of familiarity with topic content. An added benefit of this procedure is that it began to establish a theory of each topic by a direct inspection of bellwether texts, and this growing familiarity decreases the task difficulty over the course of the testing. In either event the results of this diagnostic provide a basis for understanding interpretive difficulties later.
+While we have already inspected the summary ranking of topics in terms of a few measures of goodness of fit, it is helpful to observe the within topic distributions of LTP, which will make the level of overlap among topics more clear. First we will inspect the primary topic classification, as it is common for researchers to reduce the document by topic probabiilty matrix to the primary classification. Then we will look at each topic considering all LTPs at once, not just that of the primary topic.
+
+Figure \@ref(fig:worstall) plots the distribution a document's primary topic classification, the topic with the highest document by topic probability for each document, over the document LTP ranking. In other words, every document is put in a line starting with the highest LTP and ending with the lowest LTP. The documents are then labeled with their main topic classification, and a histogram is drawn for each topic according to counts in bins of 200 along this line. Topics clustered toward the head (left) of the line are composed of poorly fit documents, and those toward the tail (right) are composed of well fit documents. The plot shows that some topics are cleanly separated, namely topics 2, 5, 3, and 8 at the head from topics 9, 6, and 1 at the tail, with topics 7, 10, and 4 in the middle.
+
+```{r worstall,include=T,fig.cap='Documents ranked by sum of lower tail probabilities by primary topic classification'}
+p1<-mod[[9]]$doc.top.theta[wsta,] %>% apply(1,order,decreasing=T) %>% .[1,] %>% data.table(k=factor(.)) %>% .[,ix:=.I] %>% {myth(ggplot(data=.),'Paired') +
+    stat_bin(aes(x=ix,color=k,stat(count)),size=1,geom='step',position='identity',binwidth=200) +
+    xlim(1,NA)}
+krank[,pltp:=c(2,5,3,8,7,10,4,1,6,9)] # primary ltp
+plt(p1) %>% plotly::style(visible="legendonly", traces = setdiff(1:10,c(2,7,6)))
+```
+
+Figure \@ref(fig:k10headtailp) shows the document distribution by topic of the LTPs. Rather than looking at only the primary topic, here we separate each document into its ten topic components, thus each document is counted ten times, once for each of its topic LTPs. The logarithmic scale helps us see a fairly even separation, at p = `r format(spr,digits=3)`, between the portion of the corpus for which LTPs are and are not a serious consideration. Below the sag between the two modes the LTPs are vanishingly small and of no practical concern. Toward the upper mode, however, we are concerned that the LTPs may be a source of classification bias. This empirical separation visible on the log scale is lower than the p = .05 standard that we considered above to be practically problematic, which covers only the right hand tail of the upper mode.
+
+When looking at the LTP distribution for all document by topic pairs we should expect an imbalance in favor of the upper mode, simply because for every well classified document a few topics will be concentrated in the head (low LTP) and the rest will be concentrated in the tail (high LTP). Poorly classified documents will be drawn from the tails of most topics. Here the lower mode accounts for `r round(mean(dht<spr) * 100)` percent of document by topic LTPs, so the distribution is more evenly split than we would expect with strong document classification. This can be visually confirmed by the nearly balanced shape of the black series, which shows the distribution of all 10 * 6344 LTPs.
+
+When comparing LTP distribution among individual topics there are clear differences. Some topics have a much higher proportion of problematic upper mode LTPs than others. For example, for topic 4 `r dhta['4',on='K',round(mean(ltp>spr)*100)]` percent of documents are poorly classified, while the same for topic 8 is `r dhta['8',on='K',round(mean(ltp>spr)*100)]`. Overall, topics 3, 8, and 6 have lower than average LTPs, topics 4, 9, and 7 have higher than average LTPs, and topics 1 and 10 are close to the average. Topics 2 and 5 stands out by being more dramatically split between the two modes, with most of its documents having low LTPs but a few having some of the highest in the sample.
+
+```{r k10headtailp,include=T,fig.cap=sprintf('Document distribution of sum of lower tail probabilities below %sth percentile by topic, $log_{10}$ scale',round(gct*100))}
+p1<-{ggplot(data=dhta) +
+      stat_bin(aes(x=ltp,color=K,stat(density)),geom='step',position='identity',bins=30,size=1) +
+    scale_x_continuous(trans = 'log10',breaks=c(.0000005,.000005,.00005,.0005,.005,.05,.5)) +
+      scale_color_manual(values=c(RColorBrewer::brewer.pal(10,'Paired'),'black')) + theme_bw()}
+krank[,altp:=c(4,9,7, 10,1,5,2 ,6,8,3)] # all ltp
+if(docx|latex) knitr::include_graphics('img/k10headtail.png')  else plt(p1) %>% plotly::style(visible="legendonly", traces = setdiff(1:10,c(4,8)))
+```
+
+```{r elbow1}
+h<-c(1:10)
+elb<-mod[[9]]$top.word.phi.beta[h,] %>% apply(1,sort,decreasing=T) %>% data.table %>% as.list
+for(i in 1:length(h)) elb[[i]]<-data.table(t=elb[[i]] %>% cumsum,T=(h)[i])[,i:=.I]
+elb<-rbindlist(elb)[,T:=factor(T)] %>% setkey(T)
+ct<-elb[t<=2/3,.(cut=max(i)),by=T] %>% setorder(-cut)
+krank[,cut:=ct$T]
+withr::with_seed(12345,ct[,g:=pamk(cut,2)$pamobject$clustering])
+```
+
+Finally, the LTP distributions explored above are based on the arbitrary cutoff at an index of `r ith` on the sorted topic by term vector to divide it into true and false topic terms. To show that topics actually vary in the length of their relevant term list, we can hold a particular LTP proportion constant and see how many terms it takes to reach that threshhold for each topic. Figure \@ref(fig:elbow1) shows the cumulative proportion of the sorted term list for each topic up to an LTP cutoff of one third, or an upper head probability of two thirds. This cutoff is close to the maximum LTP at a constant index of `r ith`, and indeed we can confirm graphically what was said above that the topic accounting for the maximum LTP is topic 2. Topics that reach the threshold early tend to have a more concentrated term vector, that is, have fewer terms accounting for the same amount of total probability.
+
+Topic 6 reaches the threshhold first at an index of `r ct['6',on='T',cut]`. Topic 6 also starts with the highest curve, meaning that it can be summarized by a short list of high probability terms. Starting high does not necessarily mean a topic will finish early, as evidenced by topic 10, which starts as high as topic 6 but grows more slowly and finishes late. The reverse is also possible, as in the case of topic 10 that starts low and finishes early. Overall the topics are divided into a faster (topics `r ct[.(2),on='g',nl(T %>% rev)]`) and a slower (topics `r ct[.(1),on='g',nl(T)]`) group. 
+
+```{r elbow1p,include=T,fig.cap='Cumulative distribution of within topic term probabilities. Dotted line at p = 2/3'}
+p1<-myth(ggplot(elb[t<=2/3],aes(x=i,y=t,color=T)),'Paired') + geom_line(size=1) + theme(legend.position = c(.98,.02),legend.justification = ec('right,bottom')) + geom_hline(yintercept=2/3,linetype='dotted')
+plt(p1) %>% plotly::style(visible="legendonly", traces = setdiff(1:10,c(2,5,6,10)))
+```
+
+While there is no substnative reason to prefer topics with concentrated term vectors, researchers tend to favor them because they are more cognitively tractable. It is hard for analysts to make sense of hundreds of terms; the more a topic can be adequately summarized by a short list the more easily it is to reify.
+
+```{r,tst}
+tst<-mod[[9]]$doc.top.theta %>% boot::logit(.) %>% as.vector %>% density %>% {y<-.$y %>% diff %>% `>`(0) %>% {which(diff(.)==1)}+2;.$x[y[.$y[y] %>% which.max]]} %>% boot::inv.logit(.)
+
+ov<-mod[[9]]$model$beta$logbeta[[1]] %>% as.vector %>% density %>% {data.table(x=.$x,ov2chpt.f(.$y,2))} %>% setnames(ec('x,y,d,g'))
+ggplot(data=ov,aes(x=x,y=y,color=g)) + geom_line()
+
+tstw<-ov['1',on='g',max(x)]
+```
 
 ### Topic descent
 
@@ -769,15 +1016,6 @@ myth(ggplot(data=gdt,aes(gini,stat(density)))) + geom_histogram(aes(gini,stat(de
 ```
 
 
-```{r elbow1,include=T,fig.cap='Cumulative distribution of within topic term probabilities.'}
-h<-c(1:10)
-elb<-mod[[9]]$top.word.phi.beta[h,] %>% apply(1,sort,decreasing=T) %>% data.table %>% as.list
-for(i in 1:length(h)) elb[[i]]<-data.table(t=elb[[i]] %>% cumsum,T=(h)[i])[,i:=.I]
-elb<-rbindlist(elb)[,T:=factor(T)] %>% setkey(T)
-p1<-myth(ggplot(elb[t<=.5],aes(x=i,y=t,color=T)),'Paired') + geom_line(size=1) + theme(legend.position = c(.98,.02),legend.justification = ec('right,bottom'))
-plt(p1) %>% plotly::style(visible="legendonly", traces = c(1,3,4,7,8,9))
-```
-
 ```{r elbow2,include=T,fig.cap='Cumulative distribution of within topic document probabilities.'}
 h<-c(1:10)
 elb<-mod[[9]]$doc.top.theta[,h] %>% t %>% apply(1,sort,decreasing=T) %>% data.table %>% as.list
@@ -789,6 +1027,50 @@ elb<-rbindlist(elb)[,T:=factor(T)] %>% setkey(T)
 p1<-myth(ggplot(elb,aes(x=i,y=t,color=T)),'Paired') + geom_line(size=1) + theme(legend.position = c(.98,.02),legend.justification = ec('right,bottom'))
 plt(p1)
 ```
+
+### Blind QCV
+
+Contrary to the conventional approach of inspecting the topic by term matrix first, I performed a blind QCV sorting test in which I tried to recover the model classification without prior knowledge of topic content. This test allows me to interpret topic content from whole texts rather than from the decomposed topic by term matrix and gives an opportunity to assess document classification quality prior to developing a bias about what topic contents mean.
+
+For each topic I created a list with 45 documents to supply five comparison cases for each of the other nine topics. These lists were the conventional document by topic rankings sorted in decreasing order of topic probability. For each of the 45 unordered topic pairs I removed five articles at random from the document list of each topic and combined them to create a new randomly shuffled set of ten containing documents from both topics. The validation task was simply to inspect each document and attempt to recover the topic groupings, the logic being that the better the document classification the easier the sorting. Difficulty was measured by the chi squared probability of the manual classifaction against the true classification. An additional metric of difficulty, the amount of time required to complete the task, was gathered as well but not used.
+
+Each of the 45 sorting tasks was completed as quickly as possible, which in practice meant skimming the first page of each document. If this was enough to suggest the correct groupings the task would be finished. If the status of some documents was unclear then a closer inspection of the text would be necessary. Never was a document read closely, so topic content is still what can be gleaned from a cursory skimming of the text. Each document appeared only once within a particular topic's list to avoid the bias of knowing how a document had already been classified in a previous task. However, because a document could have appeared twice or more if it was ranked in the top 45 documents of more than one topic, some documents were seen twice. In these cases the bias would serve to confuse rather than clarify since the classification would be different between two instances of the same article.
+
+```{r qcv-r}
+man<-list()
+for(i in dir(recursive=T,pattern='man.+1563337035.txt')) {
+  j<-sub('.+man([0-9]+).+','\\1',i)
+  man[[j]]<-fread(i)[,man:=as.integer(j)]
+}
+not<-fread(dir(recursive=T,pattern='note.+1563337035.txt'))[,man:=sub('man([0-9]+).+','\\1',file) %>% as.integer]
+wh<-lapply(tiszsfstwh$wh,function(x) x %>% melt(measure.vars=1:2,value.name = 'file',variable.name='T') %>% .[,file_name:=stm$meta[file,file_name]] %>% .[,!'file']) 
+chi<-list()
+if(identical(length(man),length(wh))) for(i in 1:length(wh)){
+  chi[[i]]<-wh[[i]][man[[i]],on='file_name']
+}
+xt<-suppressWarnings(lapply(chi,function(x) chisq.test(factor(x$lr),factor(x$T))))
+xel<-lapply(xt,function(x) data.table(s=x$observed %>% colnames %>% .[1],r=x$observed %>% colnames %>% .[2],p=x$p.value)) %>% rbindlist %>% .[,ew:=p-(min(p))]
+```
+
+
+```{r man-con,include=T,fig.cap='Topic confusion network. Tied topics contained at least two errors in blind manual sorting test. Untied topics were perfectly separated. Colors represent a topic\'s number of imperfect tests.'}
+xg<-xel[,{
+  g<-graph_from_edgelist(.SD %>% as.matrix,F)
+  edge_attr(g,'weight')<-ew
+  g<-subgraph.edges(g,which(!!ew),delete.vertices = F)
+  g %>% {
+    plot(.,layout=withr::with_seed(3,layout_with_fr(.)),edge.width=5,vertex.size=30,vertex.label.font=2,vertex.label.color='white',vertex.color=degree(.) %>% factor %>% {viridis::viridis(1+length(levels(.)))[as.integer(.)]})
+  g
+  }
+},.SDcols=ec('s,r')]
+dxg<-degree(xg) %>% table %>% rev
+```
+
+Among the 45 different sorting tasks only two outcomes were observed. `r table(xel$p)[1]` tasks was performed perfectly (p = `r min(xel$p) %>% round(4)`), while in `r table(xel$p)[2]` tasks one error was made, which is to say two documents were misclassified (p = `r max(xel$p) %>% round(4)`). Figure \@ref(fig:man-con) visualizes the pairwise outcomes as a confusion network. Topics that are disconnected were sorted perfectly, while topics that are connected were confused. The graph reveals some variation in topic confusion, as `r dxg[1] %>% nn` were confused twice, `r dxg[2] %>% nn` were confused once, and the remaining `r dxg[3] %>% nn` were never confused.
+
+It is not actually clear whether topic confusion is a function of document misclassification or my lack of familiarity with topic content. An added benefit of this procedure is that it began to establish a theory of each topic by a direct inspection of bellwether texts, and this growing familiarity decreases the task difficulty over the course of the testing. In either event the results of this diagnostic provide a basis for understanding interpretive difficulties later.
+
+
 
 ## Reading Strata
 
@@ -832,6 +1114,12 @@ if(docx|latex) knitr::include_graphics('img/clusters2.png') else p1 %>% plotly::
 
 
 ## Results
+
+
+```{r topshare,include=T}
+tse<-(mod[[9]]$doc.top.theta*mod[[9]]$doc.length) %>% apply(2,sum) %>% prop.table() %>% cbind(1:10,.) %>% {.[order(.[,2],decreasing=T),]} %>% data.table %>% setnames(ec('Topic,Corpus Share')) 
+tse %>% sg(tit='Topic Rankings by Share of Corpus Explained',dig = 4)
+```
 
 ```{r prob-anc,include=T}
 aw<-mod[[9]]$top.word.phi.beta %>% apply(2,ineq::Gini) %>% order(decreasing = T) %>% head(1000) %>% {data.table(w=mod[[9]]$vocab[.],k=apply(mod[[9]]$top.word.phi.beta[,.],2,which.max))} %>% .[,.(w=w %>% head(6) %>% paste(collapse=', ')),keyby=k]
