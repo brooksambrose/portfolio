@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="knowledge-of-the-u-s-social-sciences.html">
-<link rel="next" href="1-int.html">
+<link rel="prev" href="1-6-topic-interpretation.html">
+<link rel="next" href="1-8-reading-strata.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -148,54 +148,34 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="abstracts" class="section level1 unnumbered">
-<h1>Abstracts</h1>
-<div id="genre-and-the-literature" class="section level3 unnumbered">
-<h3>Genre and the Literature</h3>
-
-<p>There are many different analytic approaches to the phenomenon of genre classification of cultural products. This study explores how the use of the term genre varies across a wide swath of humanities and social science publications. I use computational text analysis to classify articles in the JSTOR archive into groups of common vocabulary. I use these groups as strata for a sampling approach to content analysis of the “entire” corpus of literature using the term genre. Through a combination of machine distant reading and human close reading, I arrive at a theory of five genres of the term genre. In an argument for pandisciplinarity, I conclude with an analysis of the logical possibility of new metaconcepts of genre that satisfy the strictures of multiple genres.</p>
-
-<p><strong>Keywords</strong>: (ref: key-int)</p>
+<div id="topic-clusters" class="section level2">
+<h2><span class="header-section-number">1.7</span> Topic clusters</h2>
+<p>Having posited a nominal theory of each topic by inspection of journals, belwether texts, and the topic by term matrix, we have not yet established what documents are about. Because the topic model is a mixture model we have at best understood what the potential for document composition is, not what their compositions actually are. Understanding the patterns of topic mixtures, or topic clustering, within documents is the last necessary analysis at a global level before proceeding with a stratification of the corpus for purposes of reading. Here we take two approaches to document clustering, first by hierarchical clustering of the distances between documents calculated directly from the document by topic matrix, and second by network community detection.</p>
+<!-- ### Euclidean Distance -->
+<p>Agglomerative hierarchical clustering works by first calculating the euclidean distance between points in an n-dimensional space, either as documents in a vector space of topics or as topics in a vector space of documents. The data are naturally scaled to sum to one in the document dimension; before calcuating topic distances they are rescaled to sum to one in the topic dimension, thus in each model unit size is held constant (document term length and topic share of corpus term frequency). Given these distances, clustering proceeds by assigning every point to its own cluster and then by merging pairs of clusters that are nearest each other in this space. Clusters have an ambiguous location based on the location of the individuals within them, and different methods of locating them for subsequent merges are possible. Here we use the maximum distance method, where the outer edges of two clusters define their distance, which helps to contain variations in cluster volume. Figure <a href="1-7-topic-clusters.html#fig:hotleaf">1.21</a> shows the document by topic matrix as a heatmap which serves as an ensemble of the two clustering models encoded in the seriation of their elements, one of the rows (documents) and another of the columns (topics). Each hierarchical clustering model is represented as a dendrogram with the height indicating the distances at which merges occur. The leaves of the trees are seriated to minimize the squared distances of the lines they draw, which results in the “least ink on the page” drawing of the tree. Within the condition of a one dimensional sequence, elements that are closer in their vector space are sequenced more closely together.</p>
+<p>Within the grid is displayed the actual document by term matrix with probabilities coded as shading from p = 0, white, to p = 1, black. The darkest stripes represent those unmixed documents uniquely classified in a topic, and it can be noticed that everywhere to the left or right of the darkest stripes is very pale shading. Because rows sum to one, where shading in a column is gray, it must be complemented by shading in another column, hence the gray regions represent the mixed documents. The blue traces within columns plot the associated probabilities, with the dashed line indicating p = 0.5. The dendrogram on the left represents the clustering of documents and is shaded to reduce the clutter and draw the eye toward merges at higher distances. Note that the darkest stripes are associated with the lowest, earliest merges; these are the documents (the spines of the urchin) that “stepped” as far away from the pack in a single direction as possible, thereby landing very close to each other and very far from the rest.</p>
+<p>At the higher levels of document clustering we may observe the unmixed documents being merged with mixtures in which the same topic is the dominant component, either in majority or plurality. A gray band above a dark band will be a cluster mixed in a different configuration than the gray area below a band, sometimes from the same secondary topic but in a different ratio and other times from a different topic altogether. For instance the spine of topic 4 is flanked above by texts with clusters of various mixtures in which 4 has a slight majority, including prominently topics 10, 7, and 9 but almost all other topics in separate groups save topic 3. Flanked below the spine topic 4 is mixed again with 9 and 7 but this time without taking a majority share.</p>
+<p>The ensemble also helps to correct artifacts of the linear ordering of each dimension. For example, though topics 6 and 1 are adjacent columns, their spines are as far apart as possible in the row dimension. The merger of topic 6 into the cluster containing topics 7, 4, 9, 10, 2, and 1 is done at a relatively long distance and could be due to the space between 6 and any of the other members. In general it is better to proceed from the lowest to the highest leaves when assessing topic relatedness, the lowest in this case being 4 and 7.</p>
+<div class="figure" style="text-align: center"><span id="fig:hotleaf"></span>
+<img src="ambrose_dissertation_files/figure-html/hotleaf-1.png" alt="Heatmap by optimal leaf sorting of documents (rows) and topics (columns)" width="90%" />
+<p class="caption">
+Figure 1.21: Heatmap by optimal leaf sorting of documents (rows) and topics (columns)
+</p>
 </div>
-<div id="social-science-genres-today" class="section level3 unnumbered">
-<h3>Social Science Genres Today</h3>
-
-<p>Social science is arranged into disciplines in a manner strikingly similar to the genre systems of commercial fields of cultural production (FCP) like music, yet evolving at a slower pace. Genres appear static and given in the form of the labeling schemes of archivists and librarians. Such schemes aim to describe academic genres objectively, yet in so doing referencers and indexers reify them historically. Such genre classifications are at times useful, frustrating, or didactic for the academic “disciples” or knowledge workers of higher education. This study maps the cognitive system of genre classifications in one particular labeling scheme, that of the JSTOR historical archive, as applied to one aspect of academic FCPs, journals. The patterns of interdisciplinary cross labeling, of allowing journals to bear multiple labels, reveal how global axes among science, social science, and humanities condition the local relationships of disciplines like sociology and anthroplogy.</p>
-
-<p><strong>Keywords</strong>: (ref: key-gen)</p>
-</div>
-<div id="the-social-science-citation-landscape-1900-1940" class="section level3 unnumbered">
-<h3>The Social Science Citation Landscape, 1900-1940</h3>
-
-<p>Knowledge mapping of acadamic journals promotes the conservation of intellectual history and stimulates discovery of underexplored intellectual opportunities. Treated as a large network community detection problem, I demonstrate how to apply the clique percolation method to map two kinds of recorded knowledge: citations and full text. The features of generated maps are explained, and interpretive methods including visualization are presented. We use American social science scholarship in the first third of the 20th century prior to U.S. entry into World War II as a case, and describe how the intellectual landscape of four separate social science disciplines developed.</p>
-
-<p><strong>Keywords</strong>: (ref: key-cit)</p>
-</div>
-<div id="vocabularies-of-anthropology-and-sociology-1888-1922" class="section level3 unnumbered">
-<h3>Vocabularies of Anthropology and Sociology, 1888-1922</h3>
-
-<p>Knowledge development of journals in sociology and anthropology is measured as the change in topic prevalence over time.</p>
-
-<p><strong>Keywords</strong>: (ref: key-voc)</p>
-</div>
-<div id="the-development-of-intensive-referencing" class="section level3 unnumbered">
-<h3>The Development of Intensive Referencing</h3>
-
-<p>Early in the history of the U.S. social sciences, scholars tended to extend the space of references into new territories. After a transition point in the 1920s, they shifted toward an intensive pattern of citation where scholars routinely retraced well-trodden steps in the citation space. The transition coincides with the development of professional labor markets in the social sciences.</p>
-
-<p><strong>Keywords</strong>: (ref: key-ten)</p>
-<!-- ### About the author {-} -->
-<!-- Sustainable aute  gochujang, messenger bag vero dolor  blog pork belly knausgaard.  Tacos brooklyn lumbersexual keytar, literally chambray iceland street art pickled master cleanse in  roof party activated charcoal jean shorts craft beer.  Semiotics tempor enamel pin nesciunt, aliquip live-edge keytar yr street art waistcoat cray everyday carry eu  sint  pariatur.  Aliquip anim  godard leggings, flexitarian direct trade  humblebrag.  Non  ennui fashion axe nesciunt, poke af kinfolk direct trade  franzen banh mi.  Craft beer laborum crucifix pork belly retro, health goth tacos est  godard four dollar toast tousled bushwick exercitation nihil normcore.  Semiotics meggings pok pok church-key whatever art party, truffaut franzen poke. -->
-
-</div>
+<p>A serial ordering is not a great fit to data that can be found in almost any mixture, however it does reflect the human limitation that one must read one thing at a time. As a seriation technique for reading the ensemble hierarchical clustering model suggests a reading order of starting on a spine to read belwether texts, then choosing clusters on the flanks to survey the combinations in which the focal topic is the majority player. One would then move to a different spine and repeat the technique. The order of spines can be taken from the height of their leaves, starting low and working up to higher mergers. This would begin the reading order with the topics that are most closely related. In this case the lowest fork contains topics 4 and 7, though in a survey around every spine the relationships to almost all other topics would be addressed.</p>
+<p>On the high side of the topic tree the most distant merges occur with topics 8 and 3. Interestingly, whereas topic 8, French language, was highly distinct looking only at terms, when looking at documents topic 3 is the most distinct. This makes sense under the theory that it is the translated abstracts that are being pieced out by topic 8, and that the rest of the documents if they are English must be composed of other topics. Indeed the spine of topic 8 is very short and the majority of its trace is below p = 0.5 and mixing with a variety of other topics. By comparison topic 3, pan Asian culture, mixes mainly with topics 7 (gender), 9 (literature), and 6 (music). A slice of 3 mixes with 5 (film); because we presume 5 to be relevant to modern times it may show that the content is not always necessarily about distant history as was gleaned by the belwether review.</p>
+<p>Almost every cluster has some activity away from its spine, but these tend to be minority players related to the spine of a different cluster. Given this pattern, in which not only combination but proportion matters, there may well be more strata than there are pairwise combinations of topics. Assuming a modest five texts per stratum, a lower limit of 45 topic pairs, and an upper limit of 90 to double that so that each topic may be in a minor and major position, then we would expect to read between 225 and 450 texts to be able to make a claim to have understood the remaining 5,894 to 6,119.</p>
+<p>This seriation method would fail only in the case of truly unconcentrated clusters that are adjacent to no spine. The simplest version would be three way relationships meaning that then even more strata would be warranted. This scenario appears to occur three times in this data set. The most important instance fills the space between the spines of 9 and 7 where a middling cluster of topic 4 is mixed in a variety of combinations. It happens again between 2 and 8 adjacent to the spine of 2 but a separate cluster, and finally again between 9 and 4 adjacent but separate from 9. Thankfully the same model allows this possible lacuna to be noticed and filled without worrying too much about the combinatorics of three way interactions.</p>
+<p>Though it may be an arbitrary simplification, a feature of the hierarchical model is that we may choose a cutpoint to split the dendrogram into a desirable number of groups. By trial and error 21 groups splits the tree into a major and minor cluster for each topic, where the major component is the spine with probabilities close to one and the minor are the different mixtures in which the topic is usually dominant. The 21st slot accomodates an additional disjoint minor cluster for topic 6. The boundaries of these groups are indicated by magenta lines in the figure. Next we will discuss how to use these clusters for stratified sampling.</p>
+<!-- ### Network Community Detection -->
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="knowledge-of-the-u-s-social-sciences.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="1-int.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="1-6-topic-interpretation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="1-8-reading-strata.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -215,7 +195,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/brooksambrose/portfolio/blob/draft/index.Rmd",
+"link": "https://github.com/brooksambrose/portfolio/blob/draft/01.Rmd",
 "text": "Edit"
 },
 "download": ["ambrose_dissertation.pdf", "ambrose_dissertation.docx"],
