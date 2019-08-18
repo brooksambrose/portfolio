@@ -116,7 +116,7 @@ Figure \@ref(fig:genre-goog) gives an indication of what things the term genre h
 if(latex|docx) knitr::include_graphics('img/genre-goog.png') else gnrgoog[,suppressWarnings(wordcloud2::wordcloud2(.SD,widgetsize = NULL,size = .85,gridSize = 1,fontWeight = 'normal',rotateRatio = 0,color = viridis::viridis(max(n),direction = -1,option = 'E',end = .9)[n],shape='circle',shuffle = F,fontFamily = 'Times')),.SDcols=ec('com,n')]
 ```
 
-```{r gnrgoog-tab}
+```{r gnrgoog-tab,eval=F}
 f<-'d/q/gnrgoog1562998843.txt'
 if(file.exists(f)){
   gootab<-fread(f)
@@ -298,6 +298,7 @@ Second, it is a simple enough procedure to forestall interpretation of the topic
 
 ## Data
 
+
 ```{r jtabs}
 f<-'d/p/jtabs.RData'
 if(file.exists(f)){
@@ -320,6 +321,38 @@ if(file.exists(f)){
 }
 rm(f)
 ```
+
+
+```{r qc, paged.print=FALSE}
+f<-'d/q/jstordfrqc.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  system.time(dfrg<-fread("d/d/jstordfr/genre/genre_ngram1_jst_get_ngram-1.csv"))
+  qcng<-dfrg[jart[grep('FACTORY',article_title),file_name],on='file_name']
+  rm(dfrg)
+  save(qcng,file=f)
+}
+rm(f)
+
+spl<-'[ \'-]+'
+
+qc<-pdftools::pdf_text('d/q/jstordfr/145-158_Harrison2010FACTORY_MUSIC.pdf')[-1] %>% sub('This content downloaded from.+$','',.)
+qc %<>% stringr::str_split(spl,simplify = T) %>% tolower %>% gsub('[^a-z0-9]','',.)
+qc<-qc[qc!='']
+qc<-data.table(ngram=qc)[,.N,by=ngram] %>% setorder(-N) # %>% .[!.(tm::stopwords()),on='ngram']
+qc<-merge(qcng,qc,on='ngram',all = T) %>% setorder(-N,na.last = T)
+
+qf<-pdftools::pdf_text('d/q/jstordfr/factory.pdf')[-1] %>% sub('This content downloaded from.+$','',.)
+qf %<>% stringr::str_split(spl,simplify = T) %>% tolower %>% gsub('[^a-z0-9]','',.)
+qf<-qf[qf!='']
+qf<-data.table(ngram=qf)[,.N,by=ngram] %>% setorder(-N) %>% setnames('N','nn')# %>% .[!.(tm::stopwords()),on='ngram']
+qc<-merge(qc,qf,on='ngram',all = T) %>% setnames(ec('n,N,nn'),ec('dfr,pdf,ocr')) %>% setorder(-dfr,-pdf,-ocr,na.last = T)
+qc[1:10,!'file_name']
+cat('\n')
+qc[,!ec('ngram,file_name')][!is.na(dfr),lapply(.SD,sum,na.rm=T)]
+```
+
 
 ```{r dfrg}
 f<-'d/p/jstordfr-genre.RData'
@@ -631,40 +664,42 @@ stm$meta[,mK:=factor(mod[[9]]$doc.top.theta %>% apply(1,which.max))]
 stm$meta[,p:=mapply(function(x,y) mod[[9]]$doc.top.theta[x,y],x=.I,y=mK)]
 ```
 
+<!--broke
 ```{r Taddy,eval=F}
-# it's a bust!
-# tres.f<-function (mod,docs, tol = 0.00) 
-# {
-#   beta <- lapply(mod$beta$logbeta, exp)
-#   theta <- mod$theta
-#   index <- mod$settings$covariates$betaindex
-#   K <- mod$settings$dim$K
-#   n <- length(docs)
-#   phat <- mod$settings$dim$V
-#   #d <- n * (K - 1) + K * (phat - 1)
-#   doc.resid <- function(doc, theta, beta) {
-#     q <- theta %*% beta
-#     m <- sum(doc[2, ])
-#     Nhat <- sum(q * m > tol)
-#     x <- rep(0, ncol(beta))
-#     x[doc[1, ]] <- doc[2, ]
-#     out <- sum((x^2 - 2 * x * q * m)/(m * q * (1 - q))) + 
-#       sum(m * q/(1 - q))
-# out
-# }
-#   result <- list()
-#   pbapply::pblapply(1:n,function(i) {
-#     doc.resid(docs[[i]], theta[i, ], beta[[index[i]]])
-#   },cl=6) %>% unlist
-#   # D <- sum(unlist(result))
-#   # df <- Nhat - phat - d
-#   # sig2 <- D/df
-#   # rho <- suppressWarnings(pchisq(D, df = df, lower.tail = FALSE))
-#   # D <- list(dispersion = sig2, pvalue = rho, df = df)
-#   # return(D)
-# }
-# tres<-tres.f(mod[[9]]$model,mod[[9]]$documents)
+it's a bust!
+tres.f<-function (mod,docs, tol = 0.00)
+{
+  beta <- lapply(mod$beta$logbeta, exp)
+  theta <- mod$theta
+  index <- mod$settings$covariates$betaindex
+  K <- mod$settings$dim$K
+  n <- length(docs)
+  phat <- mod$settings$dim$V
+  #d <- n * (K - 1) + K * (phat - 1)
+  doc.resid <- function(doc, theta, beta) {
+    q <- theta %*% beta
+    m <- sum(doc[2, ])
+    Nhat <- sum(q * m > tol)
+    x <- rep(0, ncol(beta))
+    x[doc[1, ]] <- doc[2, ]
+    out <- sum((x^2 - 2 * x * q * m)/(m * q * (1 - q))) +
+      sum(m * q/(1 - q))
+out
+}
+  result <- list()
+  pbapply::pblapply(1:n,function(i) {
+    doc.resid(docs[[i]], theta[i, ], beta[[index[i]]])
+  },cl=6) %>% unlist
+  # D <- sum(unlist(result))
+  # df <- Nhat - phat - d
+  # sig2 <- D/df
+  # rho <- suppressWarnings(pchisq(D, df = df, lower.tail = FALSE))
+  # D <- list(dispersion = sig2, pvalue = rho, df = df)
+  # return(D)
+}
+tres<-tres.f(mod[[9]]$model,mod[[9]]$documents)
 ```
+-->
 
 A document's ghost probability is related to the notion of residuals that would help assess overall model goodness of fit. A document's per term residual can be calculated as the observed minus the predicted document term probability, a document's overall residual the sum of the squares of the same. These residuals differ from the ghost probabilities in that they also include the gap in prediction for the terms that do appear in the original. Either can be used for diagnostic purposes. The ghost probabilities draw attention to more absurd prediction errors, while the residuals are more statistically precise. Table \@ref(tab:Kghost) shows the results of two separate linear regressions which help to rank topics according to each of these goodness of fit measures while controlling for the powerful effect of document length, as well as the other topics. In each, the higher the ranking the more documents within a topic are affected by poor fit. The results are not consistent between the fit measures. For the ghost probabilities model, the more a document is composed from topics 8, 2, 3, 5, and 1 the more likely it is to be predicted to contain terms it does not actually contain, while documents composed from topics 4, 9 and 6 are more likely to have their terms accurately predicted. For the residuals model, only topic 1 is expected to have a poorer fit, while drawing from topics 7, 4, 9, and 8 are all expected to improve document fit. The only topics for which the direction of effect is in agreement between the models is topic 1 contributing to bad fit, topics 4 and 9 contributing to good fit, and topic 10 being neutral.
 
@@ -782,9 +817,9 @@ Figure \@ref(fig:worstall) plots the distribution of a document's primary topic 
 ```{r worstall,include=T,fig.cap='Documents ranked by sum of lower tail probabilities by primary topic classification'}
 p1<-mod[[9]]$doc.top.theta[wsta,] %>% apply(1,order,decreasing=T) %>% .[1,] %>% data.table(k=factor(.)) %>% .[,ix:=.I] %>% {myth(ggplot(data=.),'Paired') +
     stat_bin(aes(x=ix,color=k,stat(count)),size=1,geom='step',position='identity',binwidth=200) +
-    xlim(1,NA)}
+    xlim(1,NA) + xlab('Document index')}
 krank[,pltp:=c(2,5,3,8,7,10,4,1,6,9)] # primary ltp
-plt(p1) %>% plotly::style(visible="legendonly", traces = setdiff(1:10,c(2,7,6)))
+plt(p1,hovinf = 'none') %>% plotly::style(visible="legendonly", traces = setdiff(1:10,c(2,7,6)))
 ```
 
 For a different view of the problem taking all topic LTPs into account, Figure \@ref(fig:k10headtailp) shows the document distribution by topic of the LTPs. Rather than looking at only the primary topic, here we separate each document into its ten topic components, thus each document is counted ten times, once for each of its topic LTPs. The logarithmic scale helps us see a fairly even separation, at p = `r format(spr,digits=3)`, between the portion of the corpus for which LTPs are and are not a serious consideration. Below the sag between the two modes the LTPs are vanishingly small and of no practical concern. Toward the upper mode, however, we are concerned that the LTPs may be a source of classification bias. This empirical separation visible on the log scale is lower than the p = .05 standard that we considered above to be practically problematic, which covers only the right hand tail of the upper mode.
@@ -818,7 +853,7 @@ Topic 6 reaches the threshhold first at an index of `r ct['6',on='T',cut]`, whic
 
 ```{r elbow1p,include=T,fig.cap='Cumulative distribution of within topic term probabilities. Dotted line at p = 2/3'}
 p1<-myth(ggplot(elb[t<=2/3],aes(x=i,y=t,color=T)),'Paired') + geom_line(size=1) + theme(legend.position = c(.98,.02),legend.justification = ec('right,bottom')) + geom_hline(yintercept=2/3,linetype='dotted') + geom_point(data=elb[t<=2/3,.(mi=max(i),mt=max(t)),by=T],aes(x=mi,y=mt,color=T))
-plt(p1) %>% plotly::style(visible="legendonly", traces = setdiff(1:10,c(2,5,6,10)))
+plt(p1,hovinf='text') %>% plotly::style(visible="legendonly", traces = setdiff(1:10,c(2,5,6,10)))
 ```
 
 While there is no substantive reason to prefer topics with concentrated term vectors, researchers tend to favor them because they are more cognitively tractable. It is hard for analysts to make sense of hundreds of terms; the more a topic can be adequately summarized by a short list the more easily it is to reify. These diagnostic plots help to identify the topics which may require additional attention to their lower ranked terms.
@@ -882,7 +917,7 @@ for(i in 1:length(h)) elb[[i]]<-data.table(t=elb[[i]] %>% {.[.>tst]} %>% cumsum 
 elb<-rbindlist(elb)[,T:=factor(T)] %>% setkey(T)
 elbm<-elb[,.(mi=max(i),mt=max(t)),by=T]
 p1<-myth(ggplot(elb,aes(x=i,y=t,color=T)),'Paired') + geom_smooth(data=elbm,aes(x=mi,y=mt),method='lm',linetype='dotted',color='gray',se=F) + geom_line(size=1) + theme(legend.position = c(.98,.02),legend.justification = ec('right,bottom')) +  geom_point(data=elbm,aes(x=mi,y=mt,color=T)) + xlab('Document index') + ylab('Cumulative sum of document probabilities')
-plt(p1)
+plt(p1,hovinf='text') %>% plotly::style(hoverinfo='skip',traces = 1)
 ```
 
 These document trajectories trends provide a view of topic dominance that is different than the usual ranking of topics by their total corpus term share. The corpus term share effaces differences in document size as well as the the fact that rankings change depending on where one looks along the cumulative distributions. In this model the ranking by median document probability in the first 300 ordered documents provides a better view of classification strength among the sets of documents that researchers are much more likely to focus on during QCV. Table \@ref(tab:topshare) shows that by this document share criterion topics 1, 2, and 6 are much more highly ranked.
@@ -1398,7 +1433,7 @@ sg(rel[['T10']],tit='Topic 10 Terms')
 ```
 
 ## Topic clusters
-
+<!--
 ```{r trm-cor,eval=F,include=F,fig.asp=1,fig.cap='Topic by document correlations'}
 cor(mod[[9]]$top.word.phi.beta %>% t) %>% {diag(.)<-NA;.} %>% {heatmaply::heatmaply_cor(.,colors=heatmaply::cool_warm(100) %>% rev,k_col=NA,k_row=NA,symm=T,limits = abs(.) %>% max(na.rm = T) %>% {.*c(-1,1)})}
 ```
@@ -1406,7 +1441,7 @@ cor(mod[[9]]$top.word.phi.beta %>% t) %>% {diag(.)<-NA;.} %>% {heatmaply::heatma
 ```{r doc-cor,eval=F,include=F,fig.cap='Topic by term correlations'}
 cor(mod[[9]]$doc.top.theta) %>% {diag(.)<-NA;.} %>% {heatmaply::heatmaply_cor(.,colors=heatmaply::cool_warm(100) %>% rev,k_col=NA,k_row=NA,symm=T,limits = abs(.) %>% max(na.rm = T) %>% {.*c(-1,1)})}
 ```
-
+-->
 Having posited a nominal theory of each topic by inspection of journals, belwether texts, and the topic by term matrix, we have not yet established what documents are about. Because the topic model is a mixture model we have at best understood what the potential for document composition is, not what their compositions actually are. Understanding the patterns of topic mixtures, or topic clustering, within documents is the last necessary analysis at a global level before proceeding with a stratification of the corpus for purposes of reading. Here we take two approaches to document clustering, first by hierarchical clustering of the distances between documents calculated directly from the document by topic matrix, and second by network community detection.
 
 <!-- ### Euclidean Distance -->
@@ -1415,16 +1450,16 @@ Agglomerative hierarchical clustering works by first calculating the euclidean d
 
 Within the grid is displayed the actual document by term matrix with probabilities coded as shading from p = 0, white, to p = 1, black. The darkest stripes represent those unmixed documents uniquely classified in a topic, and it can be noticed that everywhere to the left or right of the darkest stripes is very pale shading. Because rows sum to one, where shading in a column is gray, it must be complemented by shading in another column, hence the gray regions represent the mixed documents. The blue traces within columns plot the associated probabilities, with the dashed line indicating p = 0.5. The dendrogram on the left represents the clustering of documents and is shaded to reduce the clutter and draw the eye toward merges at higher distances. Note that the darkest stripes are associated with the lowest, earliest merges; these are the documents (the spines of the urchin) that "stepped" as far away from the pack in a single direction as possible, thereby landing very close to each other and very far from the rest.
 
-At the higher levels of document clustering we may observe the unmixed documents being merged with mixtures in which the same topic is the dominant component, either in majority or plurality. A gray band above a dark band will be a cluster mixed in a different configuration than the gray area below a band, sometimes from the same secondary topic but in a different ratio and other times from a different topic altogether. For instance the spine of topic 4 is flanked above by texts with clusters of various mixtures in which 4 has a slight majority, including prominently topics 10, 7, and 9 but almost all other topics in separate groups save topic 3. Flanked below the spine topic 4 is mixed again with 9 and 7 but this time without taking a majority share.
+At the higher levels of document clustering we may observe the unmixed documents being merged with mixtures in which the same topic is the dominant component, either in majority or plurality. A gray band above a dark band will be a cluster mixed in a different configuration than the gray area below a band, sometimes from the same secondary topic but in a different ratio and other times from a different topic altogether. For instance the spine of topic 4 is flanked below by texts with clusters of various mixtures in which 4 has a slight majority, including prominently topics 10, 7, and 9 but almost all other topics in separate groups save topic 3. Flanked above the spine topic 4 is mixed again with 9 and 7 but this time without taking a majority share.
 
-The ensemble also helps to correct artifacts of the linear ordering of each dimension. For example, though topics 6 and 1 are adjacent columns, their spines are as far apart as possible in the row dimension. The merger of topic 6 into the cluster containing topics 7, 4, 9, 10, 2, and 1 is done at a relatively long distance and could be due to the space between 6 and any of the other members. In general it is better to proceed from the lowest to the highest leaves when assessing topic relatedness, the lowest in this case being 4 and 7.
+The ensemble also helps to correct artifacts of the linear ordering of each dimension. For example, though topics 6 and 1 are adjacent columns, their spines are as far apart as possible in the row dimension. The merger of topic 6 into the cluster containing topics 7, 4, 9, 10, 2, and 1 is done at a relatively long distance and could be due to the space between 6 and any of the other members.
 
 ```{r hotleaf,include=T,fig.asp=1.2,fig.cap='Heatmap by optimal leaf sorting of documents (rows) and topics (columns)'}
 source('hm3.R')
 dhm.f<-function(mat,v,grp,rL) hm3(#gplots::heatmap.2(
   mat[v$w,]
   ,col=gray(seq(1,0,length.out = 100))
-  ,Rowv = v$rv   %>% dendextend::highlight_branches_col(rev(viridis::magma(100))) #%>% rect.dendrogram(k=3) #
+  ,Rowv = v$rv   %>% dendextend::highlight_branches_col(rev(viridis::magma(100))) %>% rev #%>% rect.dendrogram(k=3) #
   ,Colv = v$cv %>% {dendextend::raise.dendrogram(.,-.9*min(dendextend::get_branches_heights(.)))}
   #,dendrogram='column'
   ,key=F
@@ -1523,7 +1558,7 @@ Our stratification approach will allow us to adjudicate the question of validity
 od<-dendextend::cutree(as.hclust(dgd$rv),k=nC, use_labels_not_values = FALSE)
 stm$meta[,edc:=od %>% {.[order(names(.) %>% as.integer)]}]
 oden<-dgd$cv %>% order.dendrogram
-odenr<-od[order.dendrogram(dgd$rv)] %>% unique %>% rev
+odenr<-od[order.dendrogram(dgd$rv)] %>% unique
 edn<-stm$meta[,.(edn=table(mK) %>% {names(.)[which.max(.)]},edm=table(mK) %>% prop.table %>% max),by=edc] %>% setorder(edn,-edm) %>% .[,edn:=make.unique(edn)] 
 fl<-edn[,grepl('\\.',edn) %>% {c(edn[!.] %>% as.numeric %>% sort,edn[.] %>% as.numeric %>%  sort)}] %>% as.character
 edn[,edn:=factor(edn,levels=fl)] %>% setorder(edc)
@@ -1534,96 +1569,13 @@ htt<-stm$meta[,.(t=list(table(mK))),keyby=edc]$t %>% do.call(what = rbind) %>% p
 sg(htt,tit='Document Clusters by Percentage Primary Topic Classification')
 ```
 
+Given the linear ordering of rows and columns, three seriation approaches are possible. *Inside out* would proceed from the lowest to the highest leaves when assessing topic relatedness, the lowest in this case being 4 and 7, and would emphasize the most interdependent topics first. Conversely *outside in* would start with the most independent topics. Finally, the easiest *playlist* seriation would simply be to read in the order given choosing either the top or bottom as a starting point.
 
-```{r reading}
-stm$meta[,soci:=stringr::str_extract(solong,'Soci[a-z]*')]
-stm$meta[
-'Proceedings of the American Mathematical Society
-The Journal of the Society of Cinematologists
-Dance Research: The Journal of the Society for Dance Research
-Transactions of the American Mathematical Society
-The Journal of the Polynesian Society
-Proceedings of the Aristotelian Society
-Journal of the Society of Christian Ethics
-The Papers of the Bibliographical Society of America
-The Bulletin of the American Society of Papyrologists
-Transactions of the American Entomological Society (1890-)
-Transactions of the Royal Historical Society
-Rhetoric Society Quarterly
-Journal of the American Oriental Society
-Journal of the American Musicological Society
-Dante Studies, with the Annual Report of the Dante Society
-Proceedings of the Aristotelian Society, Supplementary Volumes
-Journal of the Malaysian Branch of the Royal Asiatic Society
-The Volume of the Walpole Society
-The Thoreau Society Bulletin
-Journal of the Society for Army Historical Research
-Proceedings of the Cambridge Philological Society' %>% ec(sp='\n')
-,on='solong',soci:=NA]
-nsoc<-stm$meta[,sum(!is.na(soci))]
-stm$meta[,auths:=sapply(auth,function(x) nl(x$last))]
-ts<-Sys.time() %>% as.integer
-if(F) stm$meta[
-  !is.na(soci)
-  ,{
-    x<-data.table(citekey='',.SD)[,`:=`(edn=factor(edn,levels=htt$Cluster %>% rev,ordered = T),gini=round(gini,4),p=round(p,4))] %>% setorder(edn,-gini) %>% split(by='edn')
-    x<-x[htt$Cluster %>% rev]
-    for(i in 1:length(x)) write.table(x[[i]],file = sprintf('d/p/jstordfr/read/%02d-%s-%s.txt',i,ts,names(x)[i]),quote = F,sep = '\t',row.names = F)
-  },.SDcols=ec('ix,url,mK,p,edn,gini,year,soci,solong,auths,tit')]
-```
+We may now reflect on the guidance offered by Table \@ref(tab:sumrnk), where topics 6 and 9 had the best and topics 2 and 7 the worst performance across a battery of diagnostics. The clustering results bear the diagnostics out only in one respect. If good diagnostic performance meant a strong signal then it makes sense that topic 6 is 
 
-```{r sociology,include=T,fig.asp=1,fig.cap=sprintf('Topic locations of sociology texts (n = %s)',nsoc)}
+Figure \@ref(fig:gen-samp) illustrates the use of these clusters as strata for a sampling approach to mastering a corpus defined by the term genre. The clusters are seriated in playlist order from left to right beginning with 
 
-p<-stm$meta[,{
-  
-  rmeta<-data.table(.SD)[,`:=`(
-    tit=ifelse(is.na(tit),so,tit) %>% tolower %>% tools::toTitleCase(.) %>% stringr::str_wrap(.,50,exdent = 5)
-    ,solong=stringr::str_wrap(solong,50,exdent = 5) #][,`Soci[a-z]*`:=soci][,edn:=factor(edn,levels=htt$Cluster)
-    ,`Soci[a-z]*`=soci
-    ,edn=factor(edn,levels=htt$Cluster)
-    ,cluster=grepl('\\.',edn) %>% factor(labels=ec('spine,mixed'))
-    ,k3=paste0('\n ',k3)
-  )]
-  
-  gp<-ggplot(mapping=aes(k3=k3,tit=tit,auths=auths,year=year,jour=solong,ix=ix))+
-    geom_boxplot(data=rmeta,aes(edn,gini,fill=cluster),outlier.shape = '+',size=.2) +
-    geom_jitter(data=rmeta[!is.na(soci)],aes(x=edn,y=gini,color=`Soci[a-z]*`),fill='white',width=0,height=0,alpha=1,size=2,shape=5,stroke=.3) +
-    theme_bw() + scale_color_brewer(palette='Dark2') + scale_fill_manual(values=c(spine='lightgray',mixed='white')) + scale_y_reverse() + coord_flip() + xlab('Within document topic concentration (Gini)') + ylab('Topic cluster')
-  
-  ply<-plotly::ggplotly(gp)
-  
-  for(i in which(sapply(ply$x$data,function(x) x$type)=='box')) ply$x$data[i] %<>% lapply( FUN = function(x){
-    x$marker <- list(opacity = 0)
-    x$hoverinfo <- 'skip'
-    return(x)
-  })
-  
-  for(i in 1:length(ply$x$data)) {
-    for(j in c('name','legendgroup')) ply$x$data[[i]][[j]]<-sub('^\\((.+),1(,NA)?\\)','\\1',ply$x$data[[i]][[j]])
-    ply$x$data[[i]][['hovertext']]<-NULL
-  }
-  
-  for(i in 2:length(ply$x$data)) ply$x$data[[i]]$customdata<-rmeta[ply$x$data[[i]]$name,on='Soci[a-z]*',sprintf('https://%s',url)]
-  rng<-rmeta[!is.na(soci),range(gini) %>% {c(. - diff(.)*.05,. + diff(.)*.05)} %>% range]
-  #browser()
-  htmlwidgets::onRender(
-    ply %>% plotly::layout(xaxis=list(range=rev(-1*rng)))
-    , "
-         function(el, x) {
-         el.on('plotly_click', function(d) {
-         var url = d.points[0].customdata;
-         //url
-         window.open(url);
-         });
-         }
-         ")
-  
-},.SDcols=ec('k3,edn,gini,solong,url,auths,tit,year,soci,ix')]
-p
-```
-
-
-```{r,include=T,fig.cap='Reading Strata and Sampled Texts.'}
+```{r gen-samp,include=T,fig.cap='Reading Strata and Sampled Texts.'}
 withr::with_seed(12345,{
   stm$meta[,samp:=NULL]
   stm$meta[,samp:={
@@ -1667,6 +1619,96 @@ if('plotly'%in%class(p1)) {
 } else p1
 
 ```
+
+
+
+```{r reading}
+stm$meta[,soci:=stringr::str_extract(solong,'Soci[a-z]*')]
+stm$meta[
+'Proceedings of the American Mathematical Society
+The Journal of the Society of Cinematologists
+Dance Research: The Journal of the Society for Dance Research
+Transactions of the American Mathematical Society
+The Journal of the Polynesian Society
+Proceedings of the Aristotelian Society
+Journal of the Society of Christian Ethics
+The Papers of the Bibliographical Society of America
+The Bulletin of the American Society of Papyrologists
+Transactions of the American Entomological Society (1890-)
+Transactions of the Royal Historical Society
+Rhetoric Society Quarterly
+Journal of the American Oriental Society
+Journal of the American Musicological Society
+Dante Studies, with the Annual Report of the Dante Society
+Proceedings of the Aristotelian Society, Supplementary Volumes
+Journal of the Malaysian Branch of the Royal Asiatic Society
+The Volume of the Walpole Society
+The Thoreau Society Bulletin
+Journal of the Society for Army Historical Research
+Proceedings of the Cambridge Philological Society' %>% ec(sp='\n')
+,on='solong',soci:=NA]
+nsoc<-stm$meta[,sum(!is.na(soci))]
+stm$meta[,auths:=sapply(auth,function(x) nl(x$last))]
+ts<-Sys.time() %>% as.integer
+if(F) stm$meta[
+  !is.na(soci)
+  ,{
+    x<-data.table(citekey='',.SD)[,`:=`(edn=factor(edn,levels=htt$Cluster,ordered = T),gini=round(gini,4),p=round(p,4))] %>% setorder(edn,-gini) %>% split(by='edn')
+    x<-x[htt$Cluster]
+    for(i in 1:length(x)) write.table(x[[i]],file = sprintf('d/p/jstordfr/read/%02d-%s-%s.txt',i,ts,names(x)[i]),quote = F,sep = '\t',row.names = F)
+  },.SDcols=ec('ix,url,mK,p,edn,gini,year,soci,solong,auths,tit')]
+```
+
+```{r sociology,include=T,fig.asp=1,fig.cap=sprintf('Topic locations of sociology texts (n = %s)',nsoc)}
+
+p<-stm$meta[,{
+  
+  rmeta<-data.table(.SD)[,`:=`(
+    tit=ifelse(is.na(tit),so,tit) %>% tolower %>% tools::toTitleCase(.) %>% stringr::str_wrap(.,50,exdent = 5)
+    ,solong=stringr::str_wrap(solong,50,exdent = 5)
+    ,`Soci[a-z]*`=soci
+    ,edn=factor(edn,levels=htt$Cluster %>% rev)
+    ,cluster=grepl('\\.',edn) %>% factor(labels=ec('spine,mixed'))
+    ,k3=paste0('\n ',k3)
+  )]
+  
+  gp<-ggplot(mapping=aes(k3=k3,tit=tit,auths=auths,year=year,jour=solong,ix=ix))+
+    geom_boxplot(data=rmeta,aes(edn,gini,fill=cluster),outlier.shape = '+',size=.2) +
+    geom_jitter(data=rmeta[!is.na(soci)],aes(x=edn,y=gini,color=`Soci[a-z]*`),fill='white',width=0,height=0,alpha=1,size=2,shape=5,stroke=.3) +
+    theme_bw() + scale_color_brewer(palette='Dark2') + scale_fill_manual(values=c(spine='lightgray',mixed='white')) + scale_y_reverse() + coord_flip() + ylab('Within document topic concentration (Gini)') + xlab('Topic cluster') 
+  
+  ply<-plotly::ggplotly(gp)
+  
+  for(i in which(sapply(ply$x$data,function(x) x$type)=='box')) ply$x$data[i] %<>% lapply( FUN = function(x){
+    x$marker <- list(opacity = 0)
+    x$hoverinfo <- 'skip'
+    return(x)
+  })
+  
+  for(i in 1:length(ply$x$data)) {
+    for(j in c('name','legendgroup')) ply$x$data[[i]][[j]]<-sub('^\\((.+),1(,NA)?\\)','\\1',ply$x$data[[i]][[j]])
+    ply$x$data[[i]][['hovertext']]<-NULL
+  }
+  
+  for(i in 2:length(ply$x$data)) ply$x$data[[i]]$customdata<-rmeta[ply$x$data[[i]]$name,on='Soci[a-z]*',sprintf('https://%s',url)]
+  rng<-rmeta[!is.na(soci),range(gini) %>% {c(. - diff(.)*.05,. + diff(.)*.05)} %>% range]
+  #browser()
+  htmlwidgets::onRender(
+    ply %>% plotly::layout(xaxis=list(range=rev(-1*rng)))
+    , "
+         function(el, x) {
+         el.on('plotly_click', function(d) {
+         var url = d.points[0].customdata;
+         //url
+         window.open(url);
+         });
+         }
+         ")
+  
+},.SDcols=ec('k3,edn,gini,solong,url,auths,tit,year,soci,ix')]
+p
+```
+
 
 ### Document composition
 
