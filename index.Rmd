@@ -23,6 +23,11 @@ header-includes:
 - \usepackage{dcolumn}
 - \usepackage{longtable}
 - \floatplacement{figure}{H}
+- \usepackage[none]{hyphenat}
+- \raggedbottom
+- \usepackage{ragged2e}
+- \setlength{\RaggedRightParindent}{\parindent}
+- \RaggedRight
 indent: yes
 linestretch: 2
 link-citations: yes
@@ -35,6 +40,7 @@ biblio-style: apalike
 ---
 
 ```{r init,include=T,echo=FALSE}
+# https://eddjberry.netlify.com/post/writing-your-thesis-with-bookdown/
 # options ----------------------------------------------------------------
 kop<-function(...) {
   knitr::opts_chunk$set(
@@ -42,12 +48,20 @@ kop<-function(...) {
     ,include=F
     ,fig.align='center'
     ,comment=NA
+    ,out.width = '90%'
+    ,message=FALSE
+    ,warning=FALSE
+    ,dpi=96
 #    ,optipng = '-o7'
     ,...
   )
   if(knitr::opts_chunk$get('cache')) warning('Chunk caching is on!')
 }
-kop(cache=F,message=TRUE,screenshot.opts=list(delay=5,cliprect='viewport',eval="this.then(function () {
+kop(cache=F,message=TRUE,screenshot.opts=list(delay=5
+,vheight=900
+,vwidth=1400
+,cliprect='viewport'
+,eval="this.then(function () {
  while(this.evaluate(function () { return document.readyState != 'complete' && document.readyState != 'interactive'; })) {}
 });"))
 ```
