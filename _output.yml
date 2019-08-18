@@ -1,25 +1,28 @@
+bookdown::word_document2:
+  toc: true
 bookdown::gitbook:
     number_sections: TRUE
-    dev: svglite
-    split_by: chapter
+#    dev: svglite
+    dev: png
+    split_by: section+number
     split_bib: TRUE
-    toc_depth: 2
+    toc_depth: 3
     config:
       fontsettings:
         family: serif
       toc:
-        collapse: section
+        collapse: subsection
         scroll_highlight: yes
         before: |
           <li><a href="./">Brooks Ambrose</a></li>
         after: |
           <li><a href="https://github.com/brooksambrose" target="blank">GitHub</a></li>
-          <li><a href="https://www.ischool.berkeley.edu/people/brooks-ambrose" target="blank">UC Berkeley</a></li>
+          <!--<li><a href="https://www.ischool.berkeley.edu/people/brooks-ambrose" target="blank">UC Berkeley</a></li>-->
       sharing: no
       edit: https://github.com/brooksambrose/portfolio/blob/draft/%s
       download: ["pdf","docx"]
-bookdown::word_document2:
-  toc: true
+#      includes:
+#        in_header: mathjax-number.html
 bookdown::pdf_book:
   latex_engine: xelatex
   keep_tex: yes

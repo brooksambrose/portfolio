@@ -1,3 +1,12 @@
+# packages
+library(tilit)
+library(plagiat)
+library(ggplot2)
+library(knitr)
+library(magrittr)
+library(data.table)
+
+#
 latex<-is_latex_output()
 docx<-'docx'%in%knitr::opts_knit$get("rmarkdown.pandoc.to")
 
