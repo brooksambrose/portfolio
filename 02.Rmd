@@ -1,111 +1,81 @@
-# `r tgen` {#gen}
+# `r tdis` {#dis}
 
 #### Abstract {-}
 
-(ref:abs-gen)
+(ref:abs-dis)
 
 #### Keywords {-}
 
-(ref:key-gen)
+(ref:key-dis)
 
-## Introduction
+***
 
-> The science that everybody is...called upon to possess hardly deserves that name. It is not science; or at the very most it is the most common and general part of it. It is indeed limited to a few indispensable elements of knowledge which are only required of everyone because they are within everyone’s grasp. Science proper soars infinitely beyond this vulgar level. It includes not only what one would blush at not knowing, but all that it is possible to know. It presumes among those who are its adepts not only those average faculties possessed by all men, but special aptitudes. In consequence, since it is accessible only to an elite, it is not obligatory. Although something fine and useful, it is not so utterly indispensable that society categorically requires it. There is advantage in being equipped with it, but nothing immoral about not acquiring it. It is a field of activity open to everyone on their own initiative, but one which no one is compelled to enter. One is no more required to be a scientist than an artist. [@Durkheim1893division\:43]
+The classification of cultural products according to genre systems has been treated both as a top-down institutional process conditioning the development of entire markets [@Lena2008Classification; @Brook1994Symphonie] and as "nothing but" an emergent, bottom-up process of individual acts of labeling and interpretive judgement [@Lamont2010How; @Hitters2010Tune]. A middle range approach requires understanding how actors distributed across the roles that constitute structure, the top down perspective, make local judgements that either do or do not have global consequences. The idea of genre as a cognitive institution that is diffused across a wide variety of actors gives the appearance of a cultural integrator, something given in the environment of all actors and not controlled by any of them. Players on fields of cultural production regardless of their role or status are, like price takers in a market, cultural name takers. Once genre labels are established they are immutable and given as terms in the language. The content to which they refer, however, is historically variable and debatable.
 
-Genre is a both a phenomenon and an analytical approach, indeed, several analytical approaches. I critique a contemporary use of multimodal network analysis to study genre as measured in cultural object network data. I argue that standard rational choice approaches in the sociology of culture, the theory of consumer preferences or tastes, does not pass a prima facie test of validity as an accurate representation of the global properties of so-called cultural networks. The same data that are used to demonstrate taste theory better support an alternative knowledge based approach to culture.
+The explanation of how genre labels and the content to which they refer develops over time requires a mapping of the structure of genre labels at particular moments. In this study I estimate a mapping of the cognitive associations among genre categories of scholarship according to one interested role position in the scholarly field of cultural production, the archivist. Archives play a constitutional role for scholarly fields, forming a necessary infrastructure for scholars' work, but scholars are not the only interests served by archives. Students and educators as well as the public, also draw on knowledge resources contained in the archive. To make this knowledge accessible archivists use genre classifications to organize content. The classifications meet the practical needs of serving both the producers and consumers of the content. The granularity of the classification system that would be useful to producers is, however, much finer than what is useful for consumers (note that the same item may either be factor of production or a product). The bias of the archive skews toward the courser grained consumer classification system in part because the needs of producers are highly idiosyncratic, shifting, and difficult to predict.
 
-### Taste
+Producers tend to dismiss the consumers' ways of thinking about their field, but there is one situation in which producers are reduced to consumers; in scholarly professions the coarse version of classification is a communicative infrastructure for foreign correspondence. These coarse categories are what we call disciplines. Disciplines are nothing but a genre like classification system; they are merely integrative of global transactions among scholars at a distance and between scholarship as a whole and its macroscopic interlocutors, namely education, grant making, and university administration. Thus when scholars view content situated outside of their local epicenters of research, they necessarily shift from fine to coarse grained judgements. This switch on the tracks may be jolting, as it connotes what they feel to be a demotion of their usual status.
 
-Lizardo operationalizes genre preference data in network terms by "inducing a network of persons connected to the cultural genres they choose" [-@Lizardo2018mutual\:53]. This allows him to analyze individual preferences within a global context represented in bimodal network patterns. Multimodal networks, of which a bimodal network is the simplest type, are an analytical convention wherein at least two classes of items bear relations and in which a rule is imposed that such items may only be related to items of a different class. Insofar as the researcher cares about intraclass relationships she must understand them as mediated by one of the alternative classes.
+```{r fractal}
+gv<-DiagrammeR::grViz('
+  graph "" {
+    graph [center=true]
+    
+    tooltip=" "
+    node [tooltip=" "]
+    edge [tooltip=" "]
+    
+    node [shape=plaintext,fontname=Courier,fontsize=12]
+    m [label=Method]
+    ql [label=Qualt]
+    qn [label=Quant]
+    ql1 [label=Qualt]
+    qn1 [label=Quant]
+    ql2 [label=Qualt]
+    qn2 [label=Quant]
+    m--ql
+    m--qn
+    ql--ql1
+    ql--qn1
+    qn--ql2
+    qn--qn2
+    ql1--"Very\nQualt" [style=dotted]
+    qn1--"Somewhat\nQualt" [style=dotted]
+    qn2--"Very\nQuant" [style=dotted]
+    ql2--"Somewhat\nQuant" [style=dotted]
+  }
+  ')
+htmlwidgets::saveWidget(gv,file='/home/plagiat/portfolio/exh/fractal.html')
+webshot::webshot('/home/plagiat/portfolio/exh/fractal.html',paste0('img/fractal.',ec('png,pdf')),selector = '#graph0')
+```
 
-This multimodal metric convention aligns with cultural capital theories of culture which treat the consumption of cultural objects as transactions out of knowledge relationships and into status ones. In a knowledge relationship cultural logics obtain, usually a principle of rightness like truth, beauty, or morality. Social relationships, on the other hand, are governed by different rules, e.g. those of commitments like love and enmity or loyalty and rivalry. The meaning of a cultural object is given by the interactions established around it, which are themselves conditioned by role expectations [@DiMaggio1987Classification\:445]. Cultural capital then is the type of relationship process where an actor tries to exchange knowledge for status as the basis for a relationship or at least to motivate a particular role interaction.
+```{r fractalp,include=T,fig.cap='Fractal Evaluation and Commensurated Scale. Adapted from Abbott (2011:11).',fig.width=3,fig.asp=500/610,out.width=NULL}
+knitr::include_graphics('img/fractal.png',auto_pdf = F)
+```
 
-This treatment of cultural capital differs from more strictly Bourdieusian approaches. Serino et al [-@Serino2017Bridging] do it differently.
+Facing inwardly, they deploy value standards rather than classifications. In their own field, scholars grant themselves moral and aesthetic authority to judge the quality of content. In communicating outside of their field, where they have no jurisdiction, assessment of cultural items becomes value neutral, a mere matter of taste. Such internal values may even be simple dualisms compared to the more complicated disciplinary categories, but rather than creating simple genre-like schemes they create scales of gradient evaluation. @Abbott2001Chaos shows that these scales, for instance from idiographic to nomathetic, are established by the accumulation of simple judgments by separate individuals in the direct and often pairwise comparisons of discrete works or authors. This pattern of evaluation is chaotic and produces a fractal organization of content with only approximate correspondence among judges. Though Abbott [-@Abbott2001Chaos\:14] suggests that these fractals are irreducible to simple one or two-dimensional scales, it is likely that the chaotic outcomes are collapsed into a reified commensuration standard when facilities and rewards are distributed [@Espeland1998Commensuration].
 
-The simplest multimodal network has two classes (see [@Shi2015Weaving] for examples of many more).
+Disciplines are much more like genres than the constellation of fields and subfields that scholars may be accustomed to thinking with in the course of their work. Genres function to the extent that they are globally recognizable, that is, ubiquitous. Ubiquity means that all members of a field regardless of status are able to learn enough about the genre to make accurate classifications of cultural objects. This does not mean that everyone will always necessarily be aware of all genre labels, or that their classifications will always be accurate, but it does mean that they will be able to learn the rules when it becomes necessary. Subfield categories are not ubiquitous in this way; subfield labels only become genre-like by restricting the reference group to a more esoteric level. Whereas all members of a university, for instance, may easily become aware of the discipline of sociology, written as it may be on a building, only disciples of sociology are likely to become aware of the subfield of conversation analysis. And while disciples may learn the label, it takes some real experience with the content of the discipline, if not necessarily the subfield, to understand that conversation analysis is more qualitative than population research and more quantitative than ethnography.
 
-culture as a disembodied abstraction [@Lizardo2018mutual]
+In this way the classification schemes are nested in a functional hierarchy that shifts according to which role relationships are activated in the field. The more fine grained distinctions among genres are derivable from the collapsed fractal patterns. The highest level of granularity one is able to discuss may be a status signal of where they belong within a disciplinary stratification system. Furthermore the interactional capacities of disciples are nested. Denizens of more interior spaces in a subdiscipline, the spaces of fractal evaluation, are always able to operate successfully in more granular interactions, but the reverse is not true.
 
->>  Genre classifications socialize the infrastructure costs of artistic production. [@DiMaggio1987Classification\:445]
+Everyone starts at the more ubiquitous level. It is only through education or professional socialization that newcomers can learn 
 
-### Structuralist
-
-Genres are a feature of two kinds of cultural surplus. First, genres are not necessary if knowledge is limited to a small number of lessons, stories, ideas, or skills. Such a cultural corpus is naturally held as "the" obligatory culture, and because knowers do not experience options they do not face the problem that genres solve. When such a unary culture expands beyond the mental or technological limits of memory, or when it is faced with alien knowledge sources, a proto genre is functionally necessary that allows for a binary classification between sense and nonsense.
-
-Such a proto genre allows two things. Alien material becomes obvious, perhaps dangerous, but not confusing as it can be safely cordoned off from what is real knowledge. Second and perhaps more interestingly, a proto genre precipitates cultural expansion by allowing some stories (ideas, skills, products) to be told differently. Such novelty maintains interest without exciting alienation. In those acts of deciding what makes sense (inclusion) and what is nonsense (exclusion) the rules of the genre begin to form.
-
-When genres become multiple they cease to be about sense and nonsense and begin to be about relevance and irrelevance. They allow local action with a globalized culture by reducing local cultural complexity to a manageable level, and what is more important, they make normative and binding the particular pattern of exclusion. The genre classification of particular cultural objects must be done correctly or they will invite more or less predictable social backlash. In this way "personal genre" must be understood to be an oxymoron; a person may have tastes, her own rules of repulsion and attraction, but to the extent that these tastes abrogate genre conventions a person has difficult decisions to make about how she will field the forms of social regulations, and perhaps rewards, that she will incur in expressing those tastes.
-
-This is not to say that socialized tastes, tastes that conform to genre convention, do not incure regulation and reward. Indeed we will see that one function of multigenre systems is to allow cultural industries to minimize exclusion and maximize conversions. In this sense the developmental model with which we began has a circular logic of scale; as genre systems grow and differentiate in the vain attempt to index the wild cultural content they hope to classify, industrial action lights upon this natural tendency and works to domesticate it. In working to exclude nothing, purveyors of culture demonstrate themselves to be tastelessly willing to hock something to anyone.
-
-This simple structuralism is a functional understanding of genres, which though not a sensible analytical approach in contemporary sociology, forms the spine of the argument to follow. The effect of genres that we wish to focus on is their exclusion potential. 
-
-## Culture
-
-Bodies of knowledge and practice, cultures, exist because of yet apart from particular people. While some cultures are ubiquitous and inculcated in all members of the societies in which they are substantiated, others are esoteric and marked by significant barriers to learning them. Such esoteric cultures are as inaccessible as they are unnecessary. A child who does not learn what to eat and how to eat it in her local culture will have great difficulty doing anything else in her society. Food culture is of the ubiquitous type and is not difficult to learn. On the other hand, a child who does not master scripture will be ashamed at temple, but shame is bearable in a way that hunger is not. Scripture is of the esoteric type; knowledge of it enables special abilities and grants access to restricted aspects of a society, but ignorance of it does not threaten one's lay livelihood. Even in religiously totalitarian societies, what religous knowledge is necessary will be ubiquitous. What religious knowledge is esoteric can be safely left to the clergy. It is not too narrowly circular to say that the knowledge that informs daily life is the easiest to aqcuire, and that the mere act of living also reproduces that knowledge within contexts that are themselves ubiquitous. Whether relationships of ubiquity are familial, economic, or state relations varies by society, but no society lacks ubiquitous culture and the means of reproducing it.
-
-Esoteric cultures, then, are removed from ubiquitous ones though they depend on them. They require specialized social relationships for their reproduction in populations. These special relationships may be called fields of cultural production (FCP). FCPs are both reproductive of extant knowledge and productive of novel knowledge relevant usually only to the field itself. To the extent that esoteric cultures are complicated or otherwise have high entropy, the failure to reproduce their cultural content is always an existential threat. While it is a gaurantee that cultural content is constantly actually lost to reproduction failures, cultures that nonetheless persist historically must always have a socially structured FCP that, in inculcating new members and reinforcing the knowledge of extant members, resists the entropic decay that would otherwise lead to extinction.
-
-The scope of a culture has a knowledge and a social dimension. Units of knowledge are both discrete and combinatoric. Discretely, the size of a culture can be measured by a count of co-occuring ideas and skills. The utility of knowledge, for instance as instantiated in an FCP, often depends on the combination and interaction of such discrete elements. The mass of knowledge in a culture is related to the count of units and to the ease with which those units can be learned, thought, or deployed in meaningful activity. Some cultures are easier than others, and it is the effort-adjusted size that is the real mass of the ideational content of a culture.
-
-Not all sociologically relevant information is cultural. In the triadic relationship among culture, social structure, and personality, psychological concepts like schemata that are sometimes treated as constitutive of social structure do not belong in the category of culture. Schemata allow personalities to organize their responses to a world that includes many things beyond culture. In order for cultures and social structures to function stably in time, they depend on the successful operation of schema, but they do not necessarily provision these schema. An only partial exception is the limiting and very specialized cases of pedagogical institutions. A culture can only exist if people can reproduce it, but the people must solve the psychological problems of cognition on their own. Whereas culture is fungible in its different mediated forms, there is no reason to believe that a "single schema" occurs across a population of people. There are no one-size-fits-all solutions to human motivation, and schema will to a large extent be idiosyncratic, adapted as they must be to the particular circumstances in which people as träger find themselves.
-
-What cultures can do to hedge their bets against the instability of personalities is to introduce kinds of knowledge adapted to cognitive problems. Schutz identifies systems of relevance from the side of personalities, and here we understand the same from the side of cultures.
-
-People know culture and it does not appear apart from them. Put differently, culture is information and people are the media that concretely manifest it. The size of a culture is the count of the unique ideas and idea combinations appearing in a deduplicated media catalog, excluding possible but unrealized combinations. The potential of a culture is the size of the realized and unrealized combinations, where the number of elements in a set is limited by a given historical cognitive and technological memory capacity. The potential of a real culture is always greater than its size, as combination novelty always easily exceeds the available media.
-
-The social mass of the culture is the enumeration of the media in which cultural content actually appears historically. The cultural mass is copied piecemeal among a population of knowers. The mass may be enlarged by information technology by making it easier to access and transmit culture, but the artifacts and technology themselves do not count in the mass of the culture. Real, historical human nervous systems, including language expression, 
-
-Dead cultures cannot live again because the dead part, the social part, is highly ephemeral. Even if a culture leaves material and symbolic artifacts, the "dead" parts are precisely those human relationships that would socialize new members in particular ways that cannot be deduced by people who never belonged to begin with, namely the archeologists of the future. Such archeologists belong to the FCP of their own time, and approach the historical artifacts of a dead culture as any other FCP approaches regular patterns in the world, as subject to their own particular cultural logics. 
-
-Reproduction does not necessarily imply long term consistency of cultural content, indeed a high level of knowledge loss may be a sign of historical stability in an esoteric culture if it results from a highly productive FCP. An oversupply of cultural content increases the chances that some, any culture can be conveyed into the future in a chain of descent.
-
-Esoteric knowledge is essentially cryptic, ubiquituous knowledge essentially evident. Crypticism means that layity cannot acquire knowledge on their own, that is, without socially structured access to an FCP. Esotericism is the social consequence of crypticism. Cultures vary by knowledge features, as knowledge is a social axis of power along which status hierarchy necessarily develops. Knowledge asymmetry structures social relationships, usually leading to status inequality.
-
-High entropy cultures must socialize new and maintain existing members like any culture, but their complications also tend to be generative of novelty.
-
-The ubiquitous cultures will be learned because there is nothing in a society to do without knowing them, while esoteric ones are gauranteed to be forgotten by most, swapped easily for the always ready ubiquitous alternatives. Ubiquitous cultures have high ambient findability [@Morville2009Ambient], they can be transparently acquired for instance through mimicry [@DiMaggio1983Iron].
-
-FCPs are social structures that can be thought of as the articulation points between people and a special type of culture that we associate with higher education.
-
-To be sure, if esoteric cultures are marked by asymmetries of knowledge between laity and clergy, to continue with the religious example, we must admit that such asymetries exist in ubiquitous culture as well, as in the supposed ignorance of a child against the learning of an adult. The ignorance of children combined with their megalomania is a useful example of how social structures operate. Social structures are always culturally conservative; a child's ignorance is a generative force, as they may attempt to solve problems in novel ways, and their efforts will frequently be corrected by the experts. Whether the correction takes marks the chagrin of the parent. Children quickly become specialists in their own FCPs, but this is never because they aren't also aware of the ubiquity. They may know it, it may bore them, and they efface it for fun. But they know what is ubiquitous; their proximity to ignorance of it may animate their creative abrogation of culture. The essentially conservative function of pedagogy will stamp out that creative flame in time. Indeed children are a great source of entropy for ubiquitous culture, hence the large investment in education generally.
-
-This evolutionary argument can be more simply stated as, complicated cultures cannot exist for very long without stewardship.
-
-## Genre, Profession, and Cultural Morphodynamics
-
-Genre in sociology has been treated from literary, economic, and historical vantages.
-
-Economic sociology has treated genre as an integrating feature of markets, expressed simultaneously by both supply side and demand side actors [@DiMaggio1987Classification\:441]. DiMaggio posits an oversocialized conception of artistic classification systems that sets genre as a matching between consumers on one hand and production, including producers and distributors, on the other. Consumption of art is essentially transacted for social goods, that is, is a form of cultural capital. Because cultural products are objects of ritual satisfaction among consumers, social relations are limited to intra-economic categories. This is the same as saying that social boundaries mark cultural boundaries. The meaning of cultural products to producers is very different than to consumers, there is no cultural logic that transcends social boundaries, that is, there is no "cultural totality" even at restricted scales.
-
-Whether this is an accurate depcitions of the arts, it is not adequate for direct adaption to the analysis of scholarly disciplines. The missing variable is the pedagogical nature of social relationships. In pedagogical relations assymetries of cultural understanding are built in to the role structure of social relationships. 
-
-The professional relates to a client.
-The administrator relates to a subject.
-The purveyor relates to a customer.
+```{r role-schema,include=T}
+eg('Accessibility,Schema,Ego,Alter
+esoteric,fractal evaluation,scholar,scholar
+.,genre class,scholar,student
+..,,,publisher
+...,,,archivist
+....,,,department
+ubiquitous,discipline class,scholar,administrator
+,,,public'
+)[[1]] %>%
+  sg(tit='Classificatory Schema by Role Relationship',new.col.align = 'llll')
+```
 
 
-This may be an accurate 
 
-DiMaggio discusses three organizational forms--commercial, professional, and administrative--as explaining gen
-
-### Generic vs Typical
-
-Following Schutz all cognition is process that begins by matching knowledge to experience via an intial process of typification. Empirical objects are categorized according to types, and our knowledge is also indexed according to those types. We know what to do once we have typed an object and matched it to type organized knowledge.
-
-Genres 
-
-In non market societies, FCPs are financed by state patronage. Here esoteric cultures that have no need of a laity will be invisible to most of the members of the society, and their knowledge will be naturally excludable. Market societies organize 
-
-@Schutz1970Reflections
-
-Beer [-@Beer2013Genre] posits genre as a form of Foucaultian classification where a formal "grid" of knowledge structures observations while inviting subversive criticism. Missing in the use of Foucault is a sense of historical transition between types of knowledge. Scientific knowledge passed through stages limited by new concepts of order. The grid or classification logic was replaced by causal logic in a process spanning generations. [@Foucault2002order\:150] Reading Foucault as a developmental theory means that a classification logic provides the knowledge necessary to envision a causal logic. In this sense, a reified and possibly stitled genre classification system is generative of a more nuanced causal logic in that it provides an anchor and set of easily workable tacit arguments; sociology is different from anthroplogy because of a deployed catalogical schema. Beer however puts formal and informal genre systems into an ahistorical relation; formal genres are not generative of causal explanations of genre, but rather they are power structures against which interested actors struggle to either support or efface.
-
-Foucaultian genre requires a method of description, and the components of the method describe or order observations of the thing. Genres do not work this way except in a post-hoc way, as the recent controversy over the single Country Road illustrates. Genres in this sense actually work as a pre-classification Classical system, as pure language in which knowledge is knitted together by merely tracking down uses of the term. Genres amount to anyone's use of the genres as terms. Genre criticsm operates in this mode; genres are leverged to inflrate deflate the reputation of particular social alters. Far from describing the characteristics of the music, genre as a term encompasses how the genres are used, such as in their influence on scene formations and fashion. These are primitive forms of knowledge if Foucault's account of science is taken developmentally.
-
-Marxian structural development classically contends that stages of history cannot be skipped. Some theorists partially relax this model with a version of structural memory wherein a society that has undergone a transition into a particular stage of development, the resources genreating the relationsihps of the previous stages are already available. This is why development is slow first, but when the process has been played it may be replayed at much greater speed, and it may be played out of order. What is normally mapped to a process of time may in an advanced stage be mapped to different dimensions. The one we will be concered with is a status dimension. The classical form of knowledge, wherein it is stiched together piecemeal by focus on the language, the use of the term, leaving little coherence to the threads so collected, is simple and available always. The more structure classificaiton according to a rule-based grid is more advanced. Rather than being available only in time, after it's invention, it may be aviaalbe as an asymmetry of training or socializaiton. Grid-knowledge may be utilized among the clerics and not available to the laity. At the core of the clerics, the elite of the esoterics, the most complicated stage of causal reasoning, is available to even fewer people. Boulding, in his own genre scheme, called the same the distinction between frameworks and clockworks [@Boulding1956General\:202].
-
-What this view allows us to ask is, for Beer's emphasis on the critical use of genre categories, does it matter that the laity flirt with classical kinds of knowledge. Does it, as Beer suggests, work to reform the genre categories? Or on the other hand, to the institutions of formal categorization easily ignore such debates, or do they rather have aggreagtion systems of their own to handle "deomcratic" or market research processes like genre term searches?
 
 ## JSTOR Journals {#kd-dq1}
 
@@ -131,50 +101,46 @@ if(file.exists(f)){
 rm(f)
 ```
 
-Genre classifications are totalizing, as any factor or product in a field of production can be labeled and sorted according to a categorical logic. 
-
-We rely on the JSTOR digital archive which gives access to optical scans of historical journals. JSTOR provides a title list of their journal coverage [@JSTOR2018Title]. The coverage of journals in the archive is very complete for those journals chosen for the database. As of this writing JSTOR contained `r nn(jclu$n$t)` different journal titles and `r nn(jclu$n$j)` journals from `r nn(jclu$n$p)` different publishers. The different journal counts are due to some journals changing titles at least once.^[To avoid overcounting, title histories are collapsed into their most recent record, meaning all subsequent counts are out of `r nn(jclu$n$j)`. Even though we might expect disciplinary identity to change over time, JSTOR discipline labels do not vary within title histories. `r {dN<-jstorm[title_id==title_history,sapply(discipline,length)]==0;if(any(dN)) dS<-sum(dN);paste0(nn(dS,cap=T),' journal',if(dS>1) 's','--',jstorm[title_id==title_history][dN,nl(publication_title)],'--lacked any discipline labels and ',if(dS>1) 'are' else 'is',' excluded from tabulations.')}`] The JSTOR coding contains `r nn(jclu$n$l)` subject labels. These labels refer to `r nn(jclu$n$s)` superdisciplines under which may be found `r nn(jclu$n$d)` disciplines.
+I rely on the JSTOR digital archive which gives access to optical scans of historical journals. JSTOR provides a title list of their journal coverage [@JSTOR2018Title]. The coverage of journals in the archive is very complete for those journals chosen for the database. As of this writing JSTOR contained `r nn(jclu$n$t)` different journal titles and `r nn(jclu$n$j)` journals from `r nn(jclu$n$p)` different publishers. The different journal counts are due to some journals changing titles at least once.^[To avoid over counting, title histories are collapsed into their most recent record, meaning all subsequent counts are out of `r nn(jclu$n$j)`. Even though one might expect disciplinary identity to change over time, JSTOR discipline labels do not vary within title histories. `r {dN<-jstorm[title_id==title_history,sapply(discipline,length)]==0;if(any(dN)) dS<-sum(dN);paste0(nn(dS,cap=T),' journal',if(dS>1) 's','--',jstorm[title_id==title_history][dN,nl(publication_title)],'--lacked any discipline labels and ',if(dS>1) 'are' else 'is',' excluded from tabulations.')}`] The JSTOR coding contains `r nn(jclu$n$l)` subject labels. These labels refer to `r nn(jclu$n$s)` superdisciplines under which may be found `r nn(jclu$n$d)` disciplines.
 
 Most journals are given more than one discipline label, and the superdisciplines are not marked as such in the database  creating some redundancy. For instance, a journal labeled as "Sociology" will also be labeled as "Social Sciences". Most academics will be familiar with whether a label is for a superdiscipline or a subdiscipline, yet for outsiders or for skeptical insiders, the only clue is in the frequency with which a label is applied. Counting labels, however, does not unambiguously place a journal in one discipline or another because journals may bear multiple labels, even multiple superdiscipline labels.
 
-To assess the size of the disciplines and to disentangle their hierarchies it will be helpful to have a mutually exclusive labeling scheme that draws on the JSTOR curators' judgement while simplifying it.
-
 ## Network Mode Projection
 
-I rely on network methods to accomplish this labeling in a data driven and reproducible way. In a network representation of journal discipline labels, two journals may be said to be be related if they carry the same label. In network terms this can be represented as a bipartite or bimodal network. In a bimodal network there are two types (modes) of nodes, a journal and a label, and ties can only be registered between, not within, these modes. So journals are not tied directly to other journals and labels are not tied directly to other labels.
+To assess the size of the disciplines and to disentangle their hierarchies it will be helpful to have a mutually exclusive labeling scheme that draws on the JSTOR curators' judgement while simplifying it. I rely on network methods to accomplish this labeling in a data driven and reproducible way. In a network representation of journal discipline labels, two journals may be said to be be related if they carry the same label. In network terms this can be represented as a bipartite or bimodal network. In a bimodal network there are two types (modes) of nodes, a journal and a label, and ties can only be registered between, not within, these modes. So journals are not tied directly to other journals and labels are not tied directly to other labels.
 
-Given any bimodal network, we may translate or project it into either of two unimodal forms. In a single mode or unimodal projection of a bimodal network there is only one type of node, in my case either a journal or a label, but not both. The omitted type is instead represented as a set of ties among the included type. Though the bimodal network is a more elegant represenation, it is technically necessary to project it into one of its two bimodal forms to leverage network methods that are desinged with unimodal data in mind.
+Given any bimodal network, one may translate or project it into either of two unimodal forms. In a single mode or unimodal projection of a bimodal network there is only one type of node, in my case either a journal or a label, but not both. The omitted type is instead represented as a set of ties among the included type. Though the bimodal network is a more elegant representation, it is technically necessary to project it into one of its two bimodal forms to leverage network methods that are designed with unimodal data in mind.
 
 Using the list of subjects associated with each journal in the JSTOR title list, I construct the bimodal *journal-label* network with journals in the first mode bearing ties to discipline labels in the second mode. I then project the bimodal network into two unimodal networks, one where journals are connected by ties equal to the number of discipline labels they have in common, and another where labels are tied by the number of articles carrying both labels. Call each of these unimodal networks, the (*journal-label-journal*) journal network and (*label-journal-label*) label network, a facet of the original bimodal network.
 
 `r {wrk<-jstorm[title_history==title_id,sapply(discipline,length)];wrk %<>% .[.!=0];tab<-table(wrk)}`
 Figure \@ref(fig:mod-proj) illustrates the effects of network mode projection on a random sample of 300 edges from the full JSTOR title list network. The first panel illustrates the bimodal network where journals are yellow dots and labels are blue dots. As an artifact of sampling, most journals here are shown tied to only one label. In fact this is never the case in the full network; as each journal has at least one discipline and one superdiscipline label the minimum number of labels is two, which is the median case accounting for `r (prop.table(tab)*100)['2'] %>% nn(1)` percent of journals. The most labels any journal bears is `r names(tab) %>% tail(1) %>% as.integer %>% nn`, but these are outliers with most journals bearing only a few labels.
 
-```{r mod-proj,include=T,cache=T,dev='png',fig.width=if(docx) 6 else 3,fig.height=3,out.width='33%',fig.show = 'hold',fig.cap='Mode Conversion on a 300 Edge Random Sample of the JSTOR Title List Label Network'}
-bup<-jclu2bup.f(jclu)
+```{r mod-proj,include=T,cache=T,dev='png',fig.width=if(docx) 6 else 3,fig.height=3,out.width='30%',fig.show = 'hold',fig.cap='Mode Conversion on a 300 Edge Random Sample of the JSTOR Title List Label Network'}
+withr::with_seed(12345,bup<-jclu2bup.f(jclu))
 ```
 
-It is worth noting a few features of the unimodal projections or facets illustrated in the second and third palens. First, unimodal projections will always be made of up of overlapping cliques. Take the journal facet; each journal bearing a particular label will be tied to each other journal with the same label. Together they will form a clique, a subnetwork of maximum density where all possible ties exist. Such cliques grow nearly exponentially, as each additional journal with the same label joins the clique and adds a number of ties equal to the former size of the clique. In practice this means that very common labels like "Social Sciences" can easily dominate the unimodal projection of the network. Here the weighting of edges becomes important; if two labels overlap because some nodes bear both labels, then within the intersection of the two cliques the ties may be treated as "weighing more" by adding the contribution of each label separately. The exception is if the cliques overlap by only one node, in which case they have a node but no ties in common. Nevertheless using methods that take edge weights into account is a good way to ameliorate the exponential influence of popular labels. 
+It is worth noting a few features of the unimodal projections or facets illustrated in the second and third panels. First, unimodal projections will always be made of overlapping cliques. Take the journal facet; each journal bearing a particular label will be tied to each other journal with the same label. Together they will form a clique, a subnetwork of maximum density where all possible ties exist. Such cliques grow nearly exponentially, as each additional journal with the same label joins the clique and adds a number of ties equal to the former size of the clique. In practice this means that very common labels like "Social Sciences" can easily dominate the unimodal projection of the network. Here the weighting of edges becomes important; if two labels overlap because some nodes bear both labels, then within the intersection of the two cliques the ties may be treated as "weighing more" by adding the contribution of each label separately. The exception is if the cliques overlap by only one node, in which case they have a node but no ties in common. Nevertheless using methods that take edge weights into account is a good way to ameliorate the exponential influence of popular labels.
 
-Second, though the unimodal facets of a bimodal network represent the same data, each may have different characteristics especially in the common case of a large population imbalance between modes. In the full network we have `r jclu$b %>% {V(.)$type} %>% {sum(!.)/sum(.)} %>% nn` times as many journals as labels and each journal sends multiple ties. This degree imbalance between the two modes may mean that one facet is more dense than its inverse. Density is the proportion of actual ties out of all possible ties. In Figure \@ref(fig:mod-proj) an imbalance may be observed where the journal facet has many dense free floating or overlapping cliques and where the label network appears to be mostly made of isolated labels save for the few larger components. In the sampled network the journal facet is `r lapply(bup[ec('proj1,proj2')],igraph::graph.density) %>% do.call(what='/') %>% nn` times more dense than the label facet. In the case of our full network, the potential imbalance in degree distribution between facets happens to be offset by the population imbalance itself. The densities in the full journal and label facets are comparable, `r (sapply(FUN=igraph::graph.density,jclu[ec('gt,gd')])*100) %>% nn(1) %>% nl` percent respectively, meaning that analysis will not merely hinge on which facet is analyzed.
+Second, though the unimodal facets of a bimodal network represent the same data, each may have different characteristics especially in the common case of a large population imbalance between modes. In the full network there are `r jclu$b %>% {V(.)$type} %>% {sum(!.)/sum(.)} %>% nn` times as many journals as labels and each journal sends multiple ties. This degree imbalance between the two modes may mean that one facet is more dense than its inverse. Density is the proportion of actual ties out of all possible ties. In Figure \@ref(fig:mod-proj) an imbalance may be observed where the journal facet has many dense free floating or overlapping cliques and where the label network appears to be mostly made of isolated labels save for the few larger components. In the sampled network the journal facet is `r lapply(bup[ec('proj1,proj2')],igraph::graph.density) %>% do.call(what='/') %>% nn` times more dense than the label facet. In the case of our full network, the potential imbalance in degree distribution between facets happens to be offset by the population imbalance itself. The densities in the full journal and label facets are comparable, `r (sapply(FUN=igraph::graph.density,jclu[ec('gt,gd')])*100) %>% nn(1) %>% nl` percent respectively, meaning that analysis will not merely hinge on which facet is analyzed.
 
-Third, unimodal projection has the effect of pruning what are sometimes referred to as pendants, which are simply nodes with only a single tie. . Each of the isolates in the label facet represents a larger or smaller number of journals, which may be observed in the different sizes of the free floating cliques of the journal facet, yet no matter their size they supply no information about interdisciplinarity. Because the journal facet captures both size (of cliques) and relatedness (clique overlap) it is a better representation of the information of the original bimodal network. Its drawback is that it is larger and more unwieldy to analyze. The label facet offers a simpler picture of interdisciplinarity.
+Third, unimodal projection has the effect of pruning what are sometimes referred to as pendants, which are simply nodes with only a single tie. Each of the isolates in the label facet represents a larger or smaller number of journals, which may be observed in the different sizes of the free floating cliques of the journal facet, yet no matter their size they supply no information about interdisciplinarity. Because the journal facet captures both size (of cliques) and relatedness (clique overlap) it is a better representation of the information of the original bimodal network. Its drawback is that it is larger and more unwieldy to analyze. The label facet offers a simpler picture of interdisciplinarity.
 
 ## Network Community Detection
 
-Each facet described above will help answer a different question about disciplinarity in the JSTOR archive as indicated by JSTOR's labeling policy. I aim to resolve the uncertainty about which labels count as superdisciplines and to reveal patterns of sorting not apparent in the labels themselves. The rationale for doing this is to observe not the choices of JSTOR coders, but the tacit judgement they likely used in applying labels. I expect that the `r jclu$n$l` fine grained labels bely a simpler classification scheme of academic genres.
+Each facet described above will help answer a different question about disciplinarity in the JSTOR archive as indicated by JSTOR's labeling policy. I aim to resolve the uncertainty about which labels count as superdisciplines and to reveal patterns of sorting not apparent in the labels themselves. The rationale for doing this is to observe not the choices of JSTOR coders, but the tacit judgement they likely used in applying labels. I expect that the `r jclu$n$l` fine grained labels belie a simpler classification scheme of academic genres.
 
 I will use two techniques, community detection and graph visualization, to answer these questions. Communities are really subnetworks of high density, or clusters. I operationalize disciplinarity as the presence of clusters within the journal facet network. Community detection on the journal facet will answer how many superdisciplines there are and the size of each in terms of the number of journals belonging to it. Visualization of the label facet will show how hard or soft are the boundaries between disciplines and where the strongest interdisciplinary relationships lay.
 
 First, I use community detection to partition the JSTOR journals into mutually exclusive disciplines. Community detection is a set of network methods designed to expose clusters by grouping nodes together such that they send more ties to members of their own group than they send to members of different groups. There is a cottage industry around developing algorithms and statistical models to learn an unobserved community structure of a network [see @Fortunato2016Community for an excellent review]. The choice of the right community detection method is controversial especially for very large networks in which cross-validation is difficult. Fortunately the network at hand is small enough to validate directly which lowers the risks of choosing the wrong method .
 
-To wit I adopt the well-known Louvain method of community detection based on hierarchical modularity maximization. [@Blondel2008Fast] Modularity is a quality metric quantifying the tradeoff between within-group and between-group ties. The modularity of any given partition of a network into clusters is equal to the proportion of ties that fall within clusters minus the expected proportion of within-group ties if ties were distributed randomly. A division that is as good as chance would have a modularity value of zero, a division better than chance a value between zero and one, and a division worse than chance a value between negative one and zero. [@Newman2004Finding\:8] Higher modularity scores indicate a better sorting of the network into densely tied clusters.
+To wit I adopt the well-known Louvain method of community detection based on hierarchical modularity maximization. [@Blondel2008Fast] Modularity is a quality metric quantifying the trade off between within-group and between-group ties. The modularity of any given partition of a network into clusters is equal to the proportion of ties that fall within clusters minus the expected proportion of within-group ties if ties were distributed randomly. A division that is as good as chance would have a modularity value of zero, a division better than chance a value between zero and one, and a division worse than chance a value between negative one and zero. [@Newman2004Finding\:8] Higher modularity scores indicate a better sorting of the network into densely tied clusters.
 
 The Louvain method is a bottom-up agglomerative algorithm. The procedure starts by assigning each node to its own community. Then, for each node, it assigns the node to the neighbor's group that would most improve global modularity. It repeats this until no move improves modularity. This forms the first layer in the hierarchy. It then collapses groups into nodes and repeats the algorithm on the condensed network, stopping at the first level where there is no modularity improving move to make. The first layer represents the most local, the last layer the most global resolution of community structure.
 
-Modularity-based methods are tried and true, and their drawbacks are well-known. The Louvain method is not deterministic, as the outcome may (but usually does not) depend on the ordering of the nodes in the reassignment qeue. However Louvain has several features that recommend it. It is computationaly fast on small to medium graphs and it is freely available in network analysis software. It also gives a hierarchical solution that provides the analyst with options to inspect community structure at a range of local and global resolutions, akin to a cartography of counties versus one of continents. Given the small size of our network, a local resolution will not be overwhelming, so Louvain is preferable to other methods that only offer the coarser global view.
+Modularity-based methods are tried and true, and their drawbacks are well-known. The Louvain method is not deterministic, as the outcome may (but usually does not) depend on the ordering of the nodes in the reassignment queue. However Louvain has several features that recommend it. It is computationally fast on small to medium graphs and it is freely available in network analysis software. It also gives a hierarchical solution that provides the analyst with options to inspect community structure at a range of local and global resolutions, akin to a cartography of counties versus one of continents. Given the small size of our network, a local resolution will not be overwhelming, so Louvain is preferable to other methods that only offer the coarser global view.
 
-Table \@ref(tab:jclu-tab-sup) summarizes the results of applying the Louvain method to the journal facet and taking the most localized layer of the community structure. Learned labels are applied to the clusters by assigning each the name of its most frequent label. Community detection sharpens the boundaries between fields by placing each journal unambiguously in one superdiscipline or another. This mutual exclusivity is apparent by the sum of the given labels exceeding 100%.
+Table \@ref(tab:jclu-tab-sup) summarizes the results of applying the Louvain method to the journal facet and taking the most localized layer of the community structure. Learned labels are applied to the clusters by assigning each the name of its most frequent label. Community detection sharpens the boundaries between fields by placing each journal unambiguously in one superdiscipline or another. This mutual exclusivity is apparent by the sum of the given labels exceeding 100 percent.
 
 ```{r jclu-tab-sup,include=T}
 sg(jclu$tab %>% copy %>% setnames(ec('super,N,Labeled,LPct'),ec('Superdiscipline,Learned,Given,GPct'))
@@ -183,23 +149,23 @@ sg(jclu$tab %>% copy %>% setnames(ec('super,N,Labeled,LPct'),ec('Superdiscipline
 
 The first finding is that of the `r nn(jclu$n$l)` labels these `r nn(jclu$n$s)` form the top of a hierarchy of superdisciplines. Area Studies stands apart and is not subsumed under either Social Sciences or Humanities. Social Sciences journals predominate due to JSTOR's initial focus in that area, even without counting economics among them, and Science & Mathematics counts for a larger than one might think. Economics stands apart from the Social Sciences, and indeed Business & Economics marks the transition from the larger academic journal space to the smaller professional space of Arts, Law, and Medicine & Allied Health.
 
-The given labels do overlap and we can recover a picture of interdisciplinary by clustering and visualizing the label facet. This facet presents a simplified view. Recall that each facet represents the same data, the difference being whether a journal or a label is represented as a node or an edge, and that there is a population imbalance in favor of journals over labels. The larger the population the easier it is to partition into a greater number of subpopulations. Converseley, because there are far fewer labels than journals, we would expect the clustering to be less granular for the label network than for the journal network. In fact there `r wrk<-lapply(jclu[ec('title_history,discipline')],function(x) {x$memberships[1,]} %>% unique %>% length) %>% do.call(what='-'); if(wrk==1) 'is' else 'are'` only `r wrk %>% nn` `r if(wrk==1) 'less' else ec('fewer,more')[(wrk<0)+1]` cluster`r if(abs(wrk)>1) 's'`--`r do.call(setdiff,{wrk1<-lapply(jclu[ec('ft,fd')] %>% unname,levels);if(wrk<0) rev(wrk1) else wrk1})`--which is subsumed under Social Sciences.
+The given labels do overlap and one can recover a picture of interdisciplinary by clustering and visualizing the label facet. This facet presents a simplified view. Recall that each facet represents the same data, the difference being whether a journal or a label is represented as a node or an edge, and that there is a population imbalance in favor of journals over labels. The larger the population the easier it is to partition into a greater number of subpopulations. Conversely, because there are far fewer labels than journals, one would expect the clustering to be less granular for the label network than for the journal network. In fact there `r wrk<-lapply(jclu[ec('title_history,discipline')],function(x) {x$memberships[1,]} %>% unique %>% length) %>% do.call(what='-'); if(wrk==1) 'is' else 'are'` only `r wrk %>% nn` `r if(wrk==1) 'less' else ec('fewer,more')[(wrk<0)+1]` cluster`r if(abs(wrk)>1) 's'`--`r do.call(setdiff,{wrk1<-lapply(jclu[ec('ft,fd')] %>% unname,levels);if(wrk<0) rev(wrk1) else wrk1})`--which is subsumed under Social Sciences.
 
 ## Network Visualization
 
-Figure \@ref(fig:jclu-lnet) visualizations the relationships among disciplines, where again the strength of ties is equal to the number of journals bearing both labels. Here the label with highest number of ties within its cluster becomes the category name of the cluster. That label is then ommitted as a node and is instead visualized as a color coding of its cluster, reflecting the special status of the superdiscipline labels.
+Figure \@ref(fig:jclu-lnet) visualizations the relationships among disciplines, where again the strength of ties is equal to the number of journals bearing both labels. Here the label with highest number of ties within its cluster becomes the category name of the cluster. That label is then omitted as a node and is instead visualized as a color coding of its cluster, reflecting the special status of the superdiscipline labels.
 
 Unlike traditional graph visualizations that are designed to be pleasing to the eye, this  one is drawn according to a statistical model called a latent position or latent space  model. It starts with a simple idea that the weight of the edges (the number of journals carrying both labels) is a count that follows a Poisson distribution. This distribution may be modeled by log-linear regression where the logarithm of the mean of the distribution is a linear function of an intercept term and covariates. What is interesting about the model is that the covariate of interest is treated as the distance between the nodes in an unobserved or latent space. The distance is treated as negative such that as nodes get closer together (as the negative distance increases) the count of the edge weight between them increases (technically the logarithm of the mean of the count increases).
 
-It is an elegant idea, but estimating the model is complicated. The distances are metaphorical, and to realize them requires positing a euclidean space in which each node has coordinates. From the coordinates the distances can be easily caculated, but knowing which are the right coordinates requires a complicated estimation routine based on optimizing goodness of fit between guesses of the coordinates and the actual count data. The estimator begins with coordinates taken from the conventional Fruchterman Reingold layout algorithm and uses Markov Chain Monte Carlo simulation to converge toward the positions that optimally fit the latent space assumption [See @Krivitsky2008Fitting for details of the model, estimation, and software]. Even if the estimator does not arrive at a perfect solution it improves upon a conventional layout in the direction of meaningful, and not just pretty, aesthetics thereby helping the viewer to avoid artifacts and perceive real information about the network.
+It is an elegant idea, but estimating the model is complicated. The distances are metaphorical, and to realize them requires positing a euclidean space in which each node has coordinates. From the coordinates the distances can be easily calculated, but knowing which are the right coordinates requires a complicated estimation routine based on optimizing goodness of fit between guesses of the coordinates and the actual count data. The estimator begins with coordinates taken from the conventional Fruchterman Reingold layout algorithm and uses Markov Chain Monte Carlo simulation to converge toward the positions that optimally fit the latent space assumption [See @Krivitsky2008Fitting for details of the model, estimation, and software]. Even if the estimator does not arrive at a perfect solution it improves upon a conventional layout in the direction of meaningful, and not just pretty, aesthetics thereby helping the viewer to avoid artifacts and perceive real information about the network.
 
-Another great feature of the latent space model is that it allows additional terms to be fit alongside the latent distances. It is possible to control for or net out the effect of nuisance terms like any other regression. As discussed above there is a concern about the undue effect of popular labels. We have already tried to remove the superdiscipline labels from the label network, preferring to represent them as color coded categories rather than nodes. Popular labels may still remain, however, and due to the exponential growth of ties during downmode conversion even a handful of them will have a disproportionate influence on the global layout of the graph.
+Another great feature of the latent space model is that it allows additional terms to be fit alongside the latent distances. It is possible to control for or net out the effect of nuisance terms like any other regression. As discussed above there is a concern about the undue effect of popular labels. I have already tried to remove the superdiscipline labels from the label network, preferring to represent them as color coded categories rather than nodes. Popular labels may still remain, however, and due to the exponential growth of ties during downmode conversion even a handful of them will have a disproportionate influence on the global layout of the graph.
 
 This degree distortion can be controlled for by what is called a sociality term, which can be thought of as a measure of a node's popularity. A sociality term is a score for every node that if positive means a node is more attractive and if negative means a node is actually repulsive of ties. When viewing the positions of a latent space model also fit with a sociality term, the space will measure relatedness without the effects of popularity.
 
-Figure \@ref(fig:jclu-lnet) plots the results of a latent space model on the label facet omitting superdiscipline nodes.
+Figure \@ref(fig:jclu-lnet) plots the results of a latent space model on the label facet omitting superdiscipline nodes. Figure \@ref(fig:layouts) plots the same in an animation comparing the latent space and traditional Fruchterman Reingold layouts. I will interpret the substance of the latent space layout below, but first I will comment briefly on some of the differences between it and the traditional layout.
 
-```{r jclu-net,eval=T,include=F,fig.cap='Discipline Network. Within-cluster ties are darker and between-cluster ties lighter.'}
+```{r jclu-net,eval=T,include=F,fig.cap='Discipline Network. Within-cluster ties are darker and between-cluster ties lighter.',fig.scap='Discipline Network.'}
 f<-'d/b/jclu2net.RData'
 if(file.exists(f)){
   load(f)
@@ -217,7 +183,7 @@ rm(f)
 #plt(jnet,tooltip='text') # TODO fix tooltips to omit edge tips
 ```
 
-```{r jclu-lnet,include=T,fig.cap='Discipline Network in Latent Space. Node size represents sociality. The larger a node, the more attractive it is, and the larger a white dot within a node, the more repulsive it is.'}
+```{r jclu-lnet,include=T,fig.cap='Discipline Network in Latent Space. Node size represents sociality. The larger a node, the more attractive it is, and the larger a white dot within a node, the more repulsive it is.',fig.scap='Discipline Network in Latent Space.'}
 f<-'d/b/jclu2lnet.RData'
 if(file.exists(f)){
   load(f)
@@ -236,7 +202,7 @@ if(file.exists(f)){
   save(jlnet,file='d/b/jclu2lnet.RData')
 }
 rm(f)
-plt(jlnet,tooltip='text')
+if(latex|docx) {jlnet + scale_x_continuous(trans='reverse') + scale_y_continuous(trans='reverse')} else plt(jlnet,hovinf = 'text',tooltip='text') %>% plotly::layout(xaxis = list(autorange = "reversed")) %>% plotly::layout(yaxis = list(autorange = "reversed"))
 ```
 
 ```{r lnetg,eval=F}
@@ -278,7 +244,7 @@ dev.off()
 
 ```{r lnet-frames,eval=F}
 lnetg2pfp.f<-function(lnetg){
-lnetg<-lnetg[order(names(lnetg) %>% as.numeric)]  
+lnetg<-lnetg[order(names(lnetg) %>% as.numeric)]
 prc<-list()
 pdf('_book/lnetg-plt.pdf')
 prc[[1]]<-data.table(
@@ -361,9 +327,7 @@ cp
 
 ```
 
-Here some of the granular categories are collapsed. The humanities includes arts, as we might expect, but also area studies, which one might have classed with the social sciences, but which bear stronger ties to cultural studies like music, folklore, religion, and language and literature. Law and medicine and allied health are grouped with the social sciences, and business and economics is maintained as separate field due merely to the attachment of three professional fields--development studies, management and organizational behavior, and marketing and advertising--to their parent disciplines business and economics (not to be confused with the separate and ommitted label "business and economics"), which are themselves strongly tied to the social sciences.
-
-```{r layouts,include=T,fig.cap='Fruchterman Reingold and Latent Space Layouts Compared'}
+```{r layouts,include=T,fig.cap='Fruchterman Reingold and latent space layouts compared'}
 f<-'d/b/pp.RData'
 if(file.exists(f)){
   load(f)
@@ -373,15 +337,80 @@ if(file.exists(f)){
   fr<-data.table(attributes(jnet)$ggnet)[,f:='FR']
   ls<-data.table(attributes(lnetg$`1`)$ggnet)[,f:='LS']
   x<-rbindlist(list(fr,ls))[,n:=is.na(weight)]
-  pp<-plot_ly(x=~x,y=~y,frame=~f) %>% 
-    add_segments(data=x[(!n)],xend=~xend,yend=~yend) %>% 
-    add_markers(data=x[(n)],color=~memb,ids=~vertex.names,text=~vertex.names,size=~rs)
+  x[(n),sym:=(rs>=1)+1 #%>% {ec('diamond,circle')[.]}
+    ]
+  
+  withr::with_package('plotly',pp<-plot_ly(x=~x,y=~y,frame=~f) %>%
+    #add_segments(data=x[(!n)],xend=~xend,yend=~yend) %>%
+    add_markers(data=x[(n)],color=~memb,ids=~vertex.names,text=~vertex.names,size=~rs,symbol=~sym))
   save(pp,file=f)
 }
 rm(f)
-pp
+class(pp$x$highlight$off) <-'character'
+# why can't I fix the flipped axes!
+if(latex|docx) knitr::include_graphics('img/layouts.png') else pp # %>% plotly::layout(xaxis = list(range = "reversed"),yaxis = list(autorange = "reversed"))
 ```
 
+In the animation nodes are hollow shapes to make their overlaps more obvious. The size and shape of the nodes relates to their fitted sociality: circles indicate attractive and diamonds repulsive nodes, and the the larger the shape the more attractive and the smaller the more repulsive. The layouts differ in two important respects. First the global patterns are dissimilar. The latent graph has four discernible arms. The traditional graph is a cloud that at first glance seems evenly dispersed, however there is a prominent core periphery pattern, with circles concentrated in the center and diamonds displaced in a ring around them. Second, patterns of node proximity are distinct. In the latent graph, nodes may share or almost share a center, indicating structural equivalence. In the traditional layout concentric node positions are algorithmically prohibited by a repulsion radius, with apparent overlaps due only to the scaling of node size. The traditional core periphery pattern is the consequence of the imbalance between low and high degree nodes; by netting it out with the sociality term the latent model makes it possible for minor disciplines to cluster around the major ones to which they are anchored.
 
-Though graph layouts are imperfect and should not be overinterpreted, the global features of facing within clusters do indicate the disciplines that straddle boundaries. On the border between the social sciences and science and mathematics are the social sciences dealing most with the physical problems of space, health, and technology. On the edge of the humanities and social sciences are history, philosophy, and anthropology. 
+## Results
 
+Recall that the superdiscipline classifications are functions of their underlying subgraph densities, hence we should expect them to be clustered together in a layout that represents relatedness. For convenience we will refer to the cardinal directions to locate ourselves on the plot. The most prominent feature of the global patterns is the appearance of two axes. From west to east is an axis dividing the natural and the social sciences. From north to south is a more diffuse axis dividing Business & Economics from the Arts and Humanities. Though it is tempting to interpret the south to north axis as artistic opposition to profit, it is more plausible that they are each facing a different side of the Social Sciences, which neatly bifurcates them.
+
+```{r jclum,include=T}
+jclum<-withr::with_package('network',attributes(jlnet)$net %>% {data.table(m=.%v%'memb',n=network.vertex.names(.),rs=.%v%'rs')}) %>% setorder(m,-rs)
+jclum[,rs:=round(rs,2)]
+
+jclum<-lapply(
+  unique(jclum$m),function(v) {
+    M<-jclum[m==v&rs>1,.(n,rs)]
+    if(!nrow(M)) M<-data.table(NA_character_,NA)
+    m<-jclum[m==v&rs<=1,.(n,rs)]
+    if(!nrow(m)) m<-data.table(NA_character_,NA)
+    v<-data.table(M,m)[
+      ,lapply(.SD,function(x) replace(x,duplicated(x),NA))] %>%
+      {data.table(Super=v,.)[,Super:=replace(Super,duplicated(Super),'')]}
+    rbindlist(list(v,rep(NA,ncol(v)) %>% as.list))
+  }
+) %>% rbindlist %>% setnames(ec('Superdiscipline,Major Discipline,Soc.,Minor Discipline,Soc. ')) %>% .[!.N]
+
+sg(jclum,tit='Disciplines by sociality multiplier'
+   #,note='Disciplines with sociality < 1 have fewer > 1 have more ties than expected by chance.'
+   )
+
+#jclum[,m:=replace(m,which(duplicated(m)),'')]
+# jclum<-jclum[,.('Discipline (Sociality)'=paste0(n,' (',rs,')',collapse=', ')),by=m] %>% setnames('m','Super')
+# withr::with_package('xtable',print(xtable(
+  # jclum
+  # ,caption='Disciplines'
+  # ,label=knitr::opts_current$get('label')
+  # ,align='llX'
+  # )
+  # ,tabular.environment = "tabularx"
+  # ,width="\\textwidth"))
+```
+
+While superdiscipline members are usually near each other, they do not all bunch together in the same way. In the north Business & Economics is the most spherical cluster with its members much more strongly connected inside than outside the group. By comparison Science & Mathematics is extended between two internal poles, with life sciences pulled far to the west and statistics and mathematics interfacing with other central disciplines. The Social Sciences are similarly extended but with three poles: politics in the east, archaeology in the south, and geography in the west. Area Studies, which subsumes history, tends to closely overlap the Humanities with the exceptions of asian and middle east studies to the east, which are situated between political science and archaeology, American studies in the west, and the history of science and technology, which is closer to its subject matter in the west. Most of the Humanities is highly concentrated with the exceptions of bibliometry and library science on one hand and classical studies, which is close to archaeology, on the other. The arts is the most diffuse superdiscipline; several of its fields are on the margins with the exceptions of urban studies at the confluence of the Sciences and Social Sciences and music as well as performing arts sharing the interdisciplinary center with the Humanities and Area Studies. Finally, the three disciplines in Medicine & Allied Health are split between a Science (public health, health sciences) and Social Science (health policy) orientation.
+
+There are several interesting cases of total or near structural equivalence. Total overlap for major fields suggests extra superdiscipline candidates, with biological sciences covering zoology and history covering American studies. Considering only minor discipline overlaps, the public health and health sciences labels overlap to the point of redundancy, as do library science and bibliography. Near overlaps between minor and major fields may indicate a theoretical (major) applied (minor) relationship. This is expectation is confirmed by the major law and minor criminology & criminal justice overlap, and contradicted by the major education and minor psychology overlap, where the minor psychology field would be considered the more theoretical. Interestingly, structural equivalence of fields in two different superdisciplines occurs only once, with religion (Humanities) and Jewish studies (Area Studies) tightly coupled.
+
+A last topological feature of interest may strain the accuracy of the model, but I lodge it as a problem for further consideration. Within Area Studies there appears to be two differentiated fronts, a more southerly line of "white studies"--history, American studies, British studies, Irish studies, and Slavic studies--and a more northerly line of "brown studies"--American Indian studies, African American studies, Latin American studies, and African studies, which also includes a spot for feminist and women's studies from the Social Sciences. The distances in question are very close, and model variability may reveal them to be statistically insignificant. Even if they are significant their over interpretation risks a narcissism of small differences.
+
+## Discussion
+
+```{r pwn}
+f<-'d/b/pwn-dis.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  pwn<-network::as.edgelist(attributes(jlnet)$net,'weight') %>% {data.table(.)[,`:=`(V1=attr(.,'vnames')[V1],V2=attr(.,'vnames')[V2])]} %>% setnames(ec('s,r,ew')) %>% setkey(s,r)
+pwn[,th:=mapply(function(x,y) c(x,y) %>% {jstorm[!duplicated(title_history)]$title_history[sapply(jstorm[!duplicated(title_history)]$discipline,function(x) all(.%in%x))]},x=s,y=r)]
+
+  save(pwn,file=f)
+}
+rm(f)
+```
+
+There are many stories to tell about a map that we trust to be an accurate metaphor for closeness or relatedness in a cultural field. Recall that statistically, the closer two nodes are the greater the number of journals listing each as a subject category. The decision of how the subject labels were applied was a policy decision at JSTOR using an unknown procedure. Our interpretation of the map is affected by how credible we think the archivists' decisions were. Without knowing about their process, it becomes a matter of trust.
+
+To begin with the weakest result, the purported fronts between white and brown studies, 
