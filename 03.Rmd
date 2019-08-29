@@ -1670,7 +1670,8 @@ p<-stm$meta[,{
 p
 ```
 
-### Document composition
+## Discussion
+
 
 ```{r}
 dc.f<-function(ix,mdl,term){
@@ -1694,13 +1695,46 @@ dc.f<-function(ix,mdl,term){
   if(missing(term)) names(gc)<-1:length(gc) else names(gc)<-term[sapply(gc,function(x) x[1] %>% as.integer)]
   gc
 }
-system.time(g<-dc.f(6249,mod[[9]],trm))
-noquote(g)
 ```
 
-
-## Discussion
 
 The first point concerns the urchin. Above we posited that it is in the spines of the urchin that the essence of topics is found, and it is the body that contains the idiosyncrasy. This is true for the good version of a bad model, but it is likely that topic model estimators actually find a different, worse version of a bad model. Consider the status of horror in the film topic. Horror was a subgenre of film and it was ranked very highly on the film topic, indeed horror articles were the bellwethers. The reason was that the topic came to most strongly associated with the component of it with the most distinctive vocabulary. Drama, for example, which uses a less fantastic and more relateable vocabulary, is drawn down the spine where it can mingle with the topics to which it is connected. Why should the weirdest component of a topic be treated as its most essential? This is a trend that all underspecified topic models will exhibit.
 
 It is likely a mistake, however, to interpret the topic only with respect to its weirdest component. Weirdness here is not idiosyncrasy, because weirdness is something common and recognizable, whereas idiosyncrasy is individual and invisible.
+
+The easiest way to test the expectation that perfectly classified documents are actually biased upward by idiosyncracy is to look directly at how the words they contain are classified. For clarity we assign every term in a document to a single topic though it is technically a distribution across all topics. A method to quickly accomplish this and simplify the topic descriptions is to treat each document as a term by topic matrix, project the matrix as a bimodal network, and perform the Louvain community detection method described in [Chapter 2][#network-community-detection]. Within the resulting clusters, which will contain terms and topics, we sort items in decreasing order of their total probability, meaning the strongest topics and most frequent terms will be listed first. Given these lists, we can easily see whether the terms in a text assigned to a given topic are really reflective of our theory of that topic.
+
+Limiting ourselves to the social science subsample, let's compare the most highly ranked music article, `r whwh(stm$meta,6249)`, with an article that is only estimated to be 50% about music, e.g. `r whwh(stm$meta,4752)`.
+
+```{r, include=T}
+g<-dc.f(6249,mod[[9]],trm)
+noquote(g['music'])
+```
+
+```{r, include=T}
+g<-dc.f(4752,mod[[9]],trm)
+noquote(g['music'])
+```
+
+
+```{r,include=T,fig.cap='Comparison of an article that is nearly all music and one that is half music.'}
+cm<-list({ix<-6249
+g<-(mod[[9]]$doc.top.theta[ix,]*mod[[9]]$top.word.phi.beta)[,mod[[9]]$documents[[ix]][1,]] 
+n<-which(apply(g,2,which.max)==6) %>% names
+g %<>% melt %>% data.table
+g<-g[,.(k=Var1,t=Var2,p=value)][,ix:=ix]
+g[k==6][n,on='t']}
+,
+{ix<-4752
+g<-(mod[[9]]$doc.top.theta[ix,]*mod[[9]]$top.word.phi.beta)[,mod[[9]]$documents[[ix]][1,]]
+n<-which(apply(g,2,which.max)==6) %>% names
+g %<>% melt %>% data.table
+g<-g[,.(k=Var1,t=Var2,p=value)][,ix:=ix]
+g[k==6][n,on='t']}) %>% rbindlist
+setorder(cm,ix,-p)
+cm[,rank:=1:.N,by=ix]
+cm[,cp:=cumsum(p),by=ix]
+cm[,ix:=factor(ix)]
+plt(myth(ggplot(data=cm,aes(x=rank,y=cp,color=ix,group=ix)) + geom_line(aes(text=t))),hovinf = 'text',tooltip='text')
+```
+
