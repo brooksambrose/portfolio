@@ -4895,19 +4895,6 @@ beginning with
 \caption{Topic locations of sociology texts (n = 182)}\label{fig:sociology}
 \end{figure}
 
-\hypertarget{document-composition}{%
-\subsection{Document composition}\label{document-composition}}
-
-The easiest way to test the expectation that perfectly classified
-documents are actually biased upward by idiosyncracy is to look directly
-at how the words they contain are classified. For clarity we assign
-every term in a document to a single topic though it is technically a
-distribution across all topics. A method to quickly accomplish this and
-simplify the topic descriptions is to treat each document as a term by
-topic matrix, project the matrix as a bimodal network, and perform the
-Louvain community detection method described in {[}Chapter
-2{]}{[}\#network-community-detection{]}.
-
 \hypertarget{discussion-1}{%
 \section{Discussion}\label{discussion-1}}
 
@@ -4930,6 +4917,83 @@ It is likely a mistake, however, to interpret the topic only with
 respect to its weirdest component. Weirdness here is not idiosyncrasy,
 because weirdness is something common and recognizable, whereas
 idiosyncrasy is individual and invisible.
+
+The easiest way to test the expectation that perfectly classified
+documents are actually biased upward by idiosyncracy is to look directly
+at how the words they contain are classified. For clarity we assign
+every term in a document to a single topic though it is technically a
+distribution across all topics. A method to quickly accomplish this and
+simplify the topic descriptions is to treat each document as a term by
+topic matrix, project the matrix as a bimodal network, and perform the
+Louvain community detection method described in {[}Chapter
+2{]}{[}\#network-community-detection{]}. Within the resulting clusters,
+which will contain terms and topics, we sort items in decreasing order
+of their total probability, meaning the strongest topics and most
+frequent terms will be listed first. Given these lists, we can easily
+see whether the terms in a text assigned to a given topic are really
+reflective of our theory of that topic.
+
+Limiting ourselves to the social science subsample, let's compare the
+most highly ranked music article, Henry's ``Social Structure and Music:
+Correlating Musical Genres and Social Categories in Bhojpuri-Speaking
+India'', with an article that is only estimated to be 50\% about music,
+e.g.~Anderson's ``Understanding the Alteration and Decline of a Music
+Scene: Observations from Rave Culture''.
+
+\begin{verbatim}
+$music
+ [1]  6              music           performance     song           
+ [5] cultural        popular         play            tradition      
+ [9] group           form            style           time           
+[13] singing         people          part            musicians      
+[17] american        folk            band            instruments    
+[21] called          members         drum            south          
+[25] rhythm          region          western         large          
+[29] village         sung            india           north          
+[33] area            religious       rural           history        
+[37] entertainment   economic        hindi           cast           
+[41] free            wedding         names           ethnomusicology
+[45] muslim          hindu           occupation      principal      
+[49] descendants     henry           fundamental     kao            
+\end{verbatim}
+
+\begin{verbatim}
+$music
+  [1]  6            music         cultural      dance         popular      
+  [6] play          form          group         people        style        
+ [11] record        university    black         press         including    
+ [16] years         local         public        early         identity     
+ [21] notes         white         listening     create        members      
+ [26] change        contemporary  original      long          similar      
+ [31] large         major         found         hip           young        
+ [36] drum          hop           day           late          aesthetic    
+ [41] began         hand          interview     influence     central      
+ [46] authenticity  youth         today         entertainment mass         
+ [51] middle        professional  emergence     range         beat         
+ [56] single        chicago       love          association   scholars     
+ [61] don           dominant      club          hear          bass         
+ [66] mid           diverse       led           celebration   promote      
+ [71] taste         held          brought       bar           due          
+ [76] roots         unique        attend        friend        punk         
+ [81] electronic    fig           underground   broader       venues       
+ [86] ties          dress         decline       younger       fieldwork    
+ [91] subculture    cul           wearing       months        believed     
+ [96] owner         passing       grew          alter         epic         
+[101] spoke         leisure       adorno        traits        poetic       
+[106] peterson      smaller       stuff         grass         nightclub    
+[111] lifestyle     bennett       ran           techno        ecstasy      
+[116] retained      pants         acid          enthusiasts   peak         
+[121] cohort        thornton      diminished    alcohol       prop         
+\end{verbatim}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{ambrose_dissertation_files/figure-latex/unnamed-chunk-6-1} 
+
+}
+
+\caption{Comparison of an article that is nearly all music and one that is half music.}\label{fig:unnamed-chunk-6}
+\end{figure}
 
 \hypertarget{voc}{%
 \chapter{Vocabularies of Anthropology and Sociology,
@@ -5079,6 +5143,52 @@ Total & 916 & 100 & 768 & 83.8 \\
 \end{tabular} 
 \end{table}
 
+\begin{table}[!htbp] \centering 
+  \caption{20th Century Social Science Journals in JSTOR} 
+  \label{tab:jstorm2tab} 
+\begin{tabular}{@{\extracolsep{5pt}} p{0.4\linewidth}p{0.3\linewidth}rr} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+Title History & Discipline & Start & Stop \\ 
+\hline \\[-1.8ex] 
+The Numismatic Journal; The Numismatic Chronicle (1838-1842); The Numismatic Chronicle and Journal of the Numismatic Society; The Numismatic Chronicle and Journal of the Royal Numismatic Society; The Numismatic Chronicle (1966-) & Archaeology; Art \& Art History; Arts & 1842 & 1903 \\ 
+Zeitschrift für die gesamte Staatswissenschaft / Journal of Institutional and Theoretical Economics; Journal of Institutional and Theoretical Economics (JITE) / Zeitschrift für die gesamte Staatswissenschaft & Business; Business \& Economics; Economics; Political Science & 1844 & 1985 \\ 
+Transactions of the Society, Instituted at London, for the Encouragement of Arts, Manufactures, and Commerce; The Journal of the Society of Arts; Journal of the Royal Society of Arts & Art \& Art History; Arts; Business; Business \& Economics; Education; History; History of Science \& Technology & 1852 & 1908 \\ 
+Ulster Journal of Archaeology & Archaeology & 1853 & 2013 \\ 
+Transactions of the Glasgow Archaeological Society; Glasgow Archaeological Journal; Scottish Archaeological Journal & Archaeology & 1859 & 1967 \\ 
+Journal of the American Geographical and Statistical Society; Journal of the American Geographical Society of New York; Bulletin of the American Geographical Society; Geographical Review & Geography & 1872 & 1900 \\ 
+Journal of the Ethnological Society of London (1848-1856); Transactions of the Ethnological Society of London; The Anthropological Review; The Journal of the Ethnological Society of London (1869-1870); The Journal of Anthropology; The Journal of the Anthropological Institute of Great Britain and Ireland; The Journal of the Royal Anthropological Institute of Great Britain and Ireland; The Journal of the Royal Anthropological Institute & Anthropology & 1872 & 1906 \\ 
+Journal of the Straits Branch of the Royal Asiatic Society; Journal of the Malayan Branch of the Royal Asiatic Society; Journal of the Malaysian Branch of the Royal Asiatic Society & Area Studies; Asian Studies; Geography; History & 1878 & 1988 \\ 
+The American Journal of Philology & Classical Studies; Humanities; Language \& Literature; Linguistics & 1880 & 2012 \\ 
+The Journal of Hellenic Studies & Archaeology; Classical Studies; Humanities & 1880 & 2014 \\ 
+Charity Organisation Review; British Journal of Psychiatric Social Work; The British Journal of Social Work & Social Work & 1885 & 1921 \\ 
+Political Science Quarterly & Political Science & 1886 & 2012 \\ 
+American Annals of the Deaf and Dumb; American Annals of the Deaf & Education; Linguistics & 1886 & 2016 \\ 
+The American Journal of Psychology & Psychology & 1887 & 2014 \\ 
+Transactions of the Anthropological Society of Washington; American Anthropologist & Anthropology & 1888 & 2010 \\ 
+The Journal of American Folklore & American Studies; Anthropology; Area Studies; Folklore; Humanities; Language \& Literature & 1888 & 2012 \\ 
+Proceedings of the Royal Irish Academy (1836-1869); Proceedings of the Royal Irish Academy. Science; Proceedings of the Royal Irish Academy. Polite Literature and Antiquities; Proceedings of the Royal Irish Academy (1889-1901); Proceedings of the Royal Irish Academy: Archaeology, Culture, History, Literature & Archaeology; Area Studies; Biological Sciences; Botany \& Plant Sciences; Environmental Science; General Science; History; Humanities; Irish Studies; Language \& Literature; Mathematics; Science \& Mathematics & 1889 & 1901 \\ 
+Transactions of the Kilkenny Archaeological Society; Proceedings and Transactions of the Kilkenny and South-East of Ireland Archaeological Society; The Journal of the Kilkenny and South-East of Ireland Archaeological Society; The Journal of the Historical and Archaeological Association of Ireland; The Journal of the Royal Historical and Archaeological Association of Ireland; The Journal of the Royal Society of Antiquaries of Ireland & Archaeology; Area Studies; History; Irish Studies & 1890 & 2012 \\ 
+The Annals of the American Academy of Political and Social Science & Business \& Economics; Economics; Political Science; Sociology & 1890 & 2014 \\ 
+Archaeological Report (Egypt Exploration Fund); The Journal of Egyptian Archaeology & Archaeology & 1892 & 1911 \\ 
+Connecticut Common School Journal (1838-1853); The Connecticut Common School Journal and Annals of Education; The R. I. Schoolmaster; The Yale Courant; The College Courant; The Connecticut School Journal; New England Journal of Education; National Journal of Education; Educational Weekly; The Journal of Education & Education & 1892 & 2014 \\ 
+The Journal of the Polynesian Society & Anthropology; Area Studies; Asian Studies & 1892 & 2014 \\ 
+School and College; The School Review; American Journal of Education & Education & 1893 & 1979 \\ 
+The Journal of the Royal Geographical Society of London; Proceedings of the Royal Geographical Society of London; Proceedings of the Royal Geographical Society and Monthly Record of Geography; The Geographical Journal & Geography & 1893 & 2012 \\ 
+The Journal of Geology & Geography; Geology; History; History of Science \& Technology; Paleontology; Science \& Mathematics & 1893 & 2014 \\ 
+American Advocate of Peace (1834-1836); The Advocate of Peace (1837-1845); The Advocate of Peace and Universal Brotherhood; Advocate of Peace (1847-1884); The American Advocate of Peace and Arbitration; American Advocate of Peace (1892-1893); The Advocate of Peace (1894-1920); Advocate of Peace through Justice; World Affairs & International Relations; Political Science & 1894 & 1920 \\ 
+The Annual of the British School at Athens & Archaeology; Classical Studies; Humanities & 1894 & 2014 \\ 
+Publications of the Field Columbian Museum. Anthropological Series; Publications of the Field Museum of Natural History. Anthropological Series; Fieldiana. Anthropology & Anthropology & 1895 & 1922 \\ 
+The American Journal of Semitic Languages and Literatures; Journal of Near Eastern Studies & Archaeology; Area Studies; Middle East Studies & 1895 & 1941 \\ 
+American Journal of Sociology & Sociology & 1895 & 2014 \\ 
+American Journal of Numismatics (1897-1924); Museum Notes (American Numismatic Society); American Journal of Numismatics (1989-) & Archaeology; Art \& Art History; Arts; Classical Studies; Humanities & 1897 & 1919 \\ 
+The American Journal of Archaeology and of the History of the Fine Arts; American Journal of Archaeology & Archaeology; Architecture \& Architectural History; Art \& Art History; Arts; Classical Studies; Humanities & 1897 & 2014 \\ 
+The Course of Study; The Elementary School Teacher and Course of Study; The Elementary School Teacher; The Elementary School Journal & Education & 1900 & 1901 \\ 
+Journal of the Galway Archaeological and Historical Society & Archaeology; History & 1900 & 2013 \\ 
+\hline \\[-1.8ex] 
+\end{tabular} 
+\end{table}
+
 \begin{figure}
 
 {\centering \includegraphics[width=0.9\linewidth]{ambrose_dissertation_files/figure-latex/jstorm2fig-1} 
@@ -5221,43 +5331,6 @@ computational nuances of topic models, I will spend some time developing
 a few themes to help organize the blending of quantitative and
 qualitative methods invited by topic modeling in particular and
 computational text analysis generally.
-
-\hypertarget{kd-lit}{%
-\section{Prior Work}\label{kd-lit}}
-
-\hypertarget{information}{%
-\section{Information}\label{information}}
-
-Understanding differences in the ontological status of the ``topic''
-concept is a good way to begin to understand how this method of analysis
-is used by researchers.
-
-Analysts have conceptualized the use of topic models in very different
-ways. Some researchers treat topics as useful for a particular purpose
-and not as true descriptions of real phenomena. Topics as information
-enhances the ability to search for relevant documents or statistical
-trends in otherwise unwieldy corpora as a time-saving alternative to
-manually reading large collections. \citep{Boyd-Graber2017Applications}
-Empirical problems, used as demonstrations of statistical techniques,
-have included
-
-This is the ``needle and haystack'' approach favored by computer and
-information scientists who tend not to be interested in theoretical
-interpretations beyond the statistical definitions of topics.
-
-\hypertarget{meaning}{%
-\section{Meaning}\label{meaning}}
-
-Other researchers instead grant topics ontological status, and these can
-be divided into three types. Most ambitiously, topics may be treated as
-representing categories of thought. Latent semantic structure latent
-semantic structure \citep{WallachStatisticalTopicModels2011}
-
-\hypertarget{communication}{%
-\section{Communication}\label{communication}}
-
-representational style \citep{Grimmer2016Measuring} frame
-\citep{DiMaggio2013Exploiting}
 
 \hypertarget{full-text}{%
 \section{Full-Text}\label{full-text}}
@@ -5406,386 +5479,6 @@ sen & 0.0118 & 0.2304 & -0.5078 & 0.6471 & 0.4973 \\
 
 \caption{Significant Counts of K}\label{fig:mlk-tab}
 \end{figure}
-
-\hypertarget{model-selection}{%
-\section{Model selection}\label{model-selection}}
-
-\hypertarget{cit}{%
-\section{The Social Science Citation Landscape, 1900-1940}\label{cit}}
-
-\hypertarget{abstract-4}{%
-\subsubsection*{Abstract}\label{abstract-4}}
-
-
-Knowledge mapping of academic journals promotes the
-conservation of intellectual history and stimulates discovery of
-underexplored intellectual opportunities. Treated as a large network
-community detection problem, I demonstrate how to apply the clique
-percolation method to map two kinds of recorded knowledge: citations and
-full text. The features of generated maps are explained, and
-interpretive methods including visualization are presented. We use
-American social science scholarship in the first third of the 20th
-century prior to U.S. entry into World War II as a case, and describe
-how the intellectual landscape of four separate social science
-disciplines developed.
-
-\hypertarget{keywords-4}{%
-\subsubsection*{Keywords}\label{keywords-4}}
-
-
-citations, k-clique communities, community detection,
-landscape
-
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
-
-If knowledge is power then scholar must be a powerful class. But what
-kind of power is knowledge and in what way do scholars wield it? Is
-knowledge powerful a utility, like water or electricity, to drive a tool
-and accomplish a task? Is it an asymmetry of information, like a stock
-tip or the combination to a safe, that gives one a leg up on her
-competition? Is knowledge like the power of an authority, like a
-governor, a military commander, or clergyman, to compel the loyalty and
-obedience of another person?
-
-How we conceive of knowledge affects how we view the nature and
-importance of the people and institutions that produce it. Scholars
-certainly do not have a monopoly on the utilization of production of
-knowledge in society, but their occupational roles are conditioned by
-the stuff of knowledge at the same time that knowledge is itself
-conditioned by the technology and social arrangements that constitute
-scholarly occupations.
-
-\hypertarget{scholarly-communication-vs-knowledge-terrain}{%
-\subsection{Scholarly Communication vs Knowledge
-Terrain}\label{scholarly-communication-vs-knowledge-terrain}}
-
-If the production of culture perspective were to argue against Marx's
-German Ideology, it might say, ``Not all mental laborers have soft
-hands.'' Marx drew a course distinction between mental and material
-labor to demonstrate that the former is not possible without the latter,
-even when at the time mental labor had already been commodified with the
-advent of print media. The production of culture perspective simply
-effaces the distinction altogether; mental labor, or cultural products,
-are like any other industrialized commodity.
-
-The production of culture perspective is at odds with public sector
-economics that argues that non market mechanisms create value where
-markets fail to do so. \citep{Hayes2000Assessing}
-
-Remuneration
-
-Are culturally interior products referenced by socially superior
-producers?
-
-\hypertarget{wok}{%
-\subsection{Mapping Knowledge Terrain}\label{wok}}
-
-\hypertarget{knowledge-stuff}{%
-\subsubsection{knowledge stuff}\label{knowledge-stuff}}
-
-There are two reasons to map knowledge spaces. First, we may want to
-know how knowledge develops as a resource unto itself. Second, we may
-want to exploit such a map for a productive purpose. Here we will
-attempt the second as prologue to the first. We will tackle the
-technical problems of constructing a map. We will show how a map can be
-put to use. Finally, we will investigate how the particular map we make
-may tend to predictably get us lost.
-
-All knowledge mapping requires first an ontological and then an
-analytical action. Ontological actions delineate the things that matter.
-They arbitrarily construct from perception the items that we then think
-about. While ontological decisions tend to define the scope of
-everything that may be learned from an investigation, they are often
-assumed rather than demonstrated. Actor Network Theory (ANT) provides a
-unique example of a method of research that, because it is ethnographic
-and thus marinating in an abundance of perception, allows the cast of
-ontic characters to grow. Literally anything can be deigned significant
-for inclusion in a web of knowledge. In an ANT study of science, if the
-feel of a reading chair modifies a reader's orientation to a text they
-are reading, the chair counts.
-
-The lion's share of knowledge mapping studies are not so ontologically
-radical as ANT. Take the field of bibliometrics. The ontological
-decision here is to take documents as the primary ontic. Documents are
-nothing but collections of glyphs, so the first task of bibliometricians
-tends to be to map glyphs to terms and analyze them. Here we have
-already used the ontic triad underlying bibliometrics. In the sentence
-
-\begin{quote}
-``Go, dog, go!''
-\end{quote}
-
-there are twelve discrete glyphs and two terms. A grammatical cutting
-rule renders the glyph sequences as
-
-\begin{quote}
-``Go,'' ``dog,'' ``go!''
-\end{quote}
-
-and a tokenization rule maps the cuts to two terms
-
-\begin{quote}
-``go'' ``dog'' ``go''
-\end{quote}
-
-which may in turn be analyzed, for instance by counting the tokens. The
-documents form the bins within and across which the terms will be
-analyzed. The token, as a mere operational step, is used and then
-dispensed with unless questions of measurement surface. Clearly the
-\emph{glyph-term-document} (GTD) ontic does not care about the armchair
-of a reader of a document, and indeed does not even care about the
-reader herself.
-
-So the reader is invisible because she is not inscribed in the document.
-What about the writer? Bibliometricians may back fill GTD by entity
-recognition or grounding. Once terms are recognized, we may further
-recognize that we know more about them. A simple example of this is
-pulling out ``metadata'', for instance, the author of a document. The
-author's name is not just any term, but a conceptually very important
-one. Grounding is how bibliometrics may be linked to theories and
-programs of greater importance.
-
-Bibliometrics has indeed been based more on the reference of a text as a
-particular grounded entity rather than on the use of the full text of a
-document. If a text is a building, the reference is its address. More
-precise than a name, an address is a codification of different
-hierarchically ordered elements that describe the location of an entity.
-The consistent tokenization of a reference is not an easy task, as it
-depends on entity recognition of several different kinds of things,
-including year of publication, author, title, and source.
-
-The citation became the basis of the concept of a web of knowledge as
-coined in the work of Eugene Garfield and institutionalized in the
-Institute for Scientific Information (ISI).
-
-Citations solved the problem that ideas do not have signatures or
-addresses that we can trace reliably. Jargon is an attempt to give an
-idea a unique address as an idiosyncratic term, and etymology seeks to
-hierarchically order words according to their origins, but an idea per
-se will always elude precise identification. Unlike a document, an idea
-is not mechanically reproducible; it always requires interpretation and
-understanding in a mind, and a mental event as subtle as an idea cannot
-be observed.
-
-\citep{Lederberg2000How} Garfield conflates citations with several roles
-in the network around ideas. Compares value of citations to value of
-subject coders, coding meaning of paragraphs intractable. ISI became a
-commercial pursuit because Garfield failed to get scientific
-institutions, especially the NSF, to fund it. The goal was primarily
-practical, to give researches access to current or historical references
-relevant to articles, perhaps especially their own, they knew they were
-already interested in.
-
-Unlike ideas, documents are physical artifacts and can be traced
-empirically. They are fungible, reproducible, and locatable with
-addresses.
-
-The reproduction and location of ideas cannot be reliably observed, and
-documents only contain ideas in a metaphorical sense, as a Leyden jar
-was once thought to contain electricity.
-
-Documents are the tangible and fungible currency with which scholars
-communicate about ideas, yet how knowledge is actually communicated via
-documents is not amenable to direct observation at scale. In
-bibliometrics they have served as a proxy for ideas.
-
-There have been two main orientations to mapping the web of knowledge,
-description and conscription. Description has either scientific aims, to
-understand and explain the facts of knowledge development, or practical
-aims, to locate and retrieve knowledge required for a particular
-purpose. Conscription on the other hand aims to mobilize bibliometric
-patterns of knowledge as measures of value in competitive markets,
-namely hiring, promotion, and awards within scholarly professions.
-
-There are several ways to digitally represent texts as knowledge.
-
-From an empirical perspective, texts are nothing but collections or bins
-of glyphs. The current paradigm is to render glyphs and recognize them
-as terms. Such terms may then be analyzed, for instance, by counting
-diction. Alternative paradigms are cropping up
-
-Second is entity recognition or grounding, where recognized terms are
-mapped to an existing database of structured knowledge.
-
-\citep{Pilkington2009evolution}
-
-\hypertarget{disciplines-as-a-large-world-co-reference-network}{%
-\subsection{Disciplines as a Large World Co-reference
-Network}\label{disciplines-as-a-large-world-co-reference-network}}
-
-A large world network is not amenable to traditional visual
-representations due to its extreme density. Scholars often use edge
-filtering to reduce this density down to a manageable size for
-visualization. Unfortunately this convenience function renders a large
-world as a small world and grossly misrepresents the true structure of
-the network. In the KCC representation, the network is partitioned into
-subnetworks of differential density. Nodes are included in a subnetwork
-if they are involved in ties at a given floor of density, for instance,
-they need to be tied to at least five other nodes. At a level of five,
-then, nodes involved in only four ties would be excluded. As this
-standard is raised, more nodes are excluded. This results in a nested
-set of subnetworks, where nodes included in a community at a lower
-threshold are excluded at a higher threshold. Subnetworks of lower
-density thresholds are always as big or larger than those at higher
-thresholds. Moreover, higher density subnetworks are always subsets of
-lower density communities, as their density meets and exceeds the
-standard for inclusion at the lower level. As one can imagine, inclusive
-levels are larger. As the threshold is raised subgroupings are sloughed
-off until reaching points of maximal density. In a world where almost
-everything is connected, there are no structural holes to reveal
-differences between subnetworks. Instead, we can view the structure as
-gradations in density within a very densely connected world.
-
-Nodes meeting the highest standards can be thought of as omnivorous;
-their ties draw them to the masses, but the masses are not sufficiently
-tied to the higher standard community. Where the gentry may be as
-comfortable at the movies as at the symphony, the laity lacks access to
-the more erudite circles.
-
-What is the credential that would allow a node to climb the hierarchy?
-One's list of acquaintances must overlap by a certain amount (defined by
-the threshold) with the membership of the higher tier. Indeed their
-inclusion would change the credentials of everyone they are tied with,
-as anyone who was just under the standard would be tipped in based on
-their friend's promotion.
-
-In the KCC model the references are the members of the hierarchy. Their
-association with each other is determined by how they are used by
-published authors. Authors who include two references on their
-bibliography tie those references together in the network. Indeed each
-citing article lays down a dense clique of references, and the impact of
-an article grows quadratically with the length of its reference list.
-
-\hypertarget{methods}{%
-\section{Methods}\label{methods}}
-
-\hypertarget{data-1}{%
-\section{Data}\label{data-1}}
-
-\hypertarget{results-1}{%
-\section{Results}\label{results-1}}
-
-The structure of a large world as revealed by KCC can be explored in a
-bottom-up and top-down fashion. Bottom-up observes 3-clique communities
-first. In the social science co-reference network.
-
-\begin{center}\includegraphics[width=0.9\linewidth]{ambrose_dissertation_files/figure-latex/kcc2tree-1} \end{center}
-
-Figure \ref{fig:kcc2tree} shows a KCC model of the social sciences in
-the first half of the twentieth century.
-
-Disciplinarity and interdisciplinarity are revealed in a novel fashion
-in the KCC model. Disciplinarity is shown as a level of exclusion.
-
-\hypertarget{continents}{%
-\subsection{Continents}\label{continents}}
-
-The global map is made of many separate regions ranging in scale from
-large continents to small isles. These regions are either shallowly
-connected or entirely separated from each other. The vast majority of
-these regions are ``flat isles'' with little to no internal structure of
-their own. Most flat isles are supported by only a single article, some
-by a couple of articles penned by the same author, and only a few
-represent real activity among a small group of different authors.
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.9\linewidth]{img/flat-isle} 
-
-}
-
-\caption{Flat Isles, where Reviewers tend their Flock}\label{fig:flat-isle}
-\end{figure}
-
-The most substantial flat isle , the largest unenclosed and unenclosing
-circle in Figure \ref{fig:flat-isle}, comes from four authors publishing
-in the same 1930 \href{https://www.jstor.org/stable/i40084238}{issue} of
-\emph{Zeitschrift Fur Nationalokonomie}. It includes 50 references the
-most prominent of which are Angell's 1926 \emph{The Theory of
-International Prices} and Tugwell's 1924 \emph{The Trends of Economics}.
-The structure of the group is provided entirely by an article by Robert
-Reisch ; the other three shared no references in common and Reisch's
-article, titled ``The `Deposit'-Myth In Banking Theory'' and containing
-108 references, is likely to have been written as an introduction to the
-journal on the basis of what had already been accepted for publication.
-
-Another flat isle of four articles has the exact same pattern, also from
-\emph{Zeitschrift Fur Nationalokonomie} but from an
-\href{https://www.jstor.org/stable/i40084262}{issue} in 1937, the
-article on the first page of the issue, titled ``Theory Of Capital,
-Introduction'' by von Hayek and containing 25 references, includes
-subsections of the bibliographies of three other articles that do not
-themselves overlap. Normally the longer a bibliography the more likely
-it is that an article functions as a review linking other disparate
-bibliographies. That von Hayek's article has such a short bibliography
-and yet still links three otherwise separate articles confirms its
-derivative character.
-
-The following features then suggest when a flat isle represents an issue
-introduction. All articles are published in the same issue. The removal
-of the longest bibliography in the community yields a network of
-disconnected components each uniquely representing the remaining bibs.
-This longest bib is also either the first article in the issue or
-precedes the others in pagination. These characteristics suggest
-authorship internal to the editorial process itself. Later we will
-explore how the removal of such articles helps to reveal ``bottom-up''
-structure by removing the editorial advantage of certain authors to
-bestow an ad hoc intellectual coherence on scholarship.
-
-Table \ref{tab:iss-int} enumerates issue introductions and shows how
-many are the structuring article in their community.
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.9\linewidth]{img/hill-isle} 
-
-}
-
-\caption{Hill Isles, where the Wild Things Are}\label{fig:hill-isle}
-\end{figure}
-
-Reviews, whether they are self described as such, borrow directly from
-the bibliographies of one or more seed articles, and in this way they
-contribute a disproportionate amount of the global structure of the
-co-reference network. This kind of review, rather than looking again at
-an existing intellectual trend, creates the cohesion it purports to
-describe. Flat isles, especially if they are large, are flat due to the
-retrospection of a usually solitary reviewer. Compare this to ``hill
-isles'' with more internal structure growing out of the related but
-uncoordinated reference activity of authors.
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.9\linewidth]{ambrose_dissertation_files/figure-latex/k3c1-22-1} 
-
-}
-
-\caption{Hill Isle in Graph Layout}\label{fig:k3c1-22}
-\end{figure}
-
-\hypertarget{peaks}{%
-\subsection{Peaks}\label{peaks}}
-
-The KCC model reveals
-
-\hypertarget{valleys}{%
-\subsection{Valleys}\label{valleys}}
-
-\hypertarget{do-reference-lists-describe-author-knowledge}{%
-\subsection{Do reference lists describe author
-knowledge?}\label{do-reference-lists-describe-author-knowledge}}
-
-The peer review process can now be thought of as a process of auditing
-credentials. An author makes an opening bid with the submission of a
-particular reference list. What this reference list implies about what
-the author knows is unclear. One may omit a knowledge signal because it
-is truthfully irrelevant or in a deceptive sin of omission oriented to
-what they expect to be the expectations of editors and reviewers. One
-may also include what they do not know out of error, braggadocio,
-carelessness, or fraud. Part of the work of reviewers will be to
-validate those claims to knowledge.
-
-\begin{center}\includegraphics[width=0.9\linewidth]{ambrose_dissertation_files/figure-latex/kcc2isl-1} \end{center}
 
 \bibliography{references.bib}
 
