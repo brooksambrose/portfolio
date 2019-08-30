@@ -1271,8 +1271,11 @@ Recall that the inspection of bellwethers occurred in the context of a shuffled 
 
 ### Terms
 
-```{r genr-mod-viz,include=T,fig.cap='Topic Term Explorer, K=10. [*Interactive pop-out.*](ldaviz/viz/index.html#topic=6&lambda=0.5&term=){target="_blank"}'}
-invisible(suppressWarnings(capture.output(lda2viz.f(mod[[length(mod)]],out.dir = 'ldaviz',launch = F))))
+(ref:genr-mod-viz) Topic Term Explorer, K=10. [*Interactive pop-out.*](ldaviz/viz/index.html){target="_blank"} 
+
+```{r genr-mod-viz,include=T,fig.cap='(ref:genr-mod-viz)'}
+#"ldaviz/viz/index.html#topic=6&lambda=0.5&term="
+#invisible(suppressWarnings(capture.output(lda2viz.f(mod[[length(mod)]],out.dir = 'ldaviz',launch = F))))
 knitr::include_graphics('img/genr-mod-viz.png')
 ```
 
