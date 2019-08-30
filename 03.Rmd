@@ -1621,7 +1621,7 @@ if(F) stm$meta[
 ```
 
 ```{r sociology,include=T,fig.asp=1,fig.cap=sprintf('Topic locations of sociology texts (n = %s)',nsoc)}
-
+stm$meta[,dl:=mod[[9]]$doc.length]
 p<-stm$meta[,{
   
   rmeta<-data.table(.SD)[,`:=`(
@@ -1633,7 +1633,7 @@ p<-stm$meta[,{
     ,k3=paste0('\n ',k3)
   )]
   
-  gp<-ggplot(mapping=aes(k3=k3,tit=tit,auths=auths,year=year,jour=solong,ix=ix))+
+  gp<-ggplot(mapping=aes(k3=k3,tit=tit,auths=auths,year=year,jour=solong,len=dl,ix=ix))+
     geom_boxplot(data=rmeta,aes(edn,gini,fill=cluster),outlier.shape = '+',size=.2) +
     geom_jitter(data=rmeta[!is.na(soci)],aes(x=edn,y=gini,color=`Soci[a-z]*`),fill='white',width=0,height=0,alpha=1,size=2,shape=5,stroke=.3) +
     theme_bw() + scale_color_brewer(palette='Dark2') + scale_fill_manual(values=c(spine='lightgray',mixed='white')) + scale_y_reverse() + coord_flip() + ylab('Within document topic concentration (Gini)') + xlab('Topic cluster') 
@@ -1666,7 +1666,7 @@ p<-stm$meta[,{
          }
          ")
   
-},.SDcols=ec('k3,edn,gini,solong,url,auths,tit,year,soci,ix')]
+},.SDcols=ec('k3,edn,gini,solong,url,auths,tit,year,soci,dl,ix')]
 p
 ```
 
@@ -1704,7 +1704,7 @@ It is likely a mistake, however, to interpret the topic only with respect to its
 
 The easiest way to test the expectation that perfectly classified documents are actually biased upward by idiosyncracy is to look directly at how the words they contain are classified. For clarity we assign every term in a document to a single topic though it is technically a distribution across all topics. A method to quickly accomplish this and simplify the topic descriptions is to treat each document as a term by topic matrix, project the matrix as a bimodal network, and perform the Louvain community detection method described in [Chapter 2][#network-community-detection]. Within the resulting clusters, which will contain terms and topics, we sort items in decreasing order of their total probability, meaning the strongest topics and most frequent terms will be listed first. Given these lists, we can easily see whether the terms in a text assigned to a given topic are really reflective of our theory of that topic.
 
-Limiting ourselves to the social science subsample, let's compare the most highly ranked music article, `r whwh(stm$meta,6249)`, with an article that is only estimated to be 50% about music, e.g. `r whwh(stm$meta,4752)`.
+Limiting ourselves to the social science subsample, let's compare the most highly ranked music article, `r whwh(stm$meta,6249)`, with an article that is only estimated to be `r mod[[9]]$doc.top.theta[6249,6]` about music, e.g. `r whwh(stm$meta,4895)`.
 
 ```{r, include=T}
 g<-dc.f(6249,mod[[9]],trm)
@@ -1712,29 +1712,33 @@ noquote(g['music'])
 ```
 
 ```{r, include=T}
-g<-dc.f(4752,mod[[9]],trm)
+g<-dc.f(3623,mod[[9]],trm)
 noquote(g['music'])
 ```
 
 
-```{r,include=T,fig.cap='Comparison of an article that is nearly all music and one that is half music.'}
-cm<-list({ix<-6249
+```{r,include=T,fig.asp=1.5,fig.cap='Comparison of an article that is nearly all music and one that is half music.'}
+gtw<-function(ix,tp){
 g<-(mod[[9]]$doc.top.theta[ix,]*mod[[9]]$top.word.phi.beta)[,mod[[9]]$documents[[ix]][1,]] 
-n<-which(apply(g,2,which.max)==6) %>% names
+n<-which(apply(g,2,which.max)==tp) %>% names
 g %<>% melt %>% data.table
 g<-g[,.(k=Var1,t=Var2,p=value)][,ix:=ix]
-g[k==6][n,on='t']}
-,
-{ix<-4752
-g<-(mod[[9]]$doc.top.theta[ix,]*mod[[9]]$top.word.phi.beta)[,mod[[9]]$documents[[ix]][1,]]
-n<-which(apply(g,2,which.max)==6) %>% names
-g %<>% melt %>% data.table
-g<-g[,.(k=Var1,t=Var2,p=value)][,ix:=ix]
-g[k==6][n,on='t']}) %>% rbindlist
+g[k==6][n,on='t']
+}
+cm<-list(
+gtw(6249,6)
+,gtw(4895,6)
+,gtw(3623,6)
+) %>% rbindlist
 setorder(cm,ix,-p)
 cm[,rank:=1:.N,by=ix]
 cm[,cp:=cumsum(p),by=ix]
 cm[,ix:=factor(ix)]
-plt(myth(ggplot(data=cm,aes(x=rank,y=cp,color=ix,group=ix)) + geom_line(aes(text=t))),hovinf = 'text',tooltip='text')
+cm[,t:=as.character(t)]
+#plt(myth(ggplot(data=cm,aes(x=rank,y=cp,color=ix,group=ix)) + geom_line(aes(text=t))),hovinf = 'text',tooltip='text')
+if(F) cm[!duplicated(t),write.table(cbind(g='',t=t),file = sprintf('d/p/man-term-qual-sort-%s.txt',Sys.time() %>% as.integer),sep = '\t',row.names = F,quote = F)]
+qs<-fread(dir(pattern='man-term-qual-sort',recursive = T)[1])
+cm[qs,on='t',g:=factor(g,levels=ec('y,m,n'))]
+myth(ggplot(data=cm[!is.na(g)],aes(x=g,y=p,label=t,color=ix)) + geom_text(hjust=cm[!is.na(g)]$ix %>% as.integer %>% {ec('left,right')[.]},check_overlap = T,nudge_x = cm[!is.na(g)]$ix %>% as.integer %>% {c(.01,-.01)[.]}) + scale_y_continuous(trans='log'))
 ```
 
