@@ -93,9 +93,9 @@ I hope you enjoy the study, and please feel free to report bugs, comment, and co
 Best,  
 Brooks
 
-## Abstracts {-}
+## Abstracts
 
-### `r 'What to Read? How the Archive pits Profession against Education'->tint;tint` {-}
+### `r 'What to Read? How the Archive pits Profession against Education'->tint;tint`
 
 (ref:abs-int) As scholarly fields of cultural production grow their discourses tend to undergo a phase transition where hot global tele-communication breaks down into cool parochial epicentrism. I describe three structures--archives, profession, and education--whose relationships explain the social and cultural forces leading to the opening up and closing off of scholarly discourses. Given an archival context, where expansive media collections give unlimited scope to potential conversation topics, education tends to heat to a boil and profession tends to cool to a condensation of discourses. When such discursive tendencies (genres) are embedded in universities (disciplines) the attendant competition over resources pits professionals against educators and makes it possible to arrest cultural dynamism into relatively static historical configurations. Such a social domestication of cultural wildness allows knowledge to be harnessed for economic purposes, namely workforce development (teaching) and product design (research), and sometimes for political ends. These heteronomous interests in predictable output from universities depresses their cultural generativity. Such macroscopic historical tendencies are difficult for the local agents of their development to recognize; their myopic experience in university arenas is that of status conflicts around investments in academic genres and fiscal conflicts around investments in disciplinary personnel. Using the focal question scholars new and old must answer--"What to read?"--I posit the genre-like qualities of scholarly discourses and suggest the cognitive, institutional, and social, that is disciplinary, consequences of adhering to or abrogating genre conventions.
 
@@ -105,7 +105,7 @@ Brooks
 
 **Keywords**: (ref:key-int)
 
-### `r 'Social Science Disciplines Today'->tdis;tdis` {-}
+### `r 'Social Science Disciplines Today'->tdis;tdis`
 
 (ref:abs-dis) Social science is arranged into disciplines in a manner similar to the genre systems of commercial fields of cultural production (FCP) like music, yet evolving at a slower pace. Genres appear static and given in the form of the labeling schemes of archivists and librarians. Such schemes aim to describe academic genres objectively, yet in so doing referencers and indexers reify them historically. Such genre classifications are at times useful, frustrating, or didactic for the academic "disciples" or knowledge workers of higher education. This study maps the cognitive system of genre classifications in one particular labeling scheme, that of the JSTOR historical archive, as applied to one aspect of academic FCPs, journals. The patterns of interdisciplinary cross labeling, of allowing journals to bear multiple labels, are represented as a network and then visualized to reveal how global axes among science, social science, and humanities condition the local relationships of disciplines like sociology and anthropology.
 
@@ -115,7 +115,7 @@ Brooks
 
 **Keywords**: (ref:key-dis)
 
-### `r 'Genre and the Literature'->tgen;tgen` {-}
+### `r 'Genre and the Literature'->tgen;tgen`
 
 (ref:abs-gen) In English the term *genre* is a loanword from the French term for *kind*. As an analytical term in the social sciences genre is a loanword from the humanities. The use of the term varies greatly within and between disciplines. This study attempts a metadisciplinary literature review of genre as a term found in a corpus of JSTOR articles. I cast a very wide net by including any document in English that includes the term genre in the title or abstract. The resulting thousands of documents are "read" with the assistance of a statistical topic model to classify documents into topics, that is, strata of common vocabulary. I then perform content analysis on a stratified sample of classified texts to compare their different uses of the term genre. In an examination of the benefits and hazards of such a distant reading approach, I outline a battery of diagnostics to examine the validity of the topic model from both quantitative and qualitative perspectives. Through a combination of machine distant reading and human close reading, I arrive at a schema of five theories of the term genre. In an argument for pandisciplinarity, I conclude with an analysis of the logical possibility of new metaconcepts of genre that satisfy the strictures of multiple disciplines. 
 
@@ -125,7 +125,7 @@ Brooks
 
 **Keywords**: (ref:key-gen)
 
-### `r 'Vocabularies of Anthropology and Sociology, 1888-1922'->tvoc;tvoc` {-}
+### `r 'Vocabularies of Anthropology and Sociology, 1888-1922'->tvoc;tvoc`
 
 (ref:abs-voc) Knowledge development of journals in sociology and anthropology is measured as the change in topic prevalence over time.
 
@@ -135,7 +135,7 @@ Brooks
 
 **Keywords**: (ref:key-voc)
 
-### `r 'The Social Science Citation Landscape, 1900-1940'->tcit;tcit` {-}
+### `r 'The Social Science Citation Landscape, 1900-1940'->tcit;tcit`
 
 (ref:abs-cit) Knowledge mapping of academic journals promotes the conservation of intellectual history and stimulates discovery of underexplored intellectual opportunities. Treated as a large network community detection problem, I demonstrate how to apply the clique percolation method to map two kinds of recorded knowledge: citations and full text. The features of generated maps are explained, and interpretive methods including visualization are presented. We use American social science scholarship in the first third of the 20th century prior to U.S. entry into World War II as a case, and describe how the intellectual landscape of four separate social science disciplines developed.
 

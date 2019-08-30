@@ -61,7 +61,7 @@ ttst<-ttsgnr[!1:2,.(d=mean(d),t=list(t.test(d))),by=g]
 
 Figure \@ref(fig:ttsgnr) shows the count of mentions of the term genre in the Google Books Ngram database for English terms [@Michel2011Quantitative]. The trend exhibits the typical take-off in publishing in the second half of the twentieth century. I apply change point analysis, which detects significant differences in time series data [@Matteson2013Nonparametric; @James2019ecp], to the second difference of the trend, a measure of acceleration, to get clues as to whether the trend is a single process or whether there are inflection points. The first segment of the curve from `r ttsgnr[g==1,range(Year) %>% paste(collapse=' to ')]` indicates a period of positive acceleration or quickening of the growth trend. On average in the first period the rate of change from one year to the next increased by a modest `r ttst[1,d %>% round(1)]` occurrences a year. However, during the period from `r ttsgnr[g==2,range(Year) %>% paste(collapse=' to ')]` the rate of change, though always steep, began to decline by an average of `r ttst[2,d %>% round(1) %>% abs]` occurrences a year. Like a projectile that is simultaneously climbing and falling, `r annd$x` acts as launch point of precipitous yet unsustainable growth.
 
-```{r ttsgnr,include=T,fig.scap='Absolute count of term "genre", 1901-2008. Segments correspond to significantly different second derivatives.'}
+```{r ttsgnr,include=T,fig.cap='Absolute count of term "genre", 1901-2008. Segments correspond to significantly different second derivatives.',fig.cap='Absolute count of term "genre", 1901-2008.'}
 p1<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=Count,color=g,geom = 'line')) + theme(legend.position = "none",axis.title.x = element_blank()) + ylab('Count of "genre"') + geom_label(data=annd,aes(x=x,y=y,label=x),inherit.aes = F,nudge_x = ttsgnr$Year %>% range %>% diff %>% `*`(.05),nudge_y = ttsgnr$Count %>% range %>% diff %>% `*`(-.05))
 p2<-myth(qplot(data = ttsgnr[!1:2],x=Year,y=d,color=g,geom = 'line')) + theme(legend.position = "none") + ylab('2nd Deriv.')
 egg::ggarrange(p1,p2, heights = c(3,1))
@@ -450,7 +450,7 @@ It is fair to ask what is lost during the pre-processing of texts. Many are incl
 
 Figure \@ref(fig:idi-hist) shows the right-skewed distribution of idiosyncrasy. The median text lost about one tenth (`r stm$meta[,(100*median(idi)) %>% round(2)]` percent) of its words, while 90 percent of texts are within two tenths, and outliers begin at about three tenths as can be seen in the boxplot. The `r stm$meta[, sum(idi>.3) %>% nn]` (`r stm$meta[,(100*mean(idi>.3)) %>% round(2)]` percent of) texts above three tenths vary across a range as wide as the rest of the distribution. The most idiosyncratic text, at `r stm$meta[,(max(idi)*100) %>% round(1)]` percent of its vocabulary lost, is `r whwh(stm$meta,stm$meta[,which.max(gp)])`.^[`r stm$meta[which.max(idi),url]`] The article, from the journal *`r stm$meta[which.max(idi),sotit]`*, is a single page introduction in English to a 12 page essay reprinted in the original Hebrew. By page count alone we would expect the idiosyncrasy to be 12/13 or `r round(12/13*100,1)` percent, which also illustrates how terms that are not in the Roman alphabet may be discarded as OCR errors even prior to the idiosyncrasy measurement.
 
-```{r idi-hist, include=T,fig.scap='Distribution of idiosyncracy, the proportion of document vocabularly dropped during pre-processing. Pluses indicate outliers.'}
+```{r idi-hist, include=T,fig.cap='Distribution of idiosyncracy, the proportion of document vocabularly dropped during pre-processing. Pluses indicate outliers.',fig.cap='Distribution of idiosyncracy, the proportion of document vocabularly dropped during pre-processing.'}
 p1<-myth(ggplot(stm$meta,aes(y=idi))) + geom_boxplot(outlier.size = 3,outlier.alpha = 1,outlier.shape = '+') + coord_flip() + blanky + ylim(stm$meta$idi %>% range)
 p2<-myth(ggplot(stm$meta,aes(x=idi))) + geom_histogram(binwidth=.02,color='white') + theme(axis.title.x = element_blank())+ xlim(stm$meta$idi %>% range)
 egg::ggarrange(p2,p1, heights = c(3,1))
@@ -458,7 +458,7 @@ egg::ggarrange(p2,p1, heights = c(3,1))
 
 Figure \@ref(fig:gp-hist) shows the logarithm of the count of the term genre as a proportion of the total term count of a text. This distribution is much more highly skewed but contains fewer outliers. In the median text a genre variant accounted for about `r stm$meta[,(1000*median(gp)) %>% round]` in 1,000 terms, while at the 90th percentile the rate is `r stm$meta[,quantile(gp,p=.9)*1000] %>% round` in 1,000. `r stm$meta[,sum(gp>.1) %>% nn]` texts (`r stm$meta[,(mean(gp>.1)*100) %>% round(2)]` percent) are outliers where one in ten or more words is a genre variant. The text with the largest genre proportion, at `r stm$meta[,(max(gp)*100) %>% round(1)]` percent of its words, is `r stm$meta[which.max(gp),auth[[1]]$last %>% nl]`'s "`r stm$meta[which.max(gp),tit %>% tolower %>% tools::toTitleCase(.)]`"^[`r stm$meta[which.max(gp),url]`], a single page introduction in a special issue of *`r stm$meta[which.max(gp),sotit]`* on genres. 
 
-```{r gp-hist, include=T,fig.scap='Distribution of $log_{10}$ of the count of the term "genre" as a proportion of all terms in a text. Pluses indicate outliers.'}
+```{r gp-hist, include=T,fig.cap='Distribution of $log_{10}$ of the count of the term "genre" as a proportion of all terms in a text.',fig.cap='Distribution of $log_{10}$ of the count of the term "genre" as a proportion of all terms in a text. Pluses indicate outliers.'}
 p1<-ggplot(stm$meta,aes(y=gp)) + geom_boxplot(outlier.size = 3,outlier.alpha = 1,outlier.shape = '+') + scale_y_log10(limits=range(stm$meta$gp)) + coord_flip() + theme_bw() + blanky
 p2<-myth(ggplot(stm$meta,aes(x=gp))) + geom_histogram(bins=25,color='white') + scale_x_log10(limits=range(stm$meta$gp)) + theme(axis.title.x = element_blank())
 egg::ggarrange(p2,p1, heights = c(3,1))
@@ -563,7 +563,7 @@ First are diagnostics that each attempt to make sense of the problem of false, o
 
 Ghost probabilities are terms that are expected to be but are not actually present in a document. By the logic of the topic model these occur because documents draw on only partially overlapping vocabularies; those parts of the vocabulary that do not overlap will still be assigned to the topic and will be present only in some documents. These may well include idiosyncratic terms, in which case they represent a bad fit. If they are taken as valid then they imply that if a document were to be written again, or to continue to be written, then eventually these terms would show up. Indeed we expect the proportion of ghost terms to be higher the shorter the document, even when the topic in which it is classified is well behaved. In the spreading activation theory briefly mentioned above, to the extent that topics can be thought of as a meaningful grounding that helps to control both the generation and interpretation of texts, then it is possible that the reading of a document containing only a portion of the topic will elicit or bring close to the mind terms that are not actually present. If the grounding is expected to be corrupted, for instance with the idiosyncrasies of very long documents, then ghost terms are a source of bias. So ghost terms are either a feature or a bug depending on how the topic model is itself reified.
 
-```{r ghost, include=F,fig.scap='Sum of document proportion of terms predicted to be present but are actually mssing. Pluses indicate outliers.'}
+```{r ghost, include=F,fig.cap='Sum of document proportion of terms predicted to be present but are actually mssing. Pluses indicate outliers.',fig.cap='Sum of document proportion of terms predicted to be present but are actually mssing.'}
 f<-'d/p/genre-ghost.RData'
 if(file.exists(f)){
   load(f)
@@ -588,7 +588,7 @@ The sum of ghost term probabilities by document ranges from only a few (`r ghsta
 
 In a topic model every document is predicted to be a distribution across the entire corpus. The fewer the number of words in the text, the more it will be predicted to contain words not appearing in the original. From the model perspective a small text, like any small sample, will be expected to have high variance across multiple draws. This implies that the particular instantiation of the text is arbitrary. Another way to say this is that the grounding of smaller texts is much more important than for larger texts, since there are many more blanks to be filled in. The uncertainty around small texts from a statistical perspective inverts the usual sense that a reader has that a smaller portion of text is easier, not harder, to understand, or from the writer's perspective, that brevity is the soul of wit. Of course such ease would derive from the quality of the reader's own grounding; short texts never seen before may be difficult for both human and machine alike to classify because they lack the length to disambiguate the proper grounding. In any event readers using a topic model to understand short texts should question whether the model's best guess is indeed the proper semantic context for interpretation.
 
-```{r ghostN,include=T,fig.scap='Ghost probabilities, the sum of document proportion of terms predicted to be present but are actually missing, by document length. Ghost probabilities are on log-odds scale, and document length is on $log_{10}$ scale. The blue line is a linear fit on transformed data.',dev='png'}
+```{r ghostN,include=T,fig.cap='Ghost probabilities, the sum of document proportion of terms predicted to be present but are actually missing, by document length. Ghost probabilities are on log-odds scale, and document length is on $log_{10}$ scale. The blue line is a linear fit on transformed data.',fig.cap='Ghost probabilities, the sum of document proportion of terms predicted to be present but are actually missing, by document length.',dev='png'}
 f<-'d/b/genre-ghostN.RData'
 if(file.exists(f)){
   load(f)
@@ -814,7 +814,7 @@ Finally, the LTP distributions explored above are based on the arbitrary cutoff 
 
 Topic 6 reaches the threshold first at an index of `r ct['6',on='T',cut]`, which is a considerably shorter list than `r ith`. Topic 6 also starts with the highest curve, meaning that it can be summarized by a short list of high probability terms. Starting high does not necessarily mean a topic will finish early, as evidenced by topic 10, which starts as high as topic 6 but grows more slowly and finishes late. The reverse is also possible, as in the case of topic 10 that starts low and finishes early. Topics can therefore cross each other in the explanatory power of their term lists. Overall the topics are divided into a faster (topics `r ct[.(2),on='g',nl(T %>% rev)]`) and a slower (topics `r ct[.(1),on='g',nl(T)]`) group. 
 
-```{r elbow1p,include=T,fig.scap='Cumulative distribution of within topic term probabilities. Dotted line at p = 2/3'}
+```{r elbow1p,include=T,fig.cap='Cumulative distribution of within topic term probabilities. Dotted line at p = 2/3.',fig.cap='Cumulative distribution of within topic term probabilities.'}
 p1<-myth(ggplot(elb[t<=2/3],aes(x=i,y=t,color=T)),'Paired') + geom_line(size=1) + theme(legend.position = c(.98,.02),legend.justification = ec('right,bottom')) + geom_hline(yintercept=2/3,linetype='dotted') + geom_point(data=elb[t<=2/3,.(mi=max(i),mt=max(t)),by=T],aes(x=mi,y=mt,color=T))
 plt(p1,hovinf='text') %>% plotly::style(visible="legendonly", traces = setdiff(1:10,c(2,5,6,10)))
 ```
@@ -861,7 +861,7 @@ mbt<-rbindlist(mbt)[,K:=factor(K)][,exp:=exp(x)]
 
 Similarly, Figure \@ref(fig:log10-betap) shows the topic probability distribution but for terms rather than documents. Here there is no neat separation of modes between zero predictions and substantive ones. At each K there is a single mode at a very low probability of less than 1 in 10,000. In the figure the body around the mode appears to account for more of the distribution than is actually the case, as the graph is truncated at 1e-10. Not shown are the expansive left hand tails of vanishing probabilities. The portion of the distribution to the left of an arbitrary point of 1e-6 at the left base of the mode is `r mbt['2',on='K',mean(exp<1e-06)*100] %>% round(1)` percent at K = 2 and `r mbt['10',on='K',mean(exp<1e-06)*100] %>% round(1)` percent at K = 10. Similar to the balancing of ones and zeroes above, this fattening left tail implies that as K increases and more terms find a home in a particular topic (as the right tail thickens) the more those same terms are excluded from the other topics (the left tail thickens at a faster rate). It is worth noting that from the model perspective there are many terms that are not in the long left tail that contribute to document classification for a topic but whose probabilities are nonetheless so small that researchers are likely to dismiss them as unimportant. Within the model, a term with a probability of 1 in 1,000,000 would count as a substantive term belonging to the body of the distribution.
 
-```{r log10-betap,include=T,fig.scap='As K increases, curve flattens toward more higher and more lower term probabilities, logit scale. Left tail truncated at p < 1e-10.'}
+```{r log10-betap,include=T,fig.cap='As K increases, curve flattens toward more higher and more lower term probabilities, logit scale. Left tail truncated at p < 1e-10.',fig.cap='As K increases, curve flattens toward more higher and more lower term probabilities, logit scale.'}
 p1<-ggplot(data=mbt[exp>=.1^10]) + stat_bin(aes(x=exp,color=K,stat(density)),position='identity',geom='step',bins=100) + theme_bw() + viridis::scale_color_viridis(discrete = T,end = .9) + scale_x_continuous(breaks = bk,trans='log10') + xlab('topic by term probability, log10 scale')
 p1
 ```
@@ -870,7 +870,7 @@ We can use the modal separation as a natural break in the log-odds of the docume
 
 Substantively may suspect whether documents near the endpoints are indeed relevant to the topics, which implies an overcounting of relevance and a different threshold earlier in the trend perhaps nearer the elbow of each curve. It may be more useful to compare the relative landing points as well as the trajectories of the curves. The steeper the curve at the beginning, the more the topic contains strongly classified documents. Curves that grow more slowly are more likely to be in mixtures with other topics, and those that slow rapidly and come to their endpoint sooner simply represent a smaller segment of the corpus. Inspecting the first 500 documents shows four separate trajectory clusters, which do not merely reproduce the ultimate topic sizes. The low group contains topics 3 and 8. These are the smallest overall topics by document count, yet inspecting the first 50 documents in each curve reveals that topic 8 starts with stronger document classifications than most topics but declines in rank by virtue of representing fewer documents overall. The next group contains topics 7 and 10, which start with lower classification strengths than most topics but also maintain their momentum to eventually land in the middle of the distribution. Topic 7 especially has a low trajectory but does better at maintaining it, which may indicate that it is rarely a star but commonly a supporting actor in document mixtures. The third trajectory group--topics 6, 5, 2, 4, and 9 by final count--starts in a bundle of strong classification before diverging rapidly at about index 700 as they approach their endpoints. Finally on a trend of its own is topic 1, which sustains strong classifications longer than any other topic.
 
-```{r elbow2,include=T,fig.scap='Cumulative distribution of within topic document probabilities, truncated at junk threshhold. Dashed line is linear fit to endpoints.'}
+```{r elbow2,include=T,fig.cap='Cumulative distribution of within topic document probabilities, truncated at junk threshhold. Dashed line is linear fit to endpoints.'}
 h<-c(1:10)
 elb<-mod[[9]]$doc.top.theta[,h] %>% t %>% apply(1,sort,decreasing=T) %>% data.table %>% as.list
 # tst<-elb %>% unlist %>% sample(1000) %>% {data.table(t=.,g=fpc::pamk(boot::logit(.),krange = 2)$pamobject$clustering)} %>% {.[,.(m=summary(t) %>% list),by=g]$m} %>% do.call(rbind,.) %>% data.table
@@ -922,7 +922,7 @@ p1
 The concentration idea can be flipped to apply to documents within topics and terms within topics, and doing so provides useful dimensions along which to organize topics. The document within topic Gini measures whether the total document space taken up by the topic is spread evenly or not, holding constant the size of both documents and topics. The term within topic Gini on the other hand holds topic size constant but not term frequency, which is desirable in that minor documents are more worthy of equal treatment than minor terms. A high term within topic Gini represents what we noticed above that some topics more than others can be well described by a relatively short list of important terms. Figure \@ref(fig:top-gini) plots topics along each of these concentrations. It is divided into four regions split at the median of each axis.  In the green quadrant are topics that are highly concentrated in both documents and terms, in the red quadrant are topics that are relatively diffuse on each dimension, and in the yellow are topics that are concentrated in one but not the other.
 
 
-```{r top-gini,include=T,fig.scap='Topic concentrations (TC) within documents by TC within terms. Diamonds proportional to term frequency explained by each topic'}
+```{r top-gini,include=T,fig.cap='Topic concentrations (TC) within documents by TC within terms. Diamonds proportional to term frequency explained by each topic'}
 gin<-data.frame(t=mod[[9]]$top.word.phi.beta %>% apply(1,ineq::Gini),d=mod[[9]]$doc.top.theta %>% apply(2,ineq::Gini)) 
 p1<-gin %>% {myth(ggplot(data=.,aes(x=d,y=t))) +
     ggplot2::annotate(geom='rect',xmin=.$d %>% median,ymin=.$t %>% median,xmax=.$d %>% range %>% max,ymax=.$t %>% range %>% max,fill='green',alpha=.1) +
@@ -968,7 +968,7 @@ xel<-lapply(xt,function(x) data.table(s=x$observed %>% colnames %>% .[1],r=x$obs
 ```
 
 
-```{r man-con,include=T,fig.scap='Topic confusion network. Tied topics contained at least two errors in blind manual sorting test. Untied topics were perfectly separated. Colors represent a topic\'s number of imperfect tests.'}
+```{r man-con,include=T,fig.cap='Topic confusion network. Tied topics contained at least two errors in blind manual sorting test. Untied topics were perfectly separated. Colors represent a topic\'s number of imperfect tests.'}
 xg<-xel[,{
   g<-graph_from_edgelist(.SD %>% as.matrix,F)
   edge_attr(g,'weight')<-ew
@@ -1192,7 +1192,7 @@ rnk<-lapply(mem,lapply,function(x) data.table(d=x,r=length(x):1)) %>% lapply(rbi
 
 The assumption that the depth of a topic's lineage is an indicator of the strength of its statistical signal implies stability in both the term and document list for each stratum of the lineage. The truth is mixed. The longer the lineage the more churn one would expect in term rankings as its meaning develops toward a more refined vocabulary. Refinement here means that portions of term frequencies are regrouped when a k slot becomes available and the smaller portion is pieced out of the lineage. Figure \@ref(fig:lineage) shows the top 40 terms by probability for the topic 2 lineage. It is clear that there is a gradual reversal of two main term clusters. Early in the lineage it is driven by terms relevant to literary studies such as work, text, form, narrative, book, poem, and author. Certain of these, like literature, narrative, and history, decline gradually. Others, like text, poem and author, maintain their status. Unmistakably terms relevant to religion climb in prominence, with god appropriately rising to take the mantle of topic 2. Interpreting topic 2 in the context of its lineage suggests that in this corpus the study of religion is a subfield of literary studies. This has face validity given the importance of studying texts for both fields. It would be more difficult to perceive this relationship between literature and religion taking the conventional approach of using only the lateral topics within the k = 10 model as context.
 
-```{r lineage,include=T,fig.asp=1,fig.scap='Top 40 term rank changes over topic 2 lineage. Blue are increasing, red decreasing, gray unchanged, and green solitary.'}
+```{r lineage,include=T,fig.asp=1,fig.cap='Top 40 term rank changes over topic 2 lineage. Blue are increasing, red decreasing, gray unchanged, and green solitary.'}
 lind<-sapply(mod,function(x) x$doc.top.theta[,2] %>% order(decreasing=T) %>% head(10))
 linr<-sapply(mod,function(x) x$top.word.phi.beta[2,] %>% order(decreasing=T) %>% head(40) %>% {x$vocab[.]})
 linr %<>% melt %>% data.table %>% setnames(ec('rank,mod,term')) %>% setkey(mod,term)
@@ -1230,7 +1230,7 @@ Document level indicators:
 - **Residuals**: <!--res--> The higher the document differences between the predicted and observed term probabilities.
 - **Document Primary Class LTP**: <!--pltp--> The higher the document proportions of terms below the topic by term junk threshold by primary topic class.
 - **Document Total Class LTP**: <!--altp--> The higher the document proportions of terms below the topic by term junk threshold by all topic classes.
-- **Mean belwether classification strength**: <!--m300-->The lower the document probability of the first 300 documents of topic.
+- **Mean bellwether classification strength**: <!--m300-->The lower the document probability of the first 300 documents of topic.
 
 Topic level indicators:
 
@@ -1258,7 +1258,7 @@ csr<-suppressWarnings(stm$meta[so!=''][!grepl('book',file_name),table(.SD),.SDco
 DT::datatable(csr,filter = 'top',escape = F,rownames = F)
 ```
 
-### Belwether texts
+### Bellwether texts
 
 ```{r man-sort}
 mann<-fread(dir(pattern='notes-1563337035',recursive = T))[,man:=sub('man([0-9]+).+','\\1',file) %>% as.integer] 
@@ -1271,7 +1271,7 @@ Recall that the inspection of bellwethers occurred in the context of a shuffled 
 
 ### Terms
 
-```{r genr-mod-viz,include=T,fig.scap='Topic Term Explorer, K=10. [*Interactive pop-out.*](ldaviz/viz/index.html#topic=6&lambda=0.5&term=){target="_blank"}'}
+```{r genr-mod-viz,include=T,fig.cap='Topic Term Explorer, K=10. [*Interactive pop-out.*](ldaviz/viz/index.html#topic=6&lambda=0.5&term=){target="_blank"}'}
 invisible(suppressWarnings(capture.output(lda2viz.f(mod[[length(mod)]],out.dir = 'ldaviz',launch = F))))
 knitr::include_graphics('img/genr-mod-viz.png')
 ```
@@ -1506,7 +1506,6 @@ rm(f)
 if(docx|latex) knitr::include_graphics('img/clusters2.png') else p1 %>% plotly::style(visible="legendonly", traces = setdiff(1:60,matrix(1:60,nrow=6)[,c(2,4,10)]))
 ```
 
-
 ## Reading strata
 
 Table \@ref(tab:hottable) provides a numerical summary of Figure \@ref(fig:hotleaf) replacing documents with their clusters and tabulating the number of documents in which a topic is dominant. The rows and columns are in the same order as the figure. Treating these `r nC` clusters as sampling strata is a more manageable research design than the above mentioned 45 to 90 pairwise strata and reflect the empirical reality that three way combinations are rare and that not all pairwise combinations are important. They also narrow us to a research question that is either diagnostic or substantive depending on what the qualitative content of texts holds. The substantive question is, how does the content of a topic change when discussed in isolation versus in combination? The diagnostic question is, what happens to the content of a topic when the when its documents are not well explained by the available topic context.
@@ -1670,8 +1669,7 @@ p<-stm$meta[,{
 p
 ```
 
-## Discussion
-
+## Results
 
 ```{r}
 dc.f<-function(ix,mdl,term){
@@ -1697,27 +1695,22 @@ dc.f<-function(ix,mdl,term){
 }
 ```
 
-
 The first point concerns the urchin. Above we posited that it is in the spines of the urchin that the essence of topics is found, and it is the body that contains the idiosyncrasy. This is true for the good version of a bad model, but it is likely that topic model estimators actually find a different, worse version of a bad model. Consider the status of horror in the film topic. Horror was a subgenre of film and it was ranked very highly on the film topic, indeed horror articles were the bellwethers. The reason was that the topic came to most strongly associated with the component of it with the most distinctive vocabulary. Drama, for example, which uses a less fantastic and more relateable vocabulary, is drawn down the spine where it can mingle with the topics to which it is connected. Why should the weirdest component of a topic be treated as its most essential? This is a trend that all underspecified topic models will exhibit.
 
-It is likely a mistake, however, to interpret the topic only with respect to its weirdest component. Weirdness here is not idiosyncrasy, because weirdness is something common and recognizable, whereas idiosyncrasy is individual and invisible.
+<!--It is likely a mistake, however, to interpret the topic only with respect to its weirdest component. Weirdness here is not idiosyncrasy, because weirdness is something common and recognizable, whereas idiosyncrasy is individual and invisible.-->
 
-The easiest way to test the expectation that perfectly classified documents are actually biased upward by idiosyncracy is to look directly at how the words they contain are classified. For clarity we assign every term in a document to a single topic though it is technically a distribution across all topics. A method to quickly accomplish this and simplify the topic descriptions is to treat each document as a term by topic matrix, project the matrix as a bimodal network, and perform the Louvain community detection method described in [Chapter 2][#network-community-detection]. Within the resulting clusters, which will contain terms and topics, we sort items in decreasing order of their total probability, meaning the strongest topics and most frequent terms will be listed first. Given these lists, we can easily see whether the terms in a text assigned to a given topic are really reflective of our theory of that topic.
+The easiest way to test the expectation that perfectly classified documents are actually biased upward by idiosyncracy is to look directly at how the words they contain are classified. For clarity we assign every term in a document to a single topic though it is technically a distribution across all topics. A method to quickly accomplish this and simplify the topic descriptions is to treat each document as a term by topic matrix, project the matrix as a bimodal network, and perform the Louvain community detection method described in [Chapter 2][Network Community Detection]. Within the resulting clusters, which will contain terms and topics, we sort items in decreasing order of their total probability, meaning the strongest topics and most frequent terms will be listed first. Given these lists, we can easily see whether the terms in a text assigned to a given topic are really reflective of our theory of that topic.
 
-Limiting ourselves to the social science subsample, let's compare the most highly ranked music article, `r whwh(stm$meta,6249)`, with an article that is only estimated to be `r mod[[9]]$doc.top.theta[6249,6]` about music, e.g. `r whwh(stm$meta,4895)`.
+Limiting ourselves to the social science subsample, let's compare the most highly ranked music article, `r whwh(stm$meta,6249)` ([#6249](`r stm$meta$url[6249]`){target="_blank"}), which is estimated to be `r {hr<-mod[[9]]$doc.top.theta[6249,6] %>% {round(.*100)};hr}` percent about music, with the lower ranked `r whwh(stm$meta,3623)` ([#3623](`r stm$meta$url[3623]`){target="_blank"}), which is estimated to be `r {lr<-mod[[9]]$doc.top.theta[3623,6] %>% {round(.*100)};lr}` percent about music. Figure \@ref(fig:txt-com) plots some of the words from each of these texts. Shown are the words for which topic 6 was their highest probability. Note that several overlapping words are ommitted for legibility, so this is illustrative of the content. Each of the words was inspected and judged to be relevant to music, maybe relevant, and not relevant. In the yes category are terms with a clear musical reference such as performance, cultural, popular, and entertainment. In the maybe category are words that are plausibly related to music but apper to refer to one or more suppressed topics. Religious and youth, for instance, belong to different domains even if they make sense in combination with music. In the no category are words that are either idiosyncratic to the text (like India and Jamaica) or are very general (like number and examples). Words at the same vertical location contribute equally to the total topic score for each text, and while the yes words have a higher mean probability there is also considerable overlap with the less revelant categories of terms.
 
-```{r, include=T}
+```{r, include=F,eval=F}
 g<-dc.f(6249,mod[[9]],trm)
 noquote(g['music'])
-```
-
-```{r, include=T}
 g<-dc.f(3623,mod[[9]],trm)
 noquote(g['music'])
 ```
 
-
-```{r,include=T,fig.asp=1.5,fig.cap='Comparison of an article that is nearly all music and one that is half music.'}
+```{r txt-com,include=T,fig.asp=1,fig.cap=sprintf('Terms estimated from music topic and present in text, by document probability and relevance to music. Document 6249 is %s percent and document %s percent about music. Some terms ommitted to prevent overlap.',hr,lr)}
 gtw<-function(ix,tp){
 g<-(mod[[9]]$doc.top.theta[ix,]*mod[[9]]$top.word.phi.beta)[,mod[[9]]$documents[[ix]][1,]] 
 n<-which(apply(g,2,which.max)==tp) %>% names
@@ -1738,7 +1731,50 @@ cm[,t:=as.character(t)]
 #plt(myth(ggplot(data=cm,aes(x=rank,y=cp,color=ix,group=ix)) + geom_line(aes(text=t))),hovinf = 'text',tooltip='text')
 if(F) cm[!duplicated(t),write.table(cbind(g='',t=t),file = sprintf('d/p/man-term-qual-sort-%s.txt',Sys.time() %>% as.integer),sep = '\t',row.names = F,quote = F)]
 qs<-fread(dir(pattern='man-term-qual-sort',recursive = T)[1])
-cm[qs,on='t',g:=factor(g,levels=ec('y,m,n'))]
-myth(ggplot(data=cm[!is.na(g)],aes(x=g,y=p,label=t,color=ix)) + geom_text(hjust=cm[!is.na(g)]$ix %>% as.integer %>% {ec('left,right')[.]},check_overlap = T,nudge_x = cm[!is.na(g)]$ix %>% as.integer %>% {c(.01,-.01)[.]}) + scale_y_continuous(trans='log'))
+cm[qs,on='t',g:=factor(g,levels=ec('y,m,n'),labels=ec('yes,maybe,no'))]
+cm[is.na(g),g:='no']
+cm<-cm[c('6249','3623'),on='ix']
+l<-levels(cm$ix) %>% rev
+cm[,ix:=factor(ix,levels=l)]
+myth(ggplot(data=cm[!is.na(g)],aes(x=g,y=p,label=t,color=ix)) + geom_text(size=3,hjust=cm[!is.na(g)]$ix %>% as.integer %>% {ec('right,left')[.]},check_overlap = T,nudge_x = cm[!is.na(g)]$ix %>% as.integer %>% {c(-.01,.01)[.]}) + scale_y_continuous(trans='log10')) + xlab('Is this term relevant to music?') + ylab('Probability (log10 scale)')
 ```
 
+
+```{r}
+setorder(cm,-p)
+# dcast(cm[!is.na(g)],formula = ix~g,value.var = 't',fun.aggregate = paste,collapse='\n')
+
+ix=3623
+k=6
+gp1<-(mod[[9]]$doc.top.theta[ix,]*mod[[9]]$top.word.phi.beta)[k,mod[[9]]$documents[[ix]][1,]]
+
+ix=6249
+gp2<-(mod[[9]]$doc.top.theta[ix,]*mod[[9]]$top.word.phi.beta)[k,mod[[9]]$documents[[ix]][1,]]
+tc<-merge(cm['6249',on='ix',.('6249'=round(sum(gp2[t])*100,2)),by=g],cm['3623',on='ix',.('3623'=round(sum(gp1[t])*100,2)),by=g],by='g') %>%
+  {list(.,data.table(g='Total','6249'=sum(.[['6249']]),'3623'=sum(.[['3623']])))} %>% rbindlist %>%
+  {data.table(
+    .
+    ,'  '=sprintf('(%s)',round(prop.table(.[['6249']][-4])*100,2) %>% c(sum(.))
+                  # round(.[['6249']]/hr*100,2)
+    )
+    ,'   '=sprintf('(%s)',round(prop.table(.[['3623']][-4])*100,2)%>% c(sum(.))
+                   # round(.[['3623']]/lr*100,2)
+    )
+  )} %>% setnames('g',' ') %>% setcolorder(c(1,2,4,3,5)) %>% {rbindlist(list(.,data.table('Topic Proportion',hr,'',lr,'')),use.names = F)}
+
+```
+
+We may now test the expectation that the bellwether texts, those with topic probabilites close to one, contain more classification errors than mixed texts with weaker classifications. Table \@ref(tab:txt-comt) compares the sums of the probabilities for each text by the music relevance categories. The estimated topic proportion of text 6249 is double that of text 3623. The sum of probabilites of only the words that actually appear in each text is much lower than the estimate; almost three quarters of the estimate are ghost probabilities accruing from terms that are not actually present in the text. Broken out by relevance category, the true classification portion is slightly lower. In the case of 6249, of the original `r hr` percent topic score, `r tc[['6249']][1] %>% round` are undeniably relevant to music.
+
+If bellwether texts had a higher rate of classification errors than lower ranked texts then their percentage of false positives would be higher. This can be seen in the number in parantheses, which standardizes the left hand column to sum to 100. At least when comparing these two texts, there appears to be no difference in the false positive (no) rate, which for both is between 11 and 12 percent. To be sure would require manual coding of a large number of texts, which is beyond scope for the current project. Suffice to say that the issue of idiosyncracy contaminating topic vectors is real and in these cases created a bias of about ten percent of the estimated topic probability when considering only terms present in the text. The proportions deriving from words not in the texts accounts for a much larger portion of the bias.
+
+```{r txt-comt,include=T}
+ix=6249
+ap1<-(mod[[9]]$doc.top.theta[ix,]*mod[[9]]$top.word.phi.beta)[,mod[[9]]$documents[[ix]][1,]] %>% prop.table %>% apply(1,sum) %>% .[6]
+ix=3623
+ap2<-(mod[[9]]$doc.top.theta[ix,]*mod[[9]]$top.word.phi.beta)[,mod[[9]]$documents[[ix]][1,]] %>% prop.table %>% apply(1,sum) %>% .[6]
+
+rbindlist(list(tc,data.table('Adjusted Topic Proportion',round(ap1*100),'',round(ap2*100),'')),use.names = F) %>% sg(tit='Document percentage of music terms (percentage of music share) relevant to music.')
+```
+
+Notwithstanding these prima facie quantiative findings, the content of the no list for each text are not entirely comparable. Text 6249 is about local markets for music in a state in India in the 1970s. The vocabularly relating to Indian culture, including references to Hinduism and Islam, found no home in another topic, even in topic 2 which is ostensibly about religion, and so wound up being categorized along with music. Text 3623 is about sexual imagery in Jamaican music videos. Save for the term "Jamaica", the no list contains terms that have general meanings. There is no obvious idiosyncratic content in its no list. The unique quality of this text was its concern with HIV and sexual behavior. Those medically relevant terms do not have a topic of their own, but in this case the idiosyncracy was allocated to one this text's other two topic assignments, either topic 5 (film) or topic 7 (women). If in each text we find both a generic and a unique story, the topic model is not designed to help us model the unique portion.

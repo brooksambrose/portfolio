@@ -165,7 +165,7 @@ This degree distortion can be controlled for by what is called a sociality term,
 
 Figure \@ref(fig:jclu-lnet) plots the results of a latent space model on the label facet omitting superdiscipline nodes. Figure \@ref(fig:layouts) plots the same in an animation comparing the latent space and traditional Fruchterman Reingold layouts. I will interpret the substance of the latent space layout below, but first I will comment briefly on some of the differences between it and the traditional layout.
 
-```{r jclu-net,eval=T,include=F,fig.cap='Discipline Network. Within-cluster ties are darker and between-cluster ties lighter.',fig.scap='Discipline Network.'}
+```{r jclu-net,eval=T,include=F,fig.cap='Discipline Network. Within-cluster ties are darker and between-cluster ties lighter.',fig.cap='Discipline Network.'}
 f<-'d/b/jclu2net.RData'
 if(file.exists(f)){
   load(f)
@@ -183,7 +183,7 @@ rm(f)
 #plt(jnet,tooltip='text') # TODO fix tooltips to omit edge tips
 ```
 
-```{r jclu-lnet,include=T,fig.cap='Discipline Network in Latent Space. Node size represents sociality. The larger a node, the more attractive it is, and the larger a white dot within a node, the more repulsive it is.',fig.scap='Discipline Network in Latent Space.'}
+```{r jclu-lnet,include=T,fig.cap='Discipline Network in Latent Space. Node size represents sociality. The larger a node, the more attractive it is, and the larger a white dot within a node, the more repulsive it is.',fig.cap='Discipline Network in Latent Space.'}
 f<-'d/b/jclu2lnet.RData'
 if(file.exists(f)){
   load(f)

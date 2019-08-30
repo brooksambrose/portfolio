@@ -167,7 +167,7 @@ rm(f)
 
 The structure of a large world as revealed by KCC can be explored in a bottom-up and top-down fashion. Bottom-up observes 3-clique communities first. In the social science co-reference network.
 
-```{r kcc2tree, fig.scap='K-clique Community Structure. [*Interactive pop-out.*](exh/tree.html){target="_blank"}',eval=T,include=T, message=FALSE, warning=FALSE,screenshot.force = TRUE}
+```{r kcc2tree, fig.cap='K-clique Community Structure.',fig.cap='K-clique Community Structure. [*Interactive pop-out.*](exh/kcc2tree.html){target="_blank"}',eval=T,include=T, message=FALSE, warning=FALSE}
 f<-'d/b/kcc2tree.RData'
 if(file.exists(f)){
   load(f)
@@ -175,10 +175,11 @@ if(file.exists(f)){
   #{load('d/p/cos2kcc.RData');load('d/p/bel2mel.RData');load('d/p/wok2dbl.RData')}
   system.time(kcc2tree<-kcc2tree.f(cos2kcc,bel2mel,wok2dbl,sides = 100,transform=T))
   save(kcc2tree,file=f)
-htmlwidgets::saveWidget(kcc2tree$int,file = getwd() %>% paste('exh','tree.html',sep=.Platform$file.sep),background='gray',selfcontained = F)
+htmlwidgets::saveWidget(kcc2tree$int,file = getwd() %>% paste('exh','kcc2tree.html',sep=.Platform$file.sep),background='gray',selfcontained = F)
 }
 rm(f)
-kcc2tree$int
+knitr::include_graphics('img/kcc2tree.png') 
+#kcc2tree$int
 ```
 
 
@@ -243,7 +244,7 @@ The KCC model reveals
 The peer review process can now be thought of as a process of auditing credentials. An author makes an opening bid with the submission of a particular reference list. What this reference list implies about what the author knows is unclear. One may omit a knowledge signal because it is truthfully irrelevant or in a deceptive sin of omission oriented to what they expect to be the expectations of editors and reviewers. One may also include what they do not know out of error, braggadocio, carelessness, or fraud. Part of the work of reviewers will be to validate those claims to knowledge.
 
 
-```{r kcc2isl,fig.scap='K-clique Community Island Plot. [*Interactive pop-out.*](exh/isl3d.html){target="_blank"}',include=T,eval=T,cache=T}
+```{r kcc2isl,fig.cap='K-clique Community Island Plot. [*Interactive pop-out.*](exh/isl3d.html){target="_blank"}',include=T,eval=T,cache=T}
 f<-'d/b/kcc2isl.RData'
 if(file.exists(f)){
   load(f)

@@ -108,6 +108,11 @@ wrk<-rat[between(year,1888,1922),summary(ratio)]
 
 This period represents one of stable growth, as the size of the field grows with the number of players on it. Between 1888 and 1922 there tended to be about `r nn(wrk['Median'],0)` new PhD's in the U.S. for every social science journal even as each population grew year over year. These growth patterns begin to diverge around `r jfig$d[super=='Social Sciences'][g1==3][1,year]` as a decades long acceleration of personnel begins, relatively slowly between 1920 and 1960 at an average acceleration rate of `r rat[between(year,1920,1960,F),nn(ratio %>% mean)]` PhDs per journal per year, and then quite precipitously in the 1960s at an average acceleration rate of `r rat[between(year,1960,1980,T),nn(ratio %>% mean)]`.
 
+```{r lyn,include=T,fig.cap='JSTOR journal birth and death rates'}
+load('d/b/pli.RData')
+pli
+```
+
 
 ## Topics `r if(latex) '\\normalfont{≟}' else '≟'` Ideas
 
