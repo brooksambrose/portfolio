@@ -4959,31 +4959,27 @@ $music
 
 \begin{verbatim}
 $music
-  [1]  6            music         cultural      dance         popular      
-  [6] play          form          group         people        style        
- [11] record        university    black         press         including    
- [16] years         local         public        early         identity     
- [21] notes         white         listening     create        members      
- [26] change        contemporary  original      long          similar      
- [31] large         major         found         hip           young        
- [36] drum          hop           day           late          aesthetic    
- [41] began         hand          interview     influence     central      
- [46] authenticity  youth         today         entertainment mass         
- [51] middle        professional  emergence     range         beat         
- [56] single        chicago       love          association   scholars     
- [61] don           dominant      club          hear          bass         
- [66] mid           diverse       led           celebration   promote      
- [71] taste         held          brought       bar           due          
- [76] roots         unique        attend        friend        punk         
- [81] electronic    fig           underground   broader       venues       
- [86] ties          dress         decline       younger       fieldwork    
- [91] subculture    cul           wearing       months        believed     
- [96] owner         passing       grew          alter         epic         
-[101] spoke         leisure       adorno        traits        poetic       
-[106] peterson      smaller       stuff         grass         nightclub    
-[111] lifestyle     bennett       ran           techno        ecstasy      
-[116] retained      pants         acid          enthusiasts   peak         
-[121] cohort        thornton      diminished    alcohol       prop         
+ [1]  6             music          song           cultural      
+ [5] popular        play           form           style         
+ [9] people         black          sound          singer        
+[13] rock           band           country        terms         
+[17] jazz           lyric          class          blues         
+[21] development    rap            create         original      
+[25] members        drum           meaning        festival      
+[29] region         urban          large          line          
+[33] late           classical      found          began         
+[37] album          theme          youth          influence     
+[41] metal          interview      middle         heard         
+[45] guitar         research       area           school        
+[49] activity       hear           church         bass          
+[53] center         heavy          born           june          
+[57] august         punk           secular        entire        
+[61] finger         meant          higher         spread        
+[65] residents      grew           drew           expanded      
+[69] sheet          stuff          bennett        birmingham    
+[73] membership     counterculture distorted      judas         
+[77] angry          sabbath        sony           faust         
+[81] stamp          ham            seville       
 \end{verbatim}
 
 \begin{figure}
@@ -5479,6 +5475,341 @@ sen & 0.0118 & 0.2304 & -0.5078 & 0.6471 & 0.4973 \\
 
 \caption{Significant Counts of K}\label{fig:mlk-tab}
 \end{figure}
+
+\hypertarget{cit}{%
+\chapter{The Social Science Citation Landscape, 1900-1940}\label{cit}}
+
+\hypertarget{abstract-4}{%
+\subsubsection*{Abstract}\label{abstract-4}}
+
+
+Knowledge mapping of academic journals promotes the
+conservation of intellectual history and stimulates discovery of
+underexplored intellectual opportunities. Treated as a large network
+community detection problem, I demonstrate how to apply the clique
+percolation method to map two kinds of recorded knowledge: citations and
+full text. The features of generated maps are explained, and
+interpretive methods including visualization are presented. We use
+American social science scholarship in the first third of the 20th
+century prior to U.S. entry into World War II as a case, and describe
+how the intellectual landscape of four separate social science
+disciplines developed.
+
+\hypertarget{keywords-4}{%
+\subsubsection*{Keywords}\label{keywords-4}}
+
+
+citations, k-clique communities, community detection,
+landscape
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\hypertarget{wok}{%
+\subsection{Mapping Knowledge Terrain}\label{wok}}
+
+There are two reasons to map knowledge spaces. First, we may want to
+know how knowledge develops as a resource unto itself. Second, we may
+want to exploit such a map for a productive purpose. Here we will
+attempt the second as prologue to the first. We will tackle the
+technical problems of constructing a map. We will show how a map can be
+put to use. Finally, we will investigate how the particular map we make
+may tend to predictably get us lost.
+
+All knowledge mapping requires first an ontological and then an
+analytical action. Ontological actions delineate the things that matter.
+They arbitrarily construct from perception the items that we then think
+about. While ontological decisions tend to define the scope of
+everything that may be learned from an investigation, they are often
+assumed rather than demonstrated. Actor Network Theory (ANT) provides a
+unique example of a method of research that, because it is ethnographic
+and thus marinating in an abundance of perception, allows the cast of
+ontic characters to grow. Literally anything can be deigned significant
+for inclusion in a web of knowledge. In an ANT study of science, if the
+feel of a reading chair modifies a reader's orientation to a text they
+are reading, the chair counts.
+
+The lion's share of knowledge mapping studies are not so ontologically
+radical as ANT. Take the field of bibliometrics. The ontological
+decision here is to take documents as the primary ontic. Documents are
+nothing but collections of glyphs, so the first task of bibliometricians
+tends to be to map glyphs to terms and analyze them. Here we have
+already used the ontic triad underlying bibliometrics. In the sentence
+
+\begin{quote}
+``Go, dog, go!''
+\end{quote}
+
+there are twelve discrete glyphs and two terms. A grammatical cutting
+rule renders the glyph sequences as
+
+\begin{quote}
+``Go,'' ``dog,'' ``go!''
+\end{quote}
+
+and a tokenization rule maps the cuts to two terms
+
+\begin{quote}
+``go'' ``dog'' ``go''
+\end{quote}
+
+which may in turn be analyzed, for instance by counting the tokens. The
+documents form the bins within and across which the terms will be
+analyzed. The token, as a mere operational step, is used and then
+dispensed with unless questions of measurement surface. Clearly the
+\emph{glyph-term-document} (GTD) ontic does not care about the armchair
+of a reader of a document, and indeed does not even care about the
+reader herself.
+
+So the reader is invisible because she is not inscribed in the document.
+What about the writer? Bibliometricians may back fill GTD by entity
+recognition or grounding. Once terms are recognized, we may further
+recognize that we know more about them. A simple example of this is
+pulling out ``metadata'', for instance, the author of a document. The
+author's name is not just any term, but a conceptually very important
+one. Grounding is how bibliometrics may be linked to theories and
+programs of greater importance.
+
+Bibliometrics has indeed been based more on the reference of a text as a
+particular grounded entity rather than on the use of the full text of a
+document. If a text is a building, the reference is its address. More
+precise than a name, an address is a codification of different
+hierarchically ordered elements that describe the location of an entity.
+The consistent tokenization of a reference is not an easy task, as it
+depends on entity recognition of several different kinds of things,
+including year of publication, author, title, and source.
+
+The citation became the basis of the concept of a web of knowledge as
+coined in the work of Eugene Garfield and institutionalized in the
+Institute for Scientific Information (ISI).
+
+Citations solved the problem that ideas do not have signatures or
+addresses that we can trace reliably. Jargon is an attempt to give an
+idea a unique address as an idiosyncratic term, and etymology seeks to
+hierarchically order words according to their origins, but an idea per
+se will always elude precise identification. Unlike a document, an idea
+is not mechanically reproducible; it always requires interpretation and
+understanding in a mind, and a mental event as subtle as an idea cannot
+be observed.
+
+\citep{Lederberg2000How} Garfield conflates citations with several roles
+in the network around ideas. Compares value of citations to value of
+subject coders, coding meaning of paragraphs intractable. ISI became a
+commercial pursuit because Garfield failed to get scientific
+institutions, especially the NSF, to fund it. The goal was primarily
+practical, to give researches access to current or historical references
+relevant to articles, perhaps especially their own, they knew they were
+already interested in.
+
+Unlike ideas, documents are physical artifacts and can be traced
+empirically. They are fungible, reproducible, and locatable with
+addresses.
+
+The reproduction and location of ideas cannot be reliably observed, and
+documents only contain ideas in a metaphorical sense, as a Leyden jar
+was once thought to contain electricity.
+
+Documents are the tangible and fungible currency with which scholars
+communicate about ideas, yet how knowledge is actually communicated via
+documents is not amenable to direct observation at scale. In
+bibliometrics they have served as a proxy for ideas.
+
+There have been two main orientations to mapping the web of knowledge,
+description and conscription. Description has either scientific aims, to
+understand and explain the facts of knowledge development, or practical
+aims, to locate and retrieve knowledge required for a particular
+purpose. Conscription on the other hand aims to mobilize bibliometric
+patterns of knowledge as measures of value in competitive markets,
+namely hiring, promotion, and awards within scholarly professions.
+
+There are several ways to digitally represent texts as knowledge.
+
+From an empirical perspective, texts are nothing but collections or bins
+of glyphs. The current paradigm is to render glyphs and recognize them
+as terms. Such terms may then be analyzed, for instance, by counting
+diction. Alternative paradigms are cropping up
+
+Second is entity recognition or grounding, where recognized terms are
+mapped to an existing database of structured knowledge.
+
+\citep{Pilkington2009evolution}
+
+\hypertarget{disciplines-as-a-large-world-co-reference-network}{%
+\section{Disciplines as a Large World Co-reference
+Network}\label{disciplines-as-a-large-world-co-reference-network}}
+
+A large world network is not amenable to traditional visual
+representations due to its extreme density. Scholars often use edge
+filtering to reduce this density down to a manageable size for
+visualization. Unfortunately this convenience function renders a large
+world as a small world and grossly misrepresents the true structure of
+the network. In the KCC representation, the network is partitioned into
+subnetworks of differential density. Nodes are included in a subnetwork
+if they are involved in ties at a given floor of density, for instance,
+they need to be tied to at least five other nodes. At a level of five,
+then, nodes involved in only four ties would be excluded. As this
+standard is raised, more nodes are excluded. This results in a nested
+set of subnetworks, where nodes included in a community at a lower
+threshold are excluded at a higher threshold. Subnetworks of lower
+density thresholds are always as big or larger than those at higher
+thresholds. Moreover, higher density subnetworks are always subsets of
+lower density communities, as their density meets and exceeds the
+standard for inclusion at the lower level. As one can imagine, inclusive
+levels are larger. As the threshold is raised subgroupings are sloughed
+off until reaching points of maximal density. In a world where almost
+everything is connected, there are no structural holes to reveal
+differences between subnetworks. Instead, we can view the structure as
+gradations in density within a very densely connected world.
+
+Nodes meeting the highest standards can be thought of as omnivorous;
+their ties draw them to the masses, but the masses are not sufficiently
+tied to the higher standard community. Where the gentry may be as
+comfortable at the movies as at the symphony, the laity lacks access to
+the more erudite circles.
+
+What is the credential that would allow a node to climb the hierarchy?
+One's list of acquaintances must overlap by a certain amount (defined by
+the threshold) with the membership of the higher tier. Indeed their
+inclusion would change the credentials of everyone they are tied with,
+as anyone who was just under the standard would be tipped in based on
+their friend's promotion.
+
+In the KCC model the references are the members of the hierarchy. Their
+association with each other is determined by how they are used by
+published authors. Authors who include two references on their
+bibliography tie those references together in the network. Indeed each
+citing article lays down a dense clique of references, and the impact of
+an article grows quadratically with the length of its reference list.
+
+\hypertarget{methods}{%
+\subsection{Methods}\label{methods}}
+
+\hypertarget{data-1}{%
+\subsection{Data}\label{data-1}}
+
+\hypertarget{results-1}{%
+\section{Results}\label{results-1}}
+
+The structure of a large world as revealed by KCC can be explored in a
+bottom-up and top-down fashion. Bottom-up observes 3-clique communities
+first. In the social science co-reference network.
+
+\begin{center}\includegraphics[width=0.9\linewidth]{ambrose_dissertation_files/figure-latex/kcc2tree-1} \end{center}
+
+Figure \ref{fig:kcc2tree} shows a KCC model of the social sciences in
+the first half of the twentieth century.
+
+Disciplinarity and interdisciplinarity are revealed in a novel fashion
+in the KCC model. Disciplinarity is shown as a level of exclusion.
+
+\hypertarget{continents}{%
+\subsection{Continents}\label{continents}}
+
+The global map is made of many separate regions ranging in scale from
+large continents to small isles. These regions are either shallowly
+connected or entirely separated from each other. The vast majority of
+these regions are ``flat isles'' with little to no internal structure of
+their own. Most flat isles are supported by only a single article, some
+by a couple of articles penned by the same author, and only a few
+represent real activity among a small group of different authors.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{img/flat-isle} 
+
+}
+
+\caption{Flat Isles, where Reviewers tend their Flock}\label{fig:flat-isle}
+\end{figure}
+
+The most substantial flat isle , the largest unenclosed and unenclosing
+circle in Figure \ref{fig:flat-isle}, comes from four authors publishing
+in the same 1930 \href{https://www.jstor.org/stable/i40084238}{issue} of
+\emph{Zeitschrift Fur Nationalokonomie}. It includes 50 references the
+most prominent of which are Angell's 1926 \emph{The Theory of
+International Prices} and Tugwell's 1924 \emph{The Trends of Economics}.
+The structure of the group is provided entirely by an article by Robert
+Reisch ; the other three shared no references in common and Reisch's
+article, titled ``The `Deposit'-Myth In Banking Theory'' and containing
+108 references, is likely to have been written as an introduction to the
+journal on the basis of what had already been accepted for publication.
+
+Another flat isle of four articles has the exact same pattern, also from
+\emph{Zeitschrift Fur Nationalokonomie} but from an
+\href{https://www.jstor.org/stable/i40084262}{issue} in 1937, the
+article on the first page of the issue, titled ``Theory Of Capital,
+Introduction'' by von Hayek and containing 25 references, includes
+subsections of the bibliographies of three other articles that do not
+themselves overlap. Normally the longer a bibliography the more likely
+it is that an article functions as a review linking other disparate
+bibliographies. That von Hayek's article has such a short bibliography
+and yet still links three otherwise separate articles confirms its
+derivative character.
+
+The following features then suggest when a flat isle represents an issue
+introduction. All articles are published in the same issue. The removal
+of the longest bibliography in the community yields a network of
+disconnected components each uniquely representing the remaining bibs.
+This longest bib is also either the first article in the issue or
+precedes the others in pagination. These characteristics suggest
+authorship internal to the editorial process itself. Later we will
+explore how the removal of such articles helps to reveal ``bottom-up''
+structure by removing the editorial advantage of certain authors to
+bestow an ad hoc intellectual coherence on scholarship.
+
+Table \ref{tab:iss-int} enumerates issue introductions and shows how
+many are the structuring article in their community.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{img/hill-isle} 
+
+}
+
+\caption{Hill Isles, where the Wild Things Are}\label{fig:hill-isle}
+\end{figure}
+
+Reviews, whether they are self described as such, borrow directly from
+the bibliographies of one or more seed articles, and in this way they
+contribute a disproportionate amount of the global structure of the
+co-reference network. This kind of review, rather than looking again at
+an existing intellectual trend, creates the cohesion it purports to
+describe. Flat isles, especially if they are large, are flat due to the
+retrospection of a usually solitary reviewer. Compare this to ``hill
+isles'' with more internal structure growing out of the related but
+uncoordinated reference activity of authors.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.9\linewidth]{ambrose_dissertation_files/figure-latex/k3c1-22-1} 
+
+}
+
+\caption{Hill Isle in Graph Layout}\label{fig:k3c1-22}
+\end{figure}
+
+\hypertarget{peaks}{%
+\subsection{Peaks}\label{peaks}}
+
+The KCC model reveals
+
+\hypertarget{valleys}{%
+\subsection{Valleys}\label{valleys}}
+
+\hypertarget{do-reference-lists-describe-author-knowledge}{%
+\subsection{Do reference lists describe author
+knowledge?}\label{do-reference-lists-describe-author-knowledge}}
+
+The peer review process can now be thought of as a process of auditing
+credentials. An author makes an opening bid with the submission of a
+particular reference list. What this reference list implies about what
+the author knows is unclear. One may omit a knowledge signal because it
+is truthfully irrelevant or in a deceptive sin of omission oriented to
+what they expect to be the expectations of editors and reviewers. One
+may also include what they do not know out of error, braggadocio,
+carelessness, or fraud. Part of the work of reviewers will be to
+validate those claims to knowledge.
+
+\begin{center}\includegraphics[width=0.9\linewidth]{ambrose_dissertation_files/figure-latex/kcc2isl-1} \end{center}
 
 \bibliography{references.bib}
 

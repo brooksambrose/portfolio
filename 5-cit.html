@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="2-5-results.html">
-<link rel="next" href="3-gen.html">
+<link rel="prev" href="4-8-kd-dp2.html">
+<link rel="next" href="5-1-disciplines-as-a-large-world-co-reference-network.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -187,20 +187,70 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="discussion" class="section level2">
-<h2><span class="header-section-number">2.6</span> Discussion</h2>
-<p>There are many stories to tell about a map that we trust to be an accurate metaphor for closeness or relatedness in a cultural field. Recall that statistically, the closer two nodes are the greater the number of journals listing each as a subject category. The decision of how the subject labels were applied was a policy decision at JSTOR using an unknown procedure. Our interpretation of the map is affected by how credible we think the archivists’ decisions were. Without knowing about their process, it becomes a matter of trust.</p>
-<p>To begin with the weakest result, the purported fronts between white and brown studies,</p>
-
+<div id="cit" class="section level1">
+<h1><span class="header-section-number">5</span> The Social Science Citation Landscape, 1900-1940</h1>
+<div id="abstract-4" class="section level4 unnumbered">
+<h4>Abstract</h4>
+<p>Knowledge mapping of academic journals promotes the conservation of intellectual history and stimulates discovery of underexplored intellectual opportunities. Treated as a large network community detection problem, I demonstrate how to apply the clique percolation method to map two kinds of recorded knowledge: citations and full text. The features of generated maps are explained, and interpretive methods including visualization are presented. We use American social science scholarship in the first third of the 20th century prior to U.S. entry into World War II as a case, and describe how the intellectual landscape of four separate social science disciplines developed.</p>
 </div>
-<!-- </div> -->
+<div id="keywords-4" class="section level4 unnumbered">
+<h4>Keywords</h4>
+<p>citations, k-clique communities, community detection, landscape</p>
+<hr />
+<!--If knowledge is power then scholar must be a powerful class. But what kind of power is knowledge and in what way do scholars wield it? Is knowledge powerful a utility, like water or electricity, to drive a tool and accomplish a task? Is it an asymmetry of information, like a stock tip or the combination to a safe, that gives one a leg up on her competition? Is knowledge like the power of an authority, like a governor, a military commander, or clergyman, to compel the loyalty and obedience of another person? 
+
+How we conceive of knowledge affects how we view the nature and importance of the people and institutions that produce it. Scholars certainly do not have a monopoly on the utilization of production of knowledge in society, but their occupational roles are conditioned by the stuff of knowledge at the same time that knowledge is itself conditioned by the technology and social arrangements that constitute scholarly occupations. 
+
+### Scholarly Communication vs Knowledge Terrain
+
+If the production of culture perspective were to argue against Marx's German Ideology, it might say, "Not all mental laborers have soft hands." Marx drew a course distinction between mental and material labor to demonstrate that the former is not possible without the latter, even when at the time mental labor had already been commodified with the advent of print media. The production of culture perspective simply effaces the distinction altogether; mental labor, or cultural products, are like any other industrialized commodity.
+
+The production of culture perspective is at odds with public sector economics that argues that non market mechanisms create value where markets fail to do so. [@Hayes2000Assessing]
+
+Remuneration 
+
+Are culturally interior products referenced by socially superior producers?
+-->
+</div>
+<div id="wok" class="section level3">
+<h3><span class="header-section-number">5.0.1</span> Mapping Knowledge Terrain</h3>
+<p>There are two reasons to map knowledge spaces. First, we may want to know how knowledge develops as a resource unto itself. Second, we may want to exploit such a map for a productive purpose. Here we will attempt the second as prologue to the first. We will tackle the technical problems of constructing a map. We will show how a map can be put to use. Finally, we will investigate how the particular map we make may tend to predictably get us lost.</p>
+<p>All knowledge mapping requires first an ontological and then an analytical action. Ontological actions delineate the things that matter. They arbitrarily construct from perception the items that we then think about. While ontological decisions tend to define the scope of everything that may be learned from an investigation, they are often assumed rather than demonstrated. Actor Network Theory (ANT) provides a unique example of a method of research that, because it is ethnographic and thus marinating in an abundance of perception, allows the cast of ontic characters to grow. Literally anything can be deigned significant for inclusion in a web of knowledge. In an ANT study of science, if the feel of a reading chair modifies a reader’s orientation to a text they are reading, the chair counts.</p>
+<p>The lion’s share of knowledge mapping studies are not so ontologically radical as ANT. Take the field of bibliometrics. The ontological decision here is to take documents as the primary ontic. Documents are nothing but collections of glyphs, so the first task of bibliometricians tends to be to map glyphs to terms and analyze them. Here we have already used the ontic triad underlying bibliometrics. In the sentence</p>
+<blockquote>
+<p>“Go, dog, go!”</p>
+</blockquote>
+<p>there are twelve discrete glyphs and two terms. A grammatical cutting rule renders the glyph sequences as</p>
+<blockquote>
+<p>“Go,” “dog,” “go!”</p>
+</blockquote>
+<p>and a tokenization rule maps the cuts to two terms</p>
+<blockquote>
+<p>“go” “dog” “go”</p>
+</blockquote>
+<p>which may in turn be analyzed, for instance by counting the tokens. The documents form the bins within and across which the terms will be analyzed. The token, as a mere operational step, is used and then dispensed with unless questions of measurement surface. Clearly the <em>glyph-term-document</em> (GTD) ontic does not care about the armchair of a reader of a document, and indeed does not even care about the reader herself. <!-- An ANTy idea that is more directly adjecent to GTD is inquiry into the materiality of texts, a topic with a long history in the humanities and a much more recent history in digital analysis.  --></p>
+<p>So the reader is invisible because she is not inscribed in the document. What about the writer? Bibliometricians may back fill GTD by entity recognition or grounding. Once terms are recognized, we may further recognize that we know more about them. A simple example of this is pulling out “metadata”, for instance, the author of a document. The author’s name is not just any term, but a conceptually very important one. Grounding is how bibliometrics may be linked to theories and programs of greater importance.</p>
+<p>Bibliometrics has indeed been based more on the reference of a text as a particular grounded entity rather than on the use of the full text of a document. If a text is a building, the reference is its address. More precise than a name, an address is a codification of different hierarchically ordered elements that describe the location of an entity. The consistent tokenization of a reference is not an easy task, as it depends on entity recognition of several different kinds of things, including year of publication, author, title, and source.</p>
+<p>The citation became the basis of the concept of a web of knowledge as coined in the work of Eugene Garfield and institutionalized in the Institute for Scientific Information (ISI).</p>
+<p>Citations solved the problem that ideas do not have signatures or addresses that we can trace reliably. Jargon is an attempt to give an idea a unique address as an idiosyncratic term, and etymology seeks to hierarchically order words according to their origins, but an idea per se will always elude precise identification. Unlike a document, an idea is not mechanically reproducible; it always requires interpretation and understanding in a mind, and a mental event as subtle as an idea cannot be observed.</p>
+<p><span class="citation">(Lederberg <a href="bibliography.html#ref-Lederberg2000How" role="doc-biblioref">2000</a>)</span> Garfield conflates citations with several roles in the network around ideas. Compares value of citations to value of subject coders, coding meaning of paragraphs intractable. ISI became a commercial pursuit because Garfield failed to get scientific institutions, especially the NSF, to fund it. The goal was primarily practical, to give researches access to current or historical references relevant to articles, perhaps especially their own, they knew they were already interested in.</p>
+<p>Unlike ideas, documents are physical artifacts and can be traced empirically. They are fungible, reproducible, and locatable with addresses.</p>
+<p>The reproduction and location of ideas cannot be reliably observed, and documents only contain ideas in a metaphorical sense, as a Leyden jar was once thought to contain electricity.</p>
+<p>Documents are the tangible and fungible currency with which scholars communicate about ideas, yet how knowledge is actually communicated via documents is not amenable to direct observation at scale. In bibliometrics they have served as a proxy for ideas.</p>
+<p>There have been two main orientations to mapping the web of knowledge, description and conscription. Description has either scientific aims, to understand and explain the facts of knowledge development, or practical aims, to locate and retrieve knowledge required for a particular purpose. Conscription on the other hand aims to mobilize bibliometric patterns of knowledge as measures of value in competitive markets, namely hiring, promotion, and awards within scholarly professions.</p>
+<p>There are several ways to digitally represent texts as knowledge.</p>
+<p>From an empirical perspective, texts are nothing but collections or bins of glyphs. The current paradigm is to render glyphs and recognize them as terms. Such terms may then be analyzed, for instance, by counting diction. Alternative paradigms are cropping up</p>
+<p>Second is entity recognition or grounding, where recognized terms are mapped to an existing database of structured knowledge.</p>
+<p><span class="citation">(Pilkington and Meredith <a href="bibliography.html#ref-Pilkington2009evolution" role="doc-biblioref">2009</a>)</span></p>
+</div> 
+</div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="2-5-results.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="3-gen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="4-8-kd-dp2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-1-disciplines-as-a-large-world-co-reference-network.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -220,7 +270,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/brooksambrose/portfolio/blob/draft/02.Rmd",
+"link": "https://github.com/brooksambrose/portfolio/blob/draft/05.Rmd",
 "text": "Edit"
 },
 "download": ["ambrose_dissertation.pdf", "ambrose_dissertation.docx"],
