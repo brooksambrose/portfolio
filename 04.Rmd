@@ -20,36 +20,76 @@ While computers cannot read meaning in texts, and can barely recognize it, they 
 
 And even going so far as abandoning the project of reading texts in a historically correct way, vocabulary enumeration can still lend objectivity to a novel construction, a productive anachronism, of textual meaning. Because vocabularies, the problems solved by computers, are mathematically, algorithmically, or stochastically determined, they may provide an immutable description of corpora that, like a map, enables individual and collective exploration within a common framework. Such maps may become the parameters of interpretive methods, which we may use to surface and control some of our subjectivity.
 
-This at least is the rationale for what follows. I begin with a discussion of intellectual history of two social sciences, anthropology and sociology, in the United States. I take a coarse view of national history as the history of wars because of their downstream effects on government activity and institutional investments. The first period is between the end of the American Revolution (1783) and the end of the American Civil War (1865) and is the national context for the origin of U.S. anthropology. The second period is after the Civil War until the end of World War I (1918) and is the context for the origin of U.S. sociology and of modern U.S. higher education generally. Wars of territorial expansion are waged regularly during both periods against native peoples and rival colonial empires, and social research was always recruited to solve attendant problems of population and to provide rationales for the relationships with and understandings of conquered or would-be conquered people.
+## Social science history in context
 
-In the interwar periods the leading structural changes tended to be economic. Where wars were ruptual moments that stalled development across many sectors of society, the attendant growth of military capacity also tended to lead to expansions of government, infrastructure, and even education via the training remaining with veterans. The trememdous strain on civilian life in terms of labor shortages during the Civil War thrust women into labor roles outside of the home, expanding the scope of their integration into the economy and public life even after returning to domestic roles as traditional family life was reconstituted. Drawing on economic historians Zucker has shown that in the period 
+Below we will attempt a distant reading of journals in the disciplines of sociology and anthropology. First, however, it will be helpful to put the development of these professions into some historical context. I take a coarse view of national history as the history of wars because of their downstream effects on government activity and institutional investments. The first period is between the end of the American Revolution (1783) and the end of the American Civil War (1865) and is the national context for the origin of U.S. anthropology. The second period is after the Civil War until the end of World War I (1918) and is the context for the origin of U.S. sociology and of modern U.S. higher education generally. Wars of territorial expansion are waged regularly during both periods against native peoples and rival colonial empires, and social research was always recruited to solve attendant problems of population and to provide rationales for the relationships with and understandings of conquered or would-be conquered people.
 
-```{r zuck1,}
+In the interwar periods the leading structural changes tended to be economic. Where wars were ruptual moments that stalled development across many sectors of society, the attendant growth of military capacity also tended to lead to expansions of government, infrastructure, and even education via the training remaining with veterans. The trememdous strain on civilian life in terms of labor shortages during the Civil War thrust women into labor roles outside of the home, expanding the scope of their integration into the economy and public life even after returning to domestic roles as traditional family life was reconstituted. Drawing on economic histories Zucker [-@Zucker1983Organizations] has shown a secular trend in the transitions of American labor from self and often family-based employment to wage or salaried labor in organizations. As the organizational form diffused the old bases of trust in kinship networks were supplanted by mechanisms of communication and control oriented toward formal procedures rather than personal commitments [@Zucker1986Production]. This new kind of trust was based in the perceived fairness of rules, procedures, and contracts as well as in the new intermediary role of managers. 
+
+(ref:zuck1) Shift from self-employment to wage-labor in United States. Source: Table 4, Zucker [-@Zucker1983Organizations\:15]. Illiteracy Source: Table 6, Snyder [-@Snyder1993120\:21]
+
+```{r zuck1,include=T,fig.cap='(ref:zuck1)'}
 war<-rbindlist(list(
-      data.table(text='Sample',xmin=1888,xmax=1922,dodge=.01)
+      data.table(text='Sample',xmin=1888,xmax=1922,dodge=.5)
       ,data.table(text='Great Depression',xmin=1929,xmax=1939,dodge=.94)
       ,data.table(text='Civil War',xmin=1861,xmax=1865,dodge=.99)
       ,data.table(text='WWI',xmin=1914,xmax=1918,dodge=.99)
       ,data.table(text='WWII',xmin=1939,xmax=1945,dodge=.99)
     ))[,col:=c(rep('darkgray',1),'blue',rep('red',3))][,x:=mean(c(xmin,xmax)),by=text][,N:=text][,year:='']
-warp<-function(gg,r) gg+geom_rect(data=war,aes(xmin=xmin,xmax=xmax,ymin=r[1],ymax=r[2]),fill=war$col,alpha=.1,inherit.aes = F) +
-    geom_text(data=war,aes(x=x,y=war$dodge*r[2],label=text),color=war$col,inherit.aes = F)
+warp<-function(gg,r,ann=war) gg+geom_rect(data=ann,aes(xmin=xmin,xmax=xmax,ymin=r[1],ymax=r[2]),fill=ann$col,alpha=.1,inherit.aes = F) +
+    geom_text(data=ann,aes(x=x,y=ann$dodge*r[2],label=text),color=ann$col,inherit.aes = F)
 emp<-data.table(
            Date=c(1800,1860,1910,1940,1950,1960,1970)
            ,'Self-Employed'=c(57,37,22,26.1,21.2,15.7,10.2)
            ,'Wage & Salary Workers'=c(12,40,78,71,77.2,83.8,89)
-           ) %>% melt(id.vars='Date',variable.name='Sector',value.name='Percent Labor Market')
-plt(warp(myth(ggplot(data=emp
-         ,aes(x=Date,y=`Percent Labor Market`,color=Sector))) + geom_line() + geom_point() + theme_bw() 
-      ,r=emp[,range(`Percent Labor Market`) %>% replace(1,0)]))
+           ) %>% melt(id.vars='Date',variable.name=' ',value.name='Percent Labor Market')
+ill<-fread('d/q/snyder1993illiteracy.txt',fill = T) %>% {setnames(.,make.unique(names(.)))} %>% .[!.N]
+rbindlist(list(emp,ill[,.(Date=Year,` `='Illiteracy','Percent Labor Market'=Total)])) %>%  {plt(warp(myth(ggplot(data=.
+         ,aes(x=Date,y=`Percent Labor Market`,color=` `))) + geom_line() + geom_point() + theme_bw() 
+      ,r=emp[,range(`Percent Labor Market`) %>% replace(1,0)])+theme(
+      legend.position = c(.02, .98),
+      legend.justification = c("left", "top"),
+      legend.box.just = "left"
+  ))}
+```
+
+```{r per-cond}
+acs<-fread('d/q/booksmapsmagazinesnewspaperssheetmusic.txt',fill = T,sep='\t') %>% melt(id.vars='Year',variable.name='Product',value.name='Millions of dollars')
+```
+
+The use of procedural trust to organize production also heightened the penalty to illiteracy; whereas orientations to personal loyalty and family obligations were based in tradition and enduring social ties, procedural trust required learning new relationships quickly in novel on-the-job contexts. Contracts, manuals, bookeeping, and even posters and signage on factory floors presumed what is now referred to as functional literacy but was then still an emerging feature of occupations. More quickly than in any other nation the literacy rate in the United States rose due to public investments in education, fueled by and fueling a growing demand for literate labor. Though early data for earlier periods are unavailable, in aggregate personal consumer spending on private education grew from `r {w<-acs[.(c(1909,1929)),on='Year']['G492 Education',on='Product',.SD,.SDcols='Millions of dollars'] %>% unlist;w[1] %>% nn}` million dollars in 1909 to `r w[2] %>% nn` million dollars in 1929, staying strong during WWI only to enter a decline during the Great Depression. Consumer literate spending would recover during WWII giving seeming unlimited opportunity for cultural industries like publishing and education to turn the public's ability to read into consumer demand and an engine for their own growth.
+
+(ref:per-con) Personal Consumption Current Dollar Expenditures on Literate Products ("G456 Books, maps, magazines, newspapers, sheet music", "G457 Private education and research", and "G492 Education (private)"). Source: US Census Bureau [-@Bureau1975Historical\:316-319]
+
+```{r per-con,include=T,fig.cap='(ref:per-con)'}
+acs %>%   {plt(myth(warp(ggplot(.,aes(x=Year,y=`Millions of dollars`,color=Product)) + geom_line(),ann=war[ec('Sample,Great Depression,WWI,WWII'),on='text'],r=range(.$`Millions of dollars`,na.rm = T)))+theme(
+      legend.position = c(.7, .98),
+      legend.justification = c("left", "top"),
+      legend.box.just = "left"
+  ) + scale_y_continuous(trans='identity'))}
 ```
 
 
-I use intellectual histories of anthropology to characterize the antebellum period, and the same for the postbellum period including sociology. The most important journals in each field date from the postbellum period, and the appearance of each is implicated in the project of professionalization for each discipline. The 1920s marked the end of war with the last of the militating American Indian tribes, and a reckoning with the darkest sides of industrialization laid bare by WWI. Social research had by this time completed a shift from colonial to industrial problems and enjoyed a golden decade of development as a profession, punctuated by the next great historical crisis in the Great Depression. With the 1920s begins the adolescence of social research, which is beyond the present scope. This study is of its childhood, which ends with the Great War. I however draw the study out until 1922 because it is the end of the public domain in U.S. copyright, to aid in the reproducibility of the analysis and so that all readers may recover the texts in question without difficulty.
+## <!--B-->  Social Science Journals {#kd-dq2}
 
-## Social Science Journals {#kd-dq2}
+```{r}
+if(!'jclu'%in%ls()) load('d/q/jclu.RData')
+```
+
+
+<!--I use intellectual histories of anthropology to characterize the antebellum period, and the same for the postbellum period including sociology.--> The most important journals in anthropology and sociolgy date from the postbellum period, and the appearance of each is implicated in the project of professionalization for each discipline. The 1920s marked the end of war with the last of the militating American Indian tribes, and a reckoning with the darkest sides of industrialization laid bare by WWI. Social research had by this time completed a shift from colonial to industrial problems and enjoyed a golden decade of development as a profession, punctuated by the next great historical crisis in the Great Depression. With the 1920s begins the adolescence of social research, which is beyond the present scope. This study is of its childhood, which ends with the Great War. I however draw the study out until 1922 because it is the end of the public domain in U.S. copyright, to aid in the reproducibility of the analysis and so that all readers may recover the texts in question without difficulty.
 
 The journals within social science cover `r jclu$tab %>% length %>% nn` different subdisciplines.
+
+
+
+```{r jclu-tab-sub-econ,eval=T,include=F}
+load('d/q/jstorm.RData')
+jclu_sub_econ<-jstorm[sapply(discipline,function(x) 'Business & Economics'%in%x)][,discipline:=lapply(discipline,setdiff,'Business & Economics')] %>% jstorm2jclu.f
+jsube<-jclu_sub_econ$tab
+setnames(jsube,'super','Subdiscipline')
+sg(jsube,tit = "JSTOR Business & Economics Journal Counts")
+```
 
 ```{r jclu-tab-sub,include=T}
 jclu_sub<-jstorm[sapply(discipline,function(x) 'Social Sciences'%in%x)][,discipline:=lapply(discipline,setdiff,'Social Sciences')] %>% jstorm2jclu.f
@@ -57,11 +97,28 @@ setnames(jclu_sub$tab,'super','Subdiscipline')
 sg(jclu_sub$tab,tit = "JSTOR Social Sciences Journal Counts")
 ```
 
-```{r jclu-tab-sub-econ,eval=F,include=T}
-jclu_sub_econ<-jstorm[sapply(discipline,function(x) 'Business & Economics'%in%x)][,discipline:=lapply(discipline,setdiff,'Business & Economics')] %>% jstorm2jclu.f
-jsube<-jclu_sub_econ$tab
-setnames(jsube,'super','Subdiscipline')
-sg(jsube,tit = "JSTOR Business & Economics Journal Counts")
+```{r}
+load('d/p/pd.RData')
+pd[,y:=lubridate::year(d)]
+pts<-merge(pd['birth',on='s'][,.(title_history,y)],pd['death',on='s',.(title_history,y)],by='title_history') %>% setnames(ec('title_history,b,d')) %>% .[is.na(d),d:=2010]
+pts<-pts[rbindlist(list(jclu_sub$super,jclu_sub_econ$super))[grep('^Labor',super),super:='Labor & Employment Relations'],on='title_history',s:=super][!is.na(s)]
+pts<-pts[,.(y=b:d,s),by=.(title_history)][,.N,by=.(y,s)]
+p<-pts[between(y,1851,2000)] %>% {plt(warp(myth(
+  pal = 'Paired',
+  ggplot(.,aes(x=y,y=N,color=s)) + 
+    #geom_vline(xintercept=1950,color='lightgray') + geom_text(x=1950,y=.89*max(.$N),label='NSF',color='darkgray') +
+    geom_line() 
+)+ theme(
+      legend.position = c(.02, .84),
+      legend.justification = c("left", "top"),
+      legend.box.just = "left",
+      legend.background =  element_rect(color=NA,fill=NA)
+    ),r=.$N %>% range) 
+,hovinf = 'text')}
+if((latex|docx)) p else {p %>% 
+    plotly::style(visible="legendonly", traces = setdiff(1:11,c(1,4,8,10))) %>% 
+    plotly::style(hoverinfo='skip',traces=12:17)
+  }
 ```
 
 ```{r jstorm2tab,include=F}
@@ -140,15 +197,14 @@ wrk<-rat[between(year,1888,1922),summary(ratio)]
 
 This period represents one of stable growth, as the size of the field grows with the number of players on it. Between 1888 and 1922 there tended to be about `r nn(wrk['Median'],0)` new PhD's in the U.S. for every social science journal even as each population grew year over year. These growth patterns begin to diverge around `r jfig$d[super=='Social Sciences'][g1==3][1,year]` as a decades long acceleration of personnel begins, relatively slowly between 1920 and 1960 at an average acceleration rate of `r rat[between(year,1920,1960,F),nn(ratio %>% mean)]` PhDs per journal per year, and then quite precipitously in the 1960s at an average acceleration rate of `r rat[between(year,1960,1980,T),nn(ratio %>% mean)]`.
 
-```{r lyn,include=T,fig.cap='JSTOR journal birth and death rates'}
-load('d/b/pli.RData')
-pli
-```
 
+## <!--M1--> Topics `r if(latex) '\\normalfont{≟}' else '≟'` Ideas
 
-## Topics `r if(latex) '\\normalfont{≟}' else '≟'` Ideas
+Given a relatively stable epoch in American society, one free of the most extreme exogenous shocks of war and economic depression, how is it possible to trace the development of the discursive structures of American social science scholarship? I will use the digitized texts of articles taken from social science journals in the JSTOR archive to represent a time series of discourse. The methodological challenge is how to count such an empirical source as text, which seldom considered to be data at all.
 
-The strategy of the study occurs in four steps.
+Texts are after all for reading rather than counting. Above we have shown how counting is possible within certain categories that are given historically, namely the journal sources of texts. Theoretically, however, there is a concern that discursive formations appear as a conversation among texts that may not be visible in exterior labels, or at least that such social or institutional labels are lagged behind their cultural origins, if indeed they ever break through from the cultural to the social. A genre category is the example par excellence of a socialized culture, one whose relevance to a society at large, however narrowly society may be conceived, is at least debateable because it is visible in the language as a category. The conjecture here is that direct analysis of texts may reveal the cultural currents, as Durkheim referred to them, before the crystalize into firmer social formations.^["To master the whole meaning of the discovered truths and to understand all that is summarised in them, one must have looked closely at scientific life whilst it is still in a free state, that is, before it has been crystallised in the form of definite propositions." [@Durkheim1893division:\299]]
+
+To do that kind of counting at scale does require a humble approach to text. Text is the bearer of meaning when read by humans. When read by machines text are impoverished. Rather than claim to have access to the meanings of texts, I instead make the more conservative claim to have access to the vocabularies with which those meanings are communicated. Thus the strategy of the study occurs in four steps.
 
 1. Sort text into categories of similar vocabulary.
 2. Describe the vocabularies that define category membership.
@@ -157,7 +213,7 @@ The strategy of the study occurs in four steps.
 
 I will spend considerable effort on solving the problem presented by step 1, as here everything depends on the computational methods employed. Steps 2 and 3 are straightforward given a successful mathematical model of texts. Step 4 is seldom attempted, and may be the hardest of all, because it is here that machine and human learning must be integrated. If I am successful, if through these steps I may operationalize the notion of cultural meaning or cultural logic as conformity to vocabularies, then I believe a new horizon of intellectual scholarship is possible. If on the other hand I find that machine-learned vocabularies do not correspond to human-learned understandings of the texts drawing on those vocabularies, then the discovery will be negative, that distant reading is not a scientific, historical, or hermeneutic method, but rather a toy at worst and a best new humanistic method of reading texts de novo.
 
-The mathematical tool I will rely on in step 1 is called topic modeling, which refers to a variety of computational approaches to text data that blur the distinction between qualitative and quantitative analysis. The topic model paints a lexicographic picture of texts, analogous to the demographic picture gained by a civil census survey of cities and towns. To a topic model, texts are merely collections of terms (usually words) that are counted to create the so-called "bag of words" description of a text. In the same way that a census reduces communities to counts of the names of people who live in them, topic modeling reduces texts to the frequency of word choices in texts, to their diction or vocabulary. Just as a census of people fails to capture the nuanced interactivity of human settlements found in their culture, politics, and economic activity, the topic model washes away the meanings and intentions behind the words that are enumerated.
+As mentioned, the statistical tool I will rely on in step 1 is called topic modeling, which refers to a variety of computational approaches to text data that blur the distinction between qualitative and quantitative analysis. The topic model paints a lexicographic picture of texts, analogous to the demographic picture gained by a civil census survey of cities and towns. To a topic model, texts are merely collections of terms (usually words) that are counted to create the so-called "bag of words" description of a text. In the same way that a census reduces communities to counts of the names of people who live in them, topic modeling reduces texts to the frequency of word choices in texts, to their diction or vocabulary. Just as a census of people fails to capture the nuanced interactivity of human settlements found in their culture, politics, and economic activity, the topic model washes away the meanings and intentions behind the words that are enumerated.
 
 A population census would not be very helpful were it only a count of the names of respondents, and of course the really helpful data derive from the demographic and economic survey attached to the name. Text data do not usually come with such a collection of rich covariates, yet nevertheless topic models promise to discern helpful patterns from counts alone. The trick behind the estimation of a topic model is that it attempts to learn the demographic information (topics) without asking, by merely looking at how the names alone (terms) are distributed across geographies of interest (texts). If it can keep its promise, a topic model applied to census data might recover the cultural patterns latent in the distribution of names. It might, for instance, learn different groupings of names that in turn correspond to markers like age, race, national origin, or gender, so long as membership in those categories was related to geography. It might, for instance, successfully separate a category of Hmong names out from among the names of all people living in St. Paul because the non-Hmong names appeared in other regions where no Hmong names appeared.
 
@@ -165,50 +221,19 @@ To call the category of names "Hmong" requires an interpretation of the model, w
 
 Even without conducting the second labeling step, in step 3 it will already be possible from the output of the model to inspect the distribution of topics across available covariates, especially time. These are the patterns that will help validate the topic models against what is already known about intellectual history. For instance, the power of institutional and generational change may well be apparent in the historical distribution of topics. This step leads naturally into step 4 by suggesting anomalies that can only be explained by a closer look at the texts, the chore that the entire preceding analysis punts on. In step 4 we learn either that our understanding of history was wrong, or that our topic model was wrong, and there may be no method other than one's judgement to decide.
 
-<!-- Operationally, what I have called vocabularies are the columns of a term-topic table, which is one of the two matrices that constitute a topic model. To explain the contents of the bag-of-word, topics are proposed. Topics can be thought of as catelogs out of which words are ordered and placed into the shopping cart that is the document. Different catelogs, different word availabilities, will produce different documents. The final bit of inference that makes topic models so practically useful is the idea that documents may be composed of multiple topics. The surprising qualities of texts are explained to be how authors draw on regular and commonplace topics to say something different. -->
-
-In the next section, before we delve into the statistical and computational nuances of topic models, I will spend some time developing a few themes to help organize the blending of quantitative and qualitative methods invited by topic modeling in particular and computational text analysis generally.
-
-<!--
-## Prior Work {#kd-lit}
-
-
-### Information
-
-Understanding differences in the ontological status of the "topic" concept is a good way to begin to understand how this method of analysis is used by researchers.
-
-Analysts have conceptualized the use of topic models in very different ways. Some researchers treat topics as useful for a particular purpose and not as true descriptions of real phenomena. Topics as information enhances the ability to search for relevant documents or statistical trends in otherwise unwieldy corpora as a time-saving alternative to manually reading large collections. [@Boyd-Graber2017Applications] Empirical problems, used as demonstrations of statistical techniques, have included
-
-This is the "needle and haystack" approach favored by computer and information scientists who tend not to be interested in theoretical interpretations beyond the statistical definitions of topics.
-
-### Meaning
-
-Other researchers instead grant topics ontological status, and these can be divided into three types. Most ambitiously, topics may be treated as representing categories of thought. Latent semantic structure
-latent semantic structure [@WallachStatisticalTopicModels2011]
-
-### Communication
-
-representational style [@Grimmer2016Measuring]
-frame [@DiMaggio2013Exploiting]
-
-
--->
-## Full-Text
+## Full-Text Archive
 
 Computational text analysis requires that text corpora be transformed from a human to a machine readable format. Several efforts to digitize paper archives have made historical research designs possible, notably the Google Books project, HathiTrust, and ITHAKA JSTOR archive. Digital storage devices like the portable document format (PDF) have also enabled texts to be represented in both a digital version and as a reasonable facsimile of paper originals. Reasonable, we should say, for most sociological purposes, put not for other historical questions where materiality of culture is important. [@Schreibman2014NonConsumptive\:149]
 
 Digital archives make research into the production of culture difficult, precisely because they misrepresent several aspects of the means of production. Because researchers should be mindful that digitization of texts abstracts some qualities of texts and renders many others invisible. The importance of physical space and material qualities of libraries is illegible when working with digital archives, while the verbal content of texts is highlighted. We must keep in mind that we are not viewing what historical actors saw. Digital texts are almost perfectly fungible, while, variability in historical texts. We are liable, for instance, to underestimate the search costs to locate texts, and the fungibility of texts themselves.
 
-There are reasons, however, to believe that digital text archives provide not just a useful but an historically valid abstraction from the material texts. If we want to understand how an individual scholar understood a particular text, better to have her personal copy, margin notes and all. Yet how would that scholar have treated the text as a cultural item? She would abstract her own copy to a format credibly held in common, the more antiseptically clean version that we see in digital archives. These are the ghosts of the texts, so to speak, but they are what would be left when all idiosyncrasies were removed, the version that one would assume colleagues thought of when declaring that text publicly.
+Simply put, if the texts we analyze are not the ones that historical actors read, can we be said to really be doing something historical? There are reasons to believe that digital text archives provide not just a useful but an historically valid abstraction from the material texts. If we want to understand how an individual scholar understood a particular text, better to have her personal copy, margin notes and all. Yet how would that scholar have treated the text as a cultural item? She would abstract her own copy to a format credibly held in common, the more antiseptically clean version that we see in digital archives. These are the ghosts of the texts, so to speak, but they are what would be left when all idiosyncrasies were removed, the version that one would assume colleagues thought of when declaring that text publicly.
 
 <!-- This comment on evidentiary foundations introduces the theme of this paper, which is the difference between personal and social meanings of texts, and more generally how tendencies toward idiosyncracy attenuate those toward conformity, and vice versa. -->
 
 This is by way of saying that the texts I compile below are not the same that were read by the historical actors under consideration. They are the texts that historical actors would assume their contemporaries were reading, that is, the sanitized, fungible, original published form of the text. By getting at these texts, we are getting at the real historical infrastructure for scholarly communication.
 
-The optical character recognition that computers require in order to store text digitally depends critically on the hard work of creating quality scans of journal archives. JSTOR has done a commendable job of this. Next we will describe what the JSTOR archive has to offer.
-
-
-## Data {#kd-dd}
+### Data {#kd-dd}
 
 ```{r zot2bib}
 f<-'d/q/zot2bib.RData'
@@ -230,7 +255,7 @@ d[is.na(publicationTitle),]
 d<-d[!is.na(publicationTitle),]
 ```
 
-Every record for every journal was downloaded manually, including front and back matter, articles, and book reviews.
+The optical character recognition that computers require in order to store text digitally depends critically on the hard work of creating quality scans of journal archives. JSTOR has done a commendable job of this. Next we will describe what the JSTOR archive has to offer. Every record for every journal was downloaded manually, including front and back matter, articles, and book reviews.
 
 ```{r z2b-dups}
 # find duplicates
@@ -318,6 +343,18 @@ if(!'filt'%in%ls()) filt<-list()
 filt$clean<-cor2aud.f({setkey(jpdf$imp,doc,par);jpdf$imp[clnp$prd[(mth),.(doc,par)]]},'cleaned')
 ```
 
+```{r jdpf-desc,include=T,fig.cap='Annual count of journal issue contents.'}
+jpdf$met[,year:=as.integer(year)]
+jpdf$met[,.N,by=.(journal,year)] %>% {
+  plt(warp(myth(ggplot(.,aes(x=year,y=N,color=journal)) + geom_line() + geom_point())+theme(
+      legend.position = c(.02, .98),
+      legend.justification = c("left", "top"),
+      legend.box.just = "left"
+  ),r=.$N %>% range,ann=war['WWI',on='text']))
+  }
+```
+
+
 ## Sampling {#kd-dp1}
 
 ```{r imp2ftx,eval=F}
@@ -351,6 +388,24 @@ if(!'filt'%in%ls()) filt<-list()
 filt$pre<-cor2aud.f(pre[!is.na(stm)],'preprocessed')
 ```
 
+```{r pre2ntok,include=T,fig.cap='Total word counts of all issues of all journal contents annually.'}
+f<-'d/b/ntok.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  ntok<-pre[!is.na(com),.N,by=.(journal=sub('d/d/jpdf/([^/]+)/([^/]+)/.*','\\1',doc),year=sub('d/d/jpdf/([^/]+)/([^/]+)/.*','\\2',doc) %>% as.integer)]
+  save(ntok,file=f)
+}
+rm(f)
+ntok %>% {
+  plt(warp(myth(ggplot(.,aes(x=year,y=N,color=journal)) + geom_line() + geom_point())+ ylab('Annual word count') + theme(
+      legend.position = c(.02, .98),
+      legend.justification = c("left", "top"),
+      legend.box.just = "left"
+  ),r=.$N %>% range,ann=war['WWI',on='text']))
+  }
+```
+
 ```{r pre2sam}
 f<-'d/p/sam.RData'
 if(file.exists(f)){
@@ -359,12 +414,15 @@ if(file.exists(f)){
   seed<-.Random.seed %>% sample(1)
   cat('Seed: ',seed,'\n',sep='')
   set.seed(seed)
-  sam<-pre[sample(doc[!is.na(stm)] %>% unique,1e2)]
+  sam<-pre[sample(doc[!is.na(stm)] %>% unique
+                  ,1e2 # add to reduce processing time
+                  )]
   sam[,stm:=droplevels(stm,exclude=unique(sam[,.(stm,doc)])[,.N,by=stm][N==1,stm %>% as.character]) %>% droplevels %>% droplevels(exclude=NA)]
   attr(sam,'seed')<-seed
   save(sam,file=f)
 }
 rm(f)
+if(T) {sam<-pre;rm(pre)}
 if(!'filt'%in%ls()) filt<-list()
 filt$sam<-cor2aud.f(sam[!is.na(stm)] %>% setkey(doc),'sampled')
 ```
@@ -401,6 +459,7 @@ if(file.exists(f)){
   save(mlc,file = f)
 }
 rm(f)
+rm(sam)
 ```
 
 ```{r pre2des}
@@ -409,14 +468,7 @@ rm(f)
 #kab(list(des.com,des.stm,data.table(tot=round(des.stm$cnt/des.com$cnt*100,2))),caption = 'Full Text Descriptives')
 ```
 
-## Topics {#kd-dp2}
-
-The modeling objective is twofold, to sort text into categories of similarity, and to describe the qualitative content that defines the category membership. In this way we may operationalize the notion of cultural meaning or cultural logic as the rules of category classification. reduce expressions as instances of a latent category of expression.
-
 ### How many topics?
-
-```{r mlc2kmc,eval=F}
-```
 
 ```{r pre2tel}
 f<-'d/p/tel.RData'
@@ -525,14 +577,70 @@ sim$fig2
 #sg(sim$tab,'Significant Counts of K')
 ```
 
-<!--
-## Model selection
 
-```{r mlc2stm}
-# mod<-stmbow2lda.f(list(documents=mlc$par,vocab=mlc$voc),k=50,out.dir='d/p',verbose=F,visualize.results = T)
-# mod$top.word.phi.beta[mod$top.word.phi.beta==0] <-.Machine$double.eps
-# debugonce(lda2viz.f)
-# viz<-lda2viz.f(mod,'d/b')
+
+
+```{r mlc2ckm}
+f<-'d/b/ckm.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  if(!'pre'%in%ls()) load('d/p/pre.RData')
+  cll<-pre[!is.na(stm),.N,by=.(doc,stm)]
+  # cut down vocab
+  cl1<-cll[,.(N=max(N)),by=stm]
+  cl2<-cl1[,table(N)] 
+  n<-names(cl2)
+  n<-cl2 %>% unclass %>% ov2chpt.f(drv = 2) %>% {data.table(n=n %>% as.integer,.)[!duplicated(g),]}
+  # has to appear seven times in an article
+  dw<-list(ldf=cl1[N<n[2,n],stm %>% as.character])
+
+  cl1<-cll[,.N,by=stm]
+  cl2<-cl1[,table(N)] %>% head(500)
+  n<-names(cl2)
+  n<-cl2 %>% unclass %>% ov2chpt.f(drv = 2) %>% {data.table(n=n %>% as.integer,.)[!duplicated(g),]}
+  
+  # too restrictive, just pick 10 docs at least
+  # you know what, let's do it
+  dw$lfd<-cl1[N<n[2,n],stm %>% as.character]
+  dw %<>% unlist %>% unique
+    
+  system.time(mlc<-pre2mlc.f(pre[!dw,on='stm'][,stm:=droplevels(stm)],'doc'))
+  mta<-pre[!dw,on='stm',.(so=unique(doc) %>% sub('d/d/jpdf/([^/]+)/.+','\\1',.) %>% factor(labels=ec('A,S')))]
+  system.time(mod<-stmbow2lda.f(list(documents=mlc$doc$spm,vocab=mlc$voc),out.dir = 'd/p',k = 50,verbose = T,check.for.saved.output = F,save.to.disk = T,alpha=1,sig.pri = 0,it='Spectral',prevalence=~so,data=mta))
+  save(ckm,file=f)
+}
+rm(f)
 ```
 
--->
+## <!--M2--> Topic interpretation
+
+(ref:soc-mod-viz) Topic Term Explorer, K=50. [*Interactive pop-out.*](exh/viz/index.html){target="_blank"} 
+
+```{r soc-mod-viz,include=T,fig.cap='(ref:soc-mod-viz)'}
+#invisible(suppressWarnings(capture.output(lda2viz.f(ckm,out.dir = 'exh',launch = F))))
+knitr::include_graphics('img/soc-mod-viz.png')
+```
+
+```{r ckm-mef}
+f<-'d/b/mef.RData'
+if(file.exists(f)){
+  load(f)
+} else {
+  gt<-1:50 #setdiff(1:50,c(4,12,17,20,24,35,40))
+  mef<-stm::estimateEffect(formula = gt~so,stmobj = ckm$model,metadata = as.data.frame(mta))
+  x<-list()
+  for(i in gt) x[[i]]<-try(summary(mef,i)$tables[[1]] %>% {c(.[,1],.[,4])})
+  x<-data.table(do.call(rbind,x))[,t:=.I] %>% setnames(ec('int,sos,pi,ps,t'))
+  x[,o:=sos>0][(o),ps:=ps*-1]
+  setorder(x,-o,-ps)
+
+  attr(x,'mef')<-mef
+  mef<-x
+  save(mef,file=f)
+}
+rm(f)
+```
+
+
+<!--## E-->
