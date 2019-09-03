@@ -1,5 +1,7 @@
 # `r tvoc` {#voc}
 
+*Brooks Ambrose and Lynne Zucker*
+
 #### Abstract {-}
 
 (ref:abs-voc)
@@ -101,7 +103,7 @@ setnames(jclu_sub$tab,'super','Subdiscipline')
 sg(jclu_sub$tab,tit = "JSTOR Social Sciences Journal Counts")
 ```
 
-```{r}
+```{r subdisc,include=T,fig.cap='JSTOR journal counts by subdisciplines in Social Sciences and Business and Economics'}
 load('d/p/pd.RData')
 pd[,y:=lubridate::year(d)]
 pts<-merge(pd['birth',on='s'][,.(title_history,y)],pd['death',on='s',.(title_history,y)],by='title_history') %>% setnames(ec('title_history,b,d')) %>% .[is.na(d),d:=2010]
@@ -644,6 +646,10 @@ if(file.exists(f)){
   save(mef,file=f)
 }
 rm(f)
+```
+
+```{r include=T}
+
 ```
 
 
