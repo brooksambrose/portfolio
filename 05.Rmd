@@ -167,7 +167,7 @@ rm(f)
 
 The structure of a large world as revealed by KCC can be explored in a bottom-up and top-down fashion. Bottom-up observes 3-clique communities first. In the social science co-reference network.
 
-(ref:kcc2tree) K-clique Community Structure. [*Interactive pop-out.*](exh/kcc2tree.html){target="_blank"}
+(ref:kcc2tree) K-clique Community Structure. [*Interactive pop-out.*](`r if(latex|docx) 'https://brooksambrose.github.io/portfolio/'`exh/kcc2tree.html){target="_blank"}
 
 ```{r kcc2tree, fig.cap='(ref:kcc2tree)',eval=T,include=T, message=FALSE, warning=FALSE}
 f<-'d/b/kcc2tree.RData'
@@ -246,7 +246,7 @@ The KCC model reveals
 The peer review process can now be thought of as a process of auditing credentials. An author makes an opening bid with the submission of a particular reference list. What this reference list implies about what the author knows is unclear. One may omit a knowledge signal because it is truthfully irrelevant or in a deceptive sin of omission oriented to what they expect to be the expectations of editors and reviewers. One may also include what they do not know out of error, braggadocio, carelessness, or fraud. Part of the work of reviewers will be to validate those claims to knowledge.
 
 
-(ref:kcc2isl) K-clique Community Island Plot. [*Interactive pop-out.*](exh/isl3d.html){target="_blank"}
+(ref:kcc2isl) K-clique Community Island Plot. [*Interactive pop-out.*](`r if(latex|docx) 'https://brooksambrose.github.io/portfolio/'`exh/isl3d.html){target="_blank"}
 
 ```{r kcc2isl,fig.cap='(ref:kcc2isl)',include=T,eval=T,cache=T}
 f<-'d/b/kcc2isl.RData'

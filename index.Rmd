@@ -3,8 +3,9 @@ title: "Knowledge of the U.S. Social Sciences"
 author: "Brooks Ambrose"
 date: "`r Sys.Date()`"
 css: style.css
-bibliography: references.bib
 documentclass: book
+bibliography: references.bib
+csl: asa.csl
 header-includes:
 - \usepackage{booktabs}
 - \usepackage{longtable}
@@ -29,15 +30,15 @@ header-includes:
 - \usepackage{ragged2e}
 - \setlength{\RaggedRightParindent}{\parindent}
 - \RaggedRight
+- \newcolumntype{Z}{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}X}
+- \newcolumntype{Y}{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}X}
 indent: yes
 linestretch: 2
 link-citations: yes
 lof: yes
 lot: yes
 mainfont: FreeSerif
-csl: asa.csl
 site: bookdown::bookdown_site
-biblio-style: apalike
 ---
 
 ```{r init,include=T,echo=FALSE}
@@ -52,18 +53,18 @@ kop<-function(...) {
     ,out.width = '90%'
     ,warning=FALSE
     ,dpi=96
-#    ,optipng = '-o7'
+    #    ,optipng = '-o7'
     ,...
   )
   if(knitr::opts_chunk$get('cache')) warning('Chunk caching is on!')
 }
 kop(cache=F,message=F,screenshot.opts=list(delay=5
-,vheight=900
-,vwidth=1400
-,cliprect='viewport'
-,eval="this.then(function () {
- while(this.evaluate(function () { return document.readyState != 'complete' && document.readyState != 'interactive'; })) {}
-});"))
+                                           ,vheight=900
+                                           ,vwidth=1400
+                                           ,cliprect='viewport'
+                                           ,eval="this.then(function () {
+                                           while(this.evaluate(function () { return document.readyState != 'complete' && document.readyState != 'interactive'; })) {}
+                                           });"))
 ```
 
 ```{r init2,eval=T}
@@ -82,7 +83,7 @@ knitr::include_graphics(ifelse(latex,'img/toolbar.png','img/toolbar.gif'))
 
 At the top of the web page please notice a toolbar where you can:
 
-* Show and hide the table of contents
+  * Show and hide the table of contents
 * Search the document
 * Adjust font and display settings
 * View the underlying code at GitHub.com
@@ -90,7 +91,7 @@ At the top of the web page please notice a toolbar where you can:
 
 I hope you enjoy the study, and please feel free to report bugs, comment, and collaborate at the issue tracker of the GitHub repository.
 
-Best,  
+Best,
 Brooks
 
 ## Abstracts
@@ -117,7 +118,7 @@ Brooks
 
 ### `r 'Genre and the Literature'->tgen;tgen`
 
-(ref:abs-gen) In English the term *genre* is a loanword from the French term for *kind*. As an analytical term in the social sciences genre is a loanword from the humanities. The use of the term varies greatly within and between disciplines. This study attempts a metadisciplinary literature review of genre as a term found in a corpus of JSTOR articles. I cast a very wide net by including any document in English that includes the term genre in the title or abstract. The resulting thousands of documents are "read" with the assistance of a statistical topic model to classify documents into topics, that is, strata of common vocabulary. I then perform content analysis on a stratified sample of classified texts to compare their different uses of the term genre. In an examination of the benefits and hazards of such a distant reading approach, I outline a battery of diagnostics to examine the validity of the topic model from both quantitative and qualitative perspectives. Through a combination of machine distant reading and human close reading, I arrive at a schema of five theories of the term genre. In an argument for pandisciplinarity, I conclude with an analysis of the logical possibility of new metaconcepts of genre that satisfy the strictures of multiple disciplines. 
+(ref:abs-gen) In English the term *genre* is a loanword from the French term for *kind*. As an analytical term in the social sciences genre is a loanword from the humanities. The use of the term varies greatly within and between disciplines. This study attempts a metadisciplinary literature review of genre as a term found in a corpus of JSTOR articles. I cast a very wide net by including any document in English that includes the term genre in the title or abstract. The resulting thousands of documents are "read" with the assistance of a statistical topic model to classify documents into topics, that is, strata of common vocabulary. I then perform content analysis on a stratified sample of classified texts to compare their different uses of the term genre. In an examination of the benefits and hazards of such a distant reading approach, I outline a battery of diagnostics to examine the validity of the topic model from both quantitative and qualitative perspectives. Through a combination of machine distant reading and human close reading, I arrive at a schema of five theories of the term genre. In an argument for pandisciplinarity, I conclude with an analysis of the logical possibility of new metaconcepts of genre that satisfy the strictures of multiple disciplines.
 
 (ref:abs-gen)
 
@@ -125,16 +126,17 @@ Brooks
 
 **Keywords**: (ref:key-gen)
 
-### `r 'Vocabularies of Anthropology and Sociology, 1888-1922'->tvoc;tvoc`
+### `r 'Economy, Society, and Vocabulary: The Origins of U.S. Anthropology and Sociology, 1888-1922'->tvoc;tvoc`
 
-(ref:abs-voc) Knowledge development of journals in sociology and anthropology is measured as the change in topic prevalence over time.
+(ref:abs-voc) After the American Civil War the United States experienced a transition during which social science scholarship shifted its institutional basis from museums, learned societies, and governments including military agencies to a more autonomous setting in the newly forming system of universities. Throughout journals served as a platform for the distribution of scholarly knowledge, giving coherence and continuity to a field otherwise very much in flux. This study lays out two levels of context for these developments. First at the national level we describe the broader societal shifts in politics and the economy that correspond to an increase in public demand for knowledge that provided new resources to expand production in the social sciences. Second at the level of social science discourse in the form of journal articles we show how the attention of social scientists shifted in response to social problems. Using 35 years of full text data from the leading journals in anthroplogy and sociology, we use topic models to first classify and count fields of research and then to describe their waxing and waning in the lead up to World War I. In order to develop this novel "census of knowledge", we apply new approaches to determining the number of scholarly fields by leveraging variations in vocabularies as signals of social boundary formation within fields of cultural production.
 
 (ref:abs-voc)
 
-(ref:key-voc) sociology of knowledge, topic modeling, history of social science
+(ref:key-voc) knowledge, organizational theory, fields of cultural production, institutionalization, history of social science, topic modeling
 
 **Keywords**: (ref:key-voc)
 
+<!--
 ### `r 'The Social Science Citation Landscape, 1900-1940'->tcit;tcit`
 
 (ref:abs-cit) Knowledge mapping of academic journals promotes the conservation of intellectual history and stimulates discovery of underexplored intellectual opportunities. Treated as a large network community detection problem, I demonstrate how to apply the clique percolation method to map two kinds of recorded knowledge: citations and full text. The features of generated maps are explained, and interpretive methods including visualization are presented. We use American social science scholarship in the first third of the 20th century prior to U.S. entry into World War II as a case, and describe how the intellectual landscape of four separate social science disciplines developed.
@@ -145,7 +147,6 @@ Brooks
 
 **Keywords**: (ref:key-cit)
 
-<!--
 `r tten<-'The Development of Intensive Referencing'`
 
 ### `r tten` {-}
@@ -158,12 +159,3 @@ Brooks
 
 **Keywords**: (ref:key-ten)
 -->
-
-<!-- ### About the author {-} -->
-
-<!-- Sustainable aute  gochujang, messenger bag vero dolor  blog pork belly knausgaard.  Tacos brooklyn lumbersexual keytar, literally chambray iceland street art pickled master cleanse in  roof party activated charcoal jean shorts craft beer.  Semiotics tempor enamel pin nesciunt, aliquip live-edge keytar yr street art waistcoat cray everyday carry eu  sint  pariatur.  Aliquip anim  godard leggings, flexitarian direct trade  humblebrag.  Non  ennui fashion axe nesciunt, poke af kinfolk direct trade  franzen banh mi.  Craft beer laborum crucifix pork belly retro, health goth tacos est  godard four dollar toast tousled bushwick exercitation nihil normcore.  Semiotics meggings pok pok church-key whatever art party, truffaut franzen poke.
-
-## Preface on Computational Reproducibility {-}
-
-This study attempts to conduct a conventional sociological research project in an unconventional way. Computational social science is normally understood to leverage statistical methods that require greater computing resources in memory or processing speed than tend to be available on personal computers or workstations. It also 
- -->

@@ -36,8 +36,6 @@ strspl<-function(str) {
   for(i in 2:length(x)) r[[i-1]]<-substr(str,x[i-1],x[i]-1)
   unlist(r)
 }
-blanky<-theme(axis.text.y = element_blank(),axis.ticks.y = element_blank(),panel.grid.major.y = element_blank(),panel.grid.minor.y = element_blank())
-blankx<-theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),panel.grid.major.x = element_blank(),panel.grid.minor.x = element_blank())
 whwh<-function(meta,ix){
   sprintf('%s\'s \"%s\"',meta[ix,auth[[1]]$last %>% nl],meta[ix,ifelse(is.na(tit),sotit,tit) %>% tolower %>% tools::toTitleCase(.)])
 }
@@ -1271,7 +1269,7 @@ Recall that the inspection of bellwethers occurred in the context of a shuffled 
 
 ### Terms
 
-(ref:genr-mod-viz) Topic Term Explorer, K=10. [*Interactive pop-out.*](ldaviz/viz/index.html){target="_blank"} 
+(ref:genr-mod-viz) Topic Term Explorer, K=10. [*Interactive pop-out.*](`r if(latex|docx) 'https://brooksambrose.github.io/portfolio/'`ldaviz/viz/index.html){target="_blank"} 
 
 ```{r genr-mod-viz,include=T,fig.cap='(ref:genr-mod-viz)'}
 #"ldaviz/viz/index.html#topic=6&lambda=0.5&term="
