@@ -1,4 +1,4 @@
-# `r tgen` {#gen}
+# `r {load('init.R');tgen}` {#gen}
 
 #### Abstract {-}
 
@@ -39,6 +39,7 @@ strspl<-function(str) {
 whwh<-function(meta,ix){
   sprintf('%s\'s \"%s\"',meta[ix,auth[[1]]$last %>% nl],meta[ix,ifelse(is.na(tit),sotit,tit) %>% tolower %>% tools::toTitleCase(.)])
 }
+if(!'latex'%in%ls()) source('_init.R')
 ```
 
 
@@ -1779,3 +1780,22 @@ rbindlist(list(tc,data.table('Adjusted Topic Proportion',round(ap1*100),'',round
 ```
 
 Notwithstanding these prima facie quantiative findings, the content of the no list for each text are not entirely comparable. Text 6249 is about local markets for music in a state in India in the 1970s. The vocabularly relating to Indian culture, including references to Hinduism and Islam, found no home in another topic, even in topic 2 which is ostensibly about religion, and so wound up being categorized along with music. Text 3623 is about sexual imagery in Jamaican music videos. Save for the term "Jamaica", the no list contains terms that have general meanings. There is no obvious idiosyncratic content in its no list. The unique quality of this text was its concern with HIV and sexual behavior. Those medically relevant terms do not have a topic of their own, but in this case the idiosyncracy was allocated to one this text's other two topic assignments, either topic 5 (film) or topic 7 (women). If in each text we find both a generic and a unique story, the topic model is not designed to help us model the unique portion.
+
+## Discussion
+
+We have constructed a cartography of a corpus, and especially of a subregion of particular interest in the social sciences. We have also run diagnostic tests on several dimensions of topic quality to help inform us of where the model is performing well and where it is more likely to be biased due to an underspecification of K. I liken this work to my best attempt to outfit myself for an expedition of uncharted territory where the risk of getting lost is very high. The diagnostic considerations above joined with the seriation method lead me to believe that topic 6
+
+
+## Island of California
+
+This study has been an atypical one for topic modeling, because in many ways fitting our model was the beginning rather than the end of our analysis. I accomplished two tasks. First was to theorize expectations about what model bias means in topic modeling. The study of bias is a cottage industry in traditional regression analyses and training in, for instance, generalized linear modeling always includes careful consideration of how bias is likely to change results and even when bias may be a desirable feature of a model. This role for bias is less appreciated in the topic modeling space, where though there are many attempts to get the model right there are seldom recommendations for salavaging the results of a model that we suspect to have gotten wrong. Rather than presume that we have arrived at, or that we can ever arrive at, a model that is perfectly estimated, I have argued that we should equip ourselves with instincts for noticing the kinds of bias likely to crop up in topic modeling. When new methods take the world by storm, it is usually not long before the skeptics remind us that our excitement may be premature [see @Wattenberg2016How for an exhibit about the pitfalls of the wildly popular t-SNE data visualization method].
+
+
+
+```{r ioc1650,fig.cap='Island of California visible on map by Nicolas Sanson, 1650', include=T}
+knitr::include_graphics('img/Insel_Kalifornien_1650.jpg')
+```
+
+After this long discussion I have at the end arrived at a plan of action. Above I lamented that were this to be a methodological exercise it would be a small consolation for punting the ball back into opposition territory. Our goal is to read an entire literature quickly and efficiently, to then claim to have understood what it means, and most importantly to not be thought by peers to be a charlatan.
+
+Though they may be loath to admit it all model builders face an arbitrary and irresolvable decision when confronting an anomaly: believe the data or believe the model.

@@ -6,7 +6,7 @@
 
 <!-- (ref:pe-abs) -->
 
-# `r tpe` {#pe}
+# `r {load('init.R');tpe}` {#pe}
 
 #### Abstract {-}
 

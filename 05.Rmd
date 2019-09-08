@@ -1,4 +1,4 @@
-# `r tcit` {#cit}
+# `r {load('init.R');tcit}` {#cit}
 
 #### Abstract {-}
 

@@ -1,4 +1,4 @@
-# `r tkm` {#km}
+# `r {load('init.R');tkm}` {#km}
 
 #### Abstract {-}
 

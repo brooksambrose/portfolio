@@ -1,4 +1,4 @@
-# `r tten` {#ten}
+# `r {load('init.R');tten}` {#ten}
 
 #### Abstract {-}
 

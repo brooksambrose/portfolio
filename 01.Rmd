@@ -1,4 +1,4 @@
-# `r tint` {#int}
+# `r {load('init.R');tint}` {#int}
 
 #### Abstract {-}
 

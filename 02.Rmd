@@ -1,4 +1,4 @@
-# `r tdis` {#dis}
+# `r {load('init.R');tdis}` {#dis}
 
 #### Abstract {-}
 

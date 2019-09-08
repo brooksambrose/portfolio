@@ -1,4 +1,4 @@
-# `r tvoc` {#voc}
+# `r {load('init.R');tvoc}` {#voc}
 
 *Brooks Ambrose and Lynne Zucker*
 
