@@ -541,7 +541,7 @@ Once data are clean they may be tokenized, which is to split at word and punctua
 The final step is called pre-processing, and involves making decisions about which tokens to keep and which to discard. In the reversible BOW format nothing is actually dropped, rather tokens are flagged by different drop criterion. For instance true/false value of whether a token is a stop-word or a number is recorded.  The researcher may then query the database differently for different research decisions. We dropped punctuation, stop-words, terms smaller than three characters, and we kept numbers especially out of a concern to preserve dates. Finally all tokens are lemmatized, which reduced words in several parts of speech to a root. For instance, the lemma for "run", "ran", and "running" may simply be "run". Lemma are often abstract or non words themselves, so to aid in later interpretation we calculated the lemma common term, which is the token of highest frequency within a lemma category.
 
 ```{r filt,include=T}
-sg(filt[step!='sampled'][.N,step:='N at 100 Percent'] %>% {.[,lapply(.SD,function(x) c(as.character(x[-.N]),x[.N] %>% nn))]} %>%  setnames(ec('Step,Document,Page,Paragraph,Sentence,Token,Term,Lemma')),tit='Term filtering due to data management',digit.separator=',',type = 'latex')
+sg(filt[step!='sampled'][.N,step:='100 Percent'] %>% {.[,lapply(.SD,function(x) c(as.character(x[-.N]),x[.N] %>% nn))]} %>%  setnames(ec('Step,Document,Page,Paragraph,Sentence,Token,Term,Lemma')),tit='Term filtering due to data management',digit.separator=',',font.size='small')
 ```
 
 

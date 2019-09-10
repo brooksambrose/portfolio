@@ -25,8 +25,10 @@ bookdown::gitbook:
 #        in_header: mathjax-number.html
 bookdown::pdf_book:
   latex_engine: xelatex
+  dev: "cairo_pdf"
   keep_tex: yes
   citation_package: none
   toc_depth: 3
   toc_unnumbered: no
   toc_appendix: yes
+

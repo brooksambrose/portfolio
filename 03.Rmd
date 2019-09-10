@@ -486,7 +486,9 @@ sbj<-rbindlist(
     ,sbj[,.(dis='Total',N=sum(N %>% round(2)),W=sum(W %>% round(2)),rN=NA,rW=NA)]
   )
 )[,.(dis,N=round(N,2),W=round(W,2),rN,rW)]
-if(docx) knitr::include_graphics('img/genre-jsubj.png') else sbj %>% set_colnames(ec('Subject,N Percent,W Percent,N Rank,W Rank')) %>% sg(tit='Subject Distribution of Texts',sum=F) # kable(col.names = ec('Subject,N %,W %,Rank N,Rank W'),caption = 'Subject Distribution of Texts')
+if(docx) knitr::include_graphics('img/genre-jsubj.png') else {
+  sbj %>% set_colnames(ec('Subject,N Percent,W Percent,N Rank,W Rank')) %>% sg(tit='Subject Distribution of Texts',sum=F) # kable(col.names = ec('Subject,N %,W %,Rank N,Rank W'),caption = 'Subject Distribution of Texts')
+  }
 ```
 
 Table \@ref(tab:genre-jsubj) enumerates the subject labels each text inherits from its parent book or journal. JSTOR categorizes the volume rather than each item of its contents, and volumes may bear multiple labels. The count (N) of discrete labels as a percentage is listed first and the table is sorted by that figure. In addition, to prevent double counting of texts bearing multiple labels, each label is given a weight (W) that is the inverse of the number of labels given to the text. The top three, `r sbj[1:3,dis %>% nl]`, are the same in each case, while `r sbj[.(4:6),on='rW',dis %>% nl]` are ranked higher by weight than by count, an indication that `r sbj[.(4),on='rN',dis]` frequently co-occurs with other labels and is therefore down-weighted. This makes sense as Social Sciences, like Humanities and Arts, is a meta subject.
@@ -763,14 +765,17 @@ Table \@ref(tab:worstdoc) illustrates the LTP problem for a document that I expe
 ```{r worstdoc,include=T}
 tldt<-function(mod,ix,meta) {
   if(length(ix)>1) stop('Feed one index (one table) at a time')
-mod %>% {cbind(.$doc.top.theta[ix,],.$doc.top.theta[ix,]*.$doc.length[ix],(dht[ix,] %>% t))} %>% {data.table(.,.[,2]*.[,3],.[,2]*(1-.[,3]))} %>% round(3) %>% format(scientific=F,nsmall=3,digits=1)%>% data.table(t=1:10,.) %>% setnames(ec('Topic,Topic Proportion,N Terms Explained,LTP,N from Lower Tail,N from Upper Tail')) %>% setorder(-'N Terms Explained')  %>% sg(tit=sprintf('Lower tail diagnostic for %s',whwh(ix,meta)))
+mod %>% {cbind(.$doc.top.theta[ix,],.$doc.top.theta[ix,]*.$doc.length[ix],(dht[ix,] %>% t))} %>% {data.table(.,.[,2]*.[,3],.[,2]*(1-.[,3]))} %>% round(3) %>% format(scientific=F,nsmall=3,digits=1)%>% data.table(t=1:10,.) %>% setnames(ec('Topic,Topic Prop.,N Terms Explained,LTP,N Lower Tail,N Upper Tail')) %>% setorder(-'N Terms Explained')  %>% sg(tit=sprintf('Lower tail diagnostic, %s',whwh(ix,meta)))
 }
 tldt(mod[[9]],wst,stm$meta)
 ```
 
-If the terms in the lower tail are on the contrary about religion, then the document may in fact be correctly classified. Figure \@ref(fig:worstterms) shows the lower tail terms from topic 2 that are actually present in the text alongside those that are expected to be but are note present. When sorted by the expected proportion, most of the terms do not appear to be highly relevant to religion, though some--like bishop, ritual, homilies, and hell--certainly are. When sorting by those terms that are actually in the text--such as Levi, eschatological, and messiah--the religious meaning is much more clear. These results suggest that the `r ith` term threshold may be too low for this topic, that it has a very long list of relevant vocabulary. It is interesting to note that the term ranking by original document frequency is more suggestive of religious content, while the predicted frequency, of messiah for instance, actually dilutes the term ranking. This is an indication of imperfect fit, as a term like messiah was predicted to be less important to the text than it actually is.
+If the terms in the lower tail are on the contrary about religion, then the document may in fact be correctly classified. Figure \@ref(fig:worstterms) shows the lower tail terms from topic 2 that are actually present in the text alongside those that are expected to be but are not present. When sorted by the expected proportion, most of the terms do not appear to be highly relevant to religion, though some--like bishop, ritual, homilies, and hell--certainly are. When sorting by those terms that are actually in the text--such as Levi, eschatological, and messiah--the religious meaning is much more clear. These results suggest that the `r ith` term threshold may be too low for this topic, that it has a very long list of relevant vocabulary. It is interesting to note that the term ranking by original document frequency is more suggestive of religious content, while the predicted frequency, of messiah for instance, actually dilutes the term ranking. This is an indication of imperfect fit, as a term like messiah was predicted to be less important to the text than it actually is.
 
-```{r worstterms,include=T,fig.cap=sprintf('Terms from %s that are expected to derive from topic 2',whwh(wst))}
+(ref:worstterms) `r sprintf('Terms from %s that are expected to derive from topic 2.',whwh(wst))` [*Interactive pop-out.*](`r if(latex|docx) 'https://brooksambrose.github.io/portfolio/'`exh/worstterms.html){target="_blank"}
+  
+
+```{r worstterms,include=T,fig.cap='(ref:worstterms)'}
 wrk<-(mod[[9]]$doc.top.theta[wst,]*mod[[9]]$top.word.phi.beta)
 all<-wrk[,stm$documents[[wst]][1,]] %>% sum
 wrk<-wrk[2,tht[-(1:ith),2]]
@@ -778,10 +783,10 @@ wrk<-mod[[9]]$documents[wst][[1]] %>% t %>% data.table %>% setnames(ec('v,f')) %
 wrk[,v:=stm$vocab[v]] #[,ec('p,fp'):=lapply(.SD,round,scientific=T,digits=3),.SDcols=ec('p,fp')]
 wrk[is.na(f),f:=0]
 wrk[,fp:=f*p] %>% setorder(-p)
-wrk[1:max(which(!!f))] %>% DT::datatable(filter = 'top',colnames = ec('Term,Frequency,Expected Topic Proportion,Expected Topic Frequency'),rownames = F) %>% DT::formatSignif(3:4,3)
+wrk<-wrk[1:max(which(!!f))] %>% DT::datatable(filter = 'top',colnames = ec('Term,Frequency,Expected Topic Proportion,Expected Topic Frequency'),rownames = F) %>% DT::formatSignif(3:4,3)
+htmlwidgets::saveWidget(wrk,file = getwd() %>% paste('exh','worstterms.html',sep=.Platform$file.sep),background='white',selfcontained = F)
+wrk
 ```
-
-<!-- Recall that I calculated that terms from the lower tail of topic 2 accounted for `r wrk[,sum(p)*100] %>% round(1)` percent of this text. What is troubling, however, is that the LTP of the terms that are actually in this text add up to only `r wrk[!is.na(f),sum(p)*100] %>% round(1)` percent. This means that three in ten terms responsible for this document's classification are not actually in the document. -->
 
 While I have already inspected the summary ranking of topics in terms of a few measures of goodness of fit, it is helpful to observe the within topic distributions of LTP, which will make the level of overlap among topics more clear. First I will inspect the primary topic classification, as it is common for researchers to reduce the document by topic probability matrix to the primary classification. Then I will look at each topic considering all LTPs at once, not just that of the primary topic.
 
@@ -1252,7 +1257,7 @@ Topic level indicators:
 Table \@ref(tab:sumrnk) shows the topic rankings for each of these indicators as well as a summary of all rankings. The highest quality topic is 6, which is usually in the top three ranks, its exceptions being higher residuals, a shorter lineage, and some QCV confusion. The lowest quality topic is 2, its exceptions being the deepest lineage and strong bellwether classification strength. Topics 6, 9, 1, and 4 may be separated as a group of higher quality than the rest.
 
 ```{r sumrnk,include=T}
-sg(data.table(Rank=knar,krank[,!'r'] %>% setcolorder(ec('ktl,cut,ghst,res,pltp,altp,m300,gini,conf,ldp')),srank[.N:1] %>% setnames(ec('Sum.,Mean,Variance'))),tit='Summary of Diagnostic Ranks')
+sg(data.table(Rank=knar,krank[,!'r'] %>% setcolorder(ec('ktl,cut,ghst,res,pltp,altp,m300,gini,conf,ldp')),srank[.N:1] %>% setnames(ec('Sum.,Mean,Var.'))) %>% .[,!'m300'],tit='Summary of Diagnostic Ranks.',font.size='small')
 ```
 
 
@@ -1264,9 +1269,13 @@ At long last and armored with a diagnostic assessment of the topics, it is appro
 
 A good place to begin is to ask whether I have done more than merely reproduce a categorical scheme to which I already had access. If topics are entirely predicted by journals, then they may not be very valuable as guides to scholarship, though confirming this would be an argument against the importance of interdisciplinarity. Figure \@ref(fig:jourchi) shows the relationship between topics and journals when documents are assigned to their primary topic classification. Each journal is scored by the standardized $\chi^2$ residuals from a test of categorical association between a table of topics by journal document counts. The standardized residuals can be interpreted as t-scores on a normal distribution; they represent the distance between observed and predicted table frequencies in standard errors from what would be expected if the dimensions were independent. Roughly, scores with a standardized residual higher than two are worth noting, and the higher the residual the stronger the association. Rather than sort through all `r stm$meta[!grepl('book',file_name),unique(so) %>% setdiff('') %>% length %>% nn]` discrete journals for each topic, I report only the top ten highest residuals.
 
-```{r jourchi,include=T,fig.cap='Journal Topic Associations'}
+(ref:jourchi) Journal Topic Associations. [*Interactive pop-out.*](`r if(latex|docx) 'https://brooksambrose.github.io/portfolio/'`exh/jourchi.html){target="_blank"}
+
+```{r jourchi,include=T,fig.cap='(ref:jourchi)'}
 csr<-suppressWarnings(stm$meta[so!=''][!grepl('book',file_name),table(.SD),.SDcols=ec('so,mK')] %>% questionr::chisq.residuals(std = T) %>% melt %>% data.table %>% .[stm$meta,on='so',solong:=solong] %>% setorder(-value) %>% {.[,head(.SD,10),by=mK][,.(Topic=mK,Journal=sprintf("<a href='https://www.jstor.org/journal/%s' target='_blank'>%s</a>",so,solong),Residual=value)]})
-DT::datatable(csr,filter = 'top',escape = F,rownames = F)
+csr<-DT::datatable(csr,filter = 'top',escape = F,rownames = F)
+htmlwidgets::saveWidget(csr,file = getwd() %>% paste('exh','jourchi.html',sep=.Platform$file.sep),background='white',selfcontained = F)
+csr
 ```
 
 ### Bellwether texts
@@ -1333,7 +1342,7 @@ withr::with_package(
 Topic 1 refers to what I above called the "abstract" sense of genres of discourse. The leading journals are different; the first *Discourse Studies* is general while the second *Research in the Teaching of English* seems to apply the notion of discourse to the particular professional domains of education and literacy. During QCV the importance of discourse was never noticed, and it was almost entirely taken to be about teaching and pedagogy especially with respect to writing. A few articles dealt with technical writing in business rather than in education contexts. From the term lists the model anchor "remake" is not expected, and in fact we might have expected it to occur in topic 5. The bulk of the terms are related to education. Not only "discourse" but "writing", "reading", and "text" share considerable overlap with other topics, and may help place topic 1 in a central location on the topic map.
 
 ```{r t1d,include=T}
-sg(rel[['T1']],tit='Topic 1 Terms')
+sg(rel[['T1']],tit='Topic 1 Terms',tabularx = T,new.col.align = 'lY')
 ```
 
 #### Topic 2, *`r trm[2]`*
@@ -1341,7 +1350,7 @@ sg(rel[['T1']],tit='Topic 1 Terms')
 Topic 2, which above I interpreted as religious studies, is here led by the journal *Quaderni di Studi Arabi*, which is dedicated to the culture and history of Arab civilization. While that scope may include religion we would expect it to extend far beyond it. While there are certainly more explicitly religious journals among the list, there are also journals dedicated to antiquity. This helps broaden our understanding of the topic, which is more about the history of Abrahamic civilization than about religion narrowly. We should also resist a western centric notion of religion, as we are bound to discover important religious themes in topic 3. During QCV this was often labeled as "biblical" with occasional reference to Islam or the Quran or Hellenism. Indeed the most relevant term "ibn" means "son of" in Arabic names. The model anchor "Twain" seems fairly oblique to the topic although Mark Twain may have spoke frequently of god. The term lists remind us that underlying biases in publishing, here the overrepresentation of Christian topics, can be reproduced with a naive focus on high frequency terms.
 
 ```{r t2d,include=T}
-sg(rel[['T2']],tit='Topic 2 Terms')
+sg(rel[['T2']],tit='Topic 2 Terms',tabularx = T,new.col.align = 'lY')
 ```
 
 #### Topic 3, *`r trm[3]`*
@@ -1349,7 +1358,7 @@ sg(rel[['T2']],tit='Topic 2 Terms')
 Topic 3 includes several pan Asian studies journals as well as journals focusing on Japan and China. Like topic 8 the signal in likely due to language and cultural content and perhaps more simply geographical terminology like state names. Unlike topic 8 they were not drawn into the sample because of a coincidental meanings of "genre" in French. During QCV a specifically historical thrust was apparent especially with reference to Chinese imperial dynasties. Interestingly Hittite civilization appeared more than once, which is geographically closer to the content of topic 2 but nonetheless categorized separately. Several references were made to the Song dynasty, which poses a true polysemy and disambiguation challenge with respect to topic 6.^[Only challenging due to the preprocessing decision to convert all terms to lower case. Had "Song" and "song" been left separate, disambiguation would not have been a problem. The model estimates that 14 percent of instances of song are from topic 3 and 82 percent are from topic 6.] The terms contain many more proper nouns, place and person names, than other topics, and raise the importance of Japanese and Korean topics that were not as apparent in the bellwethers. 
 
 ```{r t3d,include=T}
-sg(rel[['T3']],tit='Topic 3 Terms')
+sg(rel[['T3']],tit='Topic 3 Terms',tabularx = T,new.col.align = 'lY')
 ```
 
 #### Topic 4, *`r trm[4]`*
@@ -1357,7 +1366,7 @@ sg(rel[['T3']],tit='Topic 3 Terms')
 Topic 4 is almost exclusively concentrated in the journal *Science Fiction Studies*, with a smattering of weaker associations across a diverse set of journals. This suggests a fairly narrow focus, not even of fiction but a subgenre of it. During QCV the topic was difficult to disentangle, though ultimately it was not confused with any other topic. It was often noted to be fiction or science fiction, but as often it included the analysis of cultures of utopianism or futurism, often applied in nonfiction settings, for instance, to study historical narratives in support of political racism and in various locations like the American west, the USSR, and post colonial Africa. Inspecting the term lists seems to efface the prominence of science fiction in favor of a political and historical terminology, though the model choice of Asimov for an anchor is a helpful reminder of the journal origin of the topic. The mixing of fiction and nonfiction topics may be a symptom of poor fit, or there may be a real elective affinity intersecting on utopianism.
 
 ```{r t4d,include=T}
-sg(rel[['T4']],tit='Topic 4 Terms')
+sg(rel[['T4']],tit='Topic 4 Terms',tabularx = T,new.col.align = 'lY')
 ```
 
 #### Topic 5, *`r trm[5]`*
@@ -1365,7 +1374,7 @@ sg(rel[['T4']],tit='Topic 4 Terms')
 Topic 5 is very well represented among a variety of journals dedicated to film and cinema. I wonder if the quantity of journals is reflective of industry support. Mixed with film articles were several related to television and one related to video games, perhaps sharing terms in common to the description of U.S. industrial entertainment media. The horror genre appeared to be overrepresented. We may speculate that subtopics with more exclusive vocabulary, even if they are a minority of cases, may come to be more representative of a topic than one would expect. Indeed the term lists reveal "Dracula" to be the model anchor and "zombie" and "horror" to be highly relevant, whereas "noir" is the only other subgenre term showing up in the top ten lists. While it is possible that horror is actually overrepresented in film scholarship, the model behavior suggests that it merely has a more distinctive vocabulary. Topic 5 was confused once with 7, perhaps due to  the importance of storytelling to each. 
 
 ```{r t5d,include=T}
-sg(rel[['T5']],tit='Topic 5 Terms')
+sg(rel[['T5']],tit='Topic 5 Terms',tabularx = T,new.col.align = 'lY')
 ```
 
 #### Topic 6, *`r trm[6]`*
@@ -1373,7 +1382,7 @@ sg(rel[['T5']],tit='Topic 5 Terms')
 Topic 6 has several strong journals led by *Popular Music*, and interestingly *Asian Theatre Journal*. Farther down the list are discipline specific journals. The music topic was obvious and noted to be sorted with particular ease during QCV but was actually confused once with topic 2. The model anchor "jin" is probably a reference to the Jin dynasty in China, which indicates a curious segregation of the historical relevance of music in a presumably theater context from the rest of topic 3, where the model assumes that the term Jin is *never* discussed. Similarly, it is telling that the term "Indonesian" can be understood by its placement as an exclusive term in a music category to never be relevant to another topic. We might expect historical geographies to be relevant in all of their cultural dimensions, but at least with reference to the term genre there is considerable topic segregation.
 
 ```{r t6d,include=T}
-sg(rel[['T6']],tit='Topic 6 Terms')
+sg(rel[['T6']],tit='Topic 6 Terms',tabularx = T,new.col.align = 'lY')
 ```
 
 
@@ -1382,7 +1391,7 @@ sg(rel[['T6']],tit='Topic 6 Terms')
 Topic 7, like 4, is concentrated in one journal, *Marvels and Tales* which is about folklore, yet the second journal *Culture, Health & Sexuality* could not seem more different. Two other journals relate to women's studies, and several other journals relate specifically to British folklore. During QCV this topic was misunderstood as two different topics, one about folklore and one about gender and sexuality often with reference to youth and family. This may help explain why topic 7 was confused twice, once with 5 and once with 10. It is possible that the importance of family and gender in folk tales, for instance Arthurian tales of chivalry, allows folklore to be merged with modern gender studies. The model anchor "Archie" likely relates to problematic gender assumptions in the comic book series. The term lists otherwise describe a topic that is unequivocally about gender and sexuality, with queer topics showing up as highly relevant. Only one hint of folklore, Gawain, is observable in the top ten lists. Farther down the list especially at lambda = 0.5 are terms specific to family relationships, "husband" for instance being an anchor word.
 
 ```{r t7d,include=T}
-sg(rel[['T7']],tit='Topic 7 Terms')
+sg(rel[['T7']],tit='Topic 7 Terms',tabularx = T,new.col.align = 'lY')
 ```
 
 #### Topic 8, *`r trm[8]`*
@@ -1390,7 +1399,7 @@ sg(rel[['T7']],tit='Topic 7 Terms')
 Topic 8 is seemingly related to French and music studies but is led by the biology journal *Crustaceana* and includes *Botanical Review*. This collection is likely united by the appearance of many French language terms, caught in the initial sample definition of the common French term "genre", which after all is a French loanword translating to "kind" but in the native tongue referring to much more than culture. Indeed genre also has the more special meaning "genus" which explains the appearance of life science journals. These errors should be removed from the sample but they provide an instructive challenge, or perhaps an easy win, for the topic model estimator. Unfortunately removing texts by the topic score may actually eliminate substantive texts that happen to deal with French language content but are relevant to genre studies, so removal by journal is more appropriate. During QCV several articles related to orchestral music, one of which was in Italian not French, and Gregorian chants appeared. It was noted that English language articles had the term genre included in a French translation of their abstracts, an in this case nuisance feature of the JSTOR search not disabled by a specific filtering by language. The term list is populated with not only French but also Spanish and Italian stopwords. Topic 8 is so different that it forms its own axis in the scaled topic map.
 
 ```{r t8d,include=T}
-sg(rel[['T8']],tit='Topic 8 Terms')
+sg(rel[['T8']],tit='Topic 8 Terms',tabularx = T,new.col.align = 'lY')
 ```
 
 #### Topic 9, *`r trm[9]`*
@@ -1398,7 +1407,7 @@ sg(rel[['T8']],tit='Topic 8 Terms')
 Topic 9 has one leading journal (*New Literary History*) like 7 and 4, but there is a clear "language and literature" trend among even the more weakly associated journals. It is interesting that the second journal *L'Esprit Créateur* is a French language journal; we may anticipate some overlap with the French language topic 8 that may suppress its prominence here. Also our limited glimpse at topic 2 to illustrate topic descent above revealed the importance of poetry, and topic 9 includes *Victorian Poetry*. If the term poem is indeed important to topic 9, then it is a caveat against interpreting a term important across multiple topics as exhibiting polysemy, since here it would clearly have the same meaning just in different substantive contexts. During QCV it was sometimes hard to sort, and sometimes treated as separate literary theory and philosophy topics. It is possible that elements of style, such as a stilted or abstract diction, cause these areas to merge. Indeed the likely derogatory model anchor "simplified" may reveal that high minded bickering is characteristic of style more than content! As with topic 7, the error of positing two topics to describe one leads to a higher confusion rate with other topics. More than any other topic the relevant terms are the names of important figures usually real and sometimes imagined. The frequent terms suggest literature, and the relevant terms suggest philosophy. Either the two fields are erroneously merged or literary theory merely draws heavily on philosophy.
 
 ```{r t9d,include=T}
-sg(rel[['T9']],tit='Topic 9 Terms')
+sg(rel[['T9']],tit='Topic 9 Terms',tabularx = T,new.col.align = 'lY')
 ```
 
 #### Topic 10, *`r trm[10]`*
@@ -1406,7 +1415,7 @@ sg(rel[['T9']],tit='Topic 9 Terms')
 Topic 10 is distributed among several journals about art, including a couple of Renaissance studies journals. During QCV this was easy to separate and was labeled painting, as in "Dutch genre painting". Topic 10 was confused twice, once with 7 and once with 9. The term lists suggest painting but also book publishing and place names specific to the British isles, whereas bellwethers much more strongly evoked Belgium and the Netherlands. The confusion stems from the reader seeing two topics, the British novel on one hand and painting on the other, where in the model they are collapsed, perhaps due to the prominence of London in both art dealing and book publishing.
 
 ```{r t10d,include=T}
-sg(rel[['T10']],tit='Topic 10 Terms')
+sg(rel[['T10']],tit='Topic 10 Terms',tabularx = T,new.col.align = 'lY')
 ```
 
 ## Topic clusters
@@ -1482,6 +1491,8 @@ Though it may be an arbitrary simplification, a feature of the hierarchical mode
 
 <!-- ### Network Community Detection -->
 
+(ref:clusters) Average topic proportions within communities. [*Interactive pop-out.*](`r if(latex|docx) 'https://brooksambrose.github.io/portfolio/'`exh/clusters.html){target="_blank"}
+
 ```{r clusters,include=F,eval=F}
 f<-'d/p/dclc-genre.RData'
 if(file.exists(f)){
@@ -1494,7 +1505,9 @@ rm(f)
 cld<-mod[[9]]$doc.top.theta %>% data.table(.,lc=dclc$membership) %>% melt(id.vars='lc') %>% setnames(ec('lc,k,p'))
 cl<-cld[,.(`%`=(mean(p) %>% `*`(100) %>% round(1))),by=.(lc,k)] %>% setorder(lc,-`%`)
 #dclc$membership %>% table
-cl %>% DT::datatable(.,caption = 'Average topic proportions within communities',filter = 'top')
+cl %<>% DT::datatable(.,caption = '(ref:clusters)',filter = 'top')
+htmlwidgets::saveWidget(csr,file = getwd() %>% paste('exh','clusters.html',sep=.Platform$file.sep),background='white',selfcontained = F)
+csr
 ```
 
 ```{r clusters2,include=F,eval=F,fig.cap='Topic by document probabilities within communities'}

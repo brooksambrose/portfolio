@@ -35,7 +35,7 @@ if(!file.exists('asa.csl')) 'https://www.zotero.org/styles/american-sociological
   readLines(warn = F) %>% writeLines('asa.csl')
 
 # references.bib ----------------------------------------------------------
-
+if(T){
 # download bibtex from zotero cloud
 ini<-'https://api.zotero.org/users/2730456/collections/SAY3BJDZ/items?format=bibtex&key=9ekyrSk1IIye3OH3Yh2l7ftJ&limit=100'
 gt<-list()
@@ -70,4 +70,5 @@ if(F){
   wa<-sapply(tb%>% RefManageR::fields(),function(x) which(!any(ec('editor,author')%in%x))) %>% unlist
   wy<-sapply(tb%>% RefManageR::fields(),function(x) which(!any(ec('year')%in%x))) %>% unlist
   if(any(length(wa)|length(wy))) stop('missing author or year field')
+}
 }

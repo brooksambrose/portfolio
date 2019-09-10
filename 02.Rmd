@@ -373,6 +373,9 @@ Table \@ref(tab:jclum) reports the disciplines by their superdiscipline as well 
 ```{r jclum,include=T}
 jclum<-withr::with_package('network',attributes(jlnet)$net %>% {data.table(m=.%v%'memb',n=network.vertex.names(.),rs=.%v%'rs')}) %>% setorder(m,-rs)
 jclum[,rs:=round(rs,2)]
+jclum<-jclum[!'Medicine & Allied Health',on='m']
+jclum['Management & Organizational Behavior',on='n',n:='Management & Org. Behavior']
+jclum['Architecture & Architectural History',on='n',n:='Architecture & Arch. History']
 
 jclum<-lapply(
   unique(jclum$m),function(v) {
@@ -387,7 +390,7 @@ jclum<-lapply(
   }
 ) %>% rbindlist %>% setnames(ec('Superdiscipline,Major Discipline,Soc.,Minor Discipline,Soc. ')) %>% .[!.N]
 
-sg(jclum,tit='Disciplines by sociality multiplier'
+sg(jclum,tit='Disciplines by sociality multiplier',font.size='small'
    #,note='Disciplines with sociality < 1 have fewer > 1 have more ties than expected by chance.'
    )
 
