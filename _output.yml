@@ -20,7 +20,7 @@ bookdown::gitbook:
           <!--<li><a href="https://www.ischool.berkeley.edu/people/brooks-ambrose" target="blank">UC Berkeley</a></li>-->
       sharing: no
       edit: https://github.com/brooksambrose/portfolio/blob/draft/%s
-      download: ["pdf","docx"]
+      download: ["pdf"]
 #      includes:
 #        in_header: mathjax-number.html
 bookdown::pdf_book:

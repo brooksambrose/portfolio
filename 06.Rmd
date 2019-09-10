@@ -1,4 +1,4 @@
-# `r {load('init.R');tten}` {#ten}
+# `r {load('_init.RData');kopi();tten}` {#ten}
 
 #### Abstract {-}
 

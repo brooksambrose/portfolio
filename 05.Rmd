@@ -1,4 +1,4 @@
-# `r {load('init.R');tcit}` {#cit}
+# `r {load('_init.RData');kopi();tcit}` {#cit}
 
 #### Abstract {-}
 
@@ -175,7 +175,7 @@ if(file.exists(f)){
   load(f)
 } else {
   #{load('d/p/cos2kcc.RData');load('d/p/bel2mel.RData');load('d/p/wok2dbl.RData')}
-  system.time(kcc2tree<-kcc2tree.f(cos2kcc,bel2mel,wok2dbl,sides = 100,transform=T))
+  system.time(kcc2tree<-kcc2tree.f(cos2kcc,bel2mel,wok2dbl,sides = 100,transform=F))
   save(kcc2tree,file=f)
 htmlwidgets::saveWidget(kcc2tree$int,file = getwd() %>% paste('exh','kcc2tree.html',sep=.Platform$file.sep),background='gray',selfcontained = F)
 }
