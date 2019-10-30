@@ -54,7 +54,8 @@ kop<-function(...) {
     ,comment=NA
     ,out.width = '90%'
     ,warning=FALSE
-    ,dpi=150
+#    ,dpi=150
+ #  ,fig.height=5
     #    ,optipng = '-o7'
     ,...
   )

@@ -195,7 +195,8 @@ rm(f)
 #plt(jnet,tooltip='text') # TODO fix tooltips to omit edge tips
 ```
 
-```{r jclu-lnet,include=T,fig.cap='Discipline Network in Latent Space. Node size represents sociality. The larger a node, the more attractive it is, and the larger a white dot within a node, the more repulsive it is.',fig.cap='Discipline Network in Latent Space.'}
+```{r jclu-lnet,include=T,fig.cap='Discipline Network in Latent Space.'}
+#fig.cap='Discipline Network in Latent Space. Node size represents sociality. The larger a node, the more attractive it is, and the larger a white dot within a node, the more repulsive it is.',
 f<-'d/b/jclu2lnet.RData'
 if(file.exists(f)){
   load(f)
