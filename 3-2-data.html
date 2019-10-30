@@ -25,7 +25,7 @@
 <meta name="author" content="Brooks Ambrose">
 
 
-<meta name="date" content="2019-09-10">
+<meta name="date" content="2019-10-29">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -91,10 +91,10 @@
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Getting Started</a></li>
 <li class="chapter" data-level="" data-path="chapter-abstracts.html"><a href="chapter-abstracts.html"><i class="fa fa-check"></i>Chapter Abstracts</a><ul>
-<li class="chapter" data-level="" data-path="chapter-abstracts.html"><a href="chapter-abstracts.html#what-to-read-how-archivists-professors-and-educators-cultivate-knowledge-terrains"><i class="fa fa-check"></i>What to Read? How Archivists, Professors, and Educators Cultivate Knowledge Terrains</a></li>
-<li class="chapter" data-level="" data-path="chapter-abstracts.html"><a href="chapter-abstracts.html#social-science-disciplines-today"><i class="fa fa-check"></i>Social Science Disciplines Today</a></li>
-<li class="chapter" data-level="" data-path="chapter-abstracts.html"><a href="chapter-abstracts.html#genre-and-the-literature"><i class="fa fa-check"></i>Genre and the Literature</a></li>
-<li class="chapter" data-level="" data-path="chapter-abstracts.html"><a href="chapter-abstracts.html#economy-society-and-vocabulary-the-origins-of-u.s.-anthropology-and-sociology-1888-1922"><i class="fa fa-check"></i>Economy, Society, and Vocabulary: The Origins of U.S. Anthropology and Sociology, 1888-1922</a></li>
+<li class="chapter" data-level="0.0.1" data-path="chapter-abstracts.html"><a href="chapter-abstracts.html#what-to-read-how-archivists-professors-and-educators-cultivate-knowledge-terrains"><i class="fa fa-check"></i><b>0.0.1</b> What to Read? How Archivists, Professors, and Educators Cultivate Knowledge Terrains</a></li>
+<li class="chapter" data-level="0.0.2" data-path="chapter-abstracts.html"><a href="chapter-abstracts.html#social-science-disciplines-today"><i class="fa fa-check"></i><b>0.0.2</b> Social Science Disciplines Today</a></li>
+<li class="chapter" data-level="0.0.3" data-path="chapter-abstracts.html"><a href="chapter-abstracts.html#genre-and-the-literature"><i class="fa fa-check"></i><b>0.0.3</b> Genre and the Literature</a></li>
+<li class="chapter" data-level="0.0.4" data-path="chapter-abstracts.html"><a href="chapter-abstracts.html#economy-society-and-vocabulary-the-origins-of-u.s.-anthropology-and-sociology-1888-1922"><i class="fa fa-check"></i><b>0.0.4</b> Economy, Society, and Vocabulary: The Origins of U.S. Anthropology and Sociology, 1888-1922</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="1-int.html"><a href="1-int.html"><i class="fa fa-check"></i><b>1</b> What to Read? How Archivists, Professors, and Educators Cultivate Knowledge Terrains</a><ul>
 <li class="chapter" data-level="1.0.1" data-path="1-int.html"><a href="1-int.html#knowledge-roles"><i class="fa fa-check"></i><b>1.0.1</b> Knowledge roles</a></li>
@@ -187,7 +187,7 @@
 <li>Search dfr.jstor.org using the query <code>(ta:genr* OR ab:genr*) AND la:eng</code> and requesting 1grams.</li>
 <li>To cull documents for which genre is not an important term, exclude documents containing fewer than five variants of the term genre (1grams matching the regular expression <code>^genr</code>: genre, genred, and genres).</li>
 <li>Remove 1grams appearing fewer than three times, which often includes optical character recognition errors.</li>
-<li>Remove 1grams shorter than three characters and longer than 25 characters, again often OCR errors but also stopwords that will be removed anyway.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></li>
+<li>Remove 1grams shorter than three characters and longer than 25 characters, again often OCR errors but also stopwords that will be removed anyway.<a href="bibliography.html#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></li>
 <li>Remove 1grams longer than three characters that are all the same letter, often OCR errors but sometimes real, as in Roman numerals.</li>
 <li>Compile baseline word counts for each document assuming that at this step the documents contain only valid terms, and no OCR errors.</li>
 <li>Remove SMART stopwords.</li>
@@ -202,14 +202,14 @@
 </ol>
 <p>The initial query returned 7,695 articles from 1,205 different journals, as well as 6,485 book chapters from 4,427 books. After the above processing steps, the sample was reduced to 3,547 articles and 2,797 chapters, or 6,344 total texts.</p>
 <p>It is fair to ask what is lost during the pre-processing of texts. Many are included in error due to JSTOR’s internal translation of abstracts; where “genre” is the French translation of the English “kind” the text will be included even if the term genre does not actually appear in the English title or abstract. While I do not carefully look at the content of the excluded documents, assuming they were not texts that made important use of the term genre, I do retain some information about what components of a text were lost of those documents that were not cut. This is a measure I call idiosyncrasy, or the proportion of terms in a document eliminated during pre-processing. I call it idiosyncrasy because the pre-processing condition was that terms would be eliminated if they did not appear in at least 20 other texts. Texts that lost a large volume of words to this filter are drawing on a vocabulary that almost no other texts use. It would not be surprising if these were ethnographic or content analytic studies of non English materials.</p>
-<p>Figure <a href="3-2-data.html#fig:idi-hist">3.4</a> shows the right-skewed distribution of idiosyncrasy. The median text lost about one tenth (10.19 percent) of its words, while 90 percent of texts are within two tenths, and outliers begin at about three tenths as can be seen in the boxplot. The 153 (2.41 percent of) texts above three tenths vary across a range as wide as the rest of the distribution. The most idiosyncratic text, at 60.4 percent of its vocabulary lost, is Welsh’s 1982 “Editorial: The Genre Revival.”<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> The article, from the journal <em>Hebrew Studies</em>, is a single page introduction in English to a 12 page essay reprinted in the original Hebrew. By page count alone I would expect the idiosyncrasy to be 12/13 or 92.3 percent, which also illustrates how terms that are not in the Roman alphabet may be discarded as OCR errors even prior to the idiosyncrasy measurement.</p>
+<p>Figure <a href="3-2-data.html#fig:idi-hist">3.4</a> shows the right-skewed distribution of idiosyncrasy. The median text lost about one tenth (10.19 percent) of its words, while 90 percent of texts are within two tenths, and outliers begin at about three tenths as can be seen in the boxplot. The 153 (2.41 percent of) texts above three tenths vary across a range as wide as the rest of the distribution. The most idiosyncratic text, at 60.4 percent of its vocabulary lost, is Welsh’s 1982 “Editorial: The Genre Revival.”<a href="bibliography.html#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a> The article, from the journal <em>Hebrew Studies</em>, is a single page introduction in English to a 12 page essay reprinted in the original Hebrew. By page count alone I would expect the idiosyncrasy to be 12/13 or 92.3 percent, which also illustrates how terms that are not in the Roman alphabet may be discarded as OCR errors even prior to the idiosyncrasy measurement.</p>
 <div class="figure" style="text-align: center"><span id="fig:idi-hist"></span>
 <img src="03_files/figure-html/idi-hist-1.png" alt="Distribution of idiosyncracy, the proportion of document vocabularly dropped during pre-processing." width="90%" />
 <p class="caption">
 Figure 3.4: Distribution of idiosyncracy, the proportion of document vocabularly dropped during pre-processing.
 </p>
 </div>
-<p>Figure <a href="3-2-data.html#fig:gp-hist">3.5</a> shows the logarithm of the count of the term genre as a proportion of the total term count of a text. This distribution is much more highly skewed but contains fewer outliers. In the median text a genre variant accounted for about 6 in 1,000 terms, while at the 90th percentile the rate is 27 in 1,000. 44 texts (0.69 percent) are outliers where one in ten or more words is a genre variant. The text with the largest genre proportion, at 35.7 percent of its words, is Welsh’s “Editorial: The Genre Revival”<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>, a single page introduction in a special issue of <em>Literature/Film Quarterly</em> on genres.</p>
+<p>Figure <a href="3-2-data.html#fig:gp-hist">3.5</a> shows the logarithm of the count of the term genre as a proportion of the total term count of a text. This distribution is much more highly skewed but contains fewer outliers. In the median text a genre variant accounted for about 6 in 1,000 terms, while at the 90th percentile the rate is 27 in 1,000. 44 texts (0.69 percent) are outliers where one in ten or more words is a genre variant. The text with the largest genre proportion, at 35.7 percent of its words, is Welsh’s “Editorial: The Genre Revival”<a href="bibliography.html#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>, a single page introduction in a special issue of <em>Literature/Film Quarterly</em> on genres.</p>
 <div class="figure" style="text-align: center"><span id="fig:gp-hist"></span>
 <img src="03_files/figure-html/gp-hist-1.png" alt="Distribution of $log_{10}$ of the count of the term &quot;genre&quot; as a proportion of all terms in a text. Pluses indicate outliers." width="90%" />
 <p class="caption">
@@ -605,14 +605,6 @@ Total
 </table>
 <p>Table <a href="3-2-data.html#tab:genre-jsubj">3.2</a> enumerates the subject labels each text inherits from its parent book or journal. JSTOR categorizes the volume rather than each item of its contents, and volumes may bear multiple labels. The count (N) of discrete labels as a percentage is listed first and the table is sorted by that figure. In addition, to prevent double counting of texts bearing multiple labels, each label is given a weight (W) that is the inverse of the number of labels given to the text. The top three, Language &amp; Literature, Humanities, and History, are the same in each case, while Sociology, Music, and Area Studies are ranked higher by weight than by count, an indication that Social Sciences frequently co-occurs with other labels and is therefore down-weighted. This makes sense as Social Sciences, like Humanities and Arts, is a meta subject.</p>
 <p>“Subject” is the name given by JSTOR as a description of content, yet they also refer to “discipline”, which as mentioned above is a description of conditioning social structures. This is not a mere mincing of words; the argument is that content and condition are related but not equivalent, that is, that <em>some</em> cultural formations (topics) will span social boundaries. These rankings, especially the lopsided proportion allocated to Language &amp; Literature, provide expectations as to the number and content of topics, under the assumption that there is less within discipline than between discipline variation in vocabulary. Of course the goal is not to merely recover these discipline categories which are already given. Rather, the aim is to drill down to regularities of speech as indicators of a freely variable cultural dimension that is conditioned but not entirely controlled by social structure.</p>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="4">
-<li id="fn4"><p>The Freudian “id” is an unfortunate casualty of this step, as well as some footnotes, endnotes, and captions containing small text where word boundaries were not detected during OCR and a series of words was concatenated.<a href="3-2-data.html#fnref4" class="footnote-back">↩</a></p></li>
-<li id="fn5"><p>www.jstor.org/stable/10.2307/27909026<a href="3-2-data.html#fnref5" class="footnote-back">↩</a></p></li>
-<li id="fn6"><p>www.jstor.org/stable/10.2307/43795866<a href="3-2-data.html#fnref6" class="footnote-back">↩</a></p></li>
-</ol>
 </div>
             </section>
 
